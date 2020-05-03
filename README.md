@@ -19,3 +19,10 @@ You can connect to the running container like below to inspect, where `web` is t
 ```
 docker exec -it web bash
 ```
+
+## Thanks
+
+Big thanks to people who contributed to below content which helped me implement this using Go, and Semantic UI:
+
+ - [Serving Static Sites with Go](https://www.alexedwards.net/blog/serving-static-sites-with-go)
+ - [Docker for Go Development with Hot Reload](https://levelup.gitconnected.com/docker-for-go-development-a27141f36ba9)
