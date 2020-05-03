@@ -6,5 +6,5 @@ COPY . .
 RUN go get -d -v ./...
 RUN go install -v ./...
 
-WORKDIR /go/src/app/cmd
+WORKDIR /go/src/app/cmd/web
 CMD ["web"]

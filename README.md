@@ -13,3 +13,9 @@ docker build -t my-golang-app -f docker-web.dockerfile .
 docker run -it --rm -p 9000:8080 --name my-running-app my-golang-app
 curl http://localhost:9000/monkeys
 ```
+
+You can connect to the running container like below to inspect, where `web` is the name of the container:
+
+```
+docker exec -it web bash
+```
