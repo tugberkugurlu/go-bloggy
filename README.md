@@ -1,2 +1,15 @@
 # go-bloggy
-Markdown-driven version of tugberkugurlu/Bloggy, implemented in Go
+Markdown-driven version of tugberkugurlu/Bloggy, implemented in Go.
+
+## Facts
+
+ - This codebase structured is influenced by [golang-standards/project-layout](https://github.com/golang-standards/project-layout), 
+ even if it doesn't adhere to it completely.
+
+## Build Docker Image
+
+```
+docker build -t my-golang-app -f docker-web.dockerfile .
+docker run -it --rm -p 9000:8080 --name my-running-app my-golang-app
+curl http://localhost:9000/monkeys
+```
