@@ -5,7 +5,11 @@ abstract: On my previous post, I walked through the benefits of using PostSharp 
   In this post, we will see how we can enable Redis as the caching backend through
   PostSharp's modular nature.
 created_at: 2019-07-03 21:48:34.6800844 +0000 UTC
-tags: []
+tags:
+- .NET Core
+- Aspect Oriented Programming
+- Caching
+- PostSharp
 slugs:
 - distributed-caching-in--net-core-with-postsharp-and-redis
 ---
