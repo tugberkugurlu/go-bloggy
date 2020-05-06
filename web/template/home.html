@@ -42,11 +42,33 @@
         </div>
     </div>
 </div>
-<div class="ui container">
+<div class="ui container" id="main">
     <div class="ui grid">
         <div class="row">
             <div class="twelve wide column">
-                <h1>Hello {{.Title}}</h1>
+                <div class="ui divided items">
+                    {{ range $post := .Posts }}
+                        <div class="item">
+                            <div class="image">
+                                <img src="https://semantic-ui.com/images/wireframe/image.png">
+                            </div>
+                            <div class="content">
+                                <a class="header">{{$post.Metadata.Title}}</a>
+                                <div class="meta">
+                                    <span class="cinema">Tugberk Ugurlu @ {{$post.Metadata.CreatedOn}}</span>
+                                </div>
+                                <div class="description">
+                                    <p>{{$post.Metadata.Abstract}}</p>
+                                </div>
+                                <div class="extra">
+                                    {{ range $tag := $post.Metadata.Tags }}
+                                        <div class="ui label">{{$tag}}</div>
+                                    {{ end }}
+                                </div>
+                            </div>
+                        </div>
+                    {{ end }}
+                </div>
             </div>
             <div class="four wide column">
                 <div class="ui one cards">

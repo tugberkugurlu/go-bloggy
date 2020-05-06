@@ -10,7 +10,13 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
+	"time"
 )
+
+type Post struct {
+	Metadata PostMetadata
+	Body []byte
+}
 
 type PostMetadata struct {
 	Title string `yaml:"title"`
@@ -43,6 +49,8 @@ func rankByTagCount(tagFrequencies map[string]int) PairList{
 }
 
 var tagsList PairList
+var posts []Post
+
 func main() {
 	tags := make(map[string]int)
 	err := filepath.Walk("../../web/posts", func(path string, f os.FileInfo, err error) error {
@@ -93,6 +101,10 @@ func main() {
 					log.Fatal(yamlErr)
 				}
 
+				posts = append(posts, Post{
+					Body: body,
+					Metadata: postMetadata,
+				})
 				for _, tag := range postMetadata.Tags {
 					tags[tag] = tags[tag]+1
 				}
@@ -105,6 +117,20 @@ func main() {
 	}
 
 	tagsList = rankByTagCount(tags)
+	sort.SliceStable(posts, func(i, j int) bool {
+		// 2010-03-08 23:21:00 +0000 UTC
+		const layout = "2006-01-02 15:04:05 -0700 MST"
+		iTime, iErr := time.Parse(layout, posts[i].Metadata.CreatedOn)
+		if iErr != nil {
+			log.Fatal(iErr)
+		}
+
+		jTime, jErr := time.Parse(layout, posts[j].Metadata.CreatedOn)
+		if jErr != nil {
+			log.Fatal(jErr)
+		}
+		return iTime.Unix() > jTime.Unix()
+	})
 	fs := http.FileServer(http.Dir("../../web/static"))
 	http.Handle("/assets/", http.StripPrefix("/assets/", fs))
 	http.HandleFunc("/", handler)
@@ -112,19 +138,18 @@ func main() {
 }
 
 type Page struct {
-	Title string
+	Posts []Post
 	Tags PairList
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	title := r.URL.Path[1:]
 	t, err  := template.ParseFiles("../../web/template/home.html")
 	if err != nil {
 		fmt.Fprintf(w, err.Error())
 		return
 	}
 	t.Execute(w, &Page{
-		Title: title,
+		Posts: posts[:10],
 		Tags: tagsList,
 	})
 }
