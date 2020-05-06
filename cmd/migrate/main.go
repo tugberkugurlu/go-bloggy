@@ -13,6 +13,7 @@ import (
 	"path/filepath"
 	"sort"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -48,54 +49,75 @@ func main() {
 		return posts[i].createdOnUtc.Unix() > posts[j].createdOnUtc.Unix()
 	})
 
-	for _, post := range posts {
-		fmt.Printf("Processing '%s' (%s)\n", post.title, post.id)
-		tags, err := ReadTags(db, post.id)
-		if err != nil {
-			log.Fatal(err.Error())
-		}
+	var fmtLock sync.Mutex
+	var wg sync.WaitGroup
+	done := make(chan struct{})
 
-		slugs, err := ReadSlugs(db, post.id)
-		if err != nil {
-			log.Fatal(err.Error())
-		}
+	for _, p := range posts {
+		wg.Add(1)
+		go func(post post) {
+			tags, err := ReadTags(db, post.id)
+			if err != nil {
+				log.Fatal(err.Error())
+			}
 
-		var builder strings.Builder
-		builder.WriteString(fmt.Sprintln("---"))
-		d, err := yaml.Marshal(&struct {
-			Title string `yaml:"title"`
-			CreatedOn string `yaml:"created_at"`
-			Tags []string `yaml:"tags"`
-			Slugs []string `yaml:"slugs"`
-		}{
-			Title: post.title,
-			CreatedOn: post.createdOnUtc.UTC().String(),
-			Tags: func() []string {
-				r := make([]string, len(tags))
-				for i, t := range tags {
-					r[i] = t.name
-				}
-				return r
-			}(),
-			Slugs: slugs,
-		})
-		if err != nil {
-			log.Fatal(err.Error())
-		}
-		builder.Write(d)
-		builder.WriteString(fmt.Sprintln("---"))
+			slugs, err := ReadSlugs(db, post.id)
+			if err != nil {
+				log.Fatal(err.Error())
+			}
 
-		basePath := fmt.Sprintf("../../web/posts/%s", post.createdOnUtc.Format("2006"))
-		if _, err := os.Stat(basePath); os.IsNotExist(err) {
-			os.Mkdir(basePath, 0755)
-		}
+			var builder strings.Builder
+			builder.WriteString(fmt.Sprintln("---"))
+			d, err := yaml.Marshal(&struct {
+				Title string `yaml:"title"`
+				Abstract string `yaml:"abstract"`
+				CreatedOn string `yaml:"created_at"`
+				Tags []string `yaml:"tags"`
+				Slugs []string `yaml:"slugs"`
+			}{
+				Title: post.title,
+				Abstract: post.abstract,
+				CreatedOn: post.createdOnUtc.UTC().String(),
+				Tags: func() []string {
+					r := make([]string, len(tags))
+					for i, t := range tags {
+						r[i] = t.name
+					}
+					return r
+				}(),
+				Slugs: slugs,
+			})
+			if err != nil {
+				log.Fatal(err.Error())
+			}
+			builder.Write(d)
+			builder.WriteString(fmt.Sprintln("---"))
 
-		path := filepath.Join(basePath, fmt.Sprintf("%s_%s.md", post.createdOnUtc.Format("2006-01-02_15-04-05"), slugs[0]))
-		err = ioutil.WriteFile(path, []byte(builder.String()), 0755)
-		if err != nil {
-			fmt.Printf("Unable to write file: %v", err)
-		}
+			basePath := fmt.Sprintf("../../web/posts/%s", post.createdOnUtc.Format("2006"))
+			if _, err := os.Stat(basePath); os.IsNotExist(err) {
+				os.Mkdir(basePath, 0755)
+			}
+
+			path := filepath.Join(basePath, fmt.Sprintf("%s_%s.md", post.createdOnUtc.Format("2006-01-02_15-04-05"), slugs[0]))
+			err = ioutil.WriteFile(path, []byte(builder.String()), 0755)
+			if err != nil {
+				log.Fatalf("Unable to write file: %v\n", err)
+			}
+			wg.Done()
+			func() {
+				fmtLock.Lock()
+				defer fmtLock.Unlock()
+				fmt.Printf("Processed '%s' (%s)\n", post.title, post.id)
+			}()
+		}(p)
 	}
+
+	go func() {
+		wg.Wait()
+		done <- struct{}{}
+	}()
+
+	<-done
 }
 
 type post struct {
