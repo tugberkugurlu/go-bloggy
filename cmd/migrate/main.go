@@ -10,6 +10,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"path/filepath"
 	"sort"
 	"strings"
 	"time"
@@ -84,7 +85,13 @@ func main() {
 		builder.Write(d)
 		builder.WriteString(fmt.Sprintln("---"))
 
-		err = ioutil.WriteFile(fmt.Sprintf("../../web/posts/%s_%s.md", post.createdOnUtc.Format("2006-01-02_15-04-05"), slugs[0]), []byte(builder.String()), 0755)
+		basePath := fmt.Sprintf("../../web/posts/%s", post.createdOnUtc.Format("2006"))
+		if _, err := os.Stat(basePath); os.IsNotExist(err) {
+			os.Mkdir(basePath, 0755)
+		}
+
+		path := filepath.Join(basePath, fmt.Sprintf("%s_%s.md", post.createdOnUtc.Format("2006-01-02_15-04-05"), slugs[0]))
+		err = ioutil.WriteFile(path, []byte(builder.String()), 0755)
 		if err != nil {
 			fmt.Printf("Unable to write file: %v", err)
 		}
