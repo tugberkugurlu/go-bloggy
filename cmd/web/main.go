@@ -12,6 +12,7 @@ import (
 	"path/filepath"
 	"golang.org/x/net/html"
 	"sort"
+	"strings"
 	"time"
 )
 
@@ -159,6 +160,8 @@ func main() {
 	})
 	fs := http.FileServer(http.Dir("../../web/static"))
 	http.Handle("/assets/", http.StripPrefix("/assets/", fs))
+	http.HandleFunc("/content/images/", legacyBlogImagesRedirector)
+	http.HandleFunc("/Content/Images/", legacyBlogImagesRedirector)
 	http.HandleFunc("/", handler)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
@@ -168,6 +171,12 @@ type Page struct {
 	Tags PairList
 }
 
+func legacyBlogImagesRedirector(w http.ResponseWriter, r *http.Request) {
+	const legacyImagesRootPath = "/content/images"
+	const newUriPrefix = "https://tugberkugurlu.blob.core.windows.net/bloggyimages/legacy-blog-images/images"
+	http.Redirect(w, r, fmt.Sprintf("%s%s", newUriPrefix, strings.ToLower(r.URL.Path[len(legacyImagesRootPath):])), http.StatusMovedPermanently)
+}
+
 func handler(w http.ResponseWriter, r *http.Request) {
 	t, err  := template.ParseFiles("../../web/template/home.html")
 	if err != nil {
@@ -175,7 +184,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	t.Execute(w, &Page{
-		Posts: posts[:20],
+		Posts: posts,
 		Tags: tagsList,
 	})
 }
