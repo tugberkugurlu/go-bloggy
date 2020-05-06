@@ -92,11 +92,9 @@ func main() {
 			}
 			builder.Write(d)
 			builder.WriteString(fmt.Sprintln("---"))
+			builder.WriteString(fmt.Sprintln())
+			builder.WriteString(post.content)
 
-			if index < 10 {
-				builder.WriteString(fmt.Sprintln())
-				builder.WriteString(post.content)
-			}
 
 			basePath := fmt.Sprintf("../../web/posts/%s", post.createdOnUtc.Format("2006"))
 			if _, err := os.Stat(basePath); os.IsNotExist(err) {
