@@ -8,3 +8,14 @@ tags:
 slugs:
 - list-of-seven-wonders-of-the-ancient-world
 ---
+
+<p><span style="font-weight: bold;">Seven Wonders of the World</span></p>
+<ul>
+<li>Great Pyramids of Egypt (including Sphinx)</li>
+<li>Hanging Gardens of Babylon</li>
+<li>Tomb of Mausolus at Halicarnassus</li>
+<li>Statue of Zeus at Olympia</li>
+<li>Collosus of Rhodes in the Harbor at Rhodes</li>
+<li>Great Lighthouse in Alexandria, Egypt</li>
+<li>Temple Artemis at Ephesus</li>
+</ul>

@@ -11,3 +11,10 @@ tags:
 slugs:
 - signalr-real-time-web-applications-webcast-recording-in-turkish-is-available
 ---
+
+<p>A week ago, we tried to organize a webcast on <a href="http://signalr.net">ASP.NET SignalR</a> and the network connection was very poor again. So, the participation was low but I managed to record it successfully. The video is now available on <a href="http://nedirtv.com/">NedirTV</a>: <a href="http://nedirtv.com/video/signalr-gercek-zamanli-web-uygulamalari-webineri">SignalR - Ger&ccedil;ek Zamanlı Web Uygulamaları</a>.</p>
+<p>Source code is also available under my GitHub account:&nbsp;<a href="https://github.com/tugberkugurlu/SignalRWebcast201211">https://github.com/tugberkugurlu/SignalRWebcast201211</a></p>
+<p>You can also watch it on Vimeo:</p>
+<p><iframe width="500" frameborder="0" src="http://player.vimeo.com/video/53206238?badge=0" height="281"></iframe></p>
+<p><a href="http://vimeo.com/53206238">SignalR - Ger&ccedil;ek Zamanli Web Uygulamalari</a> from <a href="http://vimeo.com/user6670252">Tugberk Ugurlu</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
+<p>Enjoy <img src="http://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/Adv.NET-Web-API-Webcast-Offline-Recordin_B4B9/wlEmoticon-smile.png" alt="Smile" style="border-style: none;" class="wlEmoticon wlEmoticon-smile" /></p>
