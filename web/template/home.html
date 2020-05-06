@@ -85,26 +85,12 @@
                     Tags
                 </h4>
                 <div id="section-tags">
-                    <a class="ui image label">
-                        .NET Core
-                        <div class="detail">22</div>
-                    </a>
-                    <a class="ui image label">
-                        Polyglot Persistance
-                        <div class="detail">5</div>
-                    </a>
-                    <a class="ui image label">
-                        Redis
-                        <div class="detail">8</div>
-                    </a>
-                    <a class="ui image label">
-                        MongoDB
-                        <div class="detail">4</div>
-                    </a>
-                    <a class="ui image label">
-                        Microsoft Azure
-                        <div class="detail">12</div>
-                    </a>
+                    {{ range $value := .Tags }}
+                        <a class="ui image tiny label">
+                            {{ $value.Key }}
+                            <div class="detail">{{ $value.Value }}</div>
+                        </a>
+                    {{ end }}
                 </div>
             </div>
         </div>
