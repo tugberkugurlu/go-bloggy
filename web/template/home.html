@@ -50,7 +50,11 @@
                     {{ range $post := .Posts }}
                         <div class="item">
                             <div class="image">
-                                <img src="https://semantic-ui.com/images/wireframe/image.png">
+                                {{ $length := len $post.Images }} {{ if ne $length 0 }}
+                                    <img src="{{ (index $post.Images 0) }}">
+                                {{ else }}
+                                    <img src="https://semantic-ui.com/images/wireframe/image.png">
+                                {{ end }}
                             </div>
                             <div class="content">
                                 <a class="header">{{$post.Metadata.Title}}</a>

@@ -28,3 +28,5 @@ Big thanks to people who contributed to below content which helped me implement 
  - [Serving Static Sites with Go](https://www.alexedwards.net/blog/serving-static-sites-with-go)
  - [Docker for Go Development with Hot Reload](https://levelup.gitconnected.com/docker-for-go-development-a27141f36ba9)
  - [Using Nested Templates in Go for Efficient Web Development](https://levelup.gitconnected.com/using-go-templates-for-effective-web-development-f7df10b0e4a0)
+ - [Golang parse HTML, extract all content with <body> </body> tags](https://stackoverflow.com/questions/30109061/golang-parse-html-extract-all-content-with-body-body-tags)
+ - [How to compare the length of a list in html/template in golang?](https://stackoverflow.com/questions/35967109/how-to-compare-the-length-of-a-list-in-html-template-in-golang)

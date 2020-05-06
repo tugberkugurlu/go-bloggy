@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
 	"gopkg.in/yaml.v2"
 	"html/template"
@@ -9,13 +10,15 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"golang.org/x/net/html"
 	"sort"
 	"time"
 )
 
 type Post struct {
+	Body     []byte
+	Images   []string
 	Metadata PostMetadata
-	Body []byte
 }
 
 type PostMetadata struct {
@@ -101,8 +104,31 @@ func main() {
 					log.Fatal(yamlErr)
 				}
 
+				var images []string
+				if document, htmlParseErr := html.Parse(bytes.NewReader(body)); htmlParseErr == nil {
+					var crawler func(*html.Node)
+					crawler = func(node *html.Node) {
+						if node.Type == html.ElementNode && node.Data == "img" {
+							for _, attr := range node.Attr {
+								if attr.Key == "src" {
+									images = append(images, attr.Val)
+									break
+								}
+							}
+							return
+						}
+						for child := node.FirstChild; child != nil; child = child.NextSibling {
+							crawler(child)
+						}
+					}
+					crawler(document)
+				} else {
+					fmt.Println(htmlParseErr)
+				}
+
 				posts = append(posts, Post{
 					Body: body,
+					Images: images,
 					Metadata: postMetadata,
 				})
 				for _, tag := range postMetadata.Tags {
@@ -149,7 +175,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	t.Execute(w, &Page{
-		Posts: posts[:10],
+		Posts: posts[:20],
 		Tags: tagsList,
 	})
 }
