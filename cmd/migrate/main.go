@@ -53,9 +53,9 @@ func main() {
 	var wg sync.WaitGroup
 	done := make(chan struct{})
 
-	for _, p := range posts {
+	for i, p := range posts {
 		wg.Add(1)
-		go func(post post) {
+		go func(post post, index int) {
 			tags, err := ReadTags(db, post.id)
 			if err != nil {
 				log.Fatal(err.Error())
@@ -93,6 +93,11 @@ func main() {
 			builder.Write(d)
 			builder.WriteString(fmt.Sprintln("---"))
 
+			if index < 10 {
+				builder.WriteString(fmt.Sprintln())
+				builder.WriteString(post.content)
+			}
+
 			basePath := fmt.Sprintf("../../web/posts/%s", post.createdOnUtc.Format("2006"))
 			if _, err := os.Stat(basePath); os.IsNotExist(err) {
 				os.Mkdir(basePath, 0755)
@@ -109,7 +114,7 @@ func main() {
 				defer fmtLock.Unlock()
 				fmt.Printf("Processed '%s' (%s)\n", post.title, post.id)
 			}()
-		}(p)
+		}(p, i)
 	}
 
 	go func() {
