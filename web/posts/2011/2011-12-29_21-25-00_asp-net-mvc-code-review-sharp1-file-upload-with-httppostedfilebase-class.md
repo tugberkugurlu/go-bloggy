@@ -1,5 +1,7 @@
 ---
 title: 'ASP.NET MVC Code Review #1 - File Upload With HttpPostedFileBase Class'
+abstract: 'This is #1 of the series of blog posts which is about some core scenarios
+  on ASP.NET MVC: File Upload With HttpPostedFileBase Class'
 created_at: 2011-12-29 21:25:00 +0000 UTC
 tags:
 - ASP.Net

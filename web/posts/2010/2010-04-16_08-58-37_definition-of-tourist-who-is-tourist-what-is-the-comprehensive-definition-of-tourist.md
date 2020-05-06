@@ -1,6 +1,8 @@
 ---
 title: Definition of Tourist / Who is Tourist, What is the Comprehensive Definition
   of Tourist ?
+abstract: In this mini article, you will find the Comprehensive, Exact Definition
+  Of Tourist !
 created_at: 2010-04-16 08:58:37 +0000 UTC
 tags:
 - Tourism

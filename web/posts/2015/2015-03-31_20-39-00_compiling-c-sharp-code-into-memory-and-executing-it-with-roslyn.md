@@ -1,5 +1,7 @@
 ---
 title: Compiling C# Code Into Memory and Executing It with Roslyn
+abstract: Let me show you how to compile a piece of C# code into memory and execute
+  it with Roslyn. It is super easy if you believe it or not :)
 created_at: 2015-03-31 20:39:00 +0000 UTC
 tags:
 - .net

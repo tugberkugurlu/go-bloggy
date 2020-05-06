@@ -1,5 +1,7 @@
 ---
 title: That Conference 2015 and My ASP.NET 5 Talk
+abstract: This week, I had the privilege to attend That Conference as a speaker to
+  give a talk on ASP.NET 5. Here is a quick blog post on my conference experience.
 created_at: 2015-08-16 18:02:00 +0000 UTC
 tags:
 - .net

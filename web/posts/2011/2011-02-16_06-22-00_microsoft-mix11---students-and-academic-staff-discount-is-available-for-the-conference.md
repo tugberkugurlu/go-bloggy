@@ -1,6 +1,8 @@
 ---
 title: 'Microsoft MIX11 : Students & Academic Staff Discount is Available For the
   Conference'
+abstract: 'Microsoft MIX11 : Students & Academic Staff Discount is Available For the
+  Conference / The chance that every geek student wants to catch!'
 created_at: 2011-02-16 06:22:00 +0000 UTC
 tags:
 - .net

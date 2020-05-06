@@ -1,5 +1,7 @@
 ---
 title: WCF Web API Plays Nice With ELMAH - A Quick Introduction to WCF Web API HttpErrorHandler
+abstract: See how WCF Web API Plays Nice With ELMAH. This blog post is a Quick introduction
+  to WCF Web API HttpErrorHandler
 created_at: 2011-11-22 12:09:00 +0000 UTC
 tags:
 - .net

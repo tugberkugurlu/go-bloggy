@@ -1,5 +1,8 @@
 ---
 title: Sides and Source Code for DEU Bilgisayar Topluluğu Izmir 2. Teknoloji Zirvesi
+abstract: This weekend, I participated in an event as a speaker in Izmir, DEU Bilgisayar
+  Topluluğu Izmir 2. Teknoloji Zirvesi. Sides and Source Code for my sessions are
+  available.
 created_at: 2013-01-08 04:34:00 +0000 UTC
 tags:
 - .net

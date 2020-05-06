@@ -1,6 +1,9 @@
 ---
 title: 'ASP.NET MVC Code Review #2 - A Way of Working with Html Select Element (AKA
   DropDownList) In ASP.NET MVC'
+abstract: 'This is the #2 of the series of blog posts which is about some core scenarios
+  on ASP.NET MVC: A Way of Working with Html Select Element (AKA DropDownList) In
+  ASP.NET MVC'
 created_at: 2011-12-30 14:28:00 +0000 UTC
 tags:
 - ASP.Net

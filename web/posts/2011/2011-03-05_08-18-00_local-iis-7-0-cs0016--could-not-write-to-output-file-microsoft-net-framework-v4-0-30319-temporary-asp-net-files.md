@@ -1,6 +1,9 @@
 ---
 title: 'Local IIS 7.0 - CS0016: Could not write to output file / Microsoft.Net > Framework
   > v4.0.30319 > Temporary ASP.NET Files'
+abstract: Solution to an annoying error message! You are getting 'Could not write
+  to output file 'c:\Windows\Microsoft.NET\Framework\....' message? You are at the
+  right place.
 created_at: 2011-03-05 08:18:00 +0000 UTC
 tags:
 - .net

@@ -1,5 +1,7 @@
 ---
 title: Getting Started with ASP.NET vNext by Setting Up the Environment From Scratch
+abstract: In this post, I'll walk you through how you can set up your environment
+  from scratch to get going with ASP.NET vNext.
 created_at: 2014-09-28 19:08:00 +0000 UTC
 tags:
 - .net

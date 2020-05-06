@@ -1,6 +1,8 @@
 ---
 title: Visual Studio 11 Beta Code-Named "Juneau" SQL Server Database Project - Quick
   Overview
+abstract: Quick Overview of Code-Named "Juneau" SQL Server Database Project which
+  is one of the most awesome features of Visual Studio 11 beta
 created_at: 2012-04-07 10:26:00 +0000 UTC
 tags:
 - MS SQL

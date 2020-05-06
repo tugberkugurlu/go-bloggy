@@ -1,6 +1,9 @@
 ---
 title: Complex Type Action Parameters with ComplexTypeAwareActionSelector in ASP.NET
   Web API - Part 2
+abstract: In this post, we will see how ComplexTypeAwareActionSelector behaves under
+  the covers to involve complex type action parameters during the action selection
+  process.
 created_at: 2012-10-08 06:03:00 +0000 UTC
 tags:
 - ASP.Net
