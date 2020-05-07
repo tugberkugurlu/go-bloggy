@@ -162,7 +162,8 @@ func main() {
 	http.Handle("/assets/", http.StripPrefix("/assets/", fs))
 	http.HandleFunc("/content/images/", legacyBlogImagesRedirector)
 	http.HandleFunc("/Content/Images/", legacyBlogImagesRedirector)
-	http.HandleFunc("/about", about)
+	http.HandleFunc("/about", staticPage("about"))
+	http.HandleFunc("/speaking", staticPage("speaking"))
 	http.HandleFunc("/", handler)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
@@ -182,18 +183,20 @@ func legacyBlogImagesRedirector(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, fmt.Sprintf("%s%s", newUriPrefix, strings.ToLower(r.URL.Path[len(legacyImagesRootPath):])), http.StatusMovedPermanently)
 }
 
+func staticPage(page string) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		ExecuteTemplate(w, fmt.Sprintf("../../web/template/%s.html", page), &Layout{
+			Tags: tagsList,
+		})
+	}
+}
+
 func handler(w http.ResponseWriter, r *http.Request) {
 	ExecuteTemplate(w, "../../web/template/home.html", &Layout{
 		Tags: tagsList,
 		Data: Home{
 			Posts: posts,
 		},
-	})
-}
-
-func about(w http.ResponseWriter, r *http.Request) {
-	ExecuteTemplate(w, "../../web/template/about.html", &Layout{
-		Tags: tagsList,
 	})
 }
 
