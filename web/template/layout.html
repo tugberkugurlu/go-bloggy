@@ -1,0 +1,103 @@
+{{define "layout"}}
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Tugberk @ the Heart of Software</title>
+    <meta name="description" content="Welcome to Technical Leader and Software Engineer Tugberk Ugurlu's home on the interwebs! Here, you can find out about Tugberk's conference talks, books and blog posts on software development techniques and practices." />
+    <link rel="stylesheet" href="/assets/Semantic-UI-CSS-2.4.1/semantic.min.css">
+    <link rel="stylesheet" href="/assets/stylesheets/main.css">
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+    <script src="/assets/Semantic-UI-CSS-2.4.1/semantic.min.js"></script>
+    <script>
+        $(document)
+            .ready(function() {
+                $('.ui.menu .ui.dropdown').dropdown({
+                    on: 'hover'
+                });
+            });
+    </script>
+</head>
+<body>
+<div class="ui teal inverted stackable menu huge">
+    <div class="header item">Tugberk @ the Heart of Software</div>
+    <a class="active item" href="/">Blog</a>
+    <a class="item" href="/speaking">Speaking</a>
+    <a class="item" href="/about">About</a>
+    <a class="item" href="/contact">Contact</a>
+    <div class="ui dropdown item">
+        Travel
+        <i class="dropdown icon"></i>
+        <div class="menu">
+            <div class="item">Places I visited</div>
+            <div class="item">Photo gallery</div>
+            <div class="item">Where to eat what</div>
+            <div class="divider"></div>
+            <div class="item">Voyager</div>
+            <div class="divider"></div>
+            <div class="item">Tell me where to visit next</div>
+        </div>
+    </div>
+</div>
+<div class="ui container" id="main">
+    <div class="ui stackable grid">
+        <div class="row">
+            <div class="eleven wide column">
+                {{template "content" .Data}}
+            </div>
+            <div class="five wide column">
+                <div class="ui one cards">
+                    <div class="ui card">
+                        <div class="image">
+                            <img src="https://tugberkugurlu.blob.core.windows.net/speaking/tugberk-ugurlu-speaker-profile-vertical.jpg">
+                        </div>
+                        <div class="content">
+                            <a class="header center aligned" href="/about">Hey, I'm Tugberk 👋</a>
+                            <div class="description center aligned">
+                                <p>Coder 👨🏻‍💻, Speaker 🗣, Author 📚, ex-Microsoft MVP 🕸, Blogger 💻, Software Engineering at Deliveroo 🍜, F1 fan 🏎, Loves travelling 🛫</p>
+                                <p>I live in London, UK 🏡</p>
+                            </div>
+                        </div>
+                        <div class="extra content center aligned">
+                            <a>
+                                <i class="twitter icon large"></i>
+                            </a>
+                            <a>
+                                <i class="linkedin icon large"></i>
+                            </a>
+                            <a>
+                                <i class="github icon large large"></i>
+                            </a>
+                            <a>
+                                <i class="stack overflow icon large"></i>
+                            </a>
+                            <a>
+                                <i class="youtube icon large"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <h4 class="ui horizontal divider header">
+                    <i class="tag icon"></i>
+                    Tags
+                </h4>
+                <div id="section-tags">
+                    {{ range $value := .Tags }}
+                        <a class="ui image small label">
+                            {{ $value.Key }}
+                            <div class="detail">{{ $value.Value }}</div>
+                        </a>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+{{end}}

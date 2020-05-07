@@ -162,13 +162,18 @@ func main() {
 	http.Handle("/assets/", http.StripPrefix("/assets/", fs))
 	http.HandleFunc("/content/images/", legacyBlogImagesRedirector)
 	http.HandleFunc("/Content/Images/", legacyBlogImagesRedirector)
+	http.HandleFunc("/about", about)
 	http.HandleFunc("/", handler)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
-type Page struct {
-	Posts []Post
+type Layout struct {
 	Tags PairList
+	Data interface{}
+}
+
+type Home struct {
+	Posts []Post
 }
 
 func legacyBlogImagesRedirector(w http.ResponseWriter, r *http.Request) {
@@ -178,13 +183,25 @@ func legacyBlogImagesRedirector(w http.ResponseWriter, r *http.Request) {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	t, err  := template.ParseFiles("../../web/template/home.html")
+	ExecuteTemplate(w, "../../web/template/home.html", &Layout{
+		Tags: tagsList,
+		Data: Home{
+			Posts: posts,
+		},
+	})
+}
+
+func about(w http.ResponseWriter, r *http.Request) {
+	ExecuteTemplate(w, "../../web/template/about.html", &Layout{
+		Tags: tagsList,
+	})
+}
+
+func ExecuteTemplate(w http.ResponseWriter, templatePath string, pageContext *Layout) {
+	t, err  := template.ParseFiles(templatePath, "../../web/template/layout.html")
 	if err != nil {
 		fmt.Fprintf(w, err.Error())
 		return
 	}
-	t.Execute(w, &Page{
-		Posts: posts,
-		Tags: tagsList,
-	})
+	t.ExecuteTemplate(w, "layout", pageContext)
 }
