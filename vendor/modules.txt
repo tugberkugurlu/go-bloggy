@@ -6,6 +6,9 @@ github.com/denisenkom/go-mssqldb/internal/decimal
 github.com/denisenkom/go-mssqldb/internal/querytext
 # github.com/golang-sql/civil v0.0.0-20190719163853-cb61b32ac6fe
 github.com/golang-sql/civil
+# github.com/gorilla/mux v1.7.4
+## explicit
+github.com/gorilla/mux
 # golang.org/x/crypto v0.0.0-20190325154230-a5d413f7728c
 golang.org/x/crypto/md4
 # golang.org/x/net v0.0.0-20200506145744-7e3656a0809f

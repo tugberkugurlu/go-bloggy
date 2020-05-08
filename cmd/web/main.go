@@ -14,6 +14,7 @@ import (
 	"sort"
 	"strings"
 	"time"
+	"github.com/gorilla/mux"
 )
 
 type Post struct {
@@ -53,10 +54,12 @@ func rankByTagCount(tagFrequencies map[string]int) PairList{
 }
 
 var tagsList PairList
-var posts []Post
+var posts []*Post
+var postsBySlug map[string]*Post
 
 func main() {
 	tags := make(map[string]int)
+	postsBySlug = make(map[string]*Post)
 	err := filepath.Walk("../../web/posts", func(path string, f os.FileInfo, err error) error {
 		if filepath.Ext(path) == ".md" {
 			func(markdownFilePath string) {
@@ -127,13 +130,17 @@ func main() {
 					fmt.Println(htmlParseErr)
 				}
 
-				posts = append(posts, Post{
+				post := &Post{
 					Body: body,
 					Images: images,
 					Metadata: postMetadata,
-				})
+				}
+				posts = append(posts, post)
 				for _, tag := range postMetadata.Tags {
 					tags[tag] = tags[tag]+1
+				}
+				for _, slug := range post.Metadata.Slugs {
+					postsBySlug[slug] = post
 				}
 			}(path)
 		}
@@ -158,14 +165,21 @@ func main() {
 		}
 		return iTime.Unix() > jTime.Unix()
 	})
+	r := mux.NewRouter()
 	fs := http.FileServer(http.Dir("../../web/static"))
-	http.Handle("/assets/", http.StripPrefix("/assets/", fs))
-	http.HandleFunc("/content/images/", legacyBlogImagesRedirector)
-	http.HandleFunc("/Content/Images/", legacyBlogImagesRedirector)
-	http.HandleFunc("/about", staticPage("about"))
-	http.HandleFunc("/speaking", staticPage("speaking"))
-	http.HandleFunc("/", handler)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	r.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", fs))
+	r.PathPrefix("/content/images/").HandlerFunc(legacyBlogImagesRedirector)
+	r.HandleFunc("/about", staticPage("about"))
+	r.HandleFunc("/speaking", staticPage("speaking"))
+	r.HandleFunc("/", handler)
+	log.Fatal(http.ListenAndServe(":8080", CaselessMatcher(r)))
+}
+
+func CaselessMatcher(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		r.URL.Path = strings.ToLower(r.URL.Path)
+		next.ServeHTTP(w, r)
+	})
 }
 
 type Layout struct {
@@ -174,7 +188,7 @@ type Layout struct {
 }
 
 type Home struct {
-	Posts []Post
+	Posts []*Post
 }
 
 func legacyBlogImagesRedirector(w http.ResponseWriter, r *http.Request) {
