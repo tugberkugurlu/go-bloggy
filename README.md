@@ -6,7 +6,7 @@ Markdown-driven version of tugberkugurlu/Bloggy, implemented in Go.
 
 ## Facts
 
- - This codebase structured is influenced by [golang-standards/project-layout](https://github.com/golang-standards/project-layout), 
+ - This codebase structure is influenced by [golang-standards/project-layout](https://github.com/golang-standards/project-layout), 
  even if it doesn't adhere to it completely.
 
 ## Build Docker Image
