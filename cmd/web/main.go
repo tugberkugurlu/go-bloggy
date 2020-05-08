@@ -18,7 +18,7 @@ import (
 )
 
 type Post struct {
-	Body     []byte
+	Body     template.HTML
 	Images   []string
 	Metadata PostMetadata
 }
@@ -131,7 +131,7 @@ func main() {
 				}
 
 				post := &Post{
-					Body: body,
+					Body: template.HTML(string(body)),
 					Images: images,
 					Metadata: postMetadata,
 				}
@@ -169,6 +169,7 @@ func main() {
 	fs := http.FileServer(http.Dir("../../web/static"))
 	r.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", fs))
 	r.PathPrefix("/content/images/").HandlerFunc(legacyBlogImagesRedirector)
+	r.HandleFunc("/archive/{slug}", blogPostPageHandler)
 	r.HandleFunc("/about", staticPage("about"))
 	r.HandleFunc("/speaking", staticPage("speaking"))
 	r.HandleFunc("/", handler)
@@ -189,6 +190,20 @@ type Layout struct {
 
 type Home struct {
 	Posts []*Post
+}
+
+func blogPostPageHandler(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	post, ok := postsBySlug[vars["slug"]]
+	if !ok {
+		http.NotFound(w, r)
+		return
+	}
+
+	ExecuteTemplate(w, "../../web/template/post.html", &Layout{
+		Tags: tagsList,
+		Data: post,
+	})
 }
 
 func legacyBlogImagesRedirector(w http.ResponseWriter, r *http.Request) {
