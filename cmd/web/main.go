@@ -4,17 +4,17 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
+	"github.com/gorilla/mux"
+	"golang.org/x/net/html"
 	"gopkg.in/yaml.v2"
 	"html/template"
 	"log"
 	"net/http"
 	"os"
 	"path/filepath"
-	"golang.org/x/net/html"
 	"sort"
 	"strings"
 	"time"
-	"github.com/gorilla/mux"
 )
 
 type Post struct {
