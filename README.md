@@ -1,5 +1,7 @@
 # go-bloggy
 
+![Go](https://github.com/tugberkugurlu/go-bloggy/workflows/Go/badge.svg?branch=master)
+
 Markdown-driven version of tugberkugurlu/Bloggy, implemented in Go.
 
 ## Facts
