@@ -30,3 +30,43 @@ blockquote {
 #main {
     margin-top: 30px;
 }
+
+#bottom-nav {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1030;
+    display: block;
+    background-color: #f8f9fa!important;
+}
+
+#bottom-nav table {
+    width: 100%;
+}
+
+#bottom-nav table td {
+    padding: 10px;
+}
+
+.top-menu-item {
+    display: none!important;
+}
+
+@media (min-width: 768px) {
+    .d-md-block {
+        display: block!important;
+    }
+    .top-menu-item {
+        display: none!important;
+    }
+}
+
+@media (min-width: 992px) {
+    .d-lg-none {
+        display: none!important;
+    }
+    .top-menu-item {
+        display: flex!important;
+    }
+}

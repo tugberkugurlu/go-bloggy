@@ -25,15 +25,15 @@
     </script>
 </head>
 <body>
-<div class="ui teal inverted stackable menu big">
+<div class="ui teal inverted menu big">
     <div class="header item">
         <a href="/">Tugberk @ the Heart of Software</a>
     </div>
-    <a class="active item" href="/">Blog</a>
-    <a class="item" href="/speaking">Speaking</a>
-    <a class="item" href="/about">About</a>
-    <a class="item" href="/contact">Contact</a>
-    <div class="ui dropdown item">
+    <a class="active item top-menu-item" href="/">Blog</a>
+    <a class="item top-menu-item" href="/speaking">Speaking</a>
+    <a class="item top-menu-item" href="/about">About</a>
+    <a class="item top-menu-item" href="/contact">Contact</a>
+    <div class="ui dropdown item top-menu-item">
         Travel
         <i class="dropdown icon"></i>
         <div class="menu">
@@ -47,6 +47,38 @@
         </div>
     </div>
 </div>
+<nav id="bottom-nav" class="d-md-block d-lg-none">
+    <table>
+        <tbody>
+        <tr>
+            <td style="text-align: center;" class="p-0">
+                <a href="/">
+                    <div><i class="home icon"></i></div>
+                    <div>Home</div>
+                </a>
+            </td>
+            <td style="text-align: center;" class="p-0">
+                <a href="/speaking">
+                    <div><i class="bullhorn icon"></i></div>
+                    <div>Speaking</div>
+                </a>
+            </td>
+            <td style="text-align: center;" class="p-0">
+                <a href="/about">
+                    <div><i class="info icon"></i></div>
+                    <div>About</div>
+                </a>
+            </td>
+            <td style="text-align: center;" class="p-0">
+                <a href="/contact">
+                    <div><i class="envelope icon"></i></div>
+                    <div>Contact</div>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</nav>
 <div class="ui container" id="main">
     <div class="ui stackable grid">
         <div class="row">
@@ -113,7 +145,7 @@
                 anchorRef.attr("href", link.toLowerCase());
             }
         });
-        $("#post-holder img").each(function(i) {
+        $("#post-holder img, #home img").each(function(i) {
             var imgRef = $(this);
             var link = imgRef.attr("src");
             if(link.toLowerCase().indexOf('/content/images/') !== -1) {

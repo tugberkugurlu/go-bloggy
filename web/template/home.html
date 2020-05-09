@@ -8,7 +8,7 @@
     <meta name="twitter:creator" content="@tourismgeek" />
 {{end}}
 {{define "content"}}
-<div class="ui divided items">
+<div id="home" class="ui divided items">
     {{ range $post := .Posts }}
         <div class="item">
             {{ $length := len $post.Images }} {{ if ne $length 0 }}

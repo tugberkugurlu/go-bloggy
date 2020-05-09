@@ -8,9 +8,10 @@ The aim with this phase is to
  
 ## TODOs
 
- - [ ] add blog post page
+ - [x] add blog post page
     - [ ] allow redirects of old slugs
- - [ ] migrate old mobile navigator 
+    - [ ] add links to tags
+ - [x] migrate old mobile navigator 
  - [ ] add contact page
  - [ ] insert ads in existing places
  - [ ] display speaking history
@@ -19,6 +20,7 @@ The aim with this phase is to
  - [ ] home page pagination
  - [ ] have 404 page
  - [ ] disqus comments
+ - [ ] add links to tags on the sidebar
  
 ### Release Prep
  
