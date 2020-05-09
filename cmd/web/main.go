@@ -18,33 +18,33 @@ import (
 )
 
 type Post struct {
-	Body        template.HTML
-	Images      []string
-	PublishedOn time.Time
-	Metadata    PostMetadata
+	Body               template.HTML
+	Images             []string
+	PublishedOn        time.Time
+	Metadata           PostMetadata
 	PublishedOnDisplay string
 }
 
 type PostMetadata struct {
-	Title string `yaml:"title"`
-	Abstract string `yaml:"abstract"`
-	CreatedOn string `yaml:"created_at"`
-	Tags []string `yaml:"tags"`
-	Slugs []string `yaml:"slugs"`
+	Title     string   `yaml:"title"`
+	Abstract  string   `yaml:"abstract"`
+	CreatedOn string   `yaml:"created_at"`
+	Tags      []string `yaml:"tags"`
+	Slugs     []string `yaml:"slugs"`
 }
 
 type Pair struct {
-	Key string
+	Key   string
 	Value int
 }
 
 type PairList []Pair
 
-func (p PairList) Len() int { return len(p) }
+func (p PairList) Len() int           { return len(p) }
 func (p PairList) Less(i, j int) bool { return p[i].Value < p[j].Value }
-func (p PairList) Swap(i, j int){ p[i], p[j] = p[j], p[i] }
+func (p PairList) Swap(i, j int)      { p[i], p[j] = p[j], p[i] }
 
-func rankByTagCount(tagFrequencies map[string]int) PairList{
+func rankByTagCount(tagFrequencies map[string]int) PairList {
 	pl := make(PairList, len(tagFrequencies))
 	i := 0
 	for k, v := range tagFrequencies {
@@ -140,15 +140,15 @@ func main() {
 				}
 
 				post := &Post{
-					Body: template.HTML(string(body)),
-					Images: images,
-					Metadata: postMetadata,
-					PublishedOn: publishedOn,
+					Body:               template.HTML(string(body)),
+					Images:             images,
+					Metadata:           postMetadata,
+					PublishedOn:        publishedOn,
 					PublishedOnDisplay: publishedOn.Format("2006-01-02 15:04:05"),
 				}
 				posts = append(posts, post)
 				for _, tag := range postMetadata.Tags {
-					tags[tag] = tags[tag]+1
+					tags[tag] = tags[tag] + 1
 				}
 				for _, slug := range post.Metadata.Slugs {
 					postsBySlug[slug] = post
@@ -230,7 +230,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ExecuteTemplate(w http.ResponseWriter, templatePath string, pageContext *Layout) {
-	t, err  := template.ParseFiles(templatePath, "../../web/template/layout.html")
+	t, err := template.ParseFiles(templatePath, "../../web/template/layout.html")
 	if err != nil {
 		fmt.Fprintf(w, err.Error())
 		return

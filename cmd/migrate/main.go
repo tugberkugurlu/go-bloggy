@@ -69,14 +69,14 @@ func main() {
 			var builder strings.Builder
 			builder.WriteString(fmt.Sprintln("---"))
 			d, err := yaml.Marshal(&struct {
-				Title string `yaml:"title"`
-				Abstract string `yaml:"abstract"`
-				CreatedOn string `yaml:"created_at"`
-				Tags []string `yaml:"tags"`
-				Slugs []string `yaml:"slugs"`
+				Title     string   `yaml:"title"`
+				Abstract  string   `yaml:"abstract"`
+				CreatedOn string   `yaml:"created_at"`
+				Tags      []string `yaml:"tags"`
+				Slugs     []string `yaml:"slugs"`
 			}{
-				Title: post.title,
-				Abstract: post.abstract,
+				Title:     post.title,
+				Abstract:  post.abstract,
 				CreatedOn: post.createdOnUtc.UTC().String(),
 				Tags: func() []string {
 					r := make([]string, len(tags))
@@ -94,7 +94,6 @@ func main() {
 			builder.WriteString(fmt.Sprintln("---"))
 			builder.WriteString(fmt.Sprintln())
 			builder.WriteString(post.content)
-
 
 			basePath := fmt.Sprintf("../../web/posts/%s", post.createdOnUtc.Format("2006"))
 			if _, err := os.Stat(basePath); os.IsNotExist(err) {
@@ -124,10 +123,10 @@ func main() {
 }
 
 type post struct {
-	id string
-	title string
-	abstract string
-	content string
+	id           string
+	title        string
+	abstract     string
+	content      string
 	createdOnUtc time.Time
 }
 
@@ -249,10 +248,10 @@ func ReadTables(db *sql.DB) ([]post, error) {
 		}
 
 		result = append(result, post{
-			id: id.String(),
-			title: title,
-			abstract: abstract,
-			content: content,
+			id:           id.String(),
+			title:        title,
+			abstract:     abstract,
+			content:      content,
 			createdOnUtc: createdOnUtc,
 		})
 	}
