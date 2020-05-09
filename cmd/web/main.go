@@ -18,9 +18,11 @@ import (
 )
 
 type Post struct {
-	Body     template.HTML
-	Images   []string
-	Metadata PostMetadata
+	Body        template.HTML
+	Images      []string
+	PublishedOn time.Time
+	Metadata    PostMetadata
+	PublishedOnDisplay string
 }
 
 type PostMetadata struct {
@@ -127,13 +129,22 @@ func main() {
 					}
 					crawler(document)
 				} else {
-					fmt.Println(htmlParseErr)
+					log.Fatal(htmlParseErr)
+				}
+
+				// 2010-03-08 23:21:00 +0000 UTC
+				const layout = "2006-01-02 15:04:05 -0700 MST"
+				publishedOn, parseErr := time.Parse(layout, postMetadata.CreatedOn)
+				if parseErr != nil {
+					log.Fatal(parseErr)
 				}
 
 				post := &Post{
 					Body: template.HTML(string(body)),
 					Images: images,
 					Metadata: postMetadata,
+					PublishedOn: publishedOn,
+					PublishedOnDisplay: publishedOn.Format("2006-01-02 15:04:05"),
 				}
 				posts = append(posts, post)
 				for _, tag := range postMetadata.Tags {
@@ -152,18 +163,7 @@ func main() {
 
 	tagsList = rankByTagCount(tags)
 	sort.SliceStable(posts, func(i, j int) bool {
-		// 2010-03-08 23:21:00 +0000 UTC
-		const layout = "2006-01-02 15:04:05 -0700 MST"
-		iTime, iErr := time.Parse(layout, posts[i].Metadata.CreatedOn)
-		if iErr != nil {
-			log.Fatal(iErr)
-		}
-
-		jTime, jErr := time.Parse(layout, posts[j].Metadata.CreatedOn)
-		if jErr != nil {
-			log.Fatal(jErr)
-		}
-		return iTime.Unix() > jTime.Unix()
+		return posts[i].PublishedOn.Unix() > posts[j].PublishedOn.Unix()
 	})
 	r := mux.NewRouter()
 	fs := http.FileServer(http.Dir("../../web/static"))

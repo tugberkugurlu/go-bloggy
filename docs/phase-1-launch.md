@@ -10,6 +10,7 @@ The aim with this phase is to
 
  - [ ] add blog post page
     - [ ] allow redirects of old slugs
+ - [ ] migrate old mobile navigator 
  - [ ] add contact page
  - [ ] insert ads in existing places
  - [ ] display speaking history

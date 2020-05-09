@@ -19,7 +19,7 @@
             <div class="content">
                 <a href="/archive/{{ (index $post.Metadata.Slugs 0) }}" class="header">{{$post.Metadata.Title}}</a>
                 <div class="meta">
-                    <span class="cinema">@ {{$post.Metadata.CreatedOn}}</span>
+                    <span class="cinema">{{$post.PublishedOnDisplay}}</span>
                 </div>
                 <div class="description">
                     <p>{{$post.Metadata.Abstract}}</p>
