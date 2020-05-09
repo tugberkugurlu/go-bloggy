@@ -6,7 +6,27 @@
     {{.Metadata.Title}}
 </h1>
 
-<p>
+<div class="ui tall stacked segment">
+    <div class="ui grid">
+        <div class="row">
+            <div class="twelve wide column">
+                {{.Metadata.Abstract}}
+            </div>
+            <div class="four wide column">
+                @ {{.Metadata.CreatedOn}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="sixteen wide column">
+                {{ range $tag := .Metadata.Tags }}
+                    <div class="ui teal medium label">{{$tag}}</div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="post-holder">
     {{.Body}}
-</p>
+</div>
 {{end}}
