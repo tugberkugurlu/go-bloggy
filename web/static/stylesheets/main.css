@@ -17,6 +17,11 @@ pre {
     overflow: auto;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 blockquote {
     padding: 10.5px 21px;
     margin: 0 0 21px;
@@ -68,5 +73,11 @@ blockquote {
     }
     .top-menu-item {
         display: flex!important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    #sidebar {
+        margin-bottom: 75px!important;
     }
 }

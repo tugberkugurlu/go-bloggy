@@ -18,8 +18,11 @@
         </div>
         <div class="row">
             <div class="sixteen wide column">
-                {{ range $tag := .Metadata.Tags }}
-                    <div class="ui teal medium label">{{$tag}}</div>
+                {{ range $tag := .Tags }}
+                    <a class="ui image teal small label" href="/tags/{{ $tag.Key }}">
+                        {{ $tag.Value.Name }}
+                        <div class="detail">{{ $tag.Value.Count }}</div>
+                    </a>
                 {{ end }}
             </div>
         </div>

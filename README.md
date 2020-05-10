@@ -2,7 +2,7 @@
 
 ![Go](https://github.com/tugberkugurlu/go-bloggy/workflows/Go/badge.svg?branch=master)
 
-Markdown-driven version of [tugberkugurlu/tugberk-web](https://github.com/tugberkugurlu/tugberk-web), implemented in Go.
+Markdown-driven version of [tugberkugurlu/tugberk-web](https://github.com/tugberkugurlu/tugberk-web), implemented in Go. 
 
 ## Facts
 
@@ -33,6 +33,8 @@ Huge thanks to below open source projects which helped me get this site up and r
  used this to migrate the data from my old blog which used SQL Server for data storage.
  - [go-yaml/yaml](https://github.com/go-yaml/yaml): YAML support for the Go language. I used this to parse the YAML front 
  matter block inside the markdown file of each post.
+ - [github.com/gosimple/slug](https://github.com/gosimple/slug): URL-friendly slugify with multiple languages support. I 
+ used this to generate tag URLs.
 
 Also, big thanks to people who contributed to below content which helped me implement this using Go, and Semantic UI:
 

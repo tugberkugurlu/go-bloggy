@@ -85,7 +85,7 @@
             <div class="eleven wide column">
                 {{template "content" .Data}}
             </div>
-            <div class="five wide column">
+            <div id="sidebar" class="five wide column">
                 <div class="ui one cards">
                     <div class="ui card">
                         <div class="image">
@@ -123,9 +123,9 @@
                 </h4>
                 <div id="section-tags">
                     {{ range $value := .Tags }}
-                        <a class="ui image small label">
-                            {{ $value.Key }}
-                            <div class="detail">{{ $value.Value }}</div>
+                        <a class="ui image small label" href="/tags/{{ $value.Key }}">
+                            {{ $value.Value.Name }}
+                            <div class="detail">{{ $value.Value.Count }}</div>
                         </a>
                     {{ end }}
                 </div>

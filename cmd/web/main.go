@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/gorilla/mux"
+	"github.com/gosimple/slug"
 	"golang.org/x/net/html"
 	"gopkg.in/yaml.v2"
 	"html/template"
@@ -21,8 +22,14 @@ type Post struct {
 	Body               template.HTML
 	Images             []string
 	PublishedOn        time.Time
+	Tags               []TagCountPair
 	Metadata           PostMetadata
 	PublishedOnDisplay string
+}
+
+type Tag struct {
+	Name string
+	Count int
 }
 
 type PostMetadata struct {
@@ -33,34 +40,35 @@ type PostMetadata struct {
 	Slugs     []string `yaml:"slugs"`
 }
 
-type Pair struct {
+type TagCountPair struct {
 	Key   string
-	Value int
+	Value *Tag
 }
 
-type PairList []Pair
+type TagCountPairList []TagCountPair
 
-func (p PairList) Len() int           { return len(p) }
-func (p PairList) Less(i, j int) bool { return p[i].Value < p[j].Value }
-func (p PairList) Swap(i, j int)      { p[i], p[j] = p[j], p[i] }
+func (p TagCountPairList) Len() int           { return len(p) }
+func (p TagCountPairList) Less(i, j int) bool { return p[i].Value.Count < p[j].Value.Count }
+func (p TagCountPairList) Swap(i, j int)      { p[i], p[j] = p[j], p[i] }
 
-func rankByTagCount(tagFrequencies map[string]int) PairList {
-	pl := make(PairList, len(tagFrequencies))
+func rankByTagCount(tagFrequencies map[string]*Tag) TagCountPairList {
+	pl := make(TagCountPairList, len(tagFrequencies))
 	i := 0
 	for k, v := range tagFrequencies {
-		pl[i] = Pair{k, v}
+		pl[i] = TagCountPair{k, v}
 		i++
 	}
 	sort.Sort(sort.Reverse(pl))
 	return pl
 }
 
-var tagsList PairList
+var tagsList TagCountPairList
 var posts []*Post
 var postsBySlug map[string]*Post
+var tagsBySlug map[string]*Tag
 
 func main() {
-	tags := make(map[string]int)
+	tagsBySlug := make(map[string]*Tag)
 	postsBySlug = make(map[string]*Post)
 	err := filepath.Walk("../../web/posts", func(path string, f os.FileInfo, err error) error {
 		if filepath.Ext(path) == ".md" {
@@ -148,7 +156,15 @@ func main() {
 				}
 				posts = append(posts, post)
 				for _, tag := range postMetadata.Tags {
-					tags[tag] = tags[tag] + 1
+					tagSlug := slug.Make(tag)
+					t, ok := tagsBySlug[tagSlug]
+					if !ok {
+						t = &Tag{
+							Name: tag,
+						}
+					}
+					t.Count++
+					tagsBySlug[tagSlug] = t
 				}
 				for _, slug := range post.Metadata.Slugs {
 					postsBySlug[slug] = post
@@ -161,10 +177,26 @@ func main() {
 		log.Fatal(err)
 	}
 
-	tagsList = rankByTagCount(tags)
+	tagsList = rankByTagCount(tagsBySlug)
 	sort.SliceStable(posts, func(i, j int) bool {
 		return posts[i].PublishedOn.Unix() > posts[j].PublishedOn.Unix()
 	})
+
+	for _, post := range posts {
+		var tags []TagCountPair
+		for _, tag := range post.Metadata.Tags {
+			tagSlug := slug.Make(tag)
+			tags = append(tags, TagCountPair{
+				Key: tagSlug,
+				Value: tagsBySlug[tagSlug],
+			})
+		}
+		sort.SliceStable(tags, func(i, j int) bool {
+			return tags[i].Value.Count > tags[j].Value.Count
+		})
+		post.Tags = tags
+	}
+
 	r := mux.NewRouter()
 	fs := http.FileServer(http.Dir("../../web/static"))
 	r.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", fs))
@@ -184,7 +216,7 @@ func CaselessMatcher(next http.Handler) http.Handler {
 }
 
 type Layout struct {
-	Tags PairList
+	Tags TagCountPairList
 	Data interface{}
 }
 

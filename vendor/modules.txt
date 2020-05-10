@@ -9,6 +9,11 @@ github.com/golang-sql/civil
 # github.com/gorilla/mux v1.7.4
 ## explicit
 github.com/gorilla/mux
+# github.com/gosimple/slug v1.9.0
+## explicit
+github.com/gosimple/slug
+# github.com/rainycape/unidecode v0.0.0-20150907023854-cb7f23ec59be
+github.com/rainycape/unidecode
 # golang.org/x/crypto v0.0.0-20190325154230-a5d413f7728c
 golang.org/x/crypto/md4
 # golang.org/x/net v0.0.0-20200506145744-7e3656a0809f

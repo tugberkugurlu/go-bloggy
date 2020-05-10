@@ -19,14 +19,17 @@
             <div class="content">
                 <a href="/archive/{{ (index $post.Metadata.Slugs 0) }}" class="header">{{$post.Metadata.Title}}</a>
                 <div class="meta">
-                    <span class="cinema">{{$post.PublishedOnDisplay}}</span>
+                    <span class="cinema">{{ $post.PublishedOnDisplay }}</span>
                 </div>
                 <div class="description">
-                    <p>{{$post.Metadata.Abstract}}</p>
+                    <p>{{ $post.Metadata.Abstract }}</p>
                 </div>
                 <div class="extra">
-                    {{ range $tag := $post.Metadata.Tags }}
-                        <div class="ui teal tiny label">{{$tag}}</div>
+                    {{ range $tag := $post.Tags }}
+                        <a class="ui image teal tiny label" href="/tags/{{ $tag.Key }}">
+                            {{ $tag.Value.Name }}
+                            <div class="detail">{{ $tag.Value.Count }}</div>
+                        </a>
                     {{ end }}
                 </div>
             </div>
