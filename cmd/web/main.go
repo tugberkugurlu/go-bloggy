@@ -28,7 +28,7 @@ type Post struct {
 }
 
 type Tag struct {
-	Name string
+	Name  string
 	Count int
 }
 
@@ -189,7 +189,7 @@ func main() {
 		for _, tag := range post.Metadata.Tags {
 			tagSlug := slug.Make(tag)
 			tags = append(tags, TagCountPair{
-				Key: tagSlug,
+				Key:   tagSlug,
 				Value: tagsBySlug[tagSlug],
 			})
 			postsByTagSlug[tagSlug] = append(postsByTagSlug[tagSlug], post)
@@ -255,7 +255,7 @@ func tagsPageHandler(w http.ResponseWriter, r *http.Request) {
 		Tags: tagsList,
 		Data: TagsPage{
 			Posts: posts,
-			Tag: tag,
+			Tag:   tag,
 		},
 	})
 }
