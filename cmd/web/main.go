@@ -65,11 +65,13 @@ func rankByTagCount(tagFrequencies map[string]*Tag) TagCountPairList {
 var tagsList TagCountPairList
 var posts []*Post
 var postsBySlug map[string]*Post
+var postsByTagSlug map[string][]*Post
 var tagsBySlug map[string]*Tag
 
 func main() {
-	tagsBySlug := make(map[string]*Tag)
+	tagsBySlug = make(map[string]*Tag)
 	postsBySlug = make(map[string]*Post)
+	postsByTagSlug = make(map[string][]*Post)
 	err := filepath.Walk("../../web/posts", func(path string, f os.FileInfo, err error) error {
 		if filepath.Ext(path) == ".md" {
 			func(markdownFilePath string) {
@@ -190,6 +192,7 @@ func main() {
 				Key: tagSlug,
 				Value: tagsBySlug[tagSlug],
 			})
+			postsByTagSlug[tagSlug] = append(postsByTagSlug[tagSlug], post)
 		}
 		sort.SliceStable(tags, func(i, j int) bool {
 			return tags[i].Value.Count > tags[j].Value.Count
@@ -202,6 +205,7 @@ func main() {
 	r.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", fs))
 	r.PathPrefix("/content/images/").HandlerFunc(legacyBlogImagesRedirector)
 	r.HandleFunc("/archive/{slug}", blogPostPageHandler)
+	r.HandleFunc("/tags/{tag_slug}", tagsPageHandler)
 	r.HandleFunc("/about", staticPage("about"))
 	r.HandleFunc("/speaking", staticPage("speaking"))
 	r.HandleFunc("/", handler)
@@ -224,6 +228,38 @@ type Home struct {
 	Posts []*Post
 }
 
+type TagsPage struct {
+	Tag   *Tag
+	Posts []*Post
+}
+
+func tagsPageHandler(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	tagSlug := vars["tag_slug"]
+	posts, ok := postsByTagSlug[tagSlug]
+	if !ok {
+		http.NotFound(w, r)
+		return
+	}
+
+	tag, ok := tagsBySlug[tagSlug]
+	if !ok {
+		http.NotFound(w, r)
+		return
+	}
+
+	ExecuteTemplate(w, []string{
+		"../../web/template/tag.html",
+		"../../web/template/shared/post-item.html",
+	}, &Layout{
+		Tags: tagsList,
+		Data: TagsPage{
+			Posts: posts,
+			Tag: tag,
+		},
+	})
+}
+
 func blogPostPageHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	post, ok := postsBySlug[vars["slug"]]
@@ -232,7 +268,7 @@ func blogPostPageHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	ExecuteTemplate(w, "../../web/template/post.html", &Layout{
+	ExecuteTemplate(w, []string{"../../web/template/post.html"}, &Layout{
 		Tags: tagsList,
 		Data: post,
 	})
@@ -246,14 +282,17 @@ func legacyBlogImagesRedirector(w http.ResponseWriter, r *http.Request) {
 
 func staticPage(page string) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
-		ExecuteTemplate(w, fmt.Sprintf("../../web/template/%s.html", page), &Layout{
+		ExecuteTemplate(w, []string{fmt.Sprintf("../../web/template/%s.html", page)}, &Layout{
 			Tags: tagsList,
 		})
 	}
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	ExecuteTemplate(w, "../../web/template/home.html", &Layout{
+	ExecuteTemplate(w, []string{
+		"../../web/template/home.html",
+		"../../web/template/shared/post-item.html",
+	}, &Layout{
 		Tags: tagsList,
 		Data: Home{
 			Posts: posts,
@@ -261,8 +300,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
-func ExecuteTemplate(w http.ResponseWriter, templatePath string, pageContext *Layout) {
-	t, err := template.ParseFiles(templatePath, "../../web/template/layout.html")
+func ExecuteTemplate(w http.ResponseWriter, templatePaths []string, pageContext *Layout) {
+	t, err := template.ParseFiles(append(templatePaths, "../../web/template/layout.html")...)
 	if err != nil {
 		fmt.Fprintf(w, err.Error())
 		return

@@ -1,0 +1,26 @@
+{{define "post-item"}}
+    <div class="item">
+        {{ $length := len .Images }} {{ if ne $length 0 }}
+            <div class="image">
+                <img src="{{ (index .Images 0) }}">
+            </div>
+        {{ end }}
+        <div class="content">
+            <a href="/archive/{{ (index .Metadata.Slugs 0) }}" class="header">{{.Metadata.Title}}</a>
+            <div class="meta">
+                <span class="cinema">{{ .PublishedOnDisplay }}</span>
+            </div>
+            <div class="description">
+                <p>{{ .Metadata.Abstract }}</p>
+            </div>
+            <div class="extra">
+                {{ range $tag := .Tags }}
+                    <a class="ui image teal tiny label" href="/tags/{{ $tag.Key }}">
+                        {{ $tag.Value.Name }}
+                        <div class="detail">{{ $tag.Value.Count }}</div>
+                    </a>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+{{end}}
