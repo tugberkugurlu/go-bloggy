@@ -208,7 +208,9 @@ func main() {
 	r.HandleFunc("/tags/{tag_slug}", tagsPageHandler)
 	r.HandleFunc("/about", staticPage("about"))
 	r.HandleFunc("/speaking", staticPage("speaking"))
+	r.HandleFunc("/contact", staticPage("contact"))
 	r.HandleFunc("/", handler)
+
 	log.Fatal(http.ListenAndServe(":8080", CaselessMatcher(r)))
 }
 

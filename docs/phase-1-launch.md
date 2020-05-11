@@ -10,9 +10,9 @@ The aim with this phase is to
 
  - [x] add blog post page
     - [ ] allow redirects of old slugs
-    - [ ] add links to tags
+    - [x] add links to tags
  - [x] migrate old mobile navigator 
- - [ ] add contact page
+ - [x] add contact page
  - [ ] insert ads in existing places
  - [ ] display speaking history
  - [ ] rss feed
@@ -21,6 +21,7 @@ The aim with this phase is to
  - [ ] have 404 page
  - [ ] disqus comments
  - [ ] add links to tags on the sidebar
+ - [ ] fix page description and titles
  
 ### Release Prep
  
