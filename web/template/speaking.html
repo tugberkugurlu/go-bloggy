@@ -38,7 +38,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" id="invite-me">
             <div class="sixteen wide column">
                 <div class="ui blue segment">
                     <img src="/assets/images/tugberk-ugurlu-speaker-sub-header-2.jpg" class="ui image" alt="Tugberk Ugurlu Speaking at DevConf, Krakow in 2018" title="Tugberk Ugurlu Speaking at DevConf, Krakow in 2018" />
@@ -58,14 +58,33 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" id="past-activities">
             <div class="sixteen wide column">
+                <h2 class="ui header">
+                    Past Activities
+                </h2>
                 <div class="ui two column grid">
                     {{ range $activity := . }}
                         <div class="column">
                             {{ template "speaking_activity_card" $activity }}
                         </div>
                     {{end}}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="sixteen wide column">
+                <div class="ui raised segment">
+                    <p>
+                        🙋🏻‍♂️ You can also visit <a href="https://www.linkedin.com/in/tugberk/" target="_blank">my LinkedIn profile</a> to
+                        find out some of recordings 🎥 from my previous speaking engagements.
+                    </p>
+
+                    <p>
+                        You can also find the slides 👨🏻‍💻 of my presentations under
+                        <a href="https://speakerdeck.com/tourismgeek" target="_blank">my Speaker Deck account</a>.
+                    </p>
                 </div>
             </div>
         </div>
