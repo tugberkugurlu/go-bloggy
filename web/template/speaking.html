@@ -57,5 +57,17 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="sixteen wide column">
+                <div class="ui two column grid">
+                    {{ range $activity := . }}
+                        <div class="column">
+                            {{ template "speaking_activity_card" $activity }}
+                        </div>
+                    {{end}}
+                </div>
+            </div>
+        </div>
     </div>
 {{end}}

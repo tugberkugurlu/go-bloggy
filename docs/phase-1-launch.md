@@ -13,15 +13,16 @@ The aim with this phase is to
     - [x] add links to tags
  - [x] migrate old mobile navigator 
  - [x] add contact page
- - [ ] insert ads in existing places
  - [ ] display speaking history
+ - [ ] insert ads in existing places
  - [ ] rss feed
- - [ ] tags filter page
+ - [x] tags filter page
  - [ ] home page pagination
  - [ ] have 404 page
  - [ ] disqus comments
  - [ ] add links to tags on the sidebar
  - [ ] fix page description and titles
+ - [ ] show active section on the menu
  
 ### Release Prep
  

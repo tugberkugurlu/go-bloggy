@@ -207,7 +207,7 @@ func main() {
 	r.HandleFunc("/archive/{slug}", blogPostPageHandler)
 	r.HandleFunc("/tags/{tag_slug}", tagsPageHandler)
 	r.HandleFunc("/about", staticPage("about"))
-	r.HandleFunc("/speaking", staticPage("speaking"))
+	r.Methods("GET").Path("/speaking").HandlerFunc(speakingPageHandler)
 	r.HandleFunc("/contact", staticPage("contact"))
 	r.HandleFunc("/", handler)
 
@@ -233,6 +233,16 @@ type Home struct {
 type TagsPage struct {
 	Tag   *Tag
 	Posts []*Post
+}
+
+func speakingPageHandler(w http.ResponseWriter, r *http.Request) {
+	ExecuteTemplate(w, []string{
+		"../../web/template/speaking.html",
+		"../../web/template/shared/speaking-activity-card.html",
+	}, &Layout{
+		Tags: tagsList,
+		Data: speakingActivities,
+	})
 }
 
 func tagsPageHandler(w http.ResponseWriter, r *http.Request) {

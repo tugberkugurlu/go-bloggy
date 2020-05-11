@@ -1,0 +1,29 @@
+{{define "speaking_activity_card"}}
+    <div class="ui fluid card">
+        <div class="image">
+            <img src="{{ .ImageURL }}">
+        </div>
+        <div class="content">
+            <div class="header">{{ .Title }}</div>
+            <div class="meta">
+                {{ .Activity }} @ {{ .City }}, {{ .Country }}
+                <div>
+                    <span class="date">{{ .DisplayDate }}</span>
+                </div>
+            </div>
+            <div class="description">
+                <div class="embed-responsive embed-responsive-16by9">
+                    {{ .EmbededHTMLData }}
+                </div>
+            </div>
+        </div>
+        {{ range $extra := .Extras }}
+            <div class="extra content">
+                <a href="{{ $extra.Link }}" target="_blank">
+                    <i class="{{ $extra.IconCSSClasses }} icon"></i>
+                    {{ $extra.Name }}
+                </a>
+            </div>
+        {{ end }}
+    </div>
+{{end}}
