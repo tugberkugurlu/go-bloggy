@@ -22,12 +22,12 @@ type SpeakingActivityExtra struct {
 
 var speakingActivities = []SpeakingActivity{
 	{
-		Title:           "Essentials for Building and Leading Highly Effective Development Teams",
-		Activity:        "DevConf",
-		ImageURL:        "https://tugberkugurlu.blob.core.windows.net/speaking/2018-09-devconf-krakow/30236914487_dba11cff33_o.jpg",
-		City:            "Kraków",
-		Country:         "Poland",
-		DisplayDate:     "27-28 Sep 2018",
+		Title:       "Essentials for Building and Leading Highly Effective Development Teams",
+		Activity:    "DevConf",
+		ImageURL:    "https://tugberkugurlu.blob.core.windows.net/speaking/2018-09-devconf-krakow/30236914487_dba11cff33_o.jpg",
+		City:        "Kraków",
+		Country:     "Poland",
+		DisplayDate: "27-28 Sep 2018",
 		EmbededHTMLData: template.HTML(`<div class="embed-responsive embed-responsive-16by9">
 	<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/qpfFus69pN8" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>`),
@@ -51,12 +51,12 @@ var speakingActivities = []SpeakingActivity{
 	},
 
 	{
-		Title:           "Let the Uncertainty be Your Friend: Finding Your Path in a Wiggly Road",
-		Activity:        "NewCrafts",
-		ImageURL:        "https://tugberkugurlu.blob.core.windows.net/speaking/2018-05-newcrafts-paris/DdZ3x-fWkAcRn_c.jpg",
-		City:            "Paris",
-		Country:         "France",
-		DisplayDate:     "17-18 May 2018",
+		Title:       "Let the Uncertainty be Your Friend: Finding Your Path in a Wiggly Road",
+		Activity:    "NewCrafts",
+		ImageURL:    "https://tugberkugurlu.blob.core.windows.net/speaking/2018-05-newcrafts-paris/DdZ3x-fWkAcRn_c.jpg",
+		City:        "Paris",
+		Country:     "France",
+		DisplayDate: "17-18 May 2018",
 		EmbededHTMLData: template.HTML(`<div class="embed-responsive embed-responsive-16by9">
 	<iframe class="embed-responsive-item" src="https://player.vimeo.com/video/275529797?title=0&byline=0&portrait=0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 </div>`),
@@ -102,12 +102,12 @@ var speakingActivities = []SpeakingActivity{
 	},
 
 	{
-		Title:           "Getting Into the Zero Downtime Deployment World",
-		Activity:        "NDC Oslo",
-		ImageURL:        "https://tugberkugurlu.blob.core.windows.net/speaking/2016-06-ndc-oslo/02B6DF5D-7DEF-428E-9385-5E1539A6B665.png",
-		City:            "Oslo",
-		Country:         "Norway",
-		DisplayDate:     "6-10 June 2016",
+		Title:       "Getting Into the Zero Downtime Deployment World",
+		Activity:    "NDC Oslo",
+		ImageURL:    "https://tugberkugurlu.blob.core.windows.net/speaking/2016-06-ndc-oslo/02B6DF5D-7DEF-428E-9385-5E1539A6B665.png",
+		City:        "Oslo",
+		Country:     "Norway",
+		DisplayDate: "6-10 June 2016",
 		EmbededHTMLData: template.HTML(`<div class="embed-responsive embed-responsive-16by9">
 	<iframe class="embed-responsive-item" src="https://player.vimeo.com/video/171317249?title=0&byline=0&portrait=0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 </div>`),
@@ -141,12 +141,12 @@ var speakingActivities = []SpeakingActivity{
 	},
 
 	{
-		Title:           "Latest SQL Compare features and support for SQL Server 2017",
-		Activity:        "SQL in the City Streamed",
-		ImageURL:        "https://tugberkugurlu.blob.core.windows.net/speaking/2017-12-sql-in-the-city-cambridge/E9F8A9A0-111E-4D1F-AD1B-18B9A26B7DB3.png",
-		City:            "Cambridge",
-		Country:         "England",
-		DisplayDate:     "13 Dec 2017",
+		Title:       "Latest SQL Compare features and support for SQL Server 2017",
+		Activity:    "SQL in the City Streamed",
+		ImageURL:    "https://tugberkugurlu.blob.core.windows.net/speaking/2017-12-sql-in-the-city-cambridge/E9F8A9A0-111E-4D1F-AD1B-18B9A26B7DB3.png",
+		City:        "Cambridge",
+		Country:     "England",
+		DisplayDate: "13 Dec 2017",
 		EmbededHTMLData: template.HTML(`<div class="embed-responsive embed-responsive-16by9">
 	<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/9a6gVaX192g" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>`),
@@ -165,12 +165,12 @@ var speakingActivities = []SpeakingActivity{
 	},
 
 	{
-		Title:           "Docker Changes the Way You Develop and Release Your Scalable Solutions",
-		Activity:        "I T.A.K.E Unconference",
-		ImageURL:        "https://tugberkugurlu.blob.core.windows.net/speaking/2016-05-itakeunconf-bucharest/Ci40PKzUkAAm6S5-small.jpg",
-		City:            "Bucharest",
-		Country:         "Romania",
-		DisplayDate:     "19-20 May 2016",
+		Title:       "Docker Changes the Way You Develop and Release Your Scalable Solutions",
+		Activity:    "I T.A.K.E Unconference",
+		ImageURL:    "https://tugberkugurlu.blob.core.windows.net/speaking/2016-05-itakeunconf-bucharest/Ci40PKzUkAAm6S5-small.jpg",
+		City:        "Bucharest",
+		Country:     "Romania",
+		DisplayDate: "19-20 May 2016",
 		EmbededHTMLData: template.HTML(`<div class="embed-responsive embed-responsive-16by9">
 	<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/nswAIlgD4fU" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>`),
@@ -194,12 +194,12 @@ var speakingActivities = []SpeakingActivity{
 	},
 
 	{
-		Title:           "Getting Into the Zero Downtime Deployment World",
-		Activity:        "Dev Day",
-		ImageURL:        "https://tugberkugurlu.blob.core.windows.net/speaking/2016-09-dev-day-krakow/7E202F4A-548B-44C5-B3C7-A2F2BAFA09F3.png",
-		City:            "Kraków",
-		Country:         "Poland",
-		DisplayDate:     "14-16 Sep 2016",
+		Title:       "Getting Into the Zero Downtime Deployment World",
+		Activity:    "Dev Day",
+		ImageURL:    "https://tugberkugurlu.blob.core.windows.net/speaking/2016-09-dev-day-krakow/7E202F4A-548B-44C5-B3C7-A2F2BAFA09F3.png",
+		City:        "Kraków",
+		Country:     "Poland",
+		DisplayDate: "14-16 Sep 2016",
 		EmbededHTMLData: template.HTML(`<div class="embed-responsive embed-responsive-16by9">
 	<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/mTZSvK6I3Xs" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>`),
@@ -255,12 +255,12 @@ var speakingActivities = []SpeakingActivity{
 	},
 
 	{
-		Title:           "Profiling .NET server applications",
-		Activity:        "Umbraco UK Festival",
-		ImageURL:        "https://tugberkugurlu.blob.core.windows.net/speaking/2015-10-umbraco-uk-festival/A7F75261-4584-4D79-9EC8-D3FA216731A5.png",
-		City:            "London",
-		Country:         "England",
-		DisplayDate:     "30 Oct 2015",
+		Title:       "Profiling .NET server applications",
+		Activity:    "Umbraco UK Festival",
+		ImageURL:    "https://tugberkugurlu.blob.core.windows.net/speaking/2015-10-umbraco-uk-festival/A7F75261-4584-4D79-9EC8-D3FA216731A5.png",
+		City:        "London",
+		Country:     "England",
+		DisplayDate: "30 Oct 2015",
 		EmbededHTMLData: template.HTML(`<div class="embed-responsive embed-responsive-16by9">
 	<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/OEZKXRWDv60" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>`),
@@ -279,12 +279,12 @@ var speakingActivities = []SpeakingActivity{
 	},
 
 	{
-		Title:           "ASP.NET 5: How to Get Your Cheese Back",
-		Activity:        "Progressive .NET Tutorials",
-		ImageURL:        "https://tugberkugurlu.blob.core.windows.net/speaking/2015-07-progressive-dot-net-london/19495238401_e4ed74fa5c_z.jpg",
-		City:            "London",
-		Country:         "England",
-		DisplayDate:     "1 July 2015",
+		Title:       "ASP.NET 5: How to Get Your Cheese Back",
+		Activity:    "Progressive .NET Tutorials",
+		ImageURL:    "https://tugberkugurlu.blob.core.windows.net/speaking/2015-07-progressive-dot-net-london/19495238401_e4ed74fa5c_z.jpg",
+		City:        "London",
+		Country:     "England",
+		DisplayDate: "1 July 2015",
 		EmbededHTMLData: template.HTML(`<div>
 	<a href="https://skillsmatter.com/skillscasts/6401-aspdot-net-5-how-to-get-your-cheese-back#video" target="_blank">
     	<img src="https://tugberkugurlu.blob.core.windows.net/speaking/2015-07-progressive-dot-net-london/cheese-back-CBEEBCB1-34C3-4D22-822B-55D7498A0141.png" alt="Tugberk Ugurlu @@ Progressive .NET Tutorials, London - 2015">
