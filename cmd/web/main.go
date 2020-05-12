@@ -15,6 +15,7 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -227,7 +228,12 @@ func main() {
 	rootFs := http.FileServer(http.Dir("../../web/static-root"))
 	r.PathPrefix("/").Handler(http.StripPrefix("/", rootFs))
 
-	log.Fatal(http.ListenAndServe(":8080", CaselessMatcher(r)))
+	serverPortStr := os.Getenv("SERVER_PORT")
+	_, parseErr := strconv.ParseInt(serverPortStr, 10, 16)
+	if parseErr != nil {
+		serverPortStr = "8080"
+	}
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", serverPortStr), CaselessMatcher(r)))
 }
 
 func CaselessMatcher(next http.Handler) http.Handler {

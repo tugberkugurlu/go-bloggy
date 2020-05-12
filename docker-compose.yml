@@ -6,5 +6,7 @@ services:
       context: .
       dockerfile: docker-web.dockerfile
     container_name: web
+    environment:
+      - SERVER_PORT=80
     ports:
-      - 9000:8080
+      - 9000:80
