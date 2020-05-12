@@ -45,6 +45,10 @@ blockquote {
     margin-bottom: 25px;
 }
 
+#post-holder {
+    margin-bottom: 25px;
+}
+
 .post-tags-list .ui.image.label {
     margin: .25rem .5rem .25rem 0;
 }

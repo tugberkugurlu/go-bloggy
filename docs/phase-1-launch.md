@@ -20,7 +20,7 @@ The aim with this phase is to
  - [x] tags filter page
  - ~~[] home page pagination~~ no need, taken the blog to a separate page now
  - ~~[] have 404 page~~
- - [ ] disqus comments
+ - [x] disqus comments
  - [x] add links to tags on the sidebar
  - [ ] fix page description and titles
  - [x] show active section on the menu
