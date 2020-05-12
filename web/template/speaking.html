@@ -52,7 +52,7 @@
                         event by presenting on any of these topics or anything else you might have in mind 🙂
                     </p>
                     <p>
-                        <a href="/contact" class="ui blue button">Contact me</a>
+                        <a href="/contact" class="ui purple button">Contact me</a>
                     </p>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                 <h2 class="ui header">
                     Past Activities
                 </h2>
-                <div class="ui two column grid">
+                <div class="ui two column stackable grid">
                     {{ range $activity := . }}
                         <div class="column">
                             {{ template "speaking_activity_card" $activity }}

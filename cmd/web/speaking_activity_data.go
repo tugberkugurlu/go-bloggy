@@ -20,7 +20,7 @@ type SpeakingActivityExtra struct {
 	IconCSSClasses string
 }
 
-var speakingActivities = []SpeakingActivity{
+var speakingActivities = []*SpeakingActivity{
 	{
 		Title:       "Essentials for Building and Leading Highly Effective Development Teams",
 		Activity:    "DevConf",

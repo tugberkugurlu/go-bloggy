@@ -8,9 +8,51 @@
     <meta name="twitter:creator" content="@tourismgeek" />
 {{end}}
 {{define "content"}}
-<div id="home" class="ui divided items">
-    {{ range $post := .Posts }}
-        {{ template "post-item" $post }}
-    {{ end }}
+<div id="home-posts">
+    <h2 class="ui header">
+        Recent posts
+    </h2>
+    <div class="ui divider"></div>
+    <div id="home" class="ui divided items">
+        {{ range $post := .Posts }}
+            {{ template "post-item" $post }}
+        {{ end }}
+    </div>
+
+    <div class="ui stackable grid">
+        <div class="one column row">
+            <div class="right floated column">
+                <a class="ui right floated purple button" href="/archive">View more posts</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <h2 class="ui header">
+        Recent speaking activities
+    </h2>
+    <div class="ui divider"></div>
+    <div class="ui grid">
+        <div class="row" id="past-activities">
+            <div class="sixteen wide column">
+                <div class="ui two column grid">
+                    {{ range $activity := .SpeakingActivities }}
+                        <div class="column">
+                            {{ template "speaking_activity_card" $activity }}
+                        </div>
+                    {{end}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui stackable grid">
+        <div class="one column row">
+            <div class="right floated column">
+                <a class="ui right floated purple button" href="/speaking">View more speaking activities</a>
+            </div>
+        </div>
+    </div>
 </div>
 {{end}}

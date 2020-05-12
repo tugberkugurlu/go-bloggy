@@ -37,6 +37,14 @@ blockquote {
     word-break: break-word;
 }
 
+#home-posts {
+    margin-bottom: 25px;
+}
+
+.post-tags-list .ui.image.label {
+    margin: .25rem .5rem .25rem 0;
+}
+
 #bottom-nav {
     position: fixed;
     right: 0;

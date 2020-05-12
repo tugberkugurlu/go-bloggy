@@ -209,7 +209,8 @@ func main() {
 	r.HandleFunc("/about", staticPage("about"))
 	r.Methods("GET").Path("/speaking").HandlerFunc(speakingPageHandler)
 	r.HandleFunc("/contact", staticPage("contact"))
-	r.HandleFunc("/", handler)
+	r.HandleFunc("/archive", blogHomeHandler)
+	r.HandleFunc("/", homeHandler)
 
 	log.Fatal(http.ListenAndServe(":8080", CaselessMatcher(r)))
 }
@@ -228,6 +229,11 @@ type Layout struct {
 }
 
 type Home struct {
+	Posts              []*Post
+	SpeakingActivities []*SpeakingActivity
+}
+
+type Blog struct {
 	Posts []*Post
 }
 
@@ -290,11 +296,22 @@ func staticPage(page string) func(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func handler(w http.ResponseWriter, r *http.Request) {
+func homeHandler(w http.ResponseWriter, r *http.Request) {
 	ExecuteTemplate(w, r, []string{
 		"../../web/template/home.html",
 		"../../web/template/shared/post-item.html",
+		"../../web/template/shared/speaking-activity-card.html",
 	}, Home{
+		Posts:              posts[:3],
+		SpeakingActivities: speakingActivities[:4],
+	})
+}
+
+func blogHomeHandler(w http.ResponseWriter, r *http.Request) {
+	ExecuteTemplate(w, r, []string{
+		"../../web/template/blog.html",
+		"../../web/template/shared/post-item.html",
+	}, Blog{
 		Posts: posts,
 	})
 }
