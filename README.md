@@ -27,6 +27,8 @@ docker exec -it web bash
 
 Huge thanks to below open source projects which helped me get this site up and running more quickly 🙇🏼‍♂️
 
+ - [Semantic-Org/Semantic-UI](https://github.com/Semantic-Org/Semantic-UI): Semantic is a UI framework designed for 
+ theming.
  - [gorilla/mux](https://github.com/gorilla/mux): Package gorilla/mux implements a request router and dispatcher for 
  matching incoming requests to their respective handler.
  - [denisenkom/go-mssqldb](github.com/denisenkom/go-mssqldb): A pure Go MSSQL driver for Go's database/sql package. I 
@@ -35,6 +37,8 @@ Huge thanks to below open source projects which helped me get this site up and r
  matter block inside the markdown file of each post.
  - [github.com/gosimple/slug](https://github.com/gosimple/slug): URL-friendly slugify with multiple languages support. I 
  used this to generate tag URLs.
+ - [gorilla/feeds](https://github.com/gorilla/feeds): feeds is a web feed generator library for generating RSS, Atom and 
+ JSON feeds from Go applications. I used this to generate my RSS feed.
 
 Also, big thanks to people who contributed to below content which helped me implement this using Go, and Semantic UI:
 

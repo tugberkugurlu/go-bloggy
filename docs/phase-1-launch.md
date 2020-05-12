@@ -9,8 +9,9 @@ The aim with this phase is to
 ## TODOs
 
  - [x] add blog post page
-    - [ ] allow redirects of old slugs
+    - [x] allow redirects of old slugs
     - [x] add links to tags
+    - [ ] post twitter card
  - [x] migrate old mobile navigator 
  - [x] add contact page
  - [x] display speaking history
@@ -18,7 +19,7 @@ The aim with this phase is to
  - [x] rss feed
  - [x] tags filter page
  - ~~[] home page pagination~~ no need, taken the blog to a separate page now
- - [ ] have 404 page
+ - ~~[] have 404 page~~
  - [ ] disqus comments
  - [x] add links to tags on the sidebar
  - [ ] fix page description and titles

@@ -261,7 +261,7 @@ func rssHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for _, post := range posts[:20] {
-		postLink := fmt.Sprintf("http://tugberkugurlu.com/archive/%s", post.Metadata.Slugs[0])
+		postLink := generatePostURL(post)
 		feed.Items = append(feed.Items, &feeds.Item{
 			Title:       post.Metadata.Title,
 			Description: string(post.Body),
@@ -286,6 +286,11 @@ func rssHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+}
+
+func generatePostURL(post *Post) string {
+	postLink := fmt.Sprintf("http://tugberkugurlu.com/archive/%s", post.Metadata.Slugs[0])
+	return postLink
 }
 
 func tagsPageHandler(w http.ResponseWriter, r *http.Request) {
@@ -314,9 +319,15 @@ func tagsPageHandler(w http.ResponseWriter, r *http.Request) {
 
 func blogPostPageHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	post, ok := postsBySlug[vars["slug"]]
+	postSlug := vars["slug"]
+	post, ok := postsBySlug[postSlug]
 	if !ok {
 		http.NotFound(w, r)
+		return
+	}
+
+	if !strings.EqualFold(post.Metadata.Slugs[0], postSlug) {
+		http.Redirect(w, r, generatePostURL(post), http.StatusMovedPermanently)
 		return
 	}
 
