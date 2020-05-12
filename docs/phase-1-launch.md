@@ -22,7 +22,7 @@ The aim with this phase is to
  - [ ] disqus comments
  - [ ] add links to tags on the sidebar
  - [ ] fix page description and titles
- - [ ] show active section on the menu
+ - [x] show active section on the menu
  
 ### Release Prep
  

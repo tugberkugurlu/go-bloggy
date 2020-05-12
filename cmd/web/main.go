@@ -222,8 +222,9 @@ func CaselessMatcher(next http.Handler) http.Handler {
 }
 
 type Layout struct {
-	Tags TagCountPairList
-	Data interface{}
+	Tags    TagCountPairList
+	Section string
+	Data    interface{}
 }
 
 type Home struct {
@@ -236,13 +237,10 @@ type TagsPage struct {
 }
 
 func speakingPageHandler(w http.ResponseWriter, r *http.Request) {
-	ExecuteTemplate(w, []string{
+	ExecuteTemplate(w, r, []string{
 		"../../web/template/speaking.html",
 		"../../web/template/shared/speaking-activity-card.html",
-	}, &Layout{
-		Tags: tagsList,
-		Data: speakingActivities,
-	})
+	}, speakingActivities)
 }
 
 func tagsPageHandler(w http.ResponseWriter, r *http.Request) {
@@ -260,15 +258,12 @@ func tagsPageHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	ExecuteTemplate(w, []string{
+	ExecuteTemplate(w, r, []string{
 		"../../web/template/tag.html",
 		"../../web/template/shared/post-item.html",
-	}, &Layout{
-		Tags: tagsList,
-		Data: TagsPage{
-			Posts: posts,
-			Tag:   tag,
-		},
+	}, TagsPage{
+		Posts: posts,
+		Tag:   tag,
 	})
 }
 
@@ -280,10 +275,7 @@ func blogPostPageHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	ExecuteTemplate(w, []string{"../../web/template/post.html"}, &Layout{
-		Tags: tagsList,
-		Data: post,
-	})
+	ExecuteTemplate(w, r, []string{"../../web/template/post.html"}, post)
 }
 
 func legacyBlogImagesRedirector(w http.ResponseWriter, r *http.Request) {
@@ -294,29 +286,36 @@ func legacyBlogImagesRedirector(w http.ResponseWriter, r *http.Request) {
 
 func staticPage(page string) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
-		ExecuteTemplate(w, []string{fmt.Sprintf("../../web/template/%s.html", page)}, &Layout{
-			Tags: tagsList,
-		})
+		ExecuteTemplate(w, r, []string{fmt.Sprintf("../../web/template/%s.html", page)}, nil)
 	}
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	ExecuteTemplate(w, []string{
+	ExecuteTemplate(w, r, []string{
 		"../../web/template/home.html",
 		"../../web/template/shared/post-item.html",
-	}, &Layout{
-		Tags: tagsList,
-		Data: Home{
-			Posts: posts,
-		},
+	}, Home{
+		Posts: posts,
 	})
 }
 
-func ExecuteTemplate(w http.ResponseWriter, templatePaths []string, pageContext *Layout) {
+func ExecuteTemplate(w http.ResponseWriter, r *http.Request, templatePaths []string, data interface{}) {
 	t, err := template.ParseFiles(append(templatePaths, "../../web/template/layout.html")...)
 	if err != nil {
 		fmt.Fprintf(w, err.Error())
 		return
+	}
+
+	section := r.URL.Path[1:]
+	index := strings.Index(section, "/")
+	if index != -1 {
+		section = r.URL.Path[1 : index+1]
+	}
+
+	pageContext := &Layout{
+		Tags:    tagsList,
+		Data:    data,
+		Section: section,
 	}
 	t.ExecuteTemplate(w, "layout", pageContext)
 }

@@ -29,10 +29,10 @@
     <div class="header item">
         <a href="/">Tugberk @ the Heart of Software</a>
     </div>
-    <a class="active item top-menu-item" href="/">Blog</a>
-    <a class="item top-menu-item" href="/speaking">Speaking</a>
-    <a class="item top-menu-item" href="/about">About</a>
-    <a class="item top-menu-item" href="/contact">Contact</a>
+    <a class="item top-menu-item {{if eq .Section "archive" }}active{{end}}" href="/">Blog</a>
+    <a class="item top-menu-item {{if eq .Section "speaking" }}active{{end}}" href="/speaking">Speaking</a>
+    <a class="item top-menu-item {{if eq .Section "about" }}active{{end}}" href="/about">About</a>
+    <a class="item top-menu-item {{if eq .Section "contact" }}active{{end}}" href="/contact">Contact</a>
     <div class="ui dropdown item top-menu-item">
         Travel
         <i class="dropdown icon"></i>
