@@ -1,4 +1,5 @@
 ---
+id: b2843e61-e39b-467f-8981-12704bdff296
 title: 'React with Redux: A Stable, Powerful and Scalable Combination - Part 1'
 abstract: React and Redux has been my go-to UI tools for a while now and I wanted
   share the fundemental benefits of adopting this type of architecture on your web

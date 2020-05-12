@@ -1,4 +1,5 @@
 ---
+id: fbb2e946-af4a-490a-ae32-1666f42fee11
 title: My Take on Task-base Asynchronous Programming in C# 5.0 and ASP.NET MVC Web
   Applications
 abstract: I'm trying to show you what new C# 5.0 can bring us in terms of asynchronous

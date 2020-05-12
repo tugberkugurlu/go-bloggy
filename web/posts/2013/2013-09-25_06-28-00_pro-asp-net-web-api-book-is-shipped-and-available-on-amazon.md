@@ -1,4 +1,5 @@
 ---
+id: 56118b1b-37ab-41ca-82c8-6bb05becbeee
 title: Pro ASP.NET Web API Book is Shipped and Available on Amazon
 abstract: Today, I am very proud to say that Pro ASP.NET Web API Book is now shipped
   and available on Amazon for paperback sales :)

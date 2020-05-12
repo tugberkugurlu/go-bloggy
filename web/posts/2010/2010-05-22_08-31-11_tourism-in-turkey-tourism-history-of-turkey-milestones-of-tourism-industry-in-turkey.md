@@ -1,4 +1,5 @@
 ---
+id: 3dde9739-18db-49a2-94ca-c41c448e0adc
 title: Tourism In Turkey / Tourism History of Turkey, Milestones of Tourism Industry
   In Turkey
 abstract: In terms of its geographical location, Turkey has been being centre of travelers

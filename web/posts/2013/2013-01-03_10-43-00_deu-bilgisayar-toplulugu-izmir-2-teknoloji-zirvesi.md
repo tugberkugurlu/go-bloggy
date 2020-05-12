@@ -1,4 +1,5 @@
 ---
+id: 80c216a3-c958-4c4f-81b1-59c41790f0ea
 title: DEU Bilgisayar Topluluğu Izmir 2. Teknoloji Zirvesi
 abstract: 'DEU Bilgisayar Topluluğu Izmir 2. Teknoloji Zirvesi: if you are in Izmir
   this weekend (5 – 6 January, 2013), don’t miss this event.'

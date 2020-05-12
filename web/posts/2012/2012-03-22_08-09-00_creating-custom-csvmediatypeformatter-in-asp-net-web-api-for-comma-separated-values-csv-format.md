@@ -1,4 +1,5 @@
 ---
+id: 0fcc0286-8087-4380-9a73-caaaf6b52872
 title: Creating Custom CSVMediaTypeFormatter In ASP.NET Web API for Comma-Separated
   Values (CSV) Format
 abstract: In this post, we will see how to create a custom CSVMediaTypeFormatter in

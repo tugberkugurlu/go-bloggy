@@ -1,4 +1,5 @@
 ---
+id: 29c80d1b-b6c7-40e3-af6c-38bdc5ce64bc
 title: .NET 4.5 to Support Zip File Manipulation Out of the Box
 abstract: One of the missing feature of .NET framework was a support for Zip file
   manipulation. In .NET 4.5, we have an extensive support for manipulating zip archives.

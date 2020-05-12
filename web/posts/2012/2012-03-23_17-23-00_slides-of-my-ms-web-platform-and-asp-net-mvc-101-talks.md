@@ -1,4 +1,5 @@
 ---
+id: 62d05da3-4dfc-476c-815c-1e5630c160f2
 title: Slides of My MS Web Platform & ASP.NET MVC 101 Talks
 abstract: Today, I was at Computer Engineering Department of Mugla University and
   I gave two introduction talks on MS Web Platform and ASP.NET MVC 101.

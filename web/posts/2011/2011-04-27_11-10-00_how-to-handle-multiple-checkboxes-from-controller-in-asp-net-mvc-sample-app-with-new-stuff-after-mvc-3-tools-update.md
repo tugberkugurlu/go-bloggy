@@ -1,4 +1,5 @@
 ---
+id: 56287082-0f17-4b95-b8c1-fc7df92a6f90
 title: How To Handle Multiple Checkboxes From Controller In ASP.NET MVC - Sample App
   With New Stuff After MVC 3 Tools Update
 abstract: 'In this blog post, we will see how to handle multiple checkboxes inside

@@ -1,4 +1,5 @@
 ---
+id: 639a2ab4-1ef4-4c25-a398-bef517fa1b59
 title: 'HTTP DELETE: HTTP 200, 202 or 204 All the Time?'
 abstract: ""
 created_at: 2014-06-25 12:52:00 +0000 UTC

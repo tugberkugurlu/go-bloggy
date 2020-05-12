@@ -1,4 +1,5 @@
 ---
+id: ea41a396-edc3-4bf9-9e73-058c1cba5763
 title: Sending E-mail to All List of Membership Users with ASP.Net Using Built-in
   Membership API
 abstract: Most of the Asp.Net developers are using Membership class of Asp.Net and

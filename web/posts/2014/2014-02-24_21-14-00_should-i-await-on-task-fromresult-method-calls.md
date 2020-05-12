@@ -1,4 +1,5 @@
 ---
+id: 9b7c5fc3-3947-4e4a-a112-54501c15fcbd
 title: Should I await on Task.FromResult Method Calls?
 abstract: Task class has a static method called FromResult which returns an already
   completed (at the RanToCompletion status) Task object. I have seen a few developers

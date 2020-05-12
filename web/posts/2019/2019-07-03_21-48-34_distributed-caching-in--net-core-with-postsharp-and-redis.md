@@ -1,4 +1,5 @@
 ---
+id: c6d7befc-7404-4d92-b8c7-08d7000032b9
 title: Distributed Caching in .NET Core with PostSharp and Redis
 abstract: On my previous post, I walked through the benefits of using PostSharp for
   caching in a .NET Core server application, by making it work on a single node application.

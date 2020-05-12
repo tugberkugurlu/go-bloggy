@@ -1,4 +1,5 @@
 ---
+id: 3cea20a8-75c4-4139-b127-d6b65be1d8f8
 title: Windows Live Writer Codehighlighting Plugin For Alex Gorbatchev's SyntaxHighlighter
 abstract: Windows Live Writer Codehighlighting Plugin For Alex Gorbatchev's SyntaxHighlighter
   is available on codeplex

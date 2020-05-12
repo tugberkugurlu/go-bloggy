@@ -1,4 +1,5 @@
 ---
+id: a14713f1-12db-4da3-af53-5149cceac539
 title: MSP Turkey Kickoff 2014 ASP.NET Web API and SignalR Presentation Slides, Recording
   and Links
 abstract: I was at Microsoft Turkey office yesterday and I gave a presentation on

@@ -1,4 +1,5 @@
 ---
+id: c26e1735-a3f1-485d-abf8-38763382d7ed
 title: My Story of Seeing a Company Which Has High Level Cheapness At Their Core
 abstract: I am telling you my story of seeing a company which has high level cheapness
   at their core and trying to explain why I think this way

@@ -1,4 +1,5 @@
 ---
+id: 0b7238a0-03ce-4d34-834c-25d68a89ad05
 title: UNWTO Tourism Highlights, 2009 Edition Has Been Released on the 27th of September,
   2009 !
 abstract: Annually published UNWTO Tourism Highlights last edition has been released

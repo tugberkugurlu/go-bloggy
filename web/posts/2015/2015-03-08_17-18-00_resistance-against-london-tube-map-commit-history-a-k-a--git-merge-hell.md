@@ -1,4 +1,5 @@
 ---
+id: 470f3a19-a055-4ec1-a4a7-fab678472058
 title: Resistance Against London Tube Map Commit History (a.k.a. Git Merge Hell)
 abstract: It's so easy to end up with git commit history which looks like London tube
   map. Let's see how we end up with those big, ugly, meaningless commit histories

@@ -1,4 +1,5 @@
 ---
+id: 96897472-5818-411d-af54-c0d97f9e7f73
 title: 'Challenge of Solving an ASP.NET Web API Self-Hosting Problem: No HTTP resource
   was found that matches the request URI'
 abstract: 'Couple of weeks ago, one of my former coworkers ran across a very weird

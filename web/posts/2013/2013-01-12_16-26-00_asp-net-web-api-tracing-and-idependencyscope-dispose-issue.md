@@ -1,4 +1,5 @@
 ---
+id: 62263419-c69e-41e8-a769-936bcc83933f
 title: ASP.NET Web API Tracing and IDependencyScope Dispose Issue
 abstract: If you enabled tracing on your ASP.NET Web API application, you may see
   a dispose issue for IDependencyScope. Here is why and how you can workaround it.

@@ -1,4 +1,5 @@
 ---
+id: af58f326-e330-4b5f-8cdd-a38052160864
 title: Clean, Better, and Sexier Generic Repository Implementation for Entity Framework
 abstract: With the new release of the GenericRepository.EntityFramework package, we
   now have clean, better and sexier generic repository implementation for Entity Framework.

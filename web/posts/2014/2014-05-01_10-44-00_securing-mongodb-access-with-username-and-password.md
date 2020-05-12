@@ -1,4 +1,5 @@
 ---
+id: 62137996-bb8c-4596-ae8a-e8302075462a
 title: Securing MongoDB Access with Username and Password
 abstract: 'My MongoDb journey continues :) and I had my first attempt to put a username
   and password protection against a MongoDB instance. It went OK besides some hiccups

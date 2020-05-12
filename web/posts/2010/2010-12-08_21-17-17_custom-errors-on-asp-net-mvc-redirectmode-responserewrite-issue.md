@@ -1,4 +1,5 @@
 ---
+id: 48011de8-13fb-4dc8-81b0-d2b67c0f6277
 title: Custom Errors on ASP.Net MVC - redirectMode="ResponseRewrite" Issue
 abstract: I assume that some of you folks have tried that in your ASP.Net MVC applications
   and try to figure out why it doesn't work. Well, I have figured it out...

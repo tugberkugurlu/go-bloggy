@@ -1,4 +1,5 @@
 ---
+id: f56075ed-f701-4c14-956f-0df3a46e29fa
 title: 'ASP.NET MVC Code Review #1 - File Upload With HttpPostedFileBase Class'
 abstract: 'This is #1 of the series of blog posts which is about some core scenarios
   on ASP.NET MVC: File Upload With HttpPostedFileBase Class'

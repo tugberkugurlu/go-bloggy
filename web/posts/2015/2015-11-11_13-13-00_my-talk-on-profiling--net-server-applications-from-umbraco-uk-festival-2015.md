@@ -1,4 +1,5 @@
 ---
+id: a64ee675-5e09-4010-a5d1-123260ef3ee1
 title: My Talk on Profiling .NET Server Applications from Umbraco UK Festival 2015
 abstract: I was at Umbraco UK Festival 2015 in London a few weeks ago to give a talk
   on Profiling .NET Server Applications and the session is now available to watch.

@@ -1,4 +1,5 @@
 ---
+id: 2d9788cc-922f-4fd0-af87-73dadffa1657
 title: Disposing Resources At the End of the Request Lifecycle in ASP.NET Web API
 abstract: How to disposing resources at the end of the request lifecycle in ASP.NET
   Web API with the RegisterForDispose extension method for the HttpRequestMessage

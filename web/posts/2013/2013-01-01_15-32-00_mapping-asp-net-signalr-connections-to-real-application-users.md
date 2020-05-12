@@ -1,4 +1,5 @@
 ---
+id: 8a0611a5-6f37-48da-9ca5-a2f52a70629e
 title: Mapping ASP.NET SignalR Connections to Real Application Users
 abstract: One of the common questions about SignalR is how to broadcast a message
   to specific users and the mapping the SignalR connections to your real application

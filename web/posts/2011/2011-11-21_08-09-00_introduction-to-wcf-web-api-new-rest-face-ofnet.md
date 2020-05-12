@@ -1,4 +1,5 @@
 ---
+id: 94769503-cb58-4ff9-b446-dd769e47f8f3
 title: Introduction to WCF Web API - New REST Face of .NET
 abstract: This blog post will give you an introduction to WCF Web API and show you
   how to get started with WCF Web API along with Dependency Inject support with Ninject.

@@ -1,4 +1,5 @@
 ---
+id: 874d25d5-2f36-4cf1-4f8a-08d6d081bda9
 title: Declarative Coding Approach to Caching in .NET Core with PostSharp
 abstract: PostSharp is a .NET library which gives you ability to program in a declarative
   style and allows you perform many cross-cutting concerns with a minimum amount of

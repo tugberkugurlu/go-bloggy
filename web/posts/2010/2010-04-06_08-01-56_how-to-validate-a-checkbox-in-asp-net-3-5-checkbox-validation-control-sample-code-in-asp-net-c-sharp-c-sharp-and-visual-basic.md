@@ -1,4 +1,5 @@
 ---
+id: f228052a-e2ba-4c1a-a815-131ece460d0e
 title: How to Validate A CheckBox in ASP.Net 3.5 / Checkbox Validation Control Sample
   Code in ASP.Net, C# (C Sharp) And Visual Basic
 abstract: This article will give you an idea to validate a checkbox in ASP.Net 3.5

@@ -1,4 +1,5 @@
 ---
+id: b355ac9c-bbdb-494a-b656-193d4f69280d
 title: 'JavaScript-Heavy, Maintainable Web Applications by a n00b: 101 - Leveraging
   Existing Libraries'
 abstract: "I decided to dedicate this part of my life to JavaScript for a while and

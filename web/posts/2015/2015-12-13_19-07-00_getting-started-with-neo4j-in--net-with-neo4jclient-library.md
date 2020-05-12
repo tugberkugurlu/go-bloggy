@@ -1,4 +1,5 @@
 ---
+id: 3c3c0733-f919-403d-8c43-6216cd7d8966
 title: Getting Started with Neo4j in .NET with Neo4jClient Library
 abstract: I have been looking into Neo4j, a graph database, for a while and here is
   what impressed me the most while trying to work with it through the Neo4jClient

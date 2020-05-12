@@ -1,4 +1,5 @@
 ---
+id: 70f53bb9-8e21-4170-ac55-0799b12c5481
 title: WebAPIBloggers - An RSS Feed Aggregator for ASP.NET Web API Blog Posts
 abstract: Couple of days ago, @AlexZeitler has launched WebAPIBloggers web site which
   aggregates the blog posts of several bloggers who write about ASP.NET Web API.

@@ -1,4 +1,5 @@
 ---
+id: ca96d796-786a-4c8f-95b3-359f7d3fb6ff
 title: Using "Ctrl+Enter, Enter" Instead of "Ctrl+., Enter" for C# Quick Actions on
   Visual Studio 2015 Preview
 abstract: One of the new features of the Roslyn based code editor is Quick Actions.

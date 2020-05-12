@@ -1,4 +1,5 @@
 ---
+id: d963e4a5-780b-4654-8867-e9dd79ade0cf
 title: Quickly Hosting Static Files In Your Development Environment with Node http-server
 abstract: 'Yesterday, I was looking for something to have a really quick test space
   on my machine to play with AngularJS and I found http-server: a simple zero-configuration

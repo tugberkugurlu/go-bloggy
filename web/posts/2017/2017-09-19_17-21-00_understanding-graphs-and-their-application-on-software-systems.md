@@ -1,4 +1,5 @@
 ---
+id: 370ecc73-3661-4462-91ac-179b9f8a3c51
 title: Understanding Graphs and Their Application on Software Systems
 abstract: Lately, I wanted to spend a little bit time on going back to fundamental
   computer science concepts.  I am going to start with Graphs, specifically Depth

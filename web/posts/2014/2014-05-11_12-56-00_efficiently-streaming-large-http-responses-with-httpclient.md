@@ -1,4 +1,5 @@
 ---
+id: e4d7b9ac-7f3e-4bb8-8f5e-232d5b897d3f
 title: Efficiently Streaming Large HTTP Responses With HttpClient
 abstract: Downloading large files with HttpClient and you see that it takes lots of
   memory space? This post is probably for you. Let's see how to efficiently streaming

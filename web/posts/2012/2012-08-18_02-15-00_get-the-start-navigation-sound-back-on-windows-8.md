@@ -1,4 +1,5 @@
 ---
+id: 6de9df9f-3d43-41ff-895a-a703e6823870
 title: Get the Start Navigation Sound Back on Windows 8
 abstract: The usual "chlick" sound is not there when you navigate through inside the
   Windows Explorer and we will see how to get the Start Navigation sound back on Windows

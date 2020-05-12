@@ -1,4 +1,5 @@
 ---
+id: ae0648d8-929f-4ddf-b2de-5564451a3754
 title: ASP.NET Core Authentication in a Load Balanced Environment with HAProxy and
   Redis
 abstract: Token based authentication is a fairly common way of authenticating a user

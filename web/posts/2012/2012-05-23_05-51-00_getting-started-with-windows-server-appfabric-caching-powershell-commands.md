@@ -1,4 +1,5 @@
 ---
+id: 78be3dca-bc86-4f51-a7b5-7c901517916a
 title: Getting Started with Windows Server AppFabric Caching PowerShell Commands
 abstract: I started to use Windows Server AppFabric for its distributed caching feature
   and I wanted to take a note of the useful PowerShell commands to manage the service

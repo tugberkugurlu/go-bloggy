@@ -1,4 +1,5 @@
 ---
+id: 10110ab0-3e5e-4be3-af5b-aa1c2327705e
 title: List of Resources on Asynchronous Programming for .NET Server Applications
   with C#
 abstract: I listed some resources on asynchronous programming for .NET server applications

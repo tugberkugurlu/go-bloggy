@@ -1,4 +1,5 @@
 ---
+id: e5d7bbc8-2f6d-412d-99db-088e33390b52
 title: Speaking at SQL in the City 2017, Register Now!
 abstract: 'I''m quite happy to tell you that I''ll be speaking at SQL in the City
   2017 on the 13th of December about Latest SQL Compare features and support for SQL

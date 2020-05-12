@@ -1,4 +1,5 @@
 ---
+id: 1cf88d24-ed88-48a6-b616-26014de6bd02
 title: jQuery.simpleJSlide-1.1 / Simple jQuery Slide Show Plugin With Unobtrusive
   JavaScript Support
 abstract: An awesome and super simple jQuery slide show plugin. This plugin also takes

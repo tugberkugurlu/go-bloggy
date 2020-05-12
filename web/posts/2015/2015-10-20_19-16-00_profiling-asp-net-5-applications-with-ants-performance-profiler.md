@@ -1,4 +1,5 @@
 ---
+id: a49a2947-23b4-42dc-9584-f10e32eae655
 title: Profiling ASP.NET 5 Applications with ANTS Performance Profiler
 abstract: ANTS Performance Profiler from Redgate supports ASP.NET 5 applications running
   on DNX and it allows you to profile your ASP.NET 5 applications to spot performance

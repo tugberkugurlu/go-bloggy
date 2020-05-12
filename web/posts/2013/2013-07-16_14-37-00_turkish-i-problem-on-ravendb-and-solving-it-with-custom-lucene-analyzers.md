@@ -1,4 +1,5 @@
 ---
+id: a357ad83-5ed6-4f7f-b823-bb8f122805d8
 title: Turkish I Problem on RavenDB and Solving It with Custom Lucene Analyzers
 abstract: Yesterday, I ran into a Turkish I problem on RavenDB and here is how I solved
   It with a custom Lucene analyzer

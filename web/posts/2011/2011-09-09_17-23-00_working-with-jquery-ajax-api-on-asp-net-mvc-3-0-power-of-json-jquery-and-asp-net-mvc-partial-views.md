@@ -1,4 +1,5 @@
 ---
+id: 590d5018-3890-4eac-ba4c-916a7ab38f07
 title: Working With JQuery Ajax API on ASP.NET MVC 3.0 - Power of JSON, JQuery and
   ASP.NET MVC Partial Views
 abstract: In this post, we'll see how easy to work with JQuery AJAX API on ASP.NET

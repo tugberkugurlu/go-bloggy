@@ -1,4 +1,5 @@
 ---
+id: 32deb2ff-2c47-42af-81a8-5a1a452d8aa9
 title: ASP.NET MVC Server Side Remote Validation
 abstract: In this quick post, I will show you a way of implementing ASP.NET MVC Server
   Side Remote Validation just like ASP.NET MVC Remote Validation

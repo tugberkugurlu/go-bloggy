@@ -1,4 +1,5 @@
 ---
+id: e48899fd-cbc7-4384-8e98-833e08a7c071
 title: Graph Depth-First Search (DFS)
 abstract: A while ago, I have written up on Graphs and gave a few examples about their
   application for real world problems.  In this post, I want to talk about one of

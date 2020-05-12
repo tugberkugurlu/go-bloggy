@@ -1,4 +1,5 @@
 ---
+id: d820e689-b758-4e6f-8581-b469b2486a08
 title: Autofac Open Generics Feature to Register Generic Services
 abstract: Autofac, an awesome IoC container for .NET platform, has an out of the box
   generic service registration feature which we will quickly cover in this blog post.

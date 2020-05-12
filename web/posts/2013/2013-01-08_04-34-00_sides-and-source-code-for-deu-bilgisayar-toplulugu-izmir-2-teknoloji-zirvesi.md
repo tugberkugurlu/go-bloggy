@@ -1,4 +1,5 @@
 ---
+id: d6c20d58-1443-4930-8e08-61437956f279
 title: Sides and Source Code for DEU Bilgisayar Topluluğu Izmir 2. Teknoloji Zirvesi
 abstract: This weekend, I participated in an event as a speaker in Izmir, DEU Bilgisayar
   Topluluğu Izmir 2. Teknoloji Zirvesi. Sides and Source Code for my sessions are

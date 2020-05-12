@@ -1,4 +1,5 @@
 ---
+id: a02fdb76-3f3c-447c-bc56-aee37a54e879
 title: Involving Action Selection Process in ASP.NET MVC with ActionNameSelectorAttribute
 abstract: We will see how we can involve action selection process in ASP.NET MVC with
   ActionNameSelectorAttribute with a real world use case scenario.

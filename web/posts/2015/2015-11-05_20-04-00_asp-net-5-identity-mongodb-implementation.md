@@ -1,4 +1,5 @@
 ---
+id: 9849bf0c-2bbb-43ef-8718-9b4ff0f863c6
 title: ASP.NET 5 Identity MongoDB Implementation
 abstract: ASP.NET Identity will have a new version with ASP.NET 5 which is going to
   be version 3.0.0 and I gave it shot to implement ASP.NET Identity MongoDB data store.

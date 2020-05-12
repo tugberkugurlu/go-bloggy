@@ -1,4 +1,5 @@
 ---
+id: fd385d9d-3eab-4d3e-87f0-4510b1334e86
 title: Compiling C# Code Into Memory and Executing It with Roslyn
 abstract: Let me show you how to compile a piece of C# code into memory and execute
   it with Roslyn. It is super easy if you believe it or not :)

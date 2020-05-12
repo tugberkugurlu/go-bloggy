@@ -1,4 +1,5 @@
 ---
+id: 3fdf8969-3d50-4d04-b6d8-6743b4d157ad
 title: How To Make Conditional Formating In Microsoft Office Excel 2007
 abstract: This article give you an idea about conditional formating function of Microsoft
   Excel...

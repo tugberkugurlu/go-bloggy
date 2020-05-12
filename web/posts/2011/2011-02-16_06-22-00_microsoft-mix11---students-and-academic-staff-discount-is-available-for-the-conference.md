@@ -1,4 +1,5 @@
 ---
+id: b1a00b0b-32a2-4a12-ad6d-7353258ec206
 title: 'Microsoft MIX11 : Students & Academic Staff Discount is Available For the
   Conference'
 abstract: 'Microsoft MIX11 : Students & Academic Staff Discount is Available For the

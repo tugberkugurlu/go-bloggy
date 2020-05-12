@@ -1,4 +1,5 @@
 ---
+id: cf5ff6da-9150-4e87-8bd9-bc5961332e53
 title: Check Instantly If Username Exists - ASP.NET MVC Remote Validation
 abstract: This blog post will walk you through on implementation and usage of ASP.NET
   MVC Remote Validation. As a sample, we will validate the availability of the username

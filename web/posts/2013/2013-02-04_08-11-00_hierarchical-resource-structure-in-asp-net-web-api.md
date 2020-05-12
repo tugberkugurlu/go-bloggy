@@ -1,4 +1,5 @@
 ---
+id: 80868994-8293-4595-b46e-6e0c5e9c4b32
 title: Hierarchical Resource Structure in ASP.NET Web API
 abstract: This post explains the concerns behind the hierarchical resource structure
   in ASP.NET Web API such as routing, authorization and ownership.

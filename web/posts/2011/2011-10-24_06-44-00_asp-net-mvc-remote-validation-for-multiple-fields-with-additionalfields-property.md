@@ -1,4 +1,5 @@
 ---
+id: 0d3b8414-09b3-4017-9550-617c2fd383d4
 title: ASP.NET MVC Remote Validation For Multiple Fields With AdditionalFields Property
 abstract: This post shows the implementation of ASP.NET MVC Remote Validation for
   multiple fields with AdditionalFields property and we will validate the uniqueness

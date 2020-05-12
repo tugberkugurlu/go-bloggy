@@ -1,4 +1,5 @@
 ---
+id: 49b13388-5a40-4a75-86e6-a36ab440e210
 title: 'Owin.Dependencies: An IoC Container Adapter Into OWIN Pipeline'
 abstract: Owin.Dependencies is an IoC container adapter into OWIN pipeline. This post
   will walk you through the Autofac IoC container implementation and ASP.NET Web API

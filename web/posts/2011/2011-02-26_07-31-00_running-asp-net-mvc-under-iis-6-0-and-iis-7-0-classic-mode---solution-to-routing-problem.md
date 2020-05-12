@@ -1,4 +1,5 @@
 ---
+id: 2ad45143-ba5f-4d67-8d2d-7ab203c780fc
 title: 'Running ASP.NET MVC Under IIS 6.0 and IIS 7.0 Classic Mode : Solution to Routing
   Problem'
 abstract: In this blog post, we will see how to run ASP.NET MVC application under

@@ -1,4 +1,5 @@
 ---
+id: 75c1c712-6cc2-478f-b7a7-6c2f4506955b
 title: 'Using Azure Storage Emulator Command-Line Tool: WAStorageEmulator.exe'
 abstract: Starting from version 3.0 of the emulator, a few things have changed and
   lots of people are not aware of this. When you launch the Storage Emulator now,

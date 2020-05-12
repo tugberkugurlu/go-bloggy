@@ -1,4 +1,5 @@
 ---
+id: 72dbfc8d-a117-4a95-a44f-0d3b4c8412d4
 title: Integration Testing with MongoDB with MongoDB.Testing Library
 abstract: I have put together a library, MongoDB.Testing, which makes it easy to stand
   up a MongoDB server, create a random database and clean up the resources afterwards.

@@ -1,4 +1,5 @@
 ---
+id: bc9ddeac-e786-4d37-a06d-4d0f85c00359
 title: Don't Shit All Over The Company You Just Left
 abstract: Don't Shit All Over The Company You Just Left... Don’t forget this is just
   a random dude’s opinion on the internet.

@@ -1,4 +1,5 @@
 ---
+id: 0c91d8fb-c47e-49ff-a244-10f445e4d307
 title: Visual Studio 11 Beta Code-Named "Juneau" SQL Server Database Project - Quick
   Overview
 abstract: Quick Overview of Code-Named "Juneau" SQL Server Database Project which

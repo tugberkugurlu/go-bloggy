@@ -1,4 +1,5 @@
 ---
+id: 331a6c00-0e6a-4510-a44e-ea516edd81a1
 title: Microsoft Turkey Summer School Presentation Samples and Links for .NET Web
   Stack
 abstract: I was at Microsoft's Turkey headquarters giving talks on Microsoft Web Stack

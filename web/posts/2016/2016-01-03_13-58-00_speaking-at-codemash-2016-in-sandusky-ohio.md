@@ -1,4 +1,5 @@
 ---
+id: 8eb385be-9dca-4994-8c81-22084189157f
 title: Speaking at CodeMash 2016 in Sandusky, Ohio
 abstract: I will be speaking at CodeMash 2016 in Sandusky, Ohio and I will be talking
   about ASP.NET 5 and Database Lifecycle Management. I hope to see some of you there

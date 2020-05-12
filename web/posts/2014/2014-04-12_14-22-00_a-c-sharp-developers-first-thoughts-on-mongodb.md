@@ -1,4 +1,5 @@
 ---
+id: edc9a740-d18e-4606-b204-8a786a12f7dc
 title: A C# Developer's First Thoughts on MongoDB
 abstract: After working with RavenDB over the year, I just started looking into MongoDB.
   I worked with MongoDB a year ago or so in a small project but my knowledge was mostly

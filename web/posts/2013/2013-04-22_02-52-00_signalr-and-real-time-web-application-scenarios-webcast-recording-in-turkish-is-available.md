@@ -1,4 +1,5 @@
 ---
+id: e7ac9e07-cafb-43bd-a735-4750f0efa2a9
 title: SignalR and Real-time Web Application Scenarios Webcast Recording (In Turkish)
   is Available
 abstract: A few days ago, I presented on a webcast about ASP.NET SignalR and real-time

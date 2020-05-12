@@ -1,4 +1,5 @@
 ---
+id: 7bc2ab3d-c98f-4ca3-996b-582a1cad234b
 title: 'Exciting Things About ASP.NET vNext Series: The Ultimate Guide'
 abstract: As of today, I am starting a new blog post series about ASP.NET vNext. To
   kick things off, I would like to lay out the resources about ASP.NET vNext here

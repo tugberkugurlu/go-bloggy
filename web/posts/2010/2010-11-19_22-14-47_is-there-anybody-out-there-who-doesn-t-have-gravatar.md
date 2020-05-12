@@ -1,4 +1,5 @@
 ---
+id: e2b94e4b-ed1f-4389-923d-fdbdbd4c0f0a
 title: Is There Anybody Out There Who Doesn't Have Gravatar !
 abstract: 'Sometimes we get sick to put our avatar pic. to every web site that we
   have registered to view our avatar. In this point gravatar.com helps us. '

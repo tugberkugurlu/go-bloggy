@@ -1,4 +1,5 @@
 ---
+id: 73ed5161-5e21-4dc3-94e0-79a06484539f
 title: Looking for Chuck Norris Facts For Scott Hanselman - Give Your Comments
 abstract: Scott Hanselman is one of the coolest tech guys in Microsoft and in this
   post I am trying to find the facts about him. Ready? Then let's rumble !

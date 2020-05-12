@@ -1,4 +1,5 @@
 ---
+id: 6af246b5-048d-4d47-85ed-0f975ea1aa9b
 title: Autofac and ASP.NET Web API System.Web.Http.Services.IDependencyResolver Integration
 abstract: In this post, you can make Autofac work with ASP.NET Web API System.Web.Http.Services.IDependencyResolver.
   Solution to the 'controller has no parameterless public constructor' error.

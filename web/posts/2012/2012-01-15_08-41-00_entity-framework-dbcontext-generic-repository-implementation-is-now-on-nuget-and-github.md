@@ -1,4 +1,5 @@
 ---
+id: 42c429e5-547a-479f-bf97-ae76d09c0590
 title: Entity Framework DbContext Generic Repository Implementation Is Now On Nuget
   and GitHub
 abstract: 'Entity Framework DbContext Generic Repository Implementation Is Now On

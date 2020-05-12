@@ -1,4 +1,5 @@
 ---
+id: de260b3d-384c-4c7e-a798-724aa5708597
 title: Pro ASP.NET Web API's Sample Project (PingYourPackage) Source Code is Up on
   GitHub
 abstract: We wanted to give you an early glimpse on the Pro ASP.NET Web API's sample

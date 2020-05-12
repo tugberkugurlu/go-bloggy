@@ -34,6 +34,7 @@ type Tag struct {
 }
 
 type PostMetadata struct {
+	ID        string   `yaml:"id"`
 	Title     string   `yaml:"title"`
 	Abstract  string   `yaml:"abstract"`
 	CreatedOn string   `yaml:"created_at"`

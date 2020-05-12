@@ -1,4 +1,5 @@
 ---
+id: 1f380c98-0728-4284-943f-82b44ae70557
 title: MSP Turkey Kickoff Microsoft Web Stack Presentation Slides, Samples and Links
 abstract: I was at MSFT Istanbul office yesterday to give a presentation on Microsoft
   Web Stack for MSPs. Slides and samples are now available online.

@@ -1,4 +1,5 @@
 ---
+id: ea3827a4-7923-423e-9ff5-25edb9550f9c
 title: ASP.NET Web API MediaTypeFormatters With MediaTypeMappings
 abstract: We will see how Content-Negotiation (Conneg) Algorithm works on ASP.NET
   Web API with MediaTypeFormatters and MediaTypeMappings

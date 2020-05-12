@@ -1,4 +1,5 @@
 ---
+id: 0b4fd30e-98d1-44f4-a07e-143a05732bc8
 title: Definintion of Tourism (UNWTO Definition of Tourism) / What Is Tourism ?
 abstract: After this article, you'll have an idea on definition of tourism. Also the
   article includes the UNWTO definition of tourism.

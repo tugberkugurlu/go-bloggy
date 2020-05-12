@@ -1,4 +1,5 @@
 ---
+id: 6bbf21ff-b471-46dc-b31f-7be48d8859c3
 title: Cleaning up With PowerShell After Removing a Windows Azure Virtual Machine
 abstract: Removing a Windows Azure Virtual Machine doesn't remove everything for you.
   This post is all about cleaning up with PowerShell after removing a Windows Azure

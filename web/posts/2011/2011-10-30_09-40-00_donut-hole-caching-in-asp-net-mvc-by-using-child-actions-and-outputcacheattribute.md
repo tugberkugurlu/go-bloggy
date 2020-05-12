@@ -1,4 +1,5 @@
 ---
+id: 70608ff6-81b5-4c65-a020-1be1aff206d1
 title: Donut Hole Caching In ASP.NET MVC by Using Child Actions and OutputCacheAttribute
 abstract: This blog post demonstrates how to implement Donut Hole Caching in ASP.NET
   MVC by Using Child Actions and OutputCacheAttribute

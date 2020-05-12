@@ -1,4 +1,5 @@
 ---
+id: dee1f7ff-d170-4129-9078-88ab645a2419
 title: File By File Deployment Process with MSDeploy Inside Visual Studio
 abstract: Have you ever used 'MSDeploy' inside Visual Studio 2010 and wished a nice
   process bar while publishing a web application? There is even a better way!

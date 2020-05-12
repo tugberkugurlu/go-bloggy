@@ -1,4 +1,5 @@
 ---
+id: 67442188-f33f-468d-a6df-4f8dd7333ad7
 title: How to Use Windows Azure Blob Storage Service With ASP.NET MVC Web Application
 abstract: This blog post provides a Windows Azure Blob Storage example which walks
   you through on how to use Blob Storage service with ASP.NET MVC.

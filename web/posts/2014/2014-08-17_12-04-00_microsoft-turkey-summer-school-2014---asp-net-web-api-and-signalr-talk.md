@@ -1,4 +1,5 @@
 ---
+id: 2efd489d-c428-4979-b7a0-5e70018cc378
 title: Microsoft Turkey Summer School 2014 - ASP.NET Web API and SignalR Talk
 abstract: In context of Microsoft Turkey Summer School 2014, I had a chance to give
   a talk on ASP.NET Web API and ASP.NET SignalR a few days ago at Microsoft Turkey

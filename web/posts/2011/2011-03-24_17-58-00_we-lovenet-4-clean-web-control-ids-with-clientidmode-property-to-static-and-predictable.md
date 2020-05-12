@@ -1,4 +1,5 @@
 ---
+id: fae80f8f-9a8a-4c69-b2e5-bf9b02c012a5
 title: We Love .NET 4 - Clean Web Control IDs with ClientIDMode Property to Static
   and Predictable
 abstract: In this blog post, we will see how ClientIDMode property of Web Controls

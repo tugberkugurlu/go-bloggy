@@ -1,4 +1,5 @@
 ---
+id: 93602c33-9778-4ec0-8e10-d411ec1233d6
 title: Tourism Glossary - 1 / Meeting, Incentive, Congress And Event Management Glossary
 abstract: Under this article, you will find some useful terms which are used in toursim
   industry, especially in Cogress Toursim. Tourism Glossary / Tourism Dictionary...

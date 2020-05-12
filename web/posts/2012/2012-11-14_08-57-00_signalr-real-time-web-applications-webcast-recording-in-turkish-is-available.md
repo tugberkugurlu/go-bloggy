@@ -1,4 +1,5 @@
 ---
+id: e90bd376-dac9-45b3-b2a7-6a3a0f698765
 title: SignalR - Real-time Web Applications Webcast Recording (In Turkish) is Available
 abstract: SiganlR - Real-time Web Applications webcast recording (in Turkish) is available.
   The video is available on NedirTV and Vimeo.

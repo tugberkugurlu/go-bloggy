@@ -1,4 +1,5 @@
 ---
+id: dca042b3-87bb-465f-a9f3-32ff5a13347a
 title: SignalR with Redis Running on a Windows Azure Virtual Machine
 abstract: 'I just committed my first contribution to SignalR project: SignalR with
   Redis Running on a Windows Azure Virtual Machine. Enjoy :)'

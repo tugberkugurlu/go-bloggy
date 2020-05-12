@@ -1,4 +1,5 @@
 ---
+id: 47fa1f2d-9d80-4f22-b15c-393e886abdf2
 title: Speaking at Web European Conference 2015 in Milan
 abstract: Web European Conference 2015 will happen in Milan on the 26th of September
   and I will be talking about ASP.NET 5 there!

@@ -1,4 +1,5 @@
 ---
+id: 57868d37-9288-4dc6-b839-1acdba29d8ab
 title: How to Work With Generic Repositories on ASP.NET MVC and Unit Testing Them
   By Mocking
 abstract: In this blog post we will see how to work with generic repositories on ASP.NET

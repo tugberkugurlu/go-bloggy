@@ -1,4 +1,5 @@
 ---
+id: 1f7cf9db-2a48-4719-8b19-9cc04182144a
 title: TinyMCE HTML Text Editior & ASP.NET MVC - Setting It Up Has Become Easy With
   Nuget
 abstract: One of the best Javascript WYSIWYG Editors TinyMCE is now up on Nuget live

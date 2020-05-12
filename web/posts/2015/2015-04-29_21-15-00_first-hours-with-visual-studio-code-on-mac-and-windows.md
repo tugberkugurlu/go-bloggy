@@ -1,4 +1,5 @@
 ---
+id: 76c40dc9-dee7-49c8-aaf1-30cd8822a7cb
 title: First Hours with Visual Studio Code on Mac and Windows
 abstract: Today is one of those awesome days if you build stuff on .NET platform.
   They announced bunch of stuff during Build 2015 keynote and one of them is Visual

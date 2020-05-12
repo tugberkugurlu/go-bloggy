@@ -1,4 +1,5 @@
 ---
+id: a71ff79b-1507-40c9-ae2f-b6afedff7113
 title: Microsoft Web Camps Istanbul on the 6th of April
 abstract: One leg of Microsoft Web Camps spring 2013 tour will be held in Microsoft
   Istanbul office on the 6th of April, 2013.

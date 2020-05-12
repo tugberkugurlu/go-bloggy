@@ -1,4 +1,5 @@
 ---
+id: 1b3d7506-ac1b-47cb-95cf-f92babddd79f
 title: 'AzureConf 2014: An Azure Community Event and My Azure Search Talk'
 abstract: ""
 created_at: 2014-08-22 09:43:00 +0000 UTC

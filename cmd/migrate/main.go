@@ -69,12 +69,14 @@ func main() {
 			var builder strings.Builder
 			builder.WriteString(fmt.Sprintln("---"))
 			d, err := yaml.Marshal(&struct {
+				Id        string   `yaml:"id"`
 				Title     string   `yaml:"title"`
 				Abstract  string   `yaml:"abstract"`
 				CreatedOn string   `yaml:"created_at"`
 				Tags      []string `yaml:"tags"`
 				Slugs     []string `yaml:"slugs"`
 			}{
+				Id:        strings.ToLower(post.id),
 				Title:     post.title,
 				Abstract:  post.abstract,
 				CreatedOn: post.createdOnUtc.UTC().String(),

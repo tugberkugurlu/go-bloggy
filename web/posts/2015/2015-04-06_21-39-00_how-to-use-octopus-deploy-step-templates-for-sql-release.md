@@ -1,4 +1,5 @@
 ---
+id: 47fdfbba-823e-4407-9e8e-a221d34777ff
 title: How to Use Octopus Deploy Step Templates for SQL Release
 abstract: In this post, I will go through how you can use SQL Release Octopus Deploy
   step templates to make the Octopus Deploy Integration of SQL Release easier by going

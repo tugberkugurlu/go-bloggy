@@ -1,4 +1,5 @@
 ---
+id: d7181e8b-2ae7-4839-b4a4-e3a3f2ffb3c9
 title: Getting Started with ASP.NET vNext by Setting Up the Environment From Scratch
 abstract: In this post, I'll walk you through how you can set up your environment
   from scratch to get going with ASP.NET vNext.

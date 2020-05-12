@@ -1,4 +1,5 @@
 ---
+id: 81e4d746-b2c9-49ee-9462-989762ab2771
 title: Windows Azure PowerShell Cmdlets In a Nutshell
 abstract: Windows Azure PowerShell Cmdlets is a great tool to manage your Windows
   Azure services but if you are like me, you would wanna know where all the stuff

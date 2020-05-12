@@ -1,4 +1,5 @@
 ---
+id: 0ef2ff7f-c792-4a99-9578-3fa5919e2936
 title: Working with IIS Express Self-signed Certificate, ASP.NET Web API and HttpClient
 abstract: We will see how to smoothly work with IIS Express Self-signed Certificate,
   ASP.NET Web API and HttpClient by placing the self-signed certificate in the Trusted

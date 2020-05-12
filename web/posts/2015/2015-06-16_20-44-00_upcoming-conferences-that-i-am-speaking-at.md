@@ -1,4 +1,5 @@
 ---
+id: a5f8c016-32f9-4970-9a8d-5c8350c85fd7
 title: Upcoming Conferences That I am Speaking at
 abstract: I have a few speaking activities lined up in upcoming weeks on ASP.NET 5
   and DLM and I thought it would be good to share these with you all :)

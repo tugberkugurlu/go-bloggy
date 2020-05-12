@@ -1,4 +1,5 @@
 ---
+id: def1cb4d-30d9-431e-a9b6-ed83b219823a
 title: 'Logging in the OWIN World with Microsoft.Owin: Introduction'
 abstract: Microsoft implementation of OWIN (Microsoft.Owin or Katana for now) has
   a great logging infrastructure and this post will walk you through the basics of

@@ -1,4 +1,5 @@
 ---
+id: b51ca5c7-16cb-4210-b92a-87b3b3cc6d91
 title: NGINX Reverse Proxy and Load Balancing for ASP.NET 5 Applications with Docker
   Compose
 abstract: In this post, I want to show you how it would look like to expose ASP.NET

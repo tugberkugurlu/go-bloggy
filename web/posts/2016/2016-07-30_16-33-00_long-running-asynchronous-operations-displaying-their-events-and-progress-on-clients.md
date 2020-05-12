@@ -1,4 +1,5 @@
 ---
+id: dc31dd5f-e8ea-490a-b663-7e804a8607fc
 title: Long-Running Asynchronous Operations, Displaying Their Events and Progress
   on Clients
 abstract: I want to share a few thoughts that I have been keeping to myself on showing

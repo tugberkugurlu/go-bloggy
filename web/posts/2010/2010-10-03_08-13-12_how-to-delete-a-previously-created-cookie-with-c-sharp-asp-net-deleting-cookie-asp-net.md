@@ -1,4 +1,5 @@
 ---
+id: 08280ed4-866b-4087-be4a-fbaf4f96587e
 title: How to Delete a Previously Created Cookie With C# ASP.Net / Deleting Cookie
   ASP.Net
 abstract: You created a cookie on you asp.net forms application now you would like

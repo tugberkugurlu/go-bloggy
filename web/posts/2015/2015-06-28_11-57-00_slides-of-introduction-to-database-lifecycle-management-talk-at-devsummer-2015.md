@@ -1,4 +1,5 @@
 ---
+id: be9b31a0-aa13-4bc9-a1a0-6de6cd0748ad
 title: Slides of Introduction to Database Lifecycle Management Talk at /dev/summer
   2015
 abstract: Yesterday, I was at /dev/summer 2015, Cambridge and gave a talk on DLM (Database

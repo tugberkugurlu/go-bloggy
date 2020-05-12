@@ -1,4 +1,5 @@
 ---
+id: b34b8c2b-a388-4c47-8039-a77f3e4cca96
 title: Best Solution to My Web Site With ASP.Net MVC 3 & Razor View Engine!
 abstract: Recently, I have been playing around with MVC a lot and I decided to use
   the latest MVC tecnology on my web site...

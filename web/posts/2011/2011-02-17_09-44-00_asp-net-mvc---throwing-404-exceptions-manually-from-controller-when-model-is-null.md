@@ -1,4 +1,5 @@
 ---
+id: 49a12e87-d0ad-4374-a00e-1908317be65f
 title: 'ASP.NET MVC : Throwing 404 Exceptions Manually From Controller When Model
   is Null'
 abstract: This post is a quick demonstration of how you can throw HttpException of

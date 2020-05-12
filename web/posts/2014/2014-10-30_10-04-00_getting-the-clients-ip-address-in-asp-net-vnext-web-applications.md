@@ -1,4 +1,5 @@
 ---
+id: b37504a6-2741-489b-9f80-38dbc377f33b
 title: Getting the Client’s IP Address in ASP.NET vNext Web Applications
 abstract: I was wondering about how to get client’s IP address inside an ASP.NET vNext
   web application. It’s a little tricky than it should be but I finally figured it

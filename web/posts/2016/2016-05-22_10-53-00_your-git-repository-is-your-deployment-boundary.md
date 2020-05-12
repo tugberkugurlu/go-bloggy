@@ -1,4 +1,5 @@
 ---
+id: 2c5a021e-11ef-48c9-806d-5311e01a0a2d
 title: Your Git Repository is Your Deployment Boundary
 abstract: In this short post, I will try to explain why I think that your Git repository
   should be your deployment boundary.

@@ -1,4 +1,5 @@
 ---
+id: 35028787-9eb7-41e7-92c9-8b0c6661c33c
 title: 'Local IIS 7.0 - CS0016: Could not write to output file / Microsoft.Net > Framework
   > v4.0.30319 > Temporary ASP.NET Files'
 abstract: Solution to an annoying error message! You are getting 'Could not write

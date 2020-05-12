@@ -1,4 +1,5 @@
 ---
+id: d7bc98fe-3f0a-4294-a6c9-f2ba33f4ec83
 title: ASP.NET SignalR Alpha 1.0.0 is Now Available!
 abstract: Couple of hours ago, @DamianEdwards has announced that ASP.NET SignalR Alpha
   1.0.0 release is now publicly available! Even better! SignalR has just shipped with

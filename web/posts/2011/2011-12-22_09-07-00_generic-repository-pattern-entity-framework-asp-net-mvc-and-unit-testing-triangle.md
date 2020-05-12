@@ -1,4 +1,5 @@
 ---
+id: 381086f1-18c0-4ad1-bb92-8b926bdc6c12
 title: Generic Repository Pattern - Entity Framework, ASP.NET MVC and Unit Testing
   Triangle
 abstract: We will see how we can implement Generic Repository Pattern with Entity

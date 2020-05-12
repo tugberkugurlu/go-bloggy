@@ -1,4 +1,5 @@
 ---
+id: 77a6ac4a-3a4a-4db5-919e-19c719533bf5
 title: My Baby Steps to OAuth 2.0 Hell (or Should I Call It Heaven)
 abstract: Securing our HTTP API endpoints are one of the biggest challenges we face
   when writing so-called modern applications and this is where the OAuth 2.0 enters.

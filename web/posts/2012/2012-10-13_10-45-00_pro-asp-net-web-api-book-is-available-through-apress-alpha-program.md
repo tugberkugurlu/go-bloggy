@@ -1,4 +1,5 @@
 ---
+id: 1af3e30a-9b27-4588-b235-698fbfab3390
 title: Pro ASP.NET Web API Book is Available Through Apress Alpha Program
 abstract: I am proud to announce that the Pro ASP.NET Web API book is available through
   Apress Alpha Program and you can get access to the early bits and completed chapters

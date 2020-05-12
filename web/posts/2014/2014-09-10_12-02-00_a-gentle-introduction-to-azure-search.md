@@ -1,4 +1,5 @@
 ---
+id: a037175f-a2aa-4566-b183-639c58e166f2
 title: A Gentle Introduction to Azure Search
 abstract: Microsoft Azure team released Azure Search as a preview product a few days
   ago, an hosted search service solution by Microsoft. Azure Search is a suitable

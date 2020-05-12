@@ -1,4 +1,5 @@
 ---
+id: 26b00ffc-33ee-495e-bf4c-95dc6c02c9e1
 title: Microsoft Internet Explorer 9 Beta Has Been Released - Download Internet Explorer
   9 Beta Free
 abstract: Microsoft has realised that Internet Explorer 8 is so cumbersome and version

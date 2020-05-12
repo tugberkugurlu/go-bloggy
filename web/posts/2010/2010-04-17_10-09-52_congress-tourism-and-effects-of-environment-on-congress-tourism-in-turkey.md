@@ -1,4 +1,5 @@
 ---
+id: 267afee6-1e24-464d-8e38-6a007bfb8112
 title: Congress Tourism and Effects of Environment on Congress Tourism in Turkey
 abstract: This article on Congress Tousrism is Written By Tugberk Ugurlu In 2008 for
   the project assignment of Tourism And Environment Lecture at Mugla University In

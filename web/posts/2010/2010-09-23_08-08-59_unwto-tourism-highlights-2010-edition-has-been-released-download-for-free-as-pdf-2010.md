@@ -1,4 +1,5 @@
 ---
+id: e81f28fe-7e4b-497c-9174-258dc97ed705
 title: UNWTO Tourism Highlights 2010 Edition Has Been Released / Download For Free
   As PDF, 2010
 abstract: Finally, UNWTO has released UNWTO Tourism Highlights 2010 Edition. For tourism

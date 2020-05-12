@@ -1,4 +1,5 @@
 ---
+id: b0da1c75-df8a-4d41-966c-2d996613ca16
 title: Asynchronous Database Calls With Task-based Asynchronous Programming Model
   (TAP) in ASP.NET MVC 4
 abstract: Asynchronous Database Calls With Task-based Asynchronous Programming Model

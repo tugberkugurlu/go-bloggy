@@ -1,4 +1,5 @@
 ---
+id: 9e820147-5a17-4e0f-bc81-ba8ca2eccb45
 title: Pro ASP.NET Web API Book is Available on Amazon for Pre-order
 abstract: Two days ago, I blogged about the availability of the Pro ASP.NET Web API
   Book through Apress Alpha Program. Today, the Pro ASP.NET Web API book is now available

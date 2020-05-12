@@ -1,4 +1,5 @@
 ---
+id: bb37c119-124d-428a-a88f-ad3a5f9f77fd
 title: 'Pulling an Old Article From the Coffin: SignalR with Redis Running on a Windows
   Azure Virtual Machine'
 abstract: Long time ago (about 5 years, at least), I contributed an article to SignalR

@@ -1,4 +1,5 @@
 ---
+id: 9464663a-8f3f-4a81-aac5-0c4625c7fc35
 title: Links, Source Code and Slides From My Microsoft Web Camp Talks
 abstract: Web Camp Istanbul was held at Microsoft Istanbul office yesterday and here
   are the links, source code and slides from my talks

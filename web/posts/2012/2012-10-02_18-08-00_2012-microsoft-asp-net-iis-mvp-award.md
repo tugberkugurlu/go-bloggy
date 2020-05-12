@@ -1,4 +1,5 @@
 ---
+id: 86736ec6-4859-498b-a761-957732b7e45e
 title: 2012 Microsoft ASP.NET/IIS MVP Award
 abstract: Yesterday, I received an awesome e-mail telling me that I have been given
   the Microsoft MVP award on ASP.NET/IIS for 2012.

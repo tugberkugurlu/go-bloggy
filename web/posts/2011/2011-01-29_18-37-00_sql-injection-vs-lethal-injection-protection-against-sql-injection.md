@@ -1,4 +1,5 @@
 ---
+id: f5063f89-4b83-49dc-bfc2-143a3db0259e
 title: SQL Injection vs. Lethal Injection / Protection Against SQL Injection
 abstract: SQL Injection and Lethal Injection... They are both dangerous and they can
   be easily fatal. But how? What is SQL Injection and how it can effect my project?

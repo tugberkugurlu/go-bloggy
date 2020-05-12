@@ -1,4 +1,5 @@
 ---
+id: e722e728-ef06-4408-b032-4000a94a59b0
 title: Deployment of ASP.Net MVC 3 RC 2 Application on a Shared Hosting Environment
   Without Begging The Hosting Company
 abstract: After the release of ASP.Net MVC RC 2, we are now waiting for the RTM release

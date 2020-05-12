@@ -1,4 +1,5 @@
 ---
+id: 27998ff3-9db8-4b89-956b-b2cee019c995
 title: Windows Azure, SSL, Self-Signed Certificate and Annoying HTTPS Input Endpoint
   Does Not Contain Private Key Error
 abstract: Deploying a Web Role with HTTPS Endpoint enabled with Self-Signed Certificate

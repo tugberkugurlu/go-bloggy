@@ -1,4 +1,5 @@
 ---
+id: 909b1941-745a-47f2-96cb-6cc56e99e439
 title: How Azure Web Apps Hosts an ASP.NET 5 Application
 abstract: ASP.NET 5 application has totally a different directory structure when you
   try to publish it and it wasn't clear for me how Azure Web Apps is actually able

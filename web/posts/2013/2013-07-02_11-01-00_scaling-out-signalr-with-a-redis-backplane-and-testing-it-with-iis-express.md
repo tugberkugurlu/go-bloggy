@@ -1,4 +1,5 @@
 ---
+id: a243c497-9765-40f2-b711-bb8ebff0d235
 title: Scaling out SignalR with a Redis Backplane and Testing It with IIS Express
 abstract: Learn how easy to scale out SignalR with a Redis backplane and simulate
   a local web farm scenario with IIS Express

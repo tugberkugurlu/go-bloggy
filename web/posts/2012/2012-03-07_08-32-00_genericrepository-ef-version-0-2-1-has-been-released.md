@@ -1,4 +1,5 @@
 ---
+id: 844fbba0-f94c-4dbc-9a40-127fdbdb790c
 title: GenericRepository.EF Version 0.2.1 Has Been Released
 abstract: Entity Framework DbContext Generic Repository Implementation v0.2.1 has
   been released and pushed to Nuget live feed PM> Install-Package GenericRepository.EF

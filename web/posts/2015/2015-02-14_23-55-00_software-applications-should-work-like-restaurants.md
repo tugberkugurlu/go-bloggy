@@ -1,4 +1,5 @@
 ---
+id: 7ecfd201-0745-4c9f-95e2-dcab0548f5cc
 title: Software Applications Should Work Like Restaurants
 abstract: This is a brain dump blog post which I usually don't do but I needed to
   get this out of my chest. Restaurants and software applications have some common

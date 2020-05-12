@@ -1,4 +1,5 @@
 ---
+id: fd9c1aa5-5d02-4a0f-bc71-14fa41be2fd6
 title: Unit Testing With xUnit.net for ASP.NET MVC Web Applications - Part 1
 abstract: In this blog post, we will see how we set up our environment for xUnit.net
   Unit Testing Framework. This is the first blog post of the blog post series on Unit

@@ -1,4 +1,5 @@
 ---
+id: aab529c6-8807-4140-a636-49ecd99598d5
 title: Debugging ASP.NET vNext Beta Builds with Visual Studio 14 CTP 3
 abstract: Visual Studio CTP 3 has launched a while back and I was expecting to have
   trouble working with ASP.NET vNext beta builds. I was partially right. I wasn’t

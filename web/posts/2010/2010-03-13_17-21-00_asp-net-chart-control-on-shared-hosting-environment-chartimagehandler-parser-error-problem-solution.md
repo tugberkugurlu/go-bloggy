@@ -1,4 +1,5 @@
 ---
+id: 4f4a26ca-e44e-4573-9717-0d0434a63c61
 title: ASP.Net Chart Control On Shared Hosting Environment, Chartimagehandler / Parser
   Error Problem Solution
 abstract: ASP.Net Chart Control On Shared Hosting Envronment (Parser Error) - Deployment

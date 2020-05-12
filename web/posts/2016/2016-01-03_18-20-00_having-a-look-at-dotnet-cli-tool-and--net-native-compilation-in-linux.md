@@ -1,4 +1,5 @@
 ---
+id: 4949a72d-bf91-483e-9f2a-b4c4480da7f7
 title: Having a Look at dotnet CLI Tool and .NET Native Compilation in Linux
 abstract: dotnet CLI tool can be used for building .NET Core apps and for building
   libraries through your development flow (compiling, NuGet package management, running,

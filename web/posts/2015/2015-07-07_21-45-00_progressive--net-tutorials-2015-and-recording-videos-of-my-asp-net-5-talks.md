@@ -1,4 +1,5 @@
 ---
+id: b564bbfa-520e-4915-a3db-89dc79eb9294
 title: Progressive .NET Tutorials 2015 and Recording Videos of My ASP.NET 5 Talks
 abstract: Last Friday, I was at Progressive .NET Tutorials 2015 in London and I gave
   two talks on ASP.NET 5. Here are the recording videos and slides of my two ASP.NET

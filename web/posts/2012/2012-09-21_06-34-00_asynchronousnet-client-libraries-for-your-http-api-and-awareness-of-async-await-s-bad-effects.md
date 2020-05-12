@@ -1,4 +1,5 @@
 ---
+id: 176adb7e-b112-4416-8b2c-1000e0977944
 title: Asynchronous .NET Client Libraries for Your HTTP API and Awareness of async/await's
   Bad Effects
 abstract: Writing asynchronous .NET Client libraries for your HTTP API and using asynchronous

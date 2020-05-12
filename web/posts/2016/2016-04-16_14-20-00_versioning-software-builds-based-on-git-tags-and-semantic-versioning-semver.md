@@ -1,4 +1,5 @@
 ---
+id: b9717ed7-45d6-473b-b8f4-cbb5e875a5ba
 title: Versioning Software Builds Based on Git Tags and Semantic Versioning (SemVer)
 abstract: I have been using a technique to set the build version on my CI (continuous
   integration) system, Travis CI, based on Git tags and semantic versioning (SemVer).

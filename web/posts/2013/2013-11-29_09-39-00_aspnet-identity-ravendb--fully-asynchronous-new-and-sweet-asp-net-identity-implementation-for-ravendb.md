@@ -1,4 +1,5 @@
 ---
+id: abeba914-b4ba-4bb8-ab4e-ab8af2635bd6
 title: 'AspNet.Identity.RavenDB: Fully asynchronous, new and sweet ASP.NET Identity
   implementation for RavenDB'
 abstract: 'A while back, ASP.NET team has introduced ASP.NET Identity, a membership

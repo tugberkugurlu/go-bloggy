@@ -1,4 +1,5 @@
 ---
+id: b8bf99f0-a1c5-440c-a3fb-4cb70ea2e494
 title: ASP.NET 5 and Log Correlation by Request Id
 abstract: ASP.NET 5 is full of big new features and enhancements but besides these,
   I am mostly impressed by little, tiny features of ASP.NET 5 Log Correlation which

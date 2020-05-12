@@ -1,4 +1,5 @@
 ---
+id: 8bdc2507-6c5c-42d7-9a5c-f3ab670f1334
 title: Microsoft Build 2016 in a Nutshell
 abstract: 'Two weeks ago, I had an amazing opportunity to be at Microsoft Build Conference
   in San Francisco and I would like to share my experience about the conference with

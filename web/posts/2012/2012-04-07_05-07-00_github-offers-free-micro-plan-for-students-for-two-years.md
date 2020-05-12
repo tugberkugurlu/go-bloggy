@@ -1,4 +1,5 @@
 ---
+id: 57a54bed-c91b-476b-b130-3f2a5c90f700
 title: GitHub Offers Free Micro Plan For Students For Two Years
 abstract: Couple of days ago I came across that GitHub offers Educational Accounts
   for academic people (student, teacher, etc.) and that covers free micro plan for

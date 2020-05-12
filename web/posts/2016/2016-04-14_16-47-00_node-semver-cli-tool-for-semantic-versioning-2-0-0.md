@@ -1,4 +1,5 @@
 ---
+id: df1e7e1e-6e42-4df2-af69-f54b048d7b78
 title: 'node-semver: CLI Tool for Semantic Versioning 2.0.0'
 abstract: In this post, I want to tell you about node-semver, a SemVer 2.0.0 parser
   command-line tool and a node.js library (the one that npm uses).

@@ -1,4 +1,5 @@
 ---
+id: 18535220-0cd4-4be0-807f-ccaebe01a1aa
 title: Basics of Git Rebase
 abstract: Git Rebase is only one of the powerful features of git and it allows you
   to have a clean history in a highly branching workflow.

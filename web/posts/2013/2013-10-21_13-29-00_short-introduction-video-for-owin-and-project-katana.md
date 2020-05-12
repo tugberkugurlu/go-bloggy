@@ -1,4 +1,5 @@
 ---
+id: fc2be211-07ae-41a3-8f95-440f91363d5b
 title: Short Introduction Video for OWIN and Project Katana
 abstract: I've recorded a short video which covers the brief introduction of OWIN
   and Project Katana. That short video will give you an idea about OWIN and Project

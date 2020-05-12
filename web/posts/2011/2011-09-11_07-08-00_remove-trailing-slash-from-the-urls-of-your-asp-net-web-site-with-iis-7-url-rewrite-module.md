@@ -1,4 +1,5 @@
 ---
+id: d3406d07-ca37-4a1d-ad1d-1cf449d00c10
 title: Remove Trailing Slash From the URLs of Your ASP.NET Web Site With IIS 7 URL
   Rewrite Module
 abstract: One of the aspect of SEO (Search Engine Optimization) is canonicalization.

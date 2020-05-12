@@ -1,4 +1,5 @@
 ---
+id: b0924573-7c78-4e52-bcb9-d62f24e76760
 title: 'Exciting Things About ASP.NET 5 Series: Build Only Dependencies'
 abstract: In this very exciting post, I would like to talk about build only dependencies
   whose code can be compiled into target project and the dependency won’t be shown

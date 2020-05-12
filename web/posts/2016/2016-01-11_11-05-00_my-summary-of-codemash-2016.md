@@ -1,4 +1,5 @@
 ---
+id: 8edd6b2b-f84e-429b-b1d0-79d2db7e6e76
 title: My Summary of CodeMash 2016
 abstract: I had the pleasure of attending CodeMash this year to give two talks on
   ASP.NET 5 and Database Lifecycle Management. Here is my summary of the conference

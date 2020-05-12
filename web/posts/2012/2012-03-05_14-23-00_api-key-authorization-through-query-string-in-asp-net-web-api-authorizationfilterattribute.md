@@ -1,4 +1,5 @@
 ---
+id: 82e3041c-c7f0-436c-a2ee-fe70b6999f8e
 title: API Key Authorization Through Query String In ASP.NET Web API AuthorizationFilterAttribute
 abstract: We will see how API key authorization (verification) through query string
   would be implemented In ASP.NET Web API AuthorizationFilterAttribute

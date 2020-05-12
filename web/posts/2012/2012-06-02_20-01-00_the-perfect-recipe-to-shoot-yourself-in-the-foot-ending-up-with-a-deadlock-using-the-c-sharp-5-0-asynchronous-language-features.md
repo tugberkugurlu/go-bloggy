@@ -1,4 +1,5 @@
 ---
+id: f46c8b51-5370-4529-9e0e-ba997bc9796d
 title: The Perfect Recipe to Shoot Yourself in The Foot - Ending up with a Deadlock
   Using the C# 5.0 Asynchronous Language Features
 abstract: Let's see how we can end up with a deadlock using the C# 5.0 asynchronous

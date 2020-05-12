@@ -1,4 +1,5 @@
 ---
+id: 5e5f0d62-e491-4b64-bc90-dc012d9b4383
 title: Setting IHostingEnvironment.IsDevelopment as True in an ASP.NET 5 Application
 abstract: Wondering why IHostingEnvironment.IsDevelopment returns false even when
   you are on you development machine? I did indeed wonder and here is why :)

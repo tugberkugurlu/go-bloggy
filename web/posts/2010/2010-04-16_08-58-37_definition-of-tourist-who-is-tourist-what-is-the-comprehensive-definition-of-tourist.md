@@ -1,4 +1,5 @@
 ---
+id: dc2fbc31-c416-4dca-b7d8-785fb5143b4a
 title: Definition of Tourist / Who is Tourist, What is the Comprehensive Definition
   of Tourist ?
 abstract: In this mini article, you will find the Comprehensive, Exact Definition

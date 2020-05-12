@@ -1,4 +1,5 @@
 ---
+id: 6e2aa50f-2360-4e5d-a67e-b55aac946969
 title: Getting Started With OWIN and the Katana Stack
 abstract: OWIN and Katana is best way to build web server indipendent web applications
   in .NET ecosystem and this post will help you a bit on getting started.

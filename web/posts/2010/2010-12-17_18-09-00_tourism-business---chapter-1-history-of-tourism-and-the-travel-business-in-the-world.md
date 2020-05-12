@@ -1,4 +1,5 @@
 ---
+id: 96ebbf3a-947d-483c-bbdb-9f3b0c62b52e
 title: 'Tourism Business : Chapter - 1, History of Tourism and the Travel Business
   In the World'
 abstract: This is the first post of Torism Business articles series... I thought that

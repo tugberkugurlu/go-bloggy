@@ -1,4 +1,5 @@
 ---
+id: 32a959bd-5b4e-42c2-b5d6-884c0b43509d
 title: MCTS 70-515, Failed but I'm Gonna Beat It Next Time - Throughout MCTS Exam
   Overview and Experience
 abstract: 'Couple of days ago I took the Exam 70-515, TS: Web Applications Development

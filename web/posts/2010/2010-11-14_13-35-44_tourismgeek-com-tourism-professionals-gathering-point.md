@@ -1,4 +1,5 @@
 ---
+id: 1b2a8f39-f272-4ad3-8e80-5fbb3730e0f3
 title: TourismGeek.Com, Tourism Professionals Gathering Point...
 abstract: Currently I am working on an ASP.Net MVC project which will be a blog spot
   for tourism professionals. If all goes as planned, it will be online at the beginning

@@ -1,4 +1,5 @@
 ---
+id: 233e0fc2-429c-49a8-a90d-198b79dc98fe
 title: WCF Web API Plays Nice With ELMAH - A Quick Introduction to WCF Web API HttpErrorHandler
 abstract: See how WCF Web API Plays Nice With ELMAH. This blog post is a Quick introduction
   to WCF Web API HttpErrorHandler

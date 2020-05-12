@@ -1,4 +1,5 @@
 ---
+id: 92c0119c-1ef5-4463-8565-0b627de3b664
 title: Bootswatch and Gulp as a Stepping Stone for Your Theme Switch Feature
 abstract: This short blog posts shows you a way of combining bootswatch and gulp together
   to have an easily useable theme switching support for your web application.

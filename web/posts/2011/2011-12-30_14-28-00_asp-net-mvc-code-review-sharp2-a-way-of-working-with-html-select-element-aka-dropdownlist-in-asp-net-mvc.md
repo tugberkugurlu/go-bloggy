@@ -1,4 +1,5 @@
 ---
+id: fd8f717a-a406-4bb4-883b-677b22cb95da
 title: 'ASP.NET MVC Code Review #2 - A Way of Working with Html Select Element (AKA
   DropDownList) In ASP.NET MVC'
 abstract: 'This is the #2 of the series of blog posts which is about some core scenarios

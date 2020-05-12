@@ -1,4 +1,5 @@
 ---
+id: 3183c518-e9d3-44ca-bc1c-36cc77da1f92
 title: Defining What Good Looks Like for a Software Engineer
 abstract: What does good look like for a software engineer? This is a question you
   might be asking frequently to yourself and I tried to share my thoughts on the topic

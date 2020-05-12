@@ -1,4 +1,5 @@
 ---
+id: 55fa0e98-4a31-48e2-9473-919b82fb9232
 title: Setting up a MongoDB Replica Set with Docker and Connecting to It With a .NET
   Core App
 abstract: 'Easily setting up realistic non-production (e.g. dev, test, QA, etc.) environments

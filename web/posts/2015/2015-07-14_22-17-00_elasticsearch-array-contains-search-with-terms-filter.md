@@ -1,4 +1,5 @@
 ---
+id: 84282631-09ec-424c-b498-ab5bde850169
 title: Elasticsearch Array Contains Search With Terms Filter
 abstract: Here is a quick blog post on Elasticsearch and terms filter to achieve array
   contains search with terms filter

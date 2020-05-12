@@ -1,4 +1,5 @@
 ---
+id: 4ea0c96b-06cd-4bb3-73a5-08d6999e9406
 title: Software Architecture and System Design - Getting Your Grip and Some Related
   Resources
 abstract: If you have never been exposed to software system design challenges, you

@@ -1,4 +1,5 @@
 ---
+id: f86e9cac-5c1e-459f-972e-ed80e6cdb5e0
 title: Windows Azure Management Client Libraries for .NET and It Supports Portable
   Class Library
 abstract: One of the missing pieces of the Windows Azure story is within our reach

@@ -1,4 +1,5 @@
 ---
+id: 03645b78-b584-45e2-b15d-8db2cb8daa2d
 title: 'Moving to ASP.NET Core RC2: Tooling'
 abstract: .NET Core Runtime RC2 has been released a few days ago along with .NET Core
   SDK Preview 1. At the same time of .NET Core release, ASP.NET Core RC2 has also

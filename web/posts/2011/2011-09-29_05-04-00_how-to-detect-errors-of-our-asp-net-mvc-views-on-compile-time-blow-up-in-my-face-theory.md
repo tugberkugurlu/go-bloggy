@@ -1,4 +1,5 @@
 ---
+id: 25567329-effa-4608-81bb-28a5b24ed961
 title: How to Detect Errors of Our ASP.NET MVC Views on Compile Time - Blow up In
   My Face Theory
 abstract: We will see How to detect errors of our ASP.NET MVC views on compile time

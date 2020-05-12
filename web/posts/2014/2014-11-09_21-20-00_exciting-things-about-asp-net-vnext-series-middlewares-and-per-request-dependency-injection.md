@@ -1,4 +1,5 @@
 ---
+id: 95510d2d-7608-4f72-8023-895a6be5b70c
 title: 'Exciting Things About ASP.NET vNext Series: Middlewares and Per Request Dependency
   Injection'
 abstract: From the very first day of ASP.NET vNext, per request dependencies feature

@@ -1,4 +1,5 @@
 ---
+id: 76ed9de3-5538-4d94-9b95-4c981a02e67a
 title: 'Playing Around with Docker: Hello World, Development Environment and Your
   Application'
 abstract: I have been also looking into Docker for a while now. In this post, I am

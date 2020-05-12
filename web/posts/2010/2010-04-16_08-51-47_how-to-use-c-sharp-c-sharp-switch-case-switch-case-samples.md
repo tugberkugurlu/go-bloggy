@@ -1,4 +1,5 @@
 ---
+id: f5e6d03e-5bc9-4e15-aa2c-ae6e3502b797
 title: How To Use C# (C Sharp) Switch Case, Switch Case Samples
 abstract: After you read this article, you will be able to use the 'Switch Case' Function
   on your C# Projects. This function becomes so handy with DropDownList & RadioButtonList

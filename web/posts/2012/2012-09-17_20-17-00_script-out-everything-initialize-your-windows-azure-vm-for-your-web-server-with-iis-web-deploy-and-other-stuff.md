@@ -1,4 +1,5 @@
 ---
+id: 6839d3bc-2fe9-4f30-a0cf-b1a9a0865885
 title: Script Out Everything - Initialize Your Windows Azure VM for Your Web Server
   with IIS, Web Deploy and Other Stuff
 abstract: Script Out Everything - Initialize Your Windows Azure VM for Your Web Server

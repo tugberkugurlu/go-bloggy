@@ -1,4 +1,5 @@
 ---
+id: 35b8ac9e-e883-4154-853c-d12192bfdbd4
 title: Elasticsearch Installation and a Few Core Concepts
 abstract: So, I have been having my way with Elasticsearch for a few weeks now and
   it's time for me to blog about it :) In this post, I will only highlight a few things

@@ -1,4 +1,5 @@
 ---
+id: e44fe585-749d-4105-a635-f7bb095e87fa
 title: 'Simple OAuth Server: Implementing a Simple OAuth Server with Katana OAuth
   Authorization Server Components (Part 1)'
 abstract: 'In my previous post, I emphasized a few important facts on my journey of

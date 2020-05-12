@@ -1,4 +1,5 @@
 ---
+id: 94e43a9f-157f-4f85-878d-782970a55348
 title: Off to Oslo for NDC Developer Conference
 abstract: 'Next week, I am off to Oslo for one of my favorite conferences: NDC Oslo
   and this time is a little bit more special as I am one of the speakers this year,

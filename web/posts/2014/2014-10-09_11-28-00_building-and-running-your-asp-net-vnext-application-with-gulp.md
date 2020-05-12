@@ -1,4 +1,5 @@
 ---
+id: ed485177-9a35-485a-8e2f-b7eaeec725dd
 title: Building and Running Your ASP.NET vNext Application with Gulp
 abstract: Wanna see ASP.NET vNext and Gulp working together? You are at the right
   place :) Let's have look at gulp-aspnet-k, a little plugin that I have created for

@@ -1,4 +1,5 @@
 ---
+id: 44c8806f-5066-49aa-8c3e-bdea9de6d959
 title: Installing hub Extension for Git (by defunkt) on Windows to Work With GitHub
   More Efficiently
 abstract: This post walks you through on how you can install hub extension for Git

@@ -1,4 +1,5 @@
 ---
+id: a3276a01-85e2-485a-8ef6-fa2a2bd05fe8
 title: Advanced ASP.NET Web API Webcast Slide and Codes
 abstract: The slide and the full source code of the Advanced ASP.NET Web API webcast
   (Turkish) is available.

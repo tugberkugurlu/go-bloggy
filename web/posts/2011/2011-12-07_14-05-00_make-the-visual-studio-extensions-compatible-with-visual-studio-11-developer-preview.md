@@ -1,4 +1,5 @@
 ---
+id: 1e1b1827-e389-4bd4-b4bb-bb3ae9c762ea
 title: Make The Visual Studio Extensions Compatible With Visual Studio 11 Developer
   Preview
 abstract: Do you use Visual Studio 11 Developer Preview and miss your extensions?

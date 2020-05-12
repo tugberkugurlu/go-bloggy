@@ -1,4 +1,5 @@
 ---
+id: afb2b340-f594-4c72-99d1-85848a29eee3
 title: Dealing with Asynchrony inside the ASP.NET Web API HTTP Message Handlers
 abstract: How to most efficiently deal with asynchrony inside ASP.NET Web API HTTP
   Message Handlers with TaskHelpers NuGet package or C# 5.0 asynchronous language

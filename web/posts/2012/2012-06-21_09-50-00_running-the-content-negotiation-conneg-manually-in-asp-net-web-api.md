@@ -1,4 +1,5 @@
 ---
+id: d4afdfdf-a2f1-4aef-8497-e7847c37a73e
 title: Running the Content Negotiation (Conneg) Manually in ASP.NET Web API
 abstract: In this post we will see how run the Content Negotiation (Conneg) manually
   in an ASP.NET Web API easily.

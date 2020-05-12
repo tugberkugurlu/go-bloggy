@@ -1,4 +1,5 @@
 ---
+id: 7a114797-b9eb-43b3-bb79-786892a72261
 title: ASP.NET Web API Custom RouteDataMapping (MediaTypeMapping)
 abstract: In this post, we will create RouteDataMapping. This custom MediaTypeMapping
   will allow us to involve the decision-making process about the response format according
