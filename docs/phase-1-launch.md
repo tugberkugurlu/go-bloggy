@@ -13,7 +13,7 @@ The aim with this phase is to
     - [x] add links to tags
  - [x] migrate old mobile navigator 
  - [x] add contact page
- - [ ] display speaking history
+ - [x] display speaking history
  - [ ] insert ads in existing places
  - [ ] rss feed
  - [x] tags filter page
