@@ -203,6 +203,15 @@ func main() {
 	}
 
 	r := mux.NewRouter()
+	r.Host("tugberkugurlu.com").HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		scheme := r.URL.Scheme
+		if scheme == "" {
+			scheme = "http"
+		}
+		url := fmt.Sprintf("%s://%s%s", scheme, "www.tugberkugurlu.com", r.URL.RequestURI())
+		http.Redirect(w, r, url, http.StatusMovedPermanently)
+	})
+
 	fs := http.FileServer(http.Dir("../../web/static"))
 	r.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", fs))
 	r.PathPrefix("/content/images/").HandlerFunc(legacyBlogImagesRedirector)

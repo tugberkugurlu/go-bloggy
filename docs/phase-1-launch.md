@@ -24,6 +24,7 @@ The aim with this phase is to
  - [x] add links to tags on the sidebar
  - [ ] fix page description and titles
  - [x] show active section on the menu
+ - [x] www redirector
  
 ### Release Prep
  
