@@ -224,6 +224,9 @@ func main() {
 	r.HandleFunc("/feeds/rss", rssHandler)
 	r.HandleFunc("/", homeHandler)
 
+	rootFs := http.FileServer(http.Dir("../../web/static-root"))
+	r.PathPrefix("/").Handler(http.StripPrefix("/", rootFs))
+
 	log.Fatal(http.ListenAndServe(":8080", CaselessMatcher(r)))
 }
 
