@@ -15,7 +15,7 @@ The aim with this phase is to
  - [x] add contact page
  - [x] display speaking history
  - [ ] insert ads in existing places
- - [ ] rss feed
+ - [x] rss feed
  - [x] tags filter page
  - ~~[] home page pagination~~ no need, taken the blog to a separate page now
  - [ ] have 404 page

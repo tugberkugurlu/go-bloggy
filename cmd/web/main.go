@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
+	"github.com/gorilla/feeds"
 	"github.com/gorilla/mux"
 	"github.com/gosimple/slug"
 	"golang.org/x/net/html"
@@ -210,6 +211,7 @@ func main() {
 	r.Methods("GET").Path("/speaking").HandlerFunc(speakingPageHandler)
 	r.HandleFunc("/contact", staticPage("contact"))
 	r.HandleFunc("/archive", blogHomeHandler)
+	r.HandleFunc("/feeds/rss", rssHandler)
 	r.HandleFunc("/", homeHandler)
 
 	log.Fatal(http.ListenAndServe(":8080", CaselessMatcher(r)))
@@ -247,6 +249,43 @@ func speakingPageHandler(w http.ResponseWriter, r *http.Request) {
 		"../../web/template/speaking.html",
 		"../../web/template/shared/speaking-activity-card.html",
 	}, speakingActivities)
+}
+
+func rssHandler(w http.ResponseWriter, r *http.Request) {
+	author := &feeds.Author{Name: "Tugberk Ugurlu"}
+	feed := &feeds.Feed{
+		Title:       "Tugberk Ugurlu @ the Heart of Software",
+		Link:        &feeds.Link{Href: "http://tugberkugurlu.com"},
+		Description: "Software Engineer and Tech Product enthusiast Tugberk Ugurlu's home on the interwebs! Here, you can find out about Tugberk's conference talks, books and blog posts on software development techniques and practices",
+		Author:      author,
+	}
+
+	for _, post := range posts[:20] {
+		postLink := fmt.Sprintf("http://tugberkugurlu.com/archive/%s", post.Metadata.Slugs[0])
+		feed.Items = append(feed.Items, &feeds.Item{
+			Title:       post.Metadata.Title,
+			Description: string(post.Body),
+			Created:     post.PublishedOn,
+			Author:      author,
+			Link:        &feeds.Link{Href: postLink},
+			Id:          postLink,
+		})
+	}
+
+	rss, err := feed.ToRss()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/rss+xml; charset=utf-8")
+	w.Header().Set("Cache-Control", "public,max-age=900")
+
+	_, err = w.Write([]byte(rss))
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }
 
 func tagsPageHandler(w http.ResponseWriter, r *http.Request) {

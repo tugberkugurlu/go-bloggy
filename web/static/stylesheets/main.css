@@ -28,6 +28,10 @@ blockquote {
     border-left: 5px solid #e6e6e6;
 }
 
+.ui.menu {
+    border-radius: 0;
+}
+
 #section-tags a.label {
     margin-top: 5px;
 }
