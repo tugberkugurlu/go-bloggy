@@ -76,7 +76,7 @@
                     Past Activities
                 </h2>
                 <div class="ui two column stackable grid">
-                    {{ range $activity := . }}
+                    {{ range $activity := .SpeakingActivities }}
                         <div class="column">
                             {{ template "speaking_activity_card" $activity }}
                         </div>

@@ -22,7 +22,7 @@ The aim with this phase is to
  - ~~[] have 404 page~~
  - [x] disqus comments
  - [x] add links to tags on the sidebar
- - [ ] fix page description and titles
+ - [x] fix page description and titles
  - [x] show active section on the menu
  - [x] www redirector
  

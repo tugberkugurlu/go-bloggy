@@ -245,10 +245,12 @@ func CaselessMatcher(next http.Handler) http.Handler {
 }
 
 type Layout struct {
-	Tags    TagCountPairList
-	Section string
-	Data    interface{}
-	AdTags  string
+	Title       string
+	Description string
+	Tags        TagCountPairList
+	Section     string
+	Data        interface{}
+	AdTags      string
 }
 
 type Home struct {
@@ -265,16 +267,59 @@ type TagsPage struct {
 	Posts []*Post
 }
 
+func (t TagsPage) Title() string {
+	return t.Tag.Name
+}
+
+func (t TagsPage) Description() string {
+	baseTitle := fmt.Sprintf("Tugberk's thoughts on the topic of '%s'", t.Tag.Name)
+	if t.Tag.Count > 1 {
+		return fmt.Sprintf("%s, through %d blog posts", baseTitle, t.Tag.Count)
+	}
+	return baseTitle
+}
+
 type PostPage struct {
 	Post   *Post
 	AdTags string
+}
+
+func (p PostPage) Title() string {
+	return p.Post.Metadata.Title
+}
+
+func (p PostPage) Description() string {
+	return p.Post.Metadata.Abstract
+}
+
+type SpeakingPage struct {
+	SpeakingActivities []*SpeakingActivity
+}
+
+func (s SpeakingPage) Title() string {
+	return "Tugberk Ugurlu Public Speaking Engagements"
+}
+
+func (s SpeakingPage) Description() string {
+	return "Tugberk speaks at conferences on technical leadership, software architecture, lean software development, Microsoft Azure and .NET."
+}
+
+var _ Page = (*SpeakingPage)(nil)
+var _ Page = (*PostPage)(nil)
+var _ Page = (*TagsPage)(nil)
+
+type Page interface {
+	Title() string
+	Description() string
 }
 
 func speakingPageHandler(w http.ResponseWriter, r *http.Request) {
 	ExecuteTemplate(w, r, []string{
 		"../../web/template/speaking.html",
 		"../../web/template/shared/speaking-activity-card.html",
-	}, speakingActivities)
+	}, SpeakingPage{
+		SpeakingActivities: speakingActivities,
+	})
 }
 
 func rssHandler(w http.ResponseWriter, r *http.Request) {
@@ -365,8 +410,8 @@ func blogPostPageHandler(w http.ResponseWriter, r *http.Request) {
 
 func legacyBlogImagesRedirector(w http.ResponseWriter, r *http.Request) {
 	const legacyImagesRootPath = "/content/images"
-	const newUriPrefix = "https://tugberkugurlu.blob.core.windows.net/bloggyimages/legacy-blog-images/images"
-	http.Redirect(w, r, fmt.Sprintf("%s%s", newUriPrefix, strings.ToLower(r.URL.Path[len(legacyImagesRootPath):])), http.StatusMovedPermanently)
+	const newURIPrefix = "https://tugberkugurlu.blob.core.windows.net/bloggyimages/legacy-blog-images/images"
+	http.Redirect(w, r, fmt.Sprintf("%s%s", newURIPrefix, strings.ToLower(r.URL.Path[len(legacyImagesRootPath):])), http.StatusMovedPermanently)
 }
 
 func staticPage(page string) func(w http.ResponseWriter, r *http.Request) {
@@ -410,6 +455,18 @@ func ExecuteTemplate(w http.ResponseWriter, r *http.Request, templatePaths []str
 		section = r.URL.Path[1 : index+1]
 	}
 
+	pageTitle := "Tugberk @ the Heart of Software"
+	pageDescription := "Software Engineer and Tech Product enthusiast Tugberk Ugurlu's home on the interwebs! Here, you can find out about Tugberk's conference talks, books and blog posts on software development techniques and practices."
+	page, ok := data.(Page)
+	if ok {
+		if page.Title() != "" {
+			pageTitle = fmt.Sprintf("%s | %s", page.Title(), pageTitle)
+		}
+		if page.Description() != "" {
+			pageDescription = page.Description()
+		}
+	}
+
 	adTags := "software development, asp.net, aws, azure, sql server, dynamodb, elasticsearch, mongodb, .net"
 	postPage, ok := data.(PostPage)
 	if ok {
@@ -417,10 +474,12 @@ func ExecuteTemplate(w http.ResponseWriter, r *http.Request, templatePaths []str
 	}
 
 	pageContext := &Layout{
-		Tags:    tagsList,
-		Data:    data,
-		Section: section,
-		AdTags:  adTags,
+		Title:       pageTitle,
+		Description: pageDescription,
+		Tags:        tagsList,
+		Data:        data,
+		Section:     section,
+		AdTags:      adTags,
 	}
 	templateErr := t.ExecuteTemplate(w, "layout", pageContext)
 	if templateErr != nil {
