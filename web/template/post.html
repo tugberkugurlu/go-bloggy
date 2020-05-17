@@ -3,22 +3,22 @@
 
 {{define "content"}}
 <h1 class="ui header">
-    {{ .Metadata.Title }}
+    {{ .Post.Metadata.Title }}
 </h1>
 
 <div class="ui tall stacked segment">
     <div class="ui stackable grid">
         <div class="row">
             <div class="twelve wide column">
-                {{ .Metadata.Abstract }}
+                {{ .Post.Metadata.Abstract }}
             </div>
             <div class="four wide column">
-                @ {{ .PublishedOnDisplay }}
+                @ {{ .Post.PublishedOnDisplay }}
             </div>
         </div>
         <div class="row">
             <div class="sixteen wide column post-tags-list">
-                {{ range $tag := .Tags }}
+                {{ range $tag := .Post.Tags }}
                     <a class="ui image teal small label" href="/tags/{{ $tag.Key }}">
                         {{ $tag.Value.Name }}
                         <div class="detail">{{ $tag.Value.Count }}</div>
@@ -29,9 +29,28 @@
     </div>
 </div>
 
-<div id="post-holder">
-    {{ .Body }}
+<div class="ui leaderboard ad">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- tgbrk_responsive_3 -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-4310648294454189"
+         data-ad-slot="5932806794"
+         data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 </div>
+
+<div id="post-holder">
+    {{ .Post.Body }}
+</div>
+
+<div class="ui divider"></div>
+<div style="text-align: center;">
+    <div class="ad-inner" data-type="ad" data-publisher="lqm.tugberkugurlu.site" data-zone="ron" data-format="728x90" data-tags="{{ .AdTags }}"></div>
+</div>
+<div class="ui divider"></div>
 
 <div>
     <div id="disqus_thread"></div>
@@ -40,8 +59,8 @@
         // *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
         var disqus_config = function () {
-            this.page.url = 'http://www.tugberkugurlu.com/archive/{{ (index .Metadata.Slugs 0) }}';  // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = '{{ .Metadata.ID }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            this.page.url = 'http://www.tugberkugurlu.com/archive/{{ (index .Post.Metadata.Slugs 0) }}';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = '{{ .Post.Metadata.ID }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
 
         (function() { // DON'T EDIT BELOW THIS LINE
@@ -53,4 +72,21 @@
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+
+<div class="ui divider"></div>
+
+<div class="ui leaderboard ad">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- tgbrk_responsive_3 -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-4310648294454189"
+         data-ad-slot="5932806794"
+         data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<div class="ui divider"></div>
 {{end}}

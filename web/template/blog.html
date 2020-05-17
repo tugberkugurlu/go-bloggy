@@ -8,9 +8,26 @@
     <meta name="twitter:creator" content="@tourismgeek" />
 {{end}}
 {{define "content"}}
-<div id="home" class="ui divided items">
-    {{ range $post := .Posts }}
-        {{ template "post-item" $post }}
-    {{ end }}
-</div>
+    <div id="home" class="ui divided items">
+        {{ range $index, $post := .Posts }}
+            {{ if mod $index 3 }}
+                {{ if ne $index 0 }}
+                <div class="ui divider"></div>
+                {{ end }}
+                <div class="ui leaderboard ad">
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- tgbrk_responsive_3 -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-4310648294454189"
+                         data-ad-slot="5932806794"
+                         data-ad-format="auto"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            {{ end }}
+            {{ template "post-item" $post }}
+        {{ end }}
+    </div>
 {{end}}

@@ -4,11 +4,6 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
-	"github.com/gorilla/feeds"
-	"github.com/gorilla/mux"
-	"github.com/gosimple/slug"
-	"golang.org/x/net/html"
-	"gopkg.in/yaml.v2"
 	"html/template"
 	"log"
 	"net/http"
@@ -18,6 +13,12 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/gorilla/feeds"
+	"github.com/gorilla/mux"
+	"github.com/gosimple/slug"
+	"golang.org/x/net/html"
+	"gopkg.in/yaml.v2"
 )
 
 type Post struct {
@@ -247,6 +248,7 @@ type Layout struct {
 	Tags    TagCountPairList
 	Section string
 	Data    interface{}
+	AdTags  string
 }
 
 type Home struct {
@@ -261,6 +263,11 @@ type Blog struct {
 type TagsPage struct {
 	Tag   *Tag
 	Posts []*Post
+}
+
+type PostPage struct {
+	Post   *Post
+	AdTags string
 }
 
 func speakingPageHandler(w http.ResponseWriter, r *http.Request) {
@@ -350,7 +357,10 @@ func blogPostPageHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	ExecuteTemplate(w, r, []string{"../../web/template/post.html"}, post)
+	ExecuteTemplate(w, r, []string{"../../web/template/post.html"}, PostPage{
+		Post:   post,
+		AdTags: strings.Join(post.Metadata.Tags, ","),
+	})
 }
 
 func legacyBlogImagesRedirector(w http.ResponseWriter, r *http.Request) {
@@ -386,9 +396,11 @@ func blogHomeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ExecuteTemplate(w http.ResponseWriter, r *http.Request, templatePaths []string, data interface{}) {
-	t, err := template.ParseFiles(append(templatePaths, "../../web/template/layout.html")...)
+	t := template.New("")
+	t = t.Funcs(template.FuncMap{"mod": func(i, j int) bool { return i%j == 0 }})
+	t, err := t.ParseFiles(append(templatePaths, "../../web/template/layout.html")...)
 	if err != nil {
-		fmt.Fprintf(w, err.Error())
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
@@ -398,10 +410,20 @@ func ExecuteTemplate(w http.ResponseWriter, r *http.Request, templatePaths []str
 		section = r.URL.Path[1 : index+1]
 	}
 
+	adTags := "software development, asp.net, aws, azure, sql server, dynamodb, elasticsearch, mongodb, .net"
+	postPage, ok := data.(PostPage)
+	if ok {
+		adTags = postPage.AdTags
+	}
+
 	pageContext := &Layout{
 		Tags:    tagsList,
 		Data:    data,
 		Section: section,
+		AdTags:  adTags,
 	}
-	t.ExecuteTemplate(w, "layout", pageContext)
+	templateErr := t.ExecuteTemplate(w, "layout", pageContext)
+	if templateErr != nil {
+		http.Error(w, templateErr.Error(), http.StatusInternalServerError)
+	}
 }

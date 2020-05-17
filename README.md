@@ -51,3 +51,4 @@ Also, big thanks to people who contributed to below content which helped me impl
  - [How to implement case insensitive URL matching using gorilla mux](https://stackoverflow.com/questions/53593618/how-to-implement-case-insensitive-url-matching-using-gorilla-mux)
  - [gorilla/mux#Static Files](https://github.com/gorilla/mux/tree/75dcda0896e109a2a22c9315bca3bb21b87b2ba5#static-files)
  - [Golang Templates Cheatsheet](https://curtisvermeeren.github.io/2017/09/14/Golang-Templates-Cheatsheet)
+ - [Go: Is there a modulus I can use inside a template](https://stackoverflow.com/a/36369436/463785)

@@ -15,7 +15,7 @@ The aim with this phase is to
  - [x] migrate old mobile navigator 
  - [x] add contact page
  - [x] display speaking history
- - [ ] insert ads in existing places
+ - [x] insert ads in existing places
  - [x] rss feed
  - [x] tags filter page
  - ~~[] home page pagination~~ no need, taken the blog to a separate page now
@@ -28,8 +28,8 @@ The aim with this phase is to
  
 ### Release Prep
  
- - [ ] add robots.txt file
+ - [x] add robots.txt file
  - [ ] add google analytics
- - [ ] Hide travel section for now
+ - [x] Hide travel section for now
  - [ ] deploy to public docker hub
  - [ ] pull that from azure web app

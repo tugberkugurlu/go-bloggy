@@ -32,6 +32,10 @@ blockquote {
     border-radius: 0;
 }
 
+#section-tags {
+    text-align: center;
+}
+
 #section-tags a.label {
     margin-top: 5px;
 }
@@ -47,6 +51,20 @@ blockquote {
 
 #post-holder {
     margin-bottom: 25px;
+}
+
+#sidebar .sidebar-container {
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#sidebar .sidebar-container:first-child {
+    margin-top: 0;
+}
+
+.ad-inner {
+    display: inline-block;
 }
 
 .post-tags-list .ui.image.label {
