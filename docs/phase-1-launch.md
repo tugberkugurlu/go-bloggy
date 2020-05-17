@@ -11,7 +11,7 @@ The aim with this phase is to
  - [x] add blog post page
     - [x] allow redirects of old slugs
     - [x] add links to tags
-    - [ ] post twitter card
+    - [x] post twitter card
  - [x] migrate old mobile navigator 
  - [x] add contact page
  - [x] display speaking history
