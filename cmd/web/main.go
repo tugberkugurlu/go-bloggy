@@ -251,6 +251,11 @@ type Layout struct {
 	Section     string
 	Data        interface{}
 	AdTags      string
+	Config      LayoutConfig
+}
+
+type LayoutConfig struct {
+	GoogleAnalyticsTrackingId string
 }
 
 type Home struct {
@@ -480,6 +485,9 @@ func ExecuteTemplate(w http.ResponseWriter, r *http.Request, templatePaths []str
 		Data:        data,
 		Section:     section,
 		AdTags:      adTags,
+		Config: LayoutConfig{
+			GoogleAnalyticsTrackingId: os.Getenv("TUGBERKWEB_GoogleAnalytics__TrackingId"),
+		},
 	}
 	templateErr := t.ExecuteTemplate(w, "layout", pageContext)
 	if templateErr != nil {

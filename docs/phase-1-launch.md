@@ -29,7 +29,7 @@ The aim with this phase is to
 ### Release Prep
  
  - [x] add robots.txt file
- - [ ] add google analytics
+ - [x] add google analytics
  - [x] Hide travel section for now
  - [ ] deploy to public docker hub
  - [ ] pull that from azure web app
