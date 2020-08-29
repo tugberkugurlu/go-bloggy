@@ -1,6 +1,6 @@
 ---
 id: 01EGWWJYXSEWRZQ709XW24NP3Z
-title: Implementing OrderedMap in Go 2.0 by Using Generics with Delete Operation in 0(1) Time Complexity
+title: Implementing OrderedMap in Go 2.0 by Using Generics with Delete Operation in O(1) Time Complexity
 abstract: I stumbled upon rocketlaunchr.cloud's great post on using generics in Go 2, and the post shows how you can implement ordered maps. The post is very informative, and shows you how powerful Generics will be for Go. However, I noticed a performance issues with the implementation of Delete operation on the ordered map, which can be a significant performance hit where there is a need to store large collections while making use of the Delete operation frequently. In this post, I want to implement that part with a Doubly Linked List data structure to reduce its time complexity from O(N) to O(1).
 created_at: 2020-08-29 11:33:00.0000000 +0000 UTC
 tags:
@@ -9,6 +9,7 @@ tags:
 - Data Structures
 - Algorithms
 slugs:
+- implementing-ordered-map-in-go-2-0-by-using-generics-with-delete-operation-in-o-1-time-complexity
 - implementing-ordered-map-in-go-2-0-by-using-generics-with-delete-operation-in-0-1-time-complexity
 ---
 
