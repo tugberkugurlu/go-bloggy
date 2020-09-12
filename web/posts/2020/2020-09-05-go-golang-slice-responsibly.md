@@ -106,7 +106,7 @@ This still doesn't mean that you can access the backing array freely by index, a
 
 <h3>How Slicing Works</h3>
 
-<h3>Modifying a Sliced Slice Modifies the Original Slice</h3>
+<h3>Modifying a Sliced-slice Modifies the Original Slice</h3>
 
 <!-- https://play.golang.org/p/aCoF1zJf18y -->
 
@@ -138,7 +138,7 @@ func main() {
 <!-- https://play.golang.org/p/AZR2Qbucmpy -->
 
 <p>
-In this given example, the issue might be obvious to us. However, this unobvious behavior of how slicing works underneath (to be fair, for the right performance reasons) can make some issues more obfuscated when the slicing and modification is done different places. For instance, with the below example (which you can also see <a href="https://play.golang.org/p/2OUIE7s69mi">here</a>), we can see that <code>Result</code> method on the <code>race</code> instance is not returning the expected result anymore due to the modifications done to the slice returned by the <code>Top10Finishers</code> method, because <code>sort.Strings</code> call modified the array which is actually backing the both slices
+In this given example, the issue might be obvious to us. However, this unobvious behavior of how slicing works underneath (to be fair, for the right performance reasons) can make some issues more obfuscated when the slicing and modification is done different places. For instance, with the below example (which you can also see <a href="https://play.golang.org/p/2OUIE7s69mi">here</a>), we can see that <code>Result</code> method on the <code>race</code> instance is not returning the expected result anymore due to the modifications done to the slice returned by the <code>Top10Finishers</code> method, because <code>sort.Strings</code> call modified the array which is actually backing the both slices.
 </p>
 
 <p><pre>
@@ -201,7 +201,7 @@ Belgian GP result: [Albon Bottas Gasly Hamilton Norris Ocon Perez Ricciardo Stro
 </pre></p>
 
 <p>
-There is no one size fit all the problems solution here. It will really depend on your usage, and what type of contract you are exposing from your defined type. If you are after creating a domain model encapsulation where you don't want to allow unmodified access to the state of that model, you should instead make a copy of the slice that you want to return, with the cost of extra time and space complexity you are introducing. The following code shows the only modification we would have done to the above example to make this work:
+There is no one-size-fits-all solution to the the problem here. It will really depend on your usage, and what type of contract you are exposing from your defined type. If you are after creating a domain model encapsulation where you don't want to allow unmodified access to the state of that model, you should instead make a copy of the slice that you want to return, with the cost of extra time and space complexity you are introducing. The following code shows the only modification we would have done to the above example to make this work:
 </p>
 
 <p><pre>
@@ -225,13 +225,13 @@ Belgian GP result: [Hamilton Bottas Verstappen Ricciardo Ocon Albon Norris Gasly
 
 <h3>Calling append on a Sliced Slice May Modify the Original Slice</h3>
 
-https://play.golang.org/p/iDnB1ZrG4lj
+<!-- https://play.golang.org/p/iDnB1ZrG4lj -->
 
 <p></p>
 
 <p><pre></pre></p>
 
-https://play.golang.org/p/g3nfRo8kXll
+<!-- https://play.golang.org/p/g3nfRo8kXll -->
 
 <p></p>
 
@@ -331,4 +331,5 @@ Slice type in Go is a powerful construct, giving us flexibility over Go's array 
 <li><a href="https://blog.golang.org/slices-intro">Go Slices: usage and internals</a></li>
 <li><a href="https://blog.golang.org/slices">Arrays, slices (and strings): The mechanics of 'append'</a></li>
 <li><a href="https://tour.golang.org/moretypes/7">A Tour of Go: Slices</a></li>
+<li><a href="https://medium.com/@marty.stepien/arrays-vs-slices-bonanza-in-golang-fa8d32cd2b7c">Arrays vs. slices bonanza</a></li>
 </ul>
