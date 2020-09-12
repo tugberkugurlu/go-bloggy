@@ -104,14 +104,149 @@ This still doesn't mean that you can access the backing array freely by index, a
 
 <h3>How append and copy Works</h3>
 
+<p>
+When we want to add a new value to an existing slice which will mean growing its length, we can use <a href="https://golang.org/pkg/builtin/#append">append</a>, which is a built-in and <a href="https://golang.org/ref/spec#Function_types">variadic</a> function. This function appends elements to the end of a slice, and returns the updated slice.
+</p>
+
+<!-- https://play.golang.org/p/YvzmKIIfY0U -->
+
+<p><pre>
+func main() {
+	var result []int
+	for i := 0; i < 10; i++ {
+		if i % 2 == 0 {
+			result = append(result, i)
+		}
+	}
+	fmt.Println(result)
+}
+</pre></p>
+
+<p>
+As you may expect, this prints <code>[0 2 4 6 8]</code> to the console as a result. However, it's not clear here what exactly is happening underneath as a result of invocation of the <code>append</code> function, and what the time complexity of the call is. When we run the below code, things will be a bit more clear to us:
+</p>
+
+<!-- https://play.golang.org/p/uQQFBbJWhAS -->
+
+<p><pre>
+package main
+
+import (
+	"fmt"
+	"reflect"
+	"unsafe"
+)
+
+func main() {
+	var result []int
+	for i := 0; i < 10; i++ {
+		if i % 2 == 0 {
+			fmt.Printf("appending '%d': %s\n", i, getSliceHeader(&result))
+			result = append(result, i)
+			fmt.Printf("appended '%d':  %s\n", i, getSliceHeader(&result))
+		}
+	}
+	fmt.Println(result)
+}
+
+// https://stackoverflow.com/a/54196005/463785
+func getSliceHeader(slice *[]int) string {
+	sh := (*reflect.SliceHeader)(unsafe.Pointer(slice))
+	return fmt.Sprintf("%+v", sh)
+}
+</pre></p>
+
+<p><pre>
+appending '0': &{Data:0 Len:0 Cap:0}
+appended '0':  &{Data:824633901184 Len:1 Cap:1}
+appending '2': &{Data:824633901184 Len:1 Cap:1}
+appended '2':  &{Data:824633901296 Len:2 Cap:2}
+appending '4': &{Data:824633901296 Len:2 Cap:2}
+appended '4':  &{Data:824633803136 Len:3 Cap:4}
+appending '6': &{Data:824633803136 Len:3 Cap:4}
+appended '6':  &{Data:824633803136 Len:4 Cap:4}
+appending '8': &{Data:824633803136 Len:4 Cap:4}
+appended '8':  &{Data:824634228800 Len:5 Cap:8}
+[0 2 4 6 8]
+</pre></p>
+
+<p>
+We can extract the following facts from this result:
+</p>
+
+<ul>
+<li><code>nil</code> slice starts off with empty capacity, nothing surprising with that</li>
+<li>The capacity of the slice doubles while attempting to append a new item when its capacity and length are equal</li>
+<li>When the capacity is doubled, we can also observe that the pointer to the backing array (i.e. the <code>Data</code> field value of <code>reflect.SliceHeader</code> struct) changes</li>
+</ul>
+
+<p>
+In summary, it's a fair to assume from these facts that the content of the backing array of the slice is copied into a new array which has double capacity than the itself when it's being attempted to append a new item to it while its capacity is full. It should go without saying that the implementation is a bit more complicated than this as you may expect, and <a href="https://medium.com/vendasta/golang-the-time-complexity-of-append-2177dcfb6bad">this post</a> from <a href="https://medium.com/@glucn">Gary Lu</a> does a good job on explaining the implementation details in more details. You can also check out the <a href="https://github.com/golang/go/blob/b3ef90ec7304a28b89f616ced20b09f56be30cc4/src/runtime/slice.go#L125-L240">growSlice</a> function which is used by the compiler generated code to grow the capacity of the slice when needed.
+</p>
+
+<p>
+In a nutshell, this is not a good news to us since we are doing too much more work than we desired to do. In this cases, initializing the array with the make built-in function is a far better option with a capacity hint based on the max capacity that the slice can grow to:
+</p>
+
+<!-- https://play.golang.org/p/rAE7KWP9yfk -->
+
+<p><pre>
+package main
+
+import (
+	"fmt"
+	"reflect"
+	"unsafe"
+)
+
+func main() {
+	maxValue := 10
+	result := make([]int, 0, maxValue)
+	for i := 0; i < maxValue; i++ {
+		if i % 2 == 0 {
+			fmt.Printf("appending '%d': %s\n", i, getSliceHeader(&result))
+			result = append(result, i)
+			fmt.Printf("appended '%d':  %s\n", i, getSliceHeader(&result))
+		}
+	}
+	fmt.Println(result)
+}
+
+// https://stackoverflow.com/a/54196005/463785
+func getSliceHeader(slice *[]int) string {
+	sh := (*reflect.SliceHeader)(unsafe.Pointer(slice))
+	return fmt.Sprintf("%+v", sh)
+}
+</pre></p>
+
+<p><pre>
+appending '0': &{Data:824633794640 Len:0 Cap:10}
+appended '0':  &{Data:824633794640 Len:1 Cap:10}
+appending '2': &{Data:824633794640 Len:1 Cap:10}
+appended '2':  &{Data:824633794640 Len:2 Cap:10}
+appending '4': &{Data:824633794640 Len:2 Cap:10}
+appended '4':  &{Data:824633794640 Len:3 Cap:10}
+appending '6': &{Data:824633794640 Len:3 Cap:10}
+appended '6':  &{Data:824633794640 Len:4 Cap:10}
+appending '8': &{Data:824633794640 Len:4 Cap:10}
+appended '8':  &{Data:824633794640 Len:5 Cap:10}
+[0 2 4 6 8]
+</pre></p>
+
+<p>
+We can observe from the result here that we have been operating over the same backing array with the size of 10, which means that all the append operations have run in <code>O(1)</code> time.
+</p>
+
 <h3>How Slicing Works</h3>
+
+
 
 <h3>Modifying a Sliced-slice Modifies the Original Slice</h3>
 
 <!-- https://play.golang.org/p/aCoF1zJf18y -->
 
 <p>
-As we have just seen by looking at the internals of how slicing works, the new slice that's returned by slicing an existing slice is still referring to the same backing array as the original sliced slice. This introduces a very interesting implication that modifying data on the indices of the newly sliced slice will also cause the same modification on the original slice. This can actually cause very hard to track down bugs, and the below is showing how this can happen:
+As we have just seen, <code>append</code> function appends elements to the end of a slice, and returns the updated slice. This can sort of gives you the impression that the append function is a pure function, and doesn't modify your state. However, by looking at the internals of how slicing works, we have seen that the new slice that's returned by slicing an existing slice is still referring to the same backing array as the original sliced-slice. This introduces a very interesting implication that modifying data on the indices of the newly sliced slice will also cause the same modification on the original slice. This can actually cause very hard to track down bugs, and the below is showing how this can happen:
 </p>
 
 <p><pre>
