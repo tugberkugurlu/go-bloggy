@@ -1,7 +1,36 @@
+---
+id: 01EJ1FYNB4CB3B13JVAEHB5908
+title: Working with Slices in Go (Golang) - Slicing Responsibly and Understanding How append, copy and Slicing Syntax Work
+abstract: Slices in Go programming language gives us greater flexibility over working with arrays, but this flexibility comes with some trade-offs. Go optimizes towards the most frequent uses cases, and you are often working with them correctly. However, in certain cases, some of the implicit hidden behaviors of Go slices can create unclear issues which can be hard to diagnose at the first place. In this post, we will go over some of the implicit behaviors while recapping how slices work in Go in general.
+created_at: 2020-09-12 16:55:00.0000000 +0000 UTC
+tags:
+- Go
+- Golang
+- Data Structures
+- Algorithms
+slugs:
+- working-with-slices-in-go-golang-slicing-responsibly-and-understanding-how-append-copy-and-slicing-syntax-work
+---
+
+<p>
+Go programming language, has two fundamental types at the language level to enable working with numbered sequence of elements: <a href="https://golang.org/ref/spec#Array_types">array</a> and <a href="https://golang.org/ref/spec#Slice_types">slice</a>. At the syntax level, they may look like the same but they are fundamentally very different in terms of their behavior. The most critical fundamental differences are:
+</p>
+
+<ul>
+<li>Size of the array is fixed and determined at the construction (as you may expect). However, slices can dynamically grow in size (you may wonder how? We will touch on this soon, be patient!)</li>
+<li>An array with a specific length is a distinct type based on its length (check <a href="https://play.golang.org/p/gmF99PSNhiX">this</a> out). Whereas the slice can be represented as one type (e.g. <code>[]int</code>)</li>
+<li>The in-memory representation of an array type is values laid out sequentially. A slice is a descriptor of an array segment. It consists of a pointer to the array, the length of the segment, and its capacity (we will shortly see what this actually means).</li>
+<li>Go's arrays are values, which means that the entire content of the array will be copied when you start passing it around. Slices, on the other hand, a pointer to the underlying along with the length of the segment. So,  when we started passing around a slice, it creates a new slice value that points to the original array, which will be much cheaper to pass around.</li>
+</ul>
+
+<p>
+Above points highlight some characteristics of slices and how they differ from arrays, but these are mostly differences in terms of how they are structured. More interesting and unobvious differences of slices are around their behaviors around manipulations.
+</p>
+
 <h3>How Slices Work</h3>
 
 <p>
-To be able to understand how slices works, we first need to have a good understanding of how arrays work in Go, and you can check out <a href="https://blog.golang.org/slices#TOC_2.">this</a> informative description to gain that understanding.
+To be able to understand how slices works, we first need to have a good understanding of how arrays work in Go, and you can check out <a href="https://blog.golang.org/slices#TOC_2.">this</a> informative description to gain more understanding on arrays than the above summary.
 </p>
 
 <p>
