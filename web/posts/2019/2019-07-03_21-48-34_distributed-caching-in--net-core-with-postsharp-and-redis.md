@@ -11,6 +11,7 @@ tags:
 - Aspect Oriented Programming
 - Caching
 - PostSharp
+- Redis
 slugs:
 - distributed-caching-in--net-core-with-postsharp-and-redis
 ---
