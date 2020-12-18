@@ -82,7 +82,7 @@ This section is all about essentially answering our first question above regardi
 <li>Redis assigns "slot" ranges for each master node within the cluster. These slots are also referred as "hash slots"</li>
 <li>These slots are between 0 and 16384, which means each master node in a cluster handles a subset of the 16384 hash slots.</li>
 <li>Redis clients can query which node is assigned to which slot range by using the <a href="https://redis.io/commands/cluster-slots"><code>CLUSTER SLOTS</code></a> command. This gives clients a way to be able to directly talk to the correct node for the majority of cases.</li>
-<li>For a given Redis key, the hash slot for that key is the result of <code>CRC16(key)</code> modulo <code>16384</code>, where CRC16 here is the implementation of the CRC16 hash function. I am no expect when it comes to cryptography and hashing, but <a href="https://play.golang.org/p/mEmbtCibk_o">here</a> is how this can be done in Go by using the <a href="https://github.com/snksoft/crc">snksoft/crc</a> library. The clients are expected to embed this logic so that they can directly communicate with the correct node with the help of <code>CLUSTER SLOTS</code> command mentioned above.</li>
+<li>For a given Redis key, the hash slot for that key is the result of <code>CRC16(key)</code> modulo <code>16384</code>, where CRC16 here is the implementation of the CRC16 hash function. I am no expect when it comes to cryptography and hashing, but <a href="https://play.golang.org/p/mEmbtCibk_o">here</a> is how this can be done in Go by using the <a href="https://github.com/snksoft/crc">snksoft/crc</a> library (note that Redis also has a handy command called <a href="https://redis.io/commands/cluster-keyslot"><code>CLUSTER KEYSLOT</code></a> which performs this operation for you). The clients are expected to embed this logic so that they can directly communicate with the correct node with the help of <code>CLUSTER SLOTS</code> command mentioned above.</li>
 <li>Same as the single node Redis setup, Redis Cluster uses asynchronous replication between nodes. So, each shard can have its own set of replicas which would be responsible for the same subset of the hash slots as its master. These replicas can be used for failover scenarios as well as distributing the read load (which we will touch on later).</li>
 </ul>
 
@@ -96,13 +96,95 @@ For example, if you have a setup of 3 master nodes with each having 3 replicas, 
 The specific ranges of the hash slots doesn't matter here too much, even the fact that they might be balanced fairly (as we will touch later, we can have influence over slot allocation if we need to). What matters is that it's clear which master node owns.
 </p>
 
-<h3 href="#hash-tags">Hash Tags: Getting back into control for your sharding strategy</h3>
+<p>
+As an example, I have a local Redis cluster setup which has 3 master nodes, and I am connected to one of them (<code>172.19.197.2</code>) through redis-cli. When I run the <code>CLUSTER SLOTS</code> command, I can see that the node I am connected to handles hash slot range between <code>0</code> and <code>5460</code>:
+</p>
 
-<h3 href="#distributing-reads">Distributing Reads</h3>
+<p>
+<pre>
+172.19.197.2:6379> CLUSTER SLOTS
+...
+...
+2) 1) (integer) 0
+   2) (integer) 5460
+   3) 1) "172.19.197.2"
+      2) (integer) 6379
+      3) "fdf56116c8b8f322561c7189574e6092101fa718"
+   4) 1) "172.19.197.5"
+      2) (integer) 6379
+      3) "164dc6aaf77aa0530490f0c9fbf5c8eb9f653a53"
+...
+...
+</pre>
+</p>
+
+<p>
+I want to set 4 keys, which I already know that falls into the slot range of this node:
+</p>
+
+<p>
+<pre>
+172.19.197.2:6379> CLUSTER KEYSLOT coffee_shop_branch.status.7
+(integer) 717
+172.19.197.2:6379> CLUSTER KEYSLOT coffee_shop_branch.status.6
+(integer) 4844
+172.19.197.2:6379> CLUSTER KEYSLOT coffee_shop_branch.status.2
+(integer) 4712
+172.19.197.2:6379> CLUSTER KEYSLOT coffee_shop_branch.status.3
+(integer) 585
+172.19.197.2:6379> SET coffee_shop_branch.status.7 PERMANENTLY-CLOSED
+OK
+172.19.197.2:6379> SET coffee_shop_branch.status.6 PERMANENTLY-CLOSED
+OK
+172.19.197.2:6379> SET coffee_shop_branch.status.2 OPEN
+OK
+172.19.197.2:6379> SET coffee_shop_branch.status.3 CLOSED
+OK
+172.19.197.2:6379> KEYS *
+1) "coffee_shop_branch.status.7"
+2) "coffee_shop_branch.status.6"
+3) "coffee_shop_branch.status.2"
+4) "coffee_shop_branch.status.3"
+</pre>
+</p>
+
+<p>
+I can also successfully read these the same way I would have done with a single node Redis setup: 
+</p>
+
+<p>
+<pre>
+172.19.197.2:6379> GET coffee_shop_branch.status.7
+"PERMANENTLY-CLOSED"
+172.19.197.2:6379> GET coffee_shop_branch.status.6
+"PERMANENTLY-CLOSED"
+172.19.197.2:6379> GET coffee_shop_branch.status.2
+"OPEN"
+172.19.197.2:6379> GET coffee_shop_branch.status.3
+"CLOSED"
+</pre>
+</p>
+
+<h3 href="#hash-tags">Hash Tags: Getting back into control for your sharding strategy</h3>
+<p>
+In certain cases, we would like to influence which node our data is stored at. This to be able to group certain keys together so that we can later be able to access them together through a multi-key operation, or a pipeline request.
+</p>
+
+<p>
+One use case here would be to satisfy the access pattern of retrieving the status of multiple coffee shops within the same city, where we don't have a way to group these together during write time. Therefore, it makes sense to write the status of each coffee shop under their individual keys. However, how can we make sure they are co-located within the same node?
+</p>
+
+<p>
+This is where the concept of <a href="https://redis.io/topics/cluster-spec#keys-hash-tags">hash tags</a> comes in, which allows us to force certain keys to be stored in the same hash slot. I encourage you the read the linked section of the spec to understand better how hash tags work as I am going to skip some corner cases here, but in a nutshell The concept is really simple from the usage point of view: when the Redis key contains <code>"{...}"</code> pattern only the substring between <code>{</code> and <code>}</code> is hashed in order to obtain the hash slot.
+</p>
+
+<p>
+For our use case, this means that we can change our key structure from <code>coffee_shop_branch.status.COFFEE-SHOP-ID</code> to something like <code>coffee_shop_branch.{city_CITY-ID}.status.COFFEE-SHOP-ID</code>. The exact shape of the key is not important here. What's important is that the value between curly braces which is the city ID prefixed with <code>city_</code> for readability purposes.
+</p>
 
 <h3 href="#redirection">Redirection</h3>
 
-<h3 href="#resharding">Resharding</h3>
+<h3 href="#distributing-reads">Distributing Reads</h3>
 
 <h2 href="#conclusion">Conclusion</h2>
 
@@ -111,14 +193,12 @@ Redis cluster gives us more ability to scale our systems, especially for the wri
 </p>
 
 <p>
-I am aware that there are still further unknowns in terms of how clients interact with a Redis cluster setup, how resharding works in practice, etc. However, this post is already too long (there you go, my excuse!) and I hope to cover those in the upcoming posts one by one. If you have any specific areas that you are wondering about Redis Cluster, drop a comment below and I will try to cover them (if I have any experience about those areas). 
+I am aware that there are still further unknowns in terms of how to actually initialize a Redis cluster setup from scratch, details of how clients interact with a Redis cluster setup, how maintenance/operational side of the cluster setup actually works (e.g. resharding), etc. However, this post is already too long (there you go, my excuse!), and I hope to cover those in the upcoming posts one by one. If you have any specific areas that you are wondering about Redis Cluster, drop a comment below and I will try to cover them (if I have any experience about those areas). 
 </p>
 
 <h2 href="#resources">Resources</a>
 
 <ul>
-<li><a href=""></a></li>
-
 <li><a href="https://redis.io/topics/cluster-spec">Redis Cluster Specification</a></li>
 <li><a href="https://redis.io/topics/cluster-tutorial">Redis cluster tutorial</a></li>
 <li><a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/scaling-redis-cluster-mode-enabled.html">Elasticache: Scaling Clusters in Redis (Cluster Mode Enabled)</a></li>
