@@ -73,7 +73,7 @@ At this point, you should have more questions in your head compared to when you 
 However, note that <a href="https://redis.io/topics/cluster-spec">Redis Cluster Specification</a> already does a pretty good job on the details. With that in mind, my aim is not to duplicate that documentation here. That said, I want to still highlight the most impactful parts that are valuable to focus more than the others.
 </p>
 
-<h3 href="#key-distribution">Key Distribution</a>
+<h3 href="#key-distribution">Key Distribution</h3>
 <p>
 This section is all about essentially answering our first question above regarding which node holds which data. Redis has an interesting way of making this work which seemed to have worked for the use cases I have experienced with. Here is the very high level summary of how it works:
 </p>
@@ -165,7 +165,7 @@ I can also successfully read these the same way I would have done with a single 
 </pre>
 </p>
 
-<h3 href="#hash-tags">Hash Tags: Getting back into control for your sharding strategy</h3>
+<h3 href="#hash-tags">Hash Tags: Getting back into control of your sharding strategy</h3>
 <p>
 In certain cases, we would like to influence which node our data is stored at. This to be able to group certain keys together so that we can later be able to access them together through a multi-key operation, or a pipeline request.
 </p>
@@ -196,7 +196,7 @@ Redis cluster gives us more ability to scale our systems, especially for the wri
 I am aware that there are still further unknowns in terms of how to actually initialize a Redis cluster setup from scratch, details of how clients interact with a Redis cluster setup, how maintenance/operational side of the cluster setup actually works (e.g. resharding), etc. However, this post is already too long (there you go, my excuse!), and I hope to cover those in the upcoming posts one by one. If you have any specific areas that you are wondering about Redis Cluster, drop a comment below and I will try to cover them (if I have any experience about those areas). 
 </p>
 
-<h2 href="#resources">Resources</a>
+<h2 href="#resources">Resources</h2>
 
 <ul>
 <li><a href="https://redis.io/topics/cluster-spec">Redis Cluster Specification</a></li>
