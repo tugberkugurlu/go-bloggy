@@ -291,5 +291,7 @@ I am aware that there are still further unknowns in terms of how to actually ini
 <li><a href="https://redis.io/topics/cluster-spec">Redis Cluster Specification</a></li>
 <li><a href="https://redis.io/topics/cluster-tutorial">Redis cluster tutorial</a></li>
 <li><a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/scaling-redis-cluster-mode-enabled.html">Elasticache: Scaling Clusters in Redis (Cluster Mode Enabled)</a></li>
+<li><a href="https://redis.io/topics/pipelining">Using pipelining to speedup Redis queries</a></li>
 <li><a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Replication.Redis-RedisCluster.html">Elasticashe: Replication: Redis (Cluster Mode Disabled) vs. Redis (Cluster Mode Enabled)</a></li>
+<li><a href="http://highscalability.com/blog/2010/10/15/troubles-with-sharding-what-can-we-learn-from-the-foursquare.html">Troubles With Sharding - What Can We Learn From The Foursquare Incident?</a></li>
 </ul>
