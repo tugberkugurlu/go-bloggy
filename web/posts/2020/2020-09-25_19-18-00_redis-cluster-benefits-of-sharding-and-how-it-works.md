@@ -80,6 +80,31 @@ Why am I talking about these? These problems are actually what makes Redis Clust
 Since v3.0, Redis has included an out of the box support for a data sharding solution, which is called <a href="https://redis.io/topics/cluster-tutorial">Redis Cluster</a>. It provides a way to run a Redis installation where data is sharded across multiple Redis nodes as well as providing tools to manage the setup. These Redis nodes still have the same capabilities as a normal Redis node, and they can have their own replica sets. The only difference is that each node will be only holding the subset of your data, which will depend on the shape of the data and Redis' key distribution model (don't worry about this now, we will get to this concept shortly).
 </p>
 
+<p>I have configured a local Redis cluster setup to use throughout this blog post, and with the help of <a href="https://redis.io/commands/cluster-nodes"><code>CLUSTER NODES</code></a> command, I can see its high level structure:</p>
+
+<p>
+<pre>
+172.19.197.2:6379> CLUSTER NODES
+b7366bdbb09dbb20dcf0d4f8b7281c98f7e3b78e 172.19.197.7:6379@16379 master - 0 1608418117542 10 connected 10923-16383
+164dc6aaf77aa0530490f0c9fbf5c8eb9f653a53 172.19.197.5:6379@16379 slave fdf56116c8b8f322561c7189574e6092101fa718 0 1608418118557 12 connected
+f75939944d18ee12995c60d4cc9fcc1e53458d32 172.19.197.3:6379@16379 slave 88875e065f5ecf24b5adde973223a7799aee4521 0 1608418117949 11 connected
+fdf56116c8b8f322561c7189574e6092101fa718 172.19.197.2:6379@16379 myself,master - 0 1608418118000 12 connected 0-5460
+1c822510aa0f349a9b12cba1c68bc98feab5433e 172.19.197.4:6379@16379 slave b7366bdbb09dbb20dcf0d4f8b7281c98f7e3b78e 0 1608418118000 10 connected
+88875e065f5ecf24b5adde973223a7799aee4521 172.19.197.6:6379@16379 master - 0 1608418118963 11 connected 5461-10922
+</pre>
+</p>
+
+<p>
+You can learn more about the serialization format of this output from <a href="https://redis.io/commands/cluster-nodes#serialization-format">the doc</a>, but let me take a stab at summarizing it:
+</p>
+
+<ul>
+<li>We have setup of 3 master nodes with each having one replica.</li>
+<li>We are currently connected to the node at <code>172.19.197.2:6379</code>, and its node ID is <code>fdf56116c8b8f322561c7189574e6092101fa718</code>. We know this is the node we are connected as the <code>myself</code> flag indicates the the node you are contacted. This node is also one of the master nodes.</li>
+<li>The node that we are connected is shown to be responsible for <code>0</code>-<code>5460</code> slot range (don't worry about what exactly this is now, we will shortly get to this).</li>
+<li>The node at <code>172.19.197.5:6379</code> is the replica of the current node which we are connected to. We know this as the node ID of <code>fdf56116c8b8f322561c7189574e6092101fa718</code> is shown under the <code>master</code> column and we know that this the ID of the node that we are connected to.</li>
+</ul>
+
 <p>
 At this point, you should have more questions in your head compared to when you have started reading this post, which is not good :) So, I am hoping to guess what those questions are and try answer at least some of them proactively.
 </p>
@@ -97,7 +122,7 @@ This section is all about essentially answering our first question above regardi
 <li>Redis assigns "slot" ranges for each master node within the cluster. These slots are also referred as "hash slots"</li>
 <li>These slots are between <code>0</code> and <code>16384</code>, which means each master node in a cluster handles a subset of the <code>16384</code> hash slots.</li>
 <li>Redis clients can query which node is assigned to which slot range by using the <a href="https://redis.io/commands/cluster-slots"><code>CLUSTER SLOTS</code></a> command. This gives clients a way to be able to directly talk to the correct node for the majority of cases.</li>
-<li>For a given Redis key, the hash slot for that key is the result of <code>CRC16(key)</code> modulo <code>16384</code>, where <code>CRC16</code> here is the implementation of the CRC16 hash function. I am no expect when it comes to cryptography and hashing, but <a href="https://play.golang.org/p/mEmbtCibk_o">here</a> is how this can be done in Go by using the <a href="https://github.com/snksoft/crc">snksoft/crc</a> library. Note that Redis also has a handy command called <a href="https://redis.io/commands/cluster-keyslot"><code>CLUSTER KEYSLOT</code></a> which performs this operation for you per given Redis key. The clients are expected to embed this logic so that they can directly communicate with the correct node with the help of <code>CLUSTER SLOTS</code> command mentioned above.</li>
+<li>For a given Redis key, the hash slot for that key is the result of <code>CRC16(key)</code> modulo <code>16384</code>, where <code>CRC16</code> here is the implementation of the CRC16 hash function. I am no expect when it comes to cryptography and hashing, but <a href="https://play.golang.org/p/mEmbtCibk_o">here</a> is how this can be done in Go by using the <a href="https://github.com/snksoft/crc">snksoft/crc</a> library. Note that Redis also has a handy command called <a href="https://redis.io/commands/cluster-keyslot"><code>CLUSTER KEYSLOT</code></a> which performs this operation for you per given Redis key. <a href="https://redis.io/topics/cluster-spec#clients-first-connection-and-handling-of-redirections">The clients are expected to embed this logic</a> so that they can directly communicate with the correct node with the help of <code>CLUSTER SLOTS</code> command mentioned above.</li>
 <li>Same as the single node Redis setup, Redis Cluster uses asynchronous replication between nodes. So, each shard can have its own set of replicas which would be responsible for the same subset of the hash slots as its master. These replicas can be used for failover scenarios as well as distributing the read load (which we will touch on later).</li>
 </ul>
 
@@ -182,17 +207,17 @@ I can also successfully read these the same way I would have done with a single 
 
 <h3 id="hash-tags">Hash Tags: Getting back into control of your sharding strategy</h3>
 <p>
-In certain cases, we would like to influence which node our data is stored at. This to be able to group certain keys together so that we can later be able to access them together through a multi-key operation, or a pipeline request.
+In certain cases, we would like to influence which node our data is stored at. This is to be able to group certain keys together so that we can later access them together through a multi-key operation, or through <a href="https://redis.io/topics/pipelining">pipelining</a>.
 </p>
 
 <p>
-One use case here would be to satisfy the access pattern of retrieving the status of multiple coffee shops within the same city, where we don't have a way to group these together during write time. Therefore, it makes sense to write the status of each coffee shop under their individual keys, and access the ones that we care about through a <a href="https://redis.io/topics/pipelining">pipelining</a>, or <code>MGET</code>.</p> 
+One use case here would be to satisfy the access pattern of retrieving the status of multiple coffee shops within the same city, where we don't have a way to group these together during write time. Therefore, it makes sense to write the status of each coffee shop under their individual keys, and access the ones that we care about through pipelining, or <code>MGET</code>.</p> 
 
 <blockquote>
-⚠️ I am mentioning <code>MGET</code> as an option here as it is technically a viable option. However, keep in mind that <a href="https://stackoverflow.com/a/61532233/463785"><code>MGET</code> blocks other clients</a> till the whole read operation completes, whereas pipelining doesn't since it's just a way of batching commands. Although you may not see the difference with just a few keys, it's not a good idea to use <code>MGET</code> for too many keys from Redis. I suggest you to perform your own benchmarks for your own use case to see what the threshold is.
+⚠️ I am mentioning <code>MGET</code> as an option here as it is technically a viable option. However, keep in mind that <a href="https://stackoverflow.com/a/61532233/463785"><code>MGET</code> blocks other clients</a> till the whole read operation completes, whereas pipelining doesn't since it's just a way of batching commands. Although you may not see the difference with just a few keys, it's not a good idea to use <code>MGET</code> for too many keys. I suggest for you to perform your own benchmarks for your own use case to see what the threshold might be here.
 </blockquote>
 
-<p>That said, how can we make sure that coffee shops under the same city are co-located within the same node? For example, if we also have the coffee shops with ID <code>1</code> and <code>4</code>, they are not going to be stored within the same node as coffee shops with ID <code>2</code>, <code>3</code>, <code>6</code> and <code>7</code> based on our current setup (remember: the node at <code>172.19.197.2</code> is responsible for hash slot range of <code>0</code>-<code>5460</code>):
+<p>Idea is solid but there is still a question: how can we make sure that coffee shops under the same city are co-located within the same node? For example, if we also have the coffee shops with ID <code>1</code> and <code>4</code>, they are not going to be stored within the same node as coffee shops with ID <code>2</code>, <code>3</code>, <code>6</code> and <code>7</code> based on our current setup (remember: the node at <code>172.19.197.2</code> is responsible for hash slot range of <code>0</code>-<code>5460</code>):
 </p>
 
 <p>
@@ -225,7 +250,7 @@ You can also see that Redis will also complain when we try to <code>MGET</code> 
 </p>
 
 <p>
-We can also see the same behavior even if we remove <code>coffee_shop_branch.status.1</code> and <code>coffee_shop_branch.status.4</code> from the list of keys. This is because the <code>MGET</code> can only succeed if all of the keys belong to same slot as the error message suggests.
+We can also see the same behavior even if we remove <code>coffee_shop_branch.status.1</code> and <code>coffee_shop_branch.status.4</code> from the list of keys. This is because the fact that <code>MGET</code> can only succeed if all of the keys belong to same slot as the error message suggests.
 </p>
 
 <p>
@@ -265,7 +290,7 @@ For the example that we have been working with, and with the assumption that the
 </p>
 
 <p>
-We can also see that <code>MGET</code> will start working:
+We can also see that <code>MGET</code> will start working as expected with these keys:
 </p>
 
 <p>
@@ -280,7 +305,7 @@ We can also see that <code>MGET</code> will start working:
 </pre>
 </p>
 
-<p>So, hash tags are great, and we should use them all the time, right? Not so fast! This approach can make a notable positive impact on the latency of your application, and resource utilization of your redis nodes. However, there is a drawback here which might be a big worry for you depending on your load and data distribution: the Hot Shard problem (a.k.a. Hot Key problem). In our use case, this can be a significant problem when certain cities hold way more coffee shops than the others, or the access to certain cities are significantly higher even if the data sizes are the same. I will leave <a href="http://highscalability.com/blog/2010/10/15/troubles-with-sharding-what-can-we-learn-from-the-foursquare.html">this super informative post</a> from 2010 here, which is about one of the Foursquare outages. You will quickly realise after reading <a href="https://web.archive.org/web/20131114075609/http://blog.foursquare.com/2010/10/05/so-that-was-a-bummer/">the post-mortem</a> that it was caused by the exact same problem.</p>
+<p>So, hash tags are great, and we should use them all the time, right? Not so fast! This approach can make a notable positive impact on the latency of your application, and resource utilization of your redis nodes. However, there is a drawback here which might be a big worry for you depending on your load and data distribution: the Hot Shard problem (a.k.a. Hot Key problem). In our use case for instance, this can be a significant problem when certain cities hold way more coffee shops than the others, or the access for certain cities are significantly higher even if the data sizes are the same. I will leave <a href="http://highscalability.com/blog/2010/10/15/troubles-with-sharding-what-can-we-learn-from-the-foursquare.html">this super informative post</a> from 2010 here, which is about one of the Foursquare outages. You will quickly realise after reading <a href="https://web.archive.org/web/20131114075609/http://blog.foursquare.com/2010/10/05/so-that-was-a-bummer/">the post-mortem</a> that it was caused by the exact same problem.</p>
 
 <p>
 Hash tags is a tool that can help you, but there is unfortunately no magic bullet here. You need to understand your use case, data distribution, and test different setups to understand what might work for you the best.
