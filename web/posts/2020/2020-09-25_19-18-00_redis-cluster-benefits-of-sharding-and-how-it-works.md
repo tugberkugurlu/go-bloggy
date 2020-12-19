@@ -278,7 +278,7 @@ Hash tags is a tool that can help you, but there is unfortunately no magic bulle
 <h2 href="#conclusion">Conclusion</h2>
 
 <p>
-Redis cluster gives us more ability to scale our systems, especially for the write heavy workloads where we cannot easily predict the demand ahead of time. The sharding model Redis is offering us here is also very interesting where it has the mix of both client and server level logic on where your data is, and how to find it. This gives us an easy way to get started with a rudimentary sharding setup as well as allowing us to optimize our system further by making our clients a bit more claver.
+Redis cluster gives us the ability to scale our Redis setup horizontally not just for reads but also for writes, and you should consider it especially if you have a write heavy workload where you cannot easily predict the demand ahead of time. The sharding model Redis is offering us is also very interesting where it has the mix of both client and server level logic on where your data is, and how to find it. This gives us an easy way to get started with a rudimentary sharding setup as well as allowing us to optimize our system further by making our clients a bit more claver.
 </p>
 
 <p>
