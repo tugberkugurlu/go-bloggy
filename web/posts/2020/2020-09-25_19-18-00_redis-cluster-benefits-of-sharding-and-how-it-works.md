@@ -1,7 +1,7 @@
 ---
 id: 01ESS2QPGH34KNKDXWCH689M5X
 title: Redis Cluster - Benefits of Sharding and How It Works
-abstract: Redis is one of the good friends of a backend engineer, and its versatility and easy of use make it so easy to get started. That said, when it comes to scaling it horizontally for writes, it gets a bit more tricky with different level of trade-offs you need to make. In this post, I want to touch on the basics of Redis Cluster, out of the box solution of Redis to the gnarly write scaling problem.
+abstract: Redis is one of the good friends of a backend engineer, and its versatility and ease of use make it convenient to get started. That said, when it comes to scaling it horizontally for writes, it gets a bit more tricky with different level of trade-offs you need to make. In this post, I want to touch on the basics of Redis Cluster, out of the box solution of Redis to the gnarly write scaling problem.
 created_at: 2020-12-17 16:29:00.0000000 +0000 UTC
 tags:
 - Redis
@@ -12,6 +12,21 @@ slugs:
 - redis-cluster-benefits-of-sharding-and-how-it-works
 ---
 
+<blockquote>
+<h3>Content</h3>
+<ul>
+<li><a href="#the-problem">The Problem</a></li>
+<li><a href="#redis-cluster-enter">Redis Cluster: Enter</a></li>
+<ul>
+    <li><a href="#key-distribution">Key Distribution</a></li>
+    <li><a href="#hash-tags">Hash Tags: Getting back into control of your sharding strategy</a></li>
+    <li><a href="#redirection">Redirection</a></li>
+    <li><a href="#distributing-reads">Distributing Reads</a></li>
+</ul>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</blockquote>
+
 <p>
 <a href="https://redis.io/">Redis</a> is by far one of the most frequently used data stores. It's fascinating how much our our software-developer-minds go to Redis when we are faced with a data storage problem that requires some level of scale. Even if this might make us feel guilty, I have a somewhat confident assumption that this's the case, and there is probably a relation here to its simplicity: e.g. Redis is 'just' a data structure server, a hash table in the 'cloud', etc. (I know I am a bit exaggerating here, but hopefully you get the idea). Redis also makes digestible and reasonable trade-offs, and it allows us to solve many problems which require certain degree of scale.
 </p>
@@ -20,7 +35,7 @@ slugs:
 For a long time, Redis has come with <a href="https://redis.io/topics/replication">an out-of-the-box replication functionality</a>, which allows for a high availability (HA) setup as well as allowing us to scale the reads by distributing the load across replicas with the cost of eventual consistency. However, it was only in April, 2015 that Redis added support for a built-in <a href="https://en.wikipedia.org/wiki/Shard_(database_architecture)">sharding functionality</a> with <a href="https://raw.githubusercontent.com/antirez/redis/3.0/00-RELEASENOTES">its version 3 release</a>. In this post, my aim is to give you more understanding on why you need such a setup, what it actually is, and most important details you need to know about its configuration and implementation details.
 </p>
 
-<h2 href="#the-problem">The Problem</h2>
+<h2 id="the-problem">The Problem</h2>
 <p>
 When designing a software system, we have somewhat of an idea what the scale of usage is going to be on that system. This could be based off of previous usage patterns on the same or similar functionality, based on the data you collected over an experiment that has been run with a rudimentary functionality in a smaller scale, or based on just a pure guess. If you are mature enough as a business, you should also be able to project how much the expected growth is going to be for the forseeable future (e.g. next 12, 24 months). All of this data should help on determining a baseline number, where you can then be able to extrapolate to understand the load estimations for the system that you are designing.
 </p>
@@ -60,7 +75,7 @@ Why am I talking about these? These problems are actually what makes Redis Clust
 
 <p>Don't get me wrong here: these are not unique Redis problems. Any data storage system that needs to scale the writes face the same challenges, and there are some common techniques such as <a href="https://en.wikipedia.org/wiki/Shard_(database_architecture)">data sharding</a>, and we are now about to see how Redis tackles these problems through the same technique, with some spice added on top to cater for its unique needs.</p>
 
-<h2 href="#redis-cluster-enter">Redis Cluster: Enter</h2>
+<h2 id="redis-cluster-enter">Redis Cluster: Enter</h2>
 <p>
 Since v3.0, Redis has included an out of the box support for a data sharding solution, which is called <a href="https://redis.io/topics/cluster-tutorial">Redis Cluster</a>. It provides a way to run a Redis installation where data is sharded across multiple Redis nodes as well as providing tools to manage the setup. These Redis nodes still have the same capabilities as a normal Redis node, and they can have their own replica sets. The only difference is that each node will be only holding the subset of your data, which will depend on the shape of the data and Redis' key distribution model (don't worry about this now, we will get to this concept shortly).
 </p>
@@ -73,7 +88,7 @@ At this point, you should have more questions in your head compared to when you 
 However, note that <a href="https://redis.io/topics/cluster-spec">Redis Cluster Specification</a> already does a pretty good job on the details. With that in mind, my aim is not to duplicate that documentation here. That said, I want to still highlight the most impactful parts that are valuable to focus based on my own experience working with Redis cluster.
 </p>
 
-<h3 href="#key-distribution">Key Distribution</h3>
+<h3 id="key-distribution">Key Distribution</h3>
 <p>
 This section is all about essentially answering our first question above regarding which node holds which data. Redis has an interesting way of making this work which seemed to have worked for the use cases I have experienced with. Here is the very high level summary of how it works:
 </p>
@@ -82,7 +97,7 @@ This section is all about essentially answering our first question above regardi
 <li>Redis assigns "slot" ranges for each master node within the cluster. These slots are also referred as "hash slots"</li>
 <li>These slots are between <code>0</code> and <code>16384</code>, which means each master node in a cluster handles a subset of the <code>16384</code> hash slots.</li>
 <li>Redis clients can query which node is assigned to which slot range by using the <a href="https://redis.io/commands/cluster-slots"><code>CLUSTER SLOTS</code></a> command. This gives clients a way to be able to directly talk to the correct node for the majority of cases.</li>
-<li>For a given Redis key, the hash slot for that key is the result of <code>CRC16(key)</code> modulo <code>16384</code>, where CRC16 here is the implementation of the CRC16 hash function. I am no expect when it comes to cryptography and hashing, but <a href="https://play.golang.org/p/mEmbtCibk_o">here</a> is how this can be done in Go by using the <a href="https://github.com/snksoft/crc">snksoft/crc</a> library (note that Redis also has a handy command called <a href="https://redis.io/commands/cluster-keyslot"><code>CLUSTER KEYSLOT</code></a> which performs this operation for you). The clients are expected to embed this logic so that they can directly communicate with the correct node with the help of <code>CLUSTER SLOTS</code> command mentioned above.</li>
+<li>For a given Redis key, the hash slot for that key is the result of <code>CRC16(key)</code> modulo <code>16384</code>, where <code>CRC16</code> here is the implementation of the CRC16 hash function. I am no expect when it comes to cryptography and hashing, but <a href="https://play.golang.org/p/mEmbtCibk_o">here</a> is how this can be done in Go by using the <a href="https://github.com/snksoft/crc">snksoft/crc</a> library. Note that Redis also has a handy command called <a href="https://redis.io/commands/cluster-keyslot"><code>CLUSTER KEYSLOT</code></a> which performs this operation for you per given Redis key. The clients are expected to embed this logic so that they can directly communicate with the correct node with the help of <code>CLUSTER SLOTS</code> command mentioned above.</li>
 <li>Same as the single node Redis setup, Redis Cluster uses asynchronous replication between nodes. So, each shard can have its own set of replicas which would be responsible for the same subset of the hash slots as its master. These replicas can be used for failover scenarios as well as distributing the read load (which we will touch on later).</li>
 </ul>
 
@@ -165,7 +180,7 @@ I can also successfully read these the same way I would have done with a single 
 </pre>
 </p>
 
-<h3 href="#hash-tags">Hash Tags: Getting back into control of your sharding strategy</h3>
+<h3 id="hash-tags">Hash Tags: Getting back into control of your sharding strategy</h3>
 <p>
 In certain cases, we would like to influence which node our data is stored at. This to be able to group certain keys together so that we can later be able to access them together through a multi-key operation, or a pipeline request.
 </p>
@@ -271,11 +286,11 @@ We can also see that <code>MGET</code> will start working:
 Hash tags is a tool that can help you, but there is unfortunately no magic bullet here. You need to understand your use case, data distribution, and test different setups to understand what might work for you the best.
 </p>
 
-<h3 href="#redirection">Redirection</h3>
+<h3 id="redirection">Redirection</h3>
 
-<h3 href="#distributing-reads">Distributing Reads</h3>
+<h3 id="distributing-reads">Distributing Reads</h3>
 
-<h2 href="#conclusion">Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 
 <p>
 Redis cluster gives us the ability to scale our Redis setup horizontally not just for reads but also for writes, and you should consider it especially if you have a write heavy workload where you cannot easily predict the demand ahead of time. The sharding model Redis is offering us is also very interesting where it has the mix of both client and server level logic on where your data is, and how to find it. This gives us an easy way to get started with a rudimentary sharding setup as well as allowing us to optimize our system further by making our clients a bit more claver.
