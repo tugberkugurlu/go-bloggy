@@ -255,7 +255,7 @@ We can also see that <code>MGET</code> will start working:
 
 <p>
 <pre>
-redis_1:6379> MGET coffee_shop_branch.{city_4}.status.1 coffee_shop_branch.{city_4}.status.4 coffee_shop_branch.{city_4}.status.2 coffee_shop_branch.{city_4}.status.3 coffee_shop_branch.{city_4}.status.6 coffee_shop_branch.{city_4}.status.7
+172.19.197.2:6379> MGET coffee_shop_branch.{city_4}.status.1 coffee_shop_branch.{city_4}.status.4 coffee_shop_branch.{city_4}.status.2 coffee_shop_branch.{city_4}.status.3 coffee_shop_branch.{city_4}.status.6 coffee_shop_branch.{city_4}.status.7
 1) "OPEN"
 2) "CLOSED"
 3) "OPEN"
