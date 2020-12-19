@@ -330,6 +330,7 @@ I am aware that there are still further unknowns in terms of how to actually ini
 <ul>
 <li><a href="https://redis.io/topics/cluster-spec">Redis Cluster Specification</a></li>
 <li><a href="https://redis.io/topics/cluster-tutorial">Redis cluster tutorial</a></li>
+<li><a href="https://lmgtfy.app/?q=site%3Aredis.io%2Fcommands%2Fcluster-">Redis cluster commands</a></li>
 <li><a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/scaling-redis-cluster-mode-enabled.html">Elasticache: Scaling Clusters in Redis (Cluster Mode Enabled)</a></li>
 <li><a href="https://redis.io/topics/pipelining">Using pipelining to speedup Redis queries</a></li>
 <li><a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Replication.Redis-RedisCluster.html">Elasticashe: Replication: Redis (Cluster Mode Disabled) vs. Redis (Cluster Mode Enabled)</a></li>
