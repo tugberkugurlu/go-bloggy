@@ -1,8 +1,8 @@
 ---
-id: 01ESS2QPGH34KNKDXWCH689M5X
+id: 01ESYWJ3NHDFF5G7H4JKCY3DS0
 title: Redis Cluster - Benefits of Sharding and How It Works
 abstract: Redis is one of the good friends of a backend engineer, and its versatility and ease of use make it convenient to get started. That said, when it comes to scaling it horizontally for writes, it gets a bit more tricky with different level of trade-offs you need to make. In this post, I want to touch on the basics of Redis Cluster, out of the box solution of Redis to the gnarly write scaling problem.
-created_at: 2020-12-17 16:29:00.0000000 +0000 UTC
+created_at: 2020-12-20 01:34:00.0000000 +0000 UTC
 tags:
 - Redis
 - Databases
