@@ -56,7 +56,7 @@ So far so good, and this is exactly what I would expect from a software engineer
 </p>
 
 <p>
-Why am I talking about these? These problems are actually what makes Redis Cluster as the suitable candidate for your needs when those problems are especially centered around the writes. For reads, you might still be able to get away with a single master setup by wiring up as many replicas as you need. This should allow you to distribute the read load across replicas at the cost of data consistency gap depending on the replica lag, which would take the pressure off from the master. When the load is lower and you don't need all the replica, you can tear those down to save some £££. All of these operations shouldn't really require too much logic on the clients, and you should really be able to get away with by only employing a logic to figure out a new Redis replica addition, and start directing requests to it.
+Why am I talking about these? These problems are actually what makes Redis Cluster as the suitable candidate for your needs when those problems are especially centered around the writes. For reads, you might still be able to get away with a single master setup by wiring up as many replicas as you need. This should allow you to distribute the read load across replicas at the cost of data consistency gap depending on the replication lag, which would take the pressure off from the master. When the load is lower and you don't need all the replica, you can tear those down to save some £££. All of these operations shouldn't really require too much logic on the clients, and you should really be able to get away with by only employing a logic to figure out a new Redis replica addition, and start directing requests to it.
 </p>
 
 <p>However, the matter is not that simple for writes. One option we have here is scaling up the nodes (i.e. adding more resources). However, that is going to be a complex operation to perform without introducing a downtime. There is also a limit to how much you can scale up to (although for the majority of use cases out there, you may never need to go close to that limit). This could still be an option when the issue is with memory. However, not so much for CPU. When it comes to Redis, your CPU is rarely the issue. It's throughput that ends up becoming the bottleneck.</p>
@@ -365,6 +365,91 @@ Another reason why we have the <code>MOVED</code> redirection in place (probably
 <p>I am aware that we haven't touched on the resharding point in depth yet (and we won't be in this post), but redirection is such a fundamental concept of the Redis Cluster specification that I wanted briefly to go over at a high level. Also note that there is another type of redirection which is known as <a href="https://redis.io/topics/cluster-spec#ask-redirection">ASK redirection</a>, and we won't be covering that here at all since it's fundamentally related to resharding and that one really deserves its own post.</p>
 
 <h3 id="distributing-reads">Distributing Reads</h3>
+<p>
+The last point I want to touch on is around scaling reads, where we can make use of the replicas to distribute the load. For example, with the setup that we have been working with in this post, we have a replica per each master node. Considering we have 3 master nodes, by default, 3 nodes are serving reads and writes. However, we can utilize the replicas to serve the read commands which would essentially double the number of nodes that can serve reads.
+</p>
+
+<p>This is great but it's at the cost of data consistency since Redis uses by default asynchronous replication unless you can use of the <a href="https://redis.io/commands/wait">WAIT</a> to enforce a synchronous replication during write time.</p>
+
+<p>Let's assume that we are OK with the data inconsistency, and we are monitoring the replication lag. How can we utilize these replicas for reads? We can start by exploring this through redis-cli. From <a href="#redis-cluster-enter">our previous exploration</a>, we know that the node at <code>172.19.197.5:6379</code> is the replica of the node at <code>172.19.197.2:6379</code>. So, let's connect to that node directly, and issue a <code>GET</code> command there:</p>
+
+<p>
+<pre>
+➜ docker run -it --rm \
+    --net redis-cluster_redis_cluster_network \
+    redis \
+    redis-cli -c -h 172.19.197.5
+172.19.197.5:6379> get coffee_shop_branch.{city_4}.status.4
+-> Redirected to slot [1555] located at 172.19.197.2:6379
+"CLOSED"
+172.19.197.2:6379> 
+</pre>
+</p>
+
+<p>That's a surprising outcome as we were being redirected to the node at <code>172.19.197.2:6379</code> which is the master node of the replica that we were connected to. From this, it seems like the replica either doesn't hold the data that we need, or it doesn't allow any read operations.</p>
+
+<p>
+Let's first check whether it actually holds the data. Looking at the <a href="https://redis.io/commands/keys">KEYS</a> stored at that node, it seems like it has the data that we need:
+</p>
+
+<p>
+<pre>
+172.19.197.5:6379> KEYS *
+ 1) "coffee_shop_branch.status.3"
+ 2) "coffee_shop_branch.status.6"
+ 3) "coffee_shop_branch.status.7"
+ 4) "coffee_shop_branch.{city_4}.status.2"
+ 5) "coffee_shop_branch.{city_4}.status.4"
+ 6) "coffee_shop_branch.status.2"
+ 7) "coffee_shop_branch.{city_4}.status.7"
+ 8) "coffee_shop_branch.{city_4}.status.3"
+ 9) "coffee_shop_branch.{city_4}.status.6"
+10) "coffee_shop_branch.{city_4}.status.1"
+</pre>
+</p>
+
+<p>When we check the replica status, we can also see that the replica is up-to-date:</p>
+
+<p>
+<pre>
+172.19.197.5:6379> INFO replication
+# Replication
+role:slave
+master_host:172.19.197.2
+master_port:6379
+master_link_status:up
+master_last_io_seconds_ago:8
+master_sync_in_progress:0
+...
+...
+</pre>
+</p>
+
+<p>It seems like the replica doesn't allow us to perform any read operations, and this is expected. This is also documented in <a href="https://redis.io/topics/cluster-spec#scaling-reads-using-slave-nodes">Redis Cluster spec</a>:</p>
+
+<blockquote>
+Normally slave nodes will redirect clients to the authoritative master for the hash slot involved in a given command, however clients can use slaves in order to scale reads using the <code>READONLY</code> command.
+</blockquote>
+
+<p>
+<a href="https://redis.io/commands/readonly"><code>READONLY</code></a> command enables read queries for a connection to a Redis Cluster replica node. This command hints to the server that the client is OK with the potentially data inconsistency between its master node. This command needs to be sent per each connection to the replica nodes and ideally should be sent right after the connection is established. 
+</p>
+
+<p>
+<pre>
+➜ docker run -it --rm \
+    --net redis-cluster_redis_cluster_network \
+    redis \
+    redis-cli -c -h 172.19.197.5
+172.19.197.5:6379> READONLY
+OK
+172.19.197.5:6379> get coffee_shop_branch.{city_4}.status.4
+"CLOSED"
+172.19.197.5:6379> 
+</pre>
+</p>
+
+<p>To be honest, I remember that this threw me off when I first realized this behavior. However, it makes sort of a sense to be explicit when it comes to reading stale data. My only gripe about it is the name of the command which is sort of confusing. That said, you get used to it after a while, and it's well supported by the clients (e.g. <a href="https://github.com/go-redis/redis/blob/143859e34596a8e80ee858b5842d503d86572249/cluster.go#L38-L45">go-redis</a> client has a way for you to configure this as well as being able to configure the routing behavior).</p>
 
 <h2 id="conclusion">Conclusion</h2>
 
