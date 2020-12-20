@@ -369,7 +369,7 @@ Another reason why we have the <code>MOVED</code> redirection in place (probably
 The last point I want to touch on is around scaling reads, where we can make use of the replicas to distribute the load. For example, with the setup that we have been working with in this post, we have a replica per each master node. Considering we have 3 master nodes, by default, 3 nodes are serving reads and writes. However, we can utilize the replicas to serve the read commands which would essentially double the number of nodes that can serve reads.
 </p>
 
-<p>This is great but it's at the cost of data consistency since Redis uses by default asynchronous replication unless you can use of the <a href="https://redis.io/commands/wait">WAIT</a> to enforce a synchronous replication during write time.</p>
+<p>This is great but it's at the cost of data consistency since Redis uses by default asynchronous replication unless you are using the <a href="https://redis.io/commands/wait">WAIT</a> command to enforce a synchronous replication during write time.</p>
 
 <p>Let's assume that we are OK with the data inconsistency, and we are monitoring the replication lag. How can we utilize these replicas for reads? We can start by exploring this through redis-cli. From <a href="#redis-cluster-enter">our previous exploration</a>, we know that the node at <code>172.19.197.5:6379</code> is the replica of the node at <code>172.19.197.2:6379</code>. So, let's connect to that node directly, and issue a <code>GET</code> command there:</p>
 
@@ -425,14 +425,14 @@ master_sync_in_progress:0
 </pre>
 </p>
 
-<p>It seems like the replica doesn't allow us to perform any read operations, and this is expected. This is also documented in <a href="https://redis.io/topics/cluster-spec#scaling-reads-using-slave-nodes">Redis Cluster spec</a>:</p>
+<p>It seems like the replica doesn't allow us to perform any read operations, and this is expected which is also documented inside the <a href="https://redis.io/topics/cluster-spec#scaling-reads-using-slave-nodes">Redis Cluster spec</a>:</p>
 
 <blockquote>
 Normally slave nodes will redirect clients to the authoritative master for the hash slot involved in a given command, however clients can use slaves in order to scale reads using the <code>READONLY</code> command.
 </blockquote>
 
 <p>
-<a href="https://redis.io/commands/readonly"><code>READONLY</code></a> command enables read queries for a connection to a Redis Cluster replica node. This command hints to the server that the client is OK with the potentially data inconsistency between its master node. This command needs to be sent per each connection to the replica nodes and ideally should be sent right after the connection is established. 
+<a href="https://redis.io/commands/readonly"><code>READONLY</code></a> command enables read queries for a connection to a Redis Cluster replica node. This command hints to the server that the client is OK with the potential data inconsistency. This command needs to be sent per each connection to the replica nodes and ideally should be sent right after the connection is established. 
 </p>
 
 <p>
@@ -449,16 +449,16 @@ OK
 </pre>
 </p>
 
-<p>To be honest, I remember that this threw me off when I first realized this behavior. However, it makes sort of a sense to be explicit when it comes to reading stale data. My only gripe about it is the name of the command which is sort of confusing. That said, you get used to it after a while, and it's well supported by the clients (e.g. <a href="https://github.com/go-redis/redis/blob/143859e34596a8e80ee858b5842d503d86572249/cluster.go#L38-L45">go-redis</a> client has a way for you to configure this as well as being able to configure the routing behavior).</p>
+<p>To be honest, I remember that this threw me off when I first realized this behavior. However, it makes sort of a sense to be explicit when it comes to reading stale data. My only gripe about it is the name of the command which is sort of confusing. That said, you get used to it after a while, and it's well supported by the clients (e.g. <a href="https://github.com/go-redis">go-redis</a> client has a way for you to <a href="https://github.com/go-redis/redis/blob/143859e34596a8e80ee858b5842d503d86572249/cluster.go#L38-L45">configure this as well as being able to configure the replica routing behavior</a>).</p>
 
 <h2 id="conclusion">Conclusion</h2>
 
 <p>
-Redis cluster gives us the ability to scale our Redis setup horizontally not just for reads but also for writes, and you should consider it especially if you have a write heavy workload where you cannot easily predict the demand ahead of time. The sharding model Redis is offering us is also very interesting where it has the mix of both client and server level logic on where your data is, and how to find it. This gives us an easy way to get started with a rudimentary sharding setup as well as allowing us to optimize our system further by making our clients a bit more claver.
+Redis cluster gives us the ability to scale our Redis setup horizontally not just for reads but also for writes, and you should consider it especially if you have a write heavy workload where you cannot easily predict the demand ahead of time. The sharding model Redis is offering us is also very interesting where it has the mix of both client and server level logic on where your data is, and how to find it. This gives us an easy way to get started with a rudimentary sharding setup as well as allowing us to optimize our system further by making our clients a bit more clever.
 </p>
 
 <p>
-I am aware that there are still further unknowns in terms of how to actually initialize a Redis cluster setup from scratch, details of how clients interact with a Redis cluster setup, how maintenance/operational side of the cluster setup actually works (e.g. resharding), etc. However, this post is already too long (there you go, my excuse!), and I hope to cover those in the upcoming posts one by one. If you have any specific areas that you are wondering about Redis Cluster, drop a comment below and I will try to cover them (if I have any experience about those areas). 
+I am aware that there are still further unknowns in terms of how to actually initialize a Redis cluster setup from scratch, details of how clients interact with a Redis cluster setup, how maintenance/operational side of the cluster setup actually works (e.g. resharding), etc. However, this post is already too long (there you go, my excuse!), and I hope to cover those in the upcoming posts one by one. If you have any specific areas that you are wondering about Redis Cluster, drop a comment below and I will try to cover them if I have any experience around those areas. 
 </p>
 
 <h2 href="#resources">Resources</h2>
