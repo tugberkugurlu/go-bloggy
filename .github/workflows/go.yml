@@ -32,4 +32,5 @@ jobs:
       env:
         EXAMPLE_SECRET: ${{ secrets.EXAMPLE_SECRET }}
       run: |
+        ls
         echo $EXAMPLE_SECRET
