@@ -227,7 +227,7 @@ func main() {
 	r.HandleFunc("/", homeHandler)
 
 	rootFs := http.FileServer(http.Dir("../../web/static-root"))
-	r.athrefix("/").Handler(http.StripPrefix("/", rootFs))
+	r.PathPrefix("/").Handler(http.StripPrefix("/", rootFs))
 
 	serverPortStr := os.Getenv("SERVER_PORT")
 	_, parseErr := strconv.ParseInt(serverPortStr, 10, 16)
