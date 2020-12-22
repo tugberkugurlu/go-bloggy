@@ -29,7 +29,8 @@ jobs:
       run: go test -v ./...
 
   assets:
-    name: Assets
+    needs: build
+    name: Upload Assets
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
