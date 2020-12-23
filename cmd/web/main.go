@@ -17,9 +17,30 @@ import (
 	"github.com/gorilla/feeds"
 	"github.com/gorilla/mux"
 	"github.com/gosimple/slug"
+	"github.com/pkg/errors"
+	"github.com/spf13/viper"
 	"golang.org/x/net/html"
 	"gopkg.in/yaml.v2"
 )
+
+type Config struct {
+	AssetsUrl    string
+	AssetsPrefix string
+}
+
+func (c Config) IsLocal() bool {
+	return strings.Index(c.AssetsUrl, "/") == 0
+}
+
+func (c Config) FullAssetsUrl() string {
+	if c.AssetsPrefix == "" {
+		return c.AssetsUrl
+	}
+	return fmt.Sprintf("%s/%s",
+		strings.TrimSuffix(c.AssetsUrl, "/"),
+		strings.TrimSuffix(c.AssetsPrefix, "/"),
+	)
+}
 
 type Post struct {
 	Body               template.HTML
@@ -66,6 +87,8 @@ func rankByTagCount(tagFrequencies map[string]*Tag) TagCountPairList {
 	return pl
 }
 
+var config Config
+var layoutConfig LayoutConfig
 var tagsList TagCountPairList
 var posts []*Post
 var postsBySlug map[string]*Post
@@ -73,6 +96,17 @@ var postsByTagSlug map[string][]*Post
 var tagsBySlug map[string]*Tag
 
 func main() {
+	var configErr error
+	config, configErr = parseConfig()
+	if configErr != nil {
+		log.Fatal(configErr)
+	}
+
+	layoutConfig = LayoutConfig{
+		AssetsUrl:                 config.FullAssetsUrl(),
+		GoogleAnalyticsTrackingId: os.Getenv("TUGBERKWEB_GoogleAnalytics__TrackingId"),
+	}
+
 	tagsBySlug = make(map[string]*Tag)
 	postsBySlug = make(map[string]*Post)
 	postsByTagSlug = make(map[string][]*Post)
@@ -215,7 +249,9 @@ func main() {
 	})
 
 	fs := http.FileServer(http.Dir("../../web/static"))
-	r.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", fs))
+	if config.IsLocal() {
+		r.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", fs))
+	}
 	r.PathPrefix("/content/images/").HandlerFunc(legacyBlogImagesRedirector)
 	r.HandleFunc("/archive/{slug}", blogPostPageHandler)
 	r.HandleFunc("/tags/{tag_slug}", tagsPageHandler)
@@ -237,6 +273,30 @@ func main() {
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", serverPortStr), CaselessMatcher(r)))
 }
 
+func parseConfig() (Config, error) {
+	viper.SetConfigType("yaml")
+	viper.SetConfigName("config")
+	viper.AddConfigPath("../../")
+	configErr := viper.ReadInConfig()
+	if configErr != nil {
+		return Config{}, fmt.Errorf("Fatal error config file: %s \n", configErr)
+	}
+	var assetsUrl string
+	if viperVal := viper.Get("assets_url"); viperVal == nil {
+		return Config{}, errors.New("Fatal error: 'assets_url' config value doesn't exist")
+	} else {
+		assetsUrl = viperVal.(string)
+	}
+	var assetsPrefix string
+	if viperVal := viper.Get("assets_prefix"); viperVal != nil {
+		assetsPrefix = viperVal.(string)
+	}
+	return Config{
+		AssetsUrl:    assetsUrl,
+		AssetsPrefix: assetsPrefix,
+	}, nil
+}
+
 func CaselessMatcher(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		r.URL.Path = strings.ToLower(r.URL.Path)
@@ -256,6 +316,7 @@ type Layout struct {
 
 type LayoutConfig struct {
 	GoogleAnalyticsTrackingId string
+	AssetsUrl                 string
 }
 
 type Home struct {
@@ -319,7 +380,7 @@ type Page interface {
 }
 
 func speakingPageHandler(w http.ResponseWriter, r *http.Request) {
-	ExecuteTemplate(w, r, []string{
+	ExecuteTemplate(w, r, layoutConfig, []string{
 		"../../web/template/speaking.html",
 		"../../web/template/shared/speaking-activity-card.html",
 	}, SpeakingPage{
@@ -384,7 +445,7 @@ func tagsPageHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	ExecuteTemplate(w, r, []string{
+	ExecuteTemplate(w, r, layoutConfig, []string{
 		"../../web/template/tag.html",
 		"../../web/template/shared/post-item.html",
 	}, TagsPage{
@@ -407,7 +468,7 @@ func blogPostPageHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	ExecuteTemplate(w, r, []string{"../../web/template/post.html"}, PostPage{
+	ExecuteTemplate(w, r, layoutConfig, []string{"../../web/template/post.html"}, PostPage{
 		Post:   post,
 		AdTags: strings.Join(post.Metadata.Tags, ","),
 	})
@@ -421,12 +482,12 @@ func legacyBlogImagesRedirector(w http.ResponseWriter, r *http.Request) {
 
 func staticPage(page string) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
-		ExecuteTemplate(w, r, []string{fmt.Sprintf("../../web/template/%s.html", page)}, nil)
+		ExecuteTemplate(w, r, layoutConfig, []string{fmt.Sprintf("../../web/template/%s.html", page)}, nil)
 	}
 }
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
-	ExecuteTemplate(w, r, []string{
+	ExecuteTemplate(w, r, layoutConfig, []string{
 		"../../web/template/home.html",
 		"../../web/template/shared/post-item.html",
 		"../../web/template/shared/speaking-activity-card.html",
@@ -437,7 +498,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func blogHomeHandler(w http.ResponseWriter, r *http.Request) {
-	ExecuteTemplate(w, r, []string{
+	ExecuteTemplate(w, r, layoutConfig, []string{
 		"../../web/template/blog.html",
 		"../../web/template/shared/post-item.html",
 	}, Blog{
@@ -445,7 +506,7 @@ func blogHomeHandler(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
-func ExecuteTemplate(w http.ResponseWriter, r *http.Request, templatePaths []string, data interface{}) {
+func ExecuteTemplate(w http.ResponseWriter, r *http.Request, config LayoutConfig, templatePaths []string, data interface{}) {
 	t := template.New("")
 	t = t.Funcs(template.FuncMap{"mod": func(i, j int) bool { return i%j == 0 }})
 	t, err := t.ParseFiles(append(templatePaths, "../../web/template/layout.html")...)
@@ -485,9 +546,7 @@ func ExecuteTemplate(w http.ResponseWriter, r *http.Request, templatePaths []str
 		Data:        data,
 		Section:     section,
 		AdTags:      adTags,
-		Config: LayoutConfig{
-			GoogleAnalyticsTrackingId: os.Getenv("TUGBERKWEB_GoogleAnalytics__TrackingId"),
-		},
+		Config:      config,
 	}
 	templateErr := t.ExecuteTemplate(w, "layout", pageContext)
 	if templateErr != nil {
