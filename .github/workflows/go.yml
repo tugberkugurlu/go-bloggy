@@ -48,6 +48,7 @@ jobs:
         run: go get -v github.com/oklog/ulid/v2/cmd/ulid
       - name: Upload
         run: |
+          cat /etc/mime.types
           curl -s "http://svn.apache.org/viewvc/httpd/httpd/trunk/docs/conf/mime.types?view=co" > ~/.mime.types
           export S3_PREFIX="assets/$(ulid)"
           aws s3 sync ./web/static/ s3://$ASSETS_S3_BUCKET_NAME/$S3_PREFIX --cache-control 'max-age=31536000' --acl public-read
