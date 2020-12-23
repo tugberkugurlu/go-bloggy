@@ -9,7 +9,7 @@
 {{end}}
 {{define "content"}}
     <div id="home" class="ui divided items">
-        {{ range $index, $post := .Posts }}
+        {{ range $index, $post := .Data.Posts }}
             {{ if mod $index 3 }}
                 {{ if ne $index 0 }}
                 <div class="ui divider"></div>

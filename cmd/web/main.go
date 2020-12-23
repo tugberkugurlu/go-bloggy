@@ -304,12 +304,17 @@ func CaselessMatcher(next http.Handler) http.Handler {
 	})
 }
 
+type PageData struct {
+	Data   interface{}
+	Config LayoutConfig
+}
+
 type Layout struct {
 	Title       string
 	Description string
 	Tags        TagCountPairList
 	Section     string
-	Data        interface{}
+	Data        PageData
 	AdTags      string
 	Config      LayoutConfig
 }
@@ -543,10 +548,14 @@ func ExecuteTemplate(w http.ResponseWriter, r *http.Request, config LayoutConfig
 		Title:       pageTitle,
 		Description: pageDescription,
 		Tags:        tagsList,
-		Data:        data,
 		Section:     section,
 		AdTags:      adTags,
 		Config:      config,
+
+		Data: PageData{
+			Data:   data,
+			Config: config,
+		},
 	}
 	templateErr := t.ExecuteTemplate(w, "layout", pageContext)
 	if templateErr != nil {

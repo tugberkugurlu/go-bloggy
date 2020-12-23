@@ -1,10 +1,10 @@
 {{define "twitter_card"}}
     <meta name="twitter:card" content="summary" />
-    <meta property="og:url" content="http://www.tugberkugurlu.com/archive/{{ (index .Post.Metadata.Slugs 0) }}" />
-    <meta property="og:title" content="{{ .Post.Metadata.Title }}" />
-    <meta property="og:description" content="{{ .Post.Metadata.Abstract }}" />
-    {{ $length := len .Post.Images }} {{ if ne $length 0 }}
-        <meta property="og:image" content="{{ (index .Post.Images 0) }}" />
+    <meta property="og:url" content="http://www.tugberkugurlu.com/archive/{{ (index .Data.Post.Metadata.Slugs 0) }}" />
+    <meta property="og:title" content="{{ .Data.Post.Metadata.Title }}" />
+    <meta property="og:description" content="{{ .Data.Post.Metadata.Abstract }}" />
+    {{ $length := len .Data.Post.Images }} {{ if ne $length 0 }}
+        <meta property="og:image" content="{{ (index .Data.Post.Images 0) }}" />
     {{ end }}
     <meta name="twitter:site" content="@tourismgeek" />
     <meta name="twitter:creator" content="@tourismgeek" />
@@ -12,22 +12,22 @@
 
 {{define "content"}}
 <h1 class="ui header">
-    {{ .Post.Metadata.Title }}
+    {{ .Data.Post.Metadata.Title }}
 </h1>
 
 <div class="ui tall stacked segment">
     <div class="ui stackable grid">
         <div class="row">
             <div class="twelve wide column">
-                {{ .Post.Metadata.Abstract }}
+                {{ .Data.Post.Metadata.Abstract }}
             </div>
             <div class="four wide column">
-                @ {{ .Post.PublishedOnDisplay }}
+                @ {{ .Data.Post.PublishedOnDisplay }}
             </div>
         </div>
         <div class="row">
             <div class="sixteen wide column post-tags-list">
-                {{ range $tag := .Post.Tags }}
+                {{ range $tag := .Data.Post.Tags }}
                     <a class="ui image teal small label" href="/tags/{{ $tag.Key }}">
                         {{ $tag.Value.Name }}
                         <div class="detail">{{ $tag.Value.Count }}</div>
@@ -54,12 +54,12 @@
 </div>
 
 <div id="post-holder">
-    {{ .Post.Body }}
+    {{ .Data.Post.Body }}
 </div>
 
 <div class="ui divider"></div>
 <div style="text-align: center;">
-    <div class="ad-inner" data-type="ad" data-publisher="lqm.tugberkugurlu.site" data-zone="ron" data-format="728x90" data-tags="{{ .AdTags }}"></div>
+    <div class="ad-inner" data-type="ad" data-publisher="lqm.tugberkugurlu.site" data-zone="ron" data-format="728x90" data-tags="{{ .Data.AdTags }}"></div>
 </div>
 <div class="ui divider"></div>
 
@@ -70,8 +70,8 @@
         // *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
         var disqus_config = function () {
-            this.page.url = 'http://www.tugberkugurlu.com/archive/{{ (index .Post.Metadata.Slugs 0) }}';  // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = '{{ .Post.Metadata.ID }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            this.page.url = 'http://www.tugberkugurlu.com/archive/{{ (index .Data.Post.Metadata.Slugs 0) }}';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = '{{ .Data.Post.Metadata.ID }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
 
         (function() { // DON'T EDIT BELOW THIS LINE
