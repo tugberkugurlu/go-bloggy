@@ -191,7 +191,9 @@ func main() {
 				}
 
 				if postMetadata.Format == "md" {
-					body = blackfriday.Run(body)
+					body = blackfriday.Run(body, blackfriday.WithRenderer(blackfriday.NewHTMLRenderer(blackfriday.HTMLRendererParameters{
+						Flags: blackfriday.TOC,
+					})))
 				}
 
 				post := &Post{
