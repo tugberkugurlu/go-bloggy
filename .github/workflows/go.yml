@@ -61,3 +61,8 @@ jobs:
           AWS_REGION: ${{ secrets.ASSETS_AWS_REGION }}
           ASSETS_S3_BUCKET_NAME: ${{ secrets.ASSETS_S3_BUCKET_NAME }}
           ASSETS_S3_BUCKET_DOMAIN_NAME: ${{ secrets.ASSETS_S3_BUCKET_DOMAIN_NAME }}
+      - name: Upload CI config.yml for Assets
+        uses: actions/upload-artifact@v2
+        with:
+          name: ci-config
+          path: ./ci/config.yaml
