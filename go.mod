@@ -3,6 +3,7 @@ module github.com/tugberkugurlu/go-bloggy
 go 1.14
 
 require (
+	github.com/NYTimes/gziphandler v1.1.1
 	github.com/denisenkom/go-mssqldb v0.0.0-20200428022330-06a60b6afbbc
 	github.com/gorilla/feeds v1.1.1
 	github.com/gorilla/mux v1.7.4

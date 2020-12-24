@@ -14,6 +14,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/NYTimes/gziphandler"
 	"github.com/gorilla/feeds"
 	"github.com/gorilla/mux"
 	"github.com/gosimple/slug"
@@ -253,14 +254,14 @@ func main() {
 		r.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", fs))
 	}
 	r.PathPrefix("/content/images/").HandlerFunc(legacyBlogImagesRedirector)
-	r.HandleFunc("/archive/{slug}", blogPostPageHandler)
-	r.HandleFunc("/tags/{tag_slug}", tagsPageHandler)
-	r.HandleFunc("/about", staticPage("about"))
-	r.Methods("GET").Path("/speaking").HandlerFunc(speakingPageHandler)
-	r.HandleFunc("/contact", staticPage("contact"))
-	r.HandleFunc("/archive", blogHomeHandler)
+	r.Handle("/archive/{slug}", gziphandler.GzipHandler(http.HandlerFunc(blogPostPageHandler)))
+	r.Handle("/tags/{tag_slug}", gziphandler.GzipHandler(http.HandlerFunc(tagsPageHandler)))
+	r.Handle("/about", gziphandler.GzipHandler(http.HandlerFunc(staticPage("about"))))
+	r.Methods("GET").Path("/speaking").Handler(gziphandler.GzipHandler(http.HandlerFunc(speakingPageHandler)))
+	r.Handle("/contact", gziphandler.GzipHandler(http.HandlerFunc(staticPage("contact"))))
+	r.Handle("/archive", gziphandler.GzipHandler(http.HandlerFunc(blogHomeHandler)))
 	r.HandleFunc("/feeds/rss", rssHandler)
-	r.HandleFunc("/", homeHandler)
+	r.Handle("/", gziphandler.GzipHandler(http.HandlerFunc(homeHandler)))
 
 	rootFs := http.FileServer(http.Dir("../../web/static-root"))
 	r.PathPrefix("/").Handler(http.StripPrefix("/", rootFs))
