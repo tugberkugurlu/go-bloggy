@@ -274,12 +274,15 @@ func main() {
 }
 
 func parseConfig() (Config, error) {
-	viper.SetConfigType("yaml")
 	viper.SetConfigName("config")
+	viper.SetConfigType("yaml")
+	viper.AddConfigPath("../../ci/")
 	viper.AddConfigPath("../../")
 	configErr := viper.ReadInConfig()
 	if configErr != nil {
-		return Config{}, fmt.Errorf("Fatal error config file: %s \n", configErr)
+		if _, ok := configErr.(viper.ConfigFileNotFoundError); !ok {
+			return Config{}, fmt.Errorf("Fatal error config file: %s \n", configErr)
+		}
 	}
 	var assetsUrl string
 	if viperVal := viper.Get("assets_url"); viperVal == nil {
