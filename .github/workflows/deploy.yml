@@ -47,7 +47,6 @@ jobs:
           mkdir ci
           echo "assets_url: \"https://$ASSETS_S3_BUCKET_DOMAIN_NAME\"" >> ./ci/config.yaml
           echo "assets_prefix: \"$S3_PREFIX\"" >> ./ci/config.yaml
-          cat ./ci/config.yaml
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -93,3 +92,23 @@ jobs:
           tags: ${{ steps.docker_meta.outputs.tags }}
           labels: ${{ steps.docker_meta.outputs.labels }}
           push: true
+
+  ecs-deploy:
+    needs: docker
+    name: ECS Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install AWS CLI
+        run: |
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          sudo ./aws/install
+      - run: aws --version
+      - name: Enforce New ECS Service Deployment
+        run: aws ecs update-service --force-new-deployment --service $AWS_ECS_SERVICE_NAME --cluster $AWS_ECS_CLUSTER_ARN
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.ASSETS_AWS_REGION }}
+          AWS_ECS_CLUSTER_ARN: ${{ secrets.AWS_ECS_CLUSTER_ARN }}
+          AWS_ECS_SERVICE_NAME: ${{ secrets.AWS_ECS_SERVICE_NAME }}
