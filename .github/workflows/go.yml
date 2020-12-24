@@ -51,6 +51,10 @@ jobs:
           sudo sh -c 'curl -s "http://svn.apache.org/viewvc/httpd/httpd/trunk/docs/conf/mime.types?view=co" > /etc/mime.types'
           export S3_PREFIX="assets/$(ulid)"
           aws s3 sync ./web/static/ s3://$ASSETS_S3_BUCKET_NAME/$S3_PREFIX --cache-control 'max-age=31536000' --acl public-read
+          mkdir ci
+          echo "assets_url: \"https://$ASSETS_S3_BUCKET_DOMAIN_NAME\"" >> ./ci/config.yaml
+          echo "assets_prefix: \"$S3_PREFIX\"" >> ./ci/config.yaml
+          cat ./ci/config.yaml
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
