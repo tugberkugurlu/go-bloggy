@@ -3,6 +3,7 @@ id: 01ETB9J6GCNSSECM81HHKFY8W0
 title: Configure Free SSL Certificate on AWS Application Load Balancer Through Terraform
 abstract: Last week, I have moved all my personal compute and storage from Azure to AWS, and started managing it through terraform. While doing so, I discovered that you can actually have SSL for your web application for free when using AWS Application Load Balancer. Setting it up was a bit tedious, and I wanted to share that experience here.
 created_at: 2020-12-24 21:22:00.0000000 +0000 UTC
+format: md
 tags:
 - AWS
 - HTTP
