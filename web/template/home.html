@@ -3,7 +3,7 @@
     <meta property="og:url" content="http://www.tugberkugurlu.com" />
     <meta property="og:title" content="Tugberk Ugurlu @ the Heart of Software" />
     <meta property="og:description" content="Software Engineer and Tech Product enthusiast Tugberk Ugurlu's home on the interwebs! Here, you can find out about Tugberk's conference talks, books and blog posts on software development techniques and practices." />
-    <meta property="og:image" content="http://www.tugberkugurlu.com/assets/images/tugberk-ugurlu-speaker-sub-header-2.jpg" />
+    <meta property="og:image" content="{{ .Config.AssetsUrl }}/images/tugberk-ugurlu-speaker-sub-header-2.jpg" />
     <meta name="twitter:site" content="@tourismgeek" />
     <meta name="twitter:creator" content="@tourismgeek" />
 {{end}}
@@ -28,7 +28,7 @@
         </center>
     </div>
     <div id="home" class="ui divided items">
-        {{ range $post := .Posts }}
+        {{ range $post := .Data.Posts }}
             {{ template "post-item" $post }}
         {{ end }}
     </div>
@@ -65,7 +65,7 @@
         <div class="row" id="past-activities">
             <div class="sixteen wide column">
                 <div class="ui two column grid">
-                    {{ range $activity := .SpeakingActivities }}
+                    {{ range $activity := .Data.SpeakingActivities }}
                         <div class="column">
                             {{ template "speaking_activity_card" $activity }}
                         </div>

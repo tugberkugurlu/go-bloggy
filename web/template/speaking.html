@@ -3,7 +3,7 @@
     <meta property="og:url" content="http://www.tugberkugurlu.com/speaking" />
     <meta property="og:title" content="Tugberk Ugurlu Public Speaking Engagements" />
     <meta property="og:description" content="Tugberk speaks at conferences on technical leadership, software architecture, lean software development, Microsoft Azure and .NET." />
-    <meta property="og:image" content="http://www.tugberkugurlu.com/assets/images/tugberk-ugurlu-speaker-sub-header-2.jpg" />
+    <meta property="og:image" content="{{ .Config.AssetsUrl }}/images/tugberk-ugurlu-speaker-sub-header-2.jpg" />
     <meta name="twitter:site" content="@tourismgeek" />
     <meta name="twitter:creator" content="@tourismgeek" />
 {{end}}
@@ -17,7 +17,7 @@
         <div class="row">
             <div class="sixteen wide column">
                 <div class="ui piled segment">
-                    <img src="/assets/images/tugberk-ugurlu-speaker-header.jpg" class="ui image" alt="Tugberk Ugurlu Speaking at DevConf, Krakow in 2018" title="Tugberk Ugurlu Speaking at DevConf, Krakow in 2018" />
+                    <img src="{{ .Config.AssetsUrl }}/images/tugberk-ugurlu-speaker-header.jpg" class="ui image" alt="Tugberk Ugurlu Speaking at DevConf, Krakow in 2018" title="Tugberk Ugurlu Speaking at DevConf, Krakow in 2018" />
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@
         <div class="row" id="invite-me">
             <div class="sixteen wide column">
                 <div class="ui blue segment">
-                    <img src="/assets/images/tugberk-ugurlu-speaker-sub-header-2.jpg" class="ui image" alt="Tugberk Ugurlu Speaking at DevConf, Krakow in 2018" title="Tugberk Ugurlu Speaking at DevConf, Krakow in 2018" />
+                    <img src="{{ .Config.AssetsUrl }}/images/tugberk-ugurlu-speaker-sub-header-2.jpg" class="ui image" alt="Tugberk Ugurlu Speaking at DevConf, Krakow in 2018" title="Tugberk Ugurlu Speaking at DevConf, Krakow in 2018" />
                     <h2 class="ui header">
                         🙋🏻‍♂️ Invite me to speak at your event!
                     </h2>
@@ -76,7 +76,7 @@
                     Past Activities
                 </h2>
                 <div class="ui two column stackable grid">
-                    {{ range $activity := .SpeakingActivities }}
+                    {{ range $activity := .Data.SpeakingActivities }}
                         <div class="column">
                             {{ template "speaking_activity_card" $activity }}
                         </div>

@@ -2,11 +2,11 @@
 {{end}}
 {{define "content"}}
     <h1 class="ui header">
-        {{ .Tag.Name }} ({{ .Tag.Count }})
+        {{ .Data.Tag.Name }} ({{ .Data.Tag.Count }})
     </h1>
     <div class="ui divider"></div>
     <div id="home" class="ui divided items">
-        {{ range $post := .Posts }}
+        {{ range $post := .Data.Posts }}
             {{ template "post-item" $post }}
         {{ end }}
     </div>
