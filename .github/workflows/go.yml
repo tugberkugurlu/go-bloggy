@@ -74,6 +74,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: ci-config
+          path: ./ci/
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Build
@@ -81,5 +82,5 @@ jobs:
         with:
           context: .
           file: ./docker-web.dockerfile
-          load: true
           tags: tugberk/tugberk-go-bloggy:latest
+          push: false
