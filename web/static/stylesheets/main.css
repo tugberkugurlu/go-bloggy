@@ -25,6 +25,13 @@ code {
     border-radius: 6px;
 }
 
+pre code {
+    padding: 0;
+    font-size: inherit;
+    background-color: #f5f5f5;
+    border-radius: 0;
+}
+
 img {
     max-width: 100%;
     height: auto;
@@ -61,12 +68,16 @@ blockquote {
     margin: 1rem 0;
 }
 
+#post-holder > nav {
+    border: 1px solid #eeeeee;
+    --box-shadow-color: #EEEEF8;
+    box-shadow: 0.2rem 0.3rem var(--box-shadow-color);
+    margin: 1.8rem 0 1.5rem 0;
+}
+
 #post-holder > nav > ul {
     list-style-type: none;
-    border: 1px solid #eeeeee;
-    border-left: 5px solid #eeeeee;
-    padding: 1rem;
-    margin: 1rem 0;
+    padding: 0.5rem 0.3rem;
 }
 
 #post-holder nav li {
