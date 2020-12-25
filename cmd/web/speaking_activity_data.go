@@ -129,12 +129,12 @@ var speakingActivities = []*SpeakingActivity{
 			},
 			{
 				Name:           "Announcment Article",
-				Link:           "http://www.tugberkugurlu.com/archive/off-to-oslo-for-ndc-developer-conference",
+				Link:           "https://www.tugberkugurlu.com/archive/off-to-oslo-for-ndc-developer-conference",
 				IconCSSClasses: "rss",
 			},
 			{
 				Name:           "Recap Article",
-				Link:           "http://www.tugberkugurlu.com/archive/ndc-oslo-2016-in-a-nutshell",
+				Link:           "https://www.tugberkugurlu.com/archive/ndc-oslo-2016-in-a-nutshell",
 				IconCSSClasses: "rss",
 			},
 		},
@@ -158,7 +158,7 @@ var speakingActivities = []*SpeakingActivity{
 			},
 			{
 				Name:           "Announcment Article",
-				Link:           "http://www.tugberkugurlu.com/archive/speaking-at-sql-in-the-city-2017-register-now",
+				Link:           "https://www.tugberkugurlu.com/archive/speaking-at-sql-in-the-city-2017-register-now",
 				IconCSSClasses: "rss",
 			},
 		},
@@ -243,12 +243,12 @@ var speakingActivities = []*SpeakingActivity{
 			},
 			{
 				Name:           "Announcment Article",
-				Link:           "http://www.tugberkugurlu.com/archive/upcoming-conferences-and-talks",
+				Link:           "https://www.tugberkugurlu.com/archive/upcoming-conferences-and-talks",
 				IconCSSClasses: "rss",
 			},
 			{
 				Name:           "Recap Article",
-				Link:           "http://www.tugberkugurlu.com/archive/my-summary-of-devconf-2016",
+				Link:           "https://www.tugberkugurlu.com/archive/my-summary-of-devconf-2016",
 				IconCSSClasses: "rss",
 			},
 		},
@@ -272,7 +272,7 @@ var speakingActivities = []*SpeakingActivity{
 			},
 			{
 				Name:           "Conference Profile",
-				Link:           "http://www.tugberkugurlu.com/archive/my-talk-on-profiling--net-server-applications-from-umbraco-uk-festival-2015",
+				Link:           "https://www.tugberkugurlu.com/archive/my-talk-on-profiling--net-server-applications-from-umbraco-uk-festival-2015",
 				IconCSSClasses: "external link",
 			},
 		},
@@ -308,12 +308,12 @@ var speakingActivities = []*SpeakingActivity{
 			},
 			{
 				Name:           "Announcment Article",
-				Link:           "http://www.tugberkugurlu.com/archive/upcoming-conferences-that-i-am-speaking-at",
+				Link:           "https://www.tugberkugurlu.com/archive/upcoming-conferences-that-i-am-speaking-at",
 				IconCSSClasses: "rss",
 			},
 			{
 				Name:           "Recap Article",
-				Link:           "http://www.tugberkugurlu.com/archive/progressive--net-tutorials-2015-and-recording-videos-of-my-asp-net-5-talks",
+				Link:           "https://www.tugberkugurlu.com/archive/progressive--net-tutorials-2015-and-recording-videos-of-my-asp-net-5-talks",
 				IconCSSClasses: "rss",
 			},
 		},
