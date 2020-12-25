@@ -161,6 +161,12 @@ func main() {
 					log.Fatal(yamlErr)
 				}
 
+				if postMetadata.Format == "md" {
+					body = blackfriday.Run(body, blackfriday.WithRenderer(blackfriday.NewHTMLRenderer(blackfriday.HTMLRendererParameters{
+						Flags: blackfriday.TOC,
+					})))
+				}
+
 				var images []string
 				if document, htmlParseErr := html.Parse(bytes.NewReader(body)); htmlParseErr == nil {
 					var crawler func(*html.Node)
@@ -188,12 +194,6 @@ func main() {
 				publishedOn, parseErr := time.Parse(layout, postMetadata.CreatedOn)
 				if parseErr != nil {
 					log.Fatal(parseErr)
-				}
-
-				if postMetadata.Format == "md" {
-					body = blackfriday.Run(body, blackfriday.WithRenderer(blackfriday.NewHTMLRenderer(blackfriday.HTMLRendererParameters{
-						Flags: blackfriday.TOC,
-					})))
 				}
 
 				post := &Post{
