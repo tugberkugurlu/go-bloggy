@@ -109,11 +109,117 @@ We need everything we need for the certificate and its validation. Once I execut
 
 ## Wiring It up with Application Load Balancer
 
+I already had created an Application Load Balancer under my account through Terraform, with a [Target Group](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html) wired to my [ECS Service](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html). When you create an ALB, AWS assigns a domain name for you so that you can access the ALB publicly. HTTPS is enabled on this domain name, but it's highly likely that you want to hide this away by allowing access to your site through your own domain. When that's the case, the HTTPS certificate will stop working properly since the the ALB server could not prove that it is the domain that's being accessed through.
+
+Therefore, we need a way to wire up our own certificate issued to our own domain with the ALB resource. AWS makes this super easy when the certificate is issued through ACM. What you need to do is to attach a listener to your load balancer through [`aws_lb_listener`](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener) Terraform resource to listen on port `443`. Then, you can also attach the SSL certificate we have on ACM. Here is how my configuration looks like:
+
+```
+resource "aws_lb_listener" "tugberkugurlu_com_https_forward" {
+  load_balancer_arn = aws_lb.tugberkugurlu_com.arn
+  port              = 443
+  protocol          = "HTTPS"
+  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  certificate_arn   = aws_acm_certificate.tugberkugurlu_com.arn
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.tugberkugurlu_com.arn
+  }
+}
+```
+
+It's pretty self explanatory, but there a few things that are worth touching on:
+
+  - `load_balancer_arn`: This points to the ALB resource ARN ([Amazon Resource Name](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)) which I had previously created through [`aws_lb` resource](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb).
+  - `ssl_policy`: You can see the [Security Policies section of the ALB documentation](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies), which gives more information about this. To be frankly honest here, I didn't fully understand the full extend of this configuration, and just used what's recommended for compatibility.
+  - `certificate_arn`: This points to the ACM certificate ARN which we have created previously with one of the steps above.
+  - `default_action`: Default action for the listener. In my case here, I want it to direct traffic to resources I configure within the target group. I'm intentionally skipping how that is defined and works in this post as it would certainly be in the size of its own post. It's also worth noting that the action type here doesn't have to be `forward`, it can be any of the allowed [rule action types](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html#rule-action-types). One other thing that I want to mention is that target protocol doesn't have to be the same as the listener protocol. Therefore, you can you use ALB for SSL termination here by configuring your HTTP endpoints within the target group with `HTTP` protocol.
+
+Once I applied this, I had the `HTTPS` working for `tugberkugurlu.com` 🎉
+
+```
+➜ curl -v https://www.tugberkugurlu.com
+* Rebuilt URL to: https://www.tugberkugurlu.com/
+*   Trying 3.139.131.63...
+* TCP_NODELAY set
+* Connected to www.tugberkugurlu.com (3.139.131.63) port 443 (#0)
+* ALPN, offering h2
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/cert.pem
+  CApath: none
+* TLSv1.2 (OUT), TLS handshake, Client hello (1):
+* TLSv1.2 (IN), TLS handshake, Server hello (2):
+* TLSv1.2 (IN), TLS handshake, Certificate (11):
+* TLSv1.2 (IN), TLS handshake, Server key exchange (12):
+* TLSv1.2 (IN), TLS handshake, Server finished (14):
+* TLSv1.2 (OUT), TLS handshake, Client key exchange (16):
+* TLSv1.2 (OUT), TLS change cipher, Client hello (1):
+* TLSv1.2 (OUT), TLS handshake, Finished (20):
+* TLSv1.2 (IN), TLS change cipher, Client hello (1):
+* TLSv1.2 (IN), TLS handshake, Finished (20):
+* SSL connection using TLSv1.2 / ECDHE-RSA-AES128-GCM-SHA256
+* ALPN, server accepted to use h2
+* Server certificate:
+*  subject: CN=tugberkugurlu.com
+*  start date: Dec 16 00:00:00 2020 GMT
+*  expire date: Jan 14 23:59:59 2022 GMT
+*  subjectAltName: host "www.tugberkugurlu.com" matched cert's "*.tugberkugurlu.com"
+*  issuer: C=US; O=Amazon; OU=Server CA 1B; CN=Amazon
+*  SSL certificate verify ok.
+...
+...
+```
+
+> ⚠️ Don't forget to allow ingress traffic for TCP port `443` through your security group for the ALB 
+> once you add the HTTPS listener. Otherwise, the requests won't hit your ALB listener:
+> 
+> <pre>
+> <code>resource "aws_security_group" "tugberkugurlu_com_lb" {
+>   name        = "lb-sg"
+>   description = "controls access to the Application Load Balancer (ALB)"
+> 
+>   # ...
+> 
+>   ingress {
+>     protocol    = "tcp"
+>     from_port   = 443
+>     to_port     = 443
+>     cidr_blocks = ["0.0.0.0/0"]
+>   }
+> 
+>   # ...
+> }</code>
+> </pre>
+
 ### Redirecting HTTP Traffic Through an ALB Rule
+
+```
+resource "aws_lb_listener" "tugberkugurlu_com_https_redirect" {
+  load_balancer_arn = aws_lb.tugberkugurlu_com.arn
+  port              = 80
+  protocol          = "HTTP"
+
+  default_action {
+    type = "redirect"
+
+    redirect {
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+    }
+  }
+}
+```
 
 ## Resources
 
  - [ACM FAQ](https://aws.amazon.com/certificate-manager/faqs)
  - [ACM Certificate Characteristics](https://docs.aws.amazon.com/acm/latest/userguide/acm-certificate.html)
- - [AWS ACM RequestCertificate API Reference](https://docs.aws.amazon.com/acm/latest/APIReference/API_RequestCertificate.html)
+ - [Requesting a Public Certificate](https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-public.html)
+ - [Using DNS to Validate Domain Ownership](https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-validate-dns.html)
  - [Managed Renewal for ACM Certificates](https://docs.aws.amazon.com/acm/latest/userguide/managed-renewal.html)
+ - [AWS ACM RequestCertificate API Reference](https://docs.aws.amazon.com/acm/latest/APIReference/API_RequestCertificate.html)
+ - [Terraform: AWS ACM Certificates for Multiple Domains](https://manicminer.io/posts/terraform-aws-acm-certificates-for-multiple-domains/)
+ - [Getting a Free SSL Certificate on AWS a How-To Guide](https://hackernoon.com/getting-a-free-ssl-certificate-on-aws-a-how-to-guide-6ef29e576d22)
