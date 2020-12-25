@@ -19,6 +19,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/gosimple/slug"
 	"github.com/pkg/errors"
+	"github.com/russross/blackfriday/v2"
 	"github.com/spf13/viper"
 	"golang.org/x/net/html"
 	"gopkg.in/yaml.v2"
@@ -61,6 +62,7 @@ type PostMetadata struct {
 	ID        string   `yaml:"id"`
 	Title     string   `yaml:"title"`
 	Abstract  string   `yaml:"abstract"`
+	Format    string   `yaml:"format"`
 	CreatedOn string   `yaml:"created_at"`
 	Tags      []string `yaml:"tags"`
 	Slugs     []string `yaml:"slugs"`
@@ -157,6 +159,12 @@ func main() {
 				yamlErr := yaml.Unmarshal(metadata, &postMetadata)
 				if yamlErr != nil {
 					log.Fatal(yamlErr)
+				}
+
+				if postMetadata.Format == "md" {
+					body = blackfriday.Run(body, blackfriday.WithRenderer(blackfriday.NewHTMLRenderer(blackfriday.HTMLRendererParameters{
+						Flags: blackfriday.TOC,
+					})))
 				}
 
 				var images []string
