@@ -409,7 +409,7 @@ func rssHandler(w http.ResponseWriter, r *http.Request) {
 	author := &feeds.Author{Name: "Tugberk Ugurlu"}
 	feed := &feeds.Feed{
 		Title:       "Tugberk Ugurlu @ the Heart of Software",
-		Link:        &feeds.Link{Href: "http://tugberkugurlu.com"},
+		Link:        &feeds.Link{Href: "https://www.tugberkugurlu.com"},
 		Description: "Software Engineer and Tech Product enthusiast Tugberk Ugurlu's home on the interwebs! Here, you can find out about Tugberk's conference talks, books and blog posts on software development techniques and practices",
 		Author:      author,
 	}
