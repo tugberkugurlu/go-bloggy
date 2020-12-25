@@ -27,11 +27,11 @@ Import<span style="color: gray;">-</span>Module DistributedCacheAdministration</
 <pre>Get<span style="color: gray;">-</span>Command <span style="color: gray;">-</span>Module DistributedCacheAdministration</pre>
 </div>
 </div>
-<p><a href="http://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/wlw/Windows-Server-AppFabric-Caching-PowerSh_975D/image.png"><img style="background-image: none; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" title="image" border="0" alt="image" src="http://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/wlw/Windows-Server-AppFabric-Caching-PowerSh_975D/image_thumb.png" width="644" height="413" /></a></p>
+<p><a href="https://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/wlw/Windows-Server-AppFabric-Caching-PowerSh_975D/image.png"><img style="background-image: none; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" title="image" border="0" alt="image" src="https://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/wlw/Windows-Server-AppFabric-Caching-PowerSh_975D/image_thumb.png" width="644" height="413" /></a></p>
 <p><strong>Use-CacheCluster</strong> command sets the context of your PowerShell session to a particular cache cluster. <span style="text-decoration: underline;"><strong>Note that you must run this command before using any other Cache Administration commands in PowerShell</strong></span>.</p>
 <p><strong>Get-CacheHost</strong> command lists all cache host services that are members of the cache cluster.</p>
 <p>Your cache host is running as a windows service and you can retrieve the status of your caching host with Get-CacheHost command. It will output a result which is similar to following:</p>
-<p><a href="http://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/wlw/Windows-Server-AppFabric-Caching-PowerSh_975D/image_3.png"><img style="background-image: none; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" title="image" border="0" alt="image" src="http://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/wlw/Windows-Server-AppFabric-Caching-PowerSh_975D/image_thumb_3.png" width="644" height="413" /></a></p>
+<p><a href="https://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/wlw/Windows-Server-AppFabric-Caching-PowerSh_975D/image_3.png"><img style="background-image: none; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" title="image" border="0" alt="image" src="https://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/wlw/Windows-Server-AppFabric-Caching-PowerSh_975D/image_thumb_3.png" width="644" height="413" /></a></p>
 <p>My service is up and running but if the status indicates that the service is down, you can start it with the following command:</p>
 <div class="code-wrapper border-shadow-1">
 <div style="background-color: white; color: black;">
@@ -39,7 +39,7 @@ Import<span style="color: gray;">-</span>Module DistributedCacheAdministration</
 </div>
 </div>
 <p>You should be able to see your service running after this:</p>
-<p><a href="http://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/wlw/Windows-Server-AppFabric-Caching-PowerSh_975D/image_4.png"><img style="background-image: none; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" title="image" border="0" alt="image" src="http://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/wlw/Windows-Server-AppFabric-Caching-PowerSh_975D/image_thumb_4.png" width="644" height="413" /></a></p>
+<p><a href="https://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/wlw/Windows-Server-AppFabric-Caching-PowerSh_975D/image_4.png"><img style="background-image: none; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" title="image" border="0" alt="image" src="https://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/wlw/Windows-Server-AppFabric-Caching-PowerSh_975D/image_thumb_4.png" width="644" height="413" /></a></p>
 <p><strong>Get-CacheClusterInfo</strong> command from configuration module returns the cache cluster information, including details on its initialization status and its size. The following one line of code shows a sample usage.</p>
 <div class="code-wrapper border-shadow-1">
 <div style="background-color: white; color: black;">

@@ -11,7 +11,7 @@ slugs:
 - autofac-open-generics-feature-to-register-generic-services
 ---
 
-<p>This is going to be a quick and dirty blog post but hopefully, will take this giant stupidity out of me. <a href="http://code.google.com/p/autofac/">Autofac</a>, an awesome <a href="http://martinfowler.com/articles/injection.html">IoC container</a> for .NET platform, has an out of the box <a href="http://code.google.com/p/autofac/wiki/OpenGenerics">generic service registration feature</a> and I assume nearly all IoC containers have this today which makes me feel stupid because I have been knowing this for only a month or so <img src="http://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/Autofac-Open-Generics_AE48/wlEmoticon-smile.png" alt="Smile" style="border-style: none;" class="wlEmoticon wlEmoticon-smile" /> I was doing something like below before.</p>
+<p>This is going to be a quick and dirty blog post but hopefully, will take this giant stupidity out of me. <a href="http://code.google.com/p/autofac/">Autofac</a>, an awesome <a href="http://martinfowler.com/articles/injection.html">IoC container</a> for .NET platform, has an out of the box <a href="http://code.google.com/p/autofac/wiki/OpenGenerics">generic service registration feature</a> and I assume nearly all IoC containers have this today which makes me feel stupid because I have been knowing this for only a month or so <img src="https://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/Autofac-Open-Generics_AE48/wlEmoticon-smile.png" alt="Smile" style="border-style: none;" class="wlEmoticon wlEmoticon-smile" /> I was doing something like below before.</p>
 <div class="code-wrapper border-shadow-1">
 <div style="color: black; background-color: white;">
 <pre><span style="color: blue;">private</span> <span style="color: blue;">static</span> <span style="color: blue;">void</span> RegisterRepositories(ContainerBuilder builder) {
@@ -51,4 +51,4 @@ slugs:
 <blockquote>
 <p>Autofac respects generic type constraints. If a constraint on the implementation type makes it unable to provide a service the implementation type will be ignored.</p>
 </blockquote>
-<p>If you didn't know this feature before, you do know it now <img src="http://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/Autofac-Open-Generics_AE48/wlEmoticon-smile.png" alt="Smile" style="border-style: none;" class="wlEmoticon wlEmoticon-smile" /> Enjoy it!</p>
+<p>If you didn't know this feature before, you do know it now <img src="https://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/Autofac-Open-Generics_AE48/wlEmoticon-smile.png" alt="Smile" style="border-style: none;" class="wlEmoticon wlEmoticon-smile" /> Enjoy it!</p>

@@ -12,7 +12,7 @@ slugs:
 - asp-net-web-api-custom-routedatamapping-mediatypemapping
 ---
 
-<p>I have talked about on <a target="_blank" href="http://www.tugberkugurlu.com/archive/asp-net-web-api-mediatypeformatters-with-mediatypemappings" title="http://www.tugberkugurlu.com/archive/asp-net-web-api-mediatypeformatters-with-mediatypemappings">ASP.NET Web API Content-Negotiation algorithm and MediaTypeMapping</a> on my previous post. As I said there, creating one custom MediaTypeMapping is fairly simple.</p>
+<p>I have talked about on <a target="_blank" href="https://www.tugberkugurlu.com/archive/asp-net-web-api-mediatypeformatters-with-mediatypemappings" title="https://www.tugberkugurlu.com/archive/asp-net-web-api-mediatypeformatters-with-mediatypemappings">ASP.NET Web API Content-Negotiation algorithm and MediaTypeMapping</a> on my previous post. As I said there, creating one custom MediaTypeMapping is fairly simple.</p>
 <p>In this post, we will create RouteDataMapping. This custom MediaTypeMapping will allow us to involve the decision-making process about the response format according to RouteData values. Here is the complete implementation:</p>
 <div class="code-wrapper border-shadow-1">
 <div style="background-color: white; color: black;">
@@ -100,4 +100,4 @@ GlobalConfiguration.Configuration.Formatters.XmlFormatter.
 </div>
 </div>
 <p>Now, when you navigate to <strong>/api/cars.json</strong>, you will get the data as <strong>json</strong>. If you navigate to <strong>/api/cars.xml</strong>, you will get the result as <strong>xml</strong> as below.</p>
-<p><a href="http://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/wlw/638163d39ce1_685/routeDataMapping.png"><img height="345" width="644" src="http://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/wlw/638163d39ce1_685/routeDataMapping_thumb.png" alt="routeDataMapping" border="0" title="routeDataMapping" style="background-image: none; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" /></a></p>
+<p><a href="https://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/wlw/638163d39ce1_685/routeDataMapping.png"><img height="345" width="644" src="https://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/wlw/638163d39ce1_685/routeDataMapping_thumb.png" alt="routeDataMapping" border="0" title="routeDataMapping" style="background-image: none; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" /></a></p>

@@ -57,5 +57,5 @@ slugs:
 <p><a href="https://tugberkugurlu.blob.core.windows.net/bloggyimages/8dd27967-5f41-46b3-882c-c1be21d4658c.gif"><img title="3" style="display: inline" alt="3" src="https://tugberkugurlu.blob.core.windows.net/bloggyimages/a4f9e338-947c-4afc-8d69-328c5a05672c.gif" width="640" height="342"></a></p>
 <h3>Resources</h3>
 <ul>
-<li><a href="http://www.tugberkugurlu.com/archive/streaming-with-newnet-httpclient-and-httpcompletionoption-responseheadersread">Streaming with New .NET HttpClient and HttpCompletionOption.ResponseHeadersRead</a></li>
+<li><a href="https://www.tugberkugurlu.com/archive/streaming-with-newnet-httpclient-and-httpcompletionoption-responseheadersread">Streaming with New .NET HttpClient and HttpCompletionOption.ResponseHeadersRead</a></li>
 <li><a href="http://stackoverflow.com/questions/12533533/async-reading-chunked-content-with-httpclient-from-asp-net-webapi">Async reading chunked content with HttpClient from ASP.NET WebApi</a></li></ul>  

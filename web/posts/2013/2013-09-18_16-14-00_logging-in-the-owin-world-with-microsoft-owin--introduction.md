@@ -179,7 +179,7 @@ slugs:
 </div>
 </div>
 <p>When we run our application on Debug mode, we can see that the Output window will show our log data:</p>
-<p><a href="http://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/Logging-and-Microsoft-Owin_D6C1/image.png"><img height="221" width="644" src="http://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/Logging-and-Microsoft-Owin_D6C1/image_thumb.png" alt="image" border="0" style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="image" /></a></p>
+<p><a href="https://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/Logging-and-Microsoft-Owin_D6C1/image.png"><img height="221" width="644" src="https://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/Logging-and-Microsoft-Owin_D6C1/image_thumb.png" alt="image" border="0" style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="image" /></a></p>
 <p>We can take it further and configure different listeners for different switches. The following configuration will enable <a href="http://msdn.microsoft.com/en-us/library/system.diagnostics.textwritertracelistener.aspx">TextWriterTraceListener</a> for LoggingSample.MyCustomMiddleware <a href="http://msdn.microsoft.com/en-us/library/system.diagnostics.sourceswitch.aspx">SourceSwitch</a>:</p>
 <div class="code-wrapper border-shadow-1">
 <div style="color: black; background-color: white;">
@@ -215,6 +215,6 @@ slugs:
 </div>
 </div>
 <p>Now we can see that our middleware&rsquo;s logs will only be written into traces-MyCustomMiddleware.log file:</p>
-<p><a href="http://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/Logging-and-Microsoft-Owin_D6C1/image_3.png"><img height="338" width="644" src="http://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/Logging-and-Microsoft-Owin_D6C1/image_thumb_3.png" alt="image" border="0" style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="image" /></a></p>
+<p><a href="https://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/Logging-and-Microsoft-Owin_D6C1/image_3.png"><img height="338" width="644" src="https://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/Logging-and-Microsoft-Owin_D6C1/image_thumb_3.png" alt="image" border="0" style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="image" /></a></p>
 <p>I think this post should give you a pretty good understanding of how Katana&rsquo;s logging infrastructure has been set up and works under the hood. I plain on writing a few more posts on this logging infrastructure. So, stay tuned. Also, as I get used to the concepts of OWIN, I started to think that this logging infrastructure is more fitting as an OWIN extension (just like the <a href="http://owin.org/extensions/owin-SendFile-Extension-v0.3.0.htm">SendFile extension</a>) rather than being tied to Katana.</p>
 <p>The sample I used here <a href="https://github.com/tugberkugurlu/OwinSamples/tree/master/LoggingSample">also available on GitHub</a> inside my <a href="https://github.com/tugberkugurlu/OwinSamples">OwinSamples</a> repository.</p>

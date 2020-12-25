@@ -15,10 +15,10 @@ slugs:
 
 <p>Today, I was wraping up an asp.net mvc project. Make it prettier&nbsp;and safer. I realised that there is a thing which doesn't quite work with asp.net mvc. CustomErrors !</p>
 <p>I wanted to refill the page, which has one or multiple errors, with a custom error page so I implemented the following code on web.config file;</p>
-<p><img style="border: 1px solid gray;" title="UploadedByAuthors/customErrors-redirectMode-ResponseRewrite-web-config.PNG" alt="UploadedByAuthors/customErrors-redirectMode-ResponseRewrite-web-config.PNG" src="http://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/customErrors-redirectMode-ResponseRewrite-web-config.PNG" /></p>
+<p><img style="border: 1px solid gray;" title="UploadedByAuthors/customErrors-redirectMode-ResponseRewrite-web-config.PNG" alt="UploadedByAuthors/customErrors-redirectMode-ResponseRewrite-web-config.PNG" src="https://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/customErrors-redirectMode-ResponseRewrite-web-config.PNG" /></p>
 <p>&nbsp;</p>
 <p>Then, I hit an error on pupose just in case to see if it works or not and <strong>Boom...</strong> !! It failed ! It gave me the <em>famous ASP.Net yellow screen of death</em>;</p>
-<p><img title="yellow-screen-of-death-asp.net.PNG" alt="yellow-screen-of-death-asp.net.PNG" src="http://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/yellow-screen-of-death-asp.net.PNG" /></p>
+<p><img title="yellow-screen-of-death-asp.net.PNG" alt="yellow-screen-of-death-asp.net.PNG" src="https://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/yellow-screen-of-death-asp.net.PNG" /></p>
 <p>I was a little surprised about that and I wonder why that thing happened. So I made a little research and I opened a thread on <a target="_blank" title="http://forums.asp.net/1146.aspx" href="http://forums.asp.net/1146.aspx">ASP.Net MVC Forums</a>&nbsp;</p>
 <p>I found out that MVC Routes are not compatible&nbsp;with ResponseRewrite. <a target="_blank" title="http://stackoverflow.com/questions/781861/customerrors-does-not-work-when-setting-redirectmoderesponserewrite" href="http://stackoverflow.com/questions/781861/customerrors-does-not-work-when-setting-redirectmoderesponserewrite">A smilar thread</a> was opened on <a target="_blank" title="http://stackoverflow.com" href="http://stackoverflow.com">Stackoverflow.com</a>&nbsp;and the answer is there as appears below;</p>
 <blockquote>

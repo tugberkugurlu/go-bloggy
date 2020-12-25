@@ -16,7 +16,7 @@ slugs:
 ---
 
 <p>Haven&rsquo;t you shot yourself in the foot yet with async/await? If not, you are about to if you are writing a client library for your newly created ASP.NET Web API application with .NET 4.5 using new asynchronous language features.</p>
-<p>I wrote a blog post couple of months ago on the <a href="http://www.tugberkugurlu.com/archive/the-perfect-recipe-to-shoot-yourself-in-the-foot-ending-up-with-a-deadlock-using-the-c-sharp-5-0-asynchronous-language-features">importance of Current SynchronizationContext and the new C# 5.0 asynchronous language Features</a> (aka async/await). I wrote that post just after I watched the <a href="http://channel9.msdn.com/Events/BUILD/BUILD2011/TOOL-829T">The zen of async: Best practices for best performance</a> talk of <a href="http://blogs.msdn.com/b/pfxteam/">Stephen Toub</a> on //Build 2011 and that was one of the best sessions that I was and still am glad to watch. I learnt so many things from that session and some of them was amazingly important.</p>
+<p>I wrote a blog post couple of months ago on the <a href="https://www.tugberkugurlu.com/archive/the-perfect-recipe-to-shoot-yourself-in-the-foot-ending-up-with-a-deadlock-using-the-c-sharp-5-0-asynchronous-language-features">importance of Current SynchronizationContext and the new C# 5.0 asynchronous language Features</a> (aka async/await). I wrote that post just after I watched the <a href="http://channel9.msdn.com/Events/BUILD/BUILD2011/TOOL-829T">The zen of async: Best practices for best performance</a> talk of <a href="http://blogs.msdn.com/b/pfxteam/">Stephen Toub</a> on //Build 2011 and that was one of the best sessions that I was and still am glad to watch. I learnt so many things from that session and some of them was amazingly important.</p>
 <blockquote>
 <p>Filip Ekberg also has a very nice and useful blog post which has an identical title as my previous post on the topic: <a href="http://blog.filipekberg.se/2012/09/20/avoid-shooting-yourself-in-the-foot-with-tasks-and-async/">Avoid shooting yourself in the foot with Tasks and Async</a>.</p>
 </blockquote>
@@ -102,7 +102,7 @@ slugs:
 </div>
 </div>
 <p>When we navigate to /home/CarsAsync, we will get back the result.</p>
-<p><a href="http://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/af4459ecb4fd_9B63/image.png"><img height="388" width="644" src="http://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/af4459ecb4fd_9B63/image_thumb.png" alt="image" border="0" style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" /></a></p>
+<p><a href="https://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/af4459ecb4fd_9B63/image.png"><img height="388" width="644" src="https://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/af4459ecb4fd_9B63/image_thumb.png" alt="image" border="0" style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" /></a></p>
 <p>However, when we navigate to /home/CarsSync to invoke the CarsSync method, we will see that the page will never come back because we just introduced a deadlock due to the reasons we have explained earlier. Let&rsquo;s have a look at the Web Pages sample:</p>
 <div class="code-wrapper border-shadow-1">
 <div style="color: black; background-color: white;">
@@ -155,5 +155,5 @@ slugs:
 </div>
 </div>
 <p>When we now run our Web Pages application, we will see the web site working nicely (same is also applicable for the CarsSync action method of our ASP.NET MVC application).</p>
-<p><a href="http://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/af4459ecb4fd_9B63/image_3.png"><img height="396" width="644" src="http://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/af4459ecb4fd_9B63/image_thumb_3.png" alt="image" border="0" style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" /></a></p>
+<p><a href="https://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/af4459ecb4fd_9B63/image_3.png"><img height="396" width="644" src="https://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/af4459ecb4fd_9B63/image_thumb_3.png" alt="image" border="0" style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" /></a></p>
 <p>If you are going to write a .NET client for your company&rsquo;s big HTTP API using new asynchronous language features, you might want to consider these facts before moving on. Otherwise, your consumers will have hard time understanding what is really going wrong.</p>

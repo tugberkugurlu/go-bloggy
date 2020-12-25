@@ -19,6 +19,6 @@ slugs:
 <li>Umit Ilhan Photographs (Which I find very&nbsp;Narcissist but good though) :&nbsp;<a href="http://www.umitilhan.org/photos.html">http://www.umitilhan.org/photos.html</a></li>
 </ul>
 <p>So, we expect him, at least, write a review here about this little introduction post.</p>
-<div style="margin-top: 20px; padding: 8px; padding-bottom: 12px; border: 1px green dashed;"><span style="font-style: italic;">Also, that would be so nice to see an artcile on umitilhan.org about my website</span>&nbsp;<img src="http://www.tugberkugurlu.com/Content/App_Icons/HTMLEditor.icons/angel.gif" /></div>
+<div style="margin-top: 20px; padding: 8px; padding-bottom: 12px; border: 1px green dashed;"><span style="font-style: italic;">Also, that would be so nice to see an artcile on umitilhan.org about my website</span>&nbsp;<img src="https://www.tugberkugurlu.com/Content/App_Icons/HTMLEditor.icons/angel.gif" /></div>
 <p>&nbsp;</p>
-<div><img src="http://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/35/umit-ilhan-website.PNG" title="http://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/35/umit-ilhan-website.PNG" alt="http://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/35/umit-ilhan-website.PNG" style="width: 400px; border: 2px solid gray;" /></div>
+<div><img src="https://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/35/umit-ilhan-website.PNG" title="https://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/35/umit-ilhan-website.PNG" alt="https://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/35/umit-ilhan-website.PNG" style="width: 400px; border: 2px solid gray;" /></div>

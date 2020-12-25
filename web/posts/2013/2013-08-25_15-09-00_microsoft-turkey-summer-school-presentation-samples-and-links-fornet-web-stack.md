@@ -44,7 +44,7 @@ slugs:
 <li><a href="http://weblogs.asp.net/jgalloway/">Jon Galloway's blog</a></li>
 <li><a href="http://madskristensen.net/">Mads Kristensen's blog</a></li>
 <li><a href="http://www.bradygaster.com/">Brady Gaster's blog</a></li>
-<li><a href="http://www.tugberkugurlu.com/archive/msp-turkey-kickoff-microsoft-web-stack-presentation-slides-samples-and-links">MSP Turkey Kickoff Microsoft Web Stack Presentation Slides, Samples and Links</a></li>
+<li><a href="https://www.tugberkugurlu.com/archive/msp-turkey-kickoff-microsoft-web-stack-presentation-slides-samples-and-links">MSP Turkey Kickoff Microsoft Web Stack Presentation Slides, Samples and Links</a></li>
 <li><a href="http://vimeo.com/68390507">Don&rsquo;t do that, do this! Recommendations from the ASP.NET team by Damian Edwards</a></li>
 </ul>
 <h3>ASP.NET MVC</h3>
@@ -59,15 +59,15 @@ slugs:
 <h3>ASP.NET SignalR</h3>
 <ul>
 <li><a href="http://channel9.msdn.com/Events/TechEd/NorthAmerica/2013/DEV-B302">Microsoft ASP.NET SignalR: The Real-Time Web Made Simple</a> </li>
-<li><a href="http://www.tugberkugurlu.com/archive/signalr-real-time-web-applications-webcast-recording-in-turkish-is-available">SignalR - Real-time Web Applications Webcast Recording (In Turkish) is Available</a></li>
-<li><a href="http://www.tugberkugurlu.com/archive/signalr-and-real-time-web-application-scenarios-webcast-recording-in-turkish-is-available">SignalR and Real-time Web Application Scenarios Webcast Recording (In Turkish) is Available</a></li>
-<li><a href="http://www.tugberkugurlu.com/archive/mapping-asp-net-signalr-connections-to-real-application-users">Mapping ASP.NET SignalR Connections to Real Application Users</a></li>
+<li><a href="https://www.tugberkugurlu.com/archive/signalr-real-time-web-applications-webcast-recording-in-turkish-is-available">SignalR - Real-time Web Applications Webcast Recording (In Turkish) is Available</a></li>
+<li><a href="https://www.tugberkugurlu.com/archive/signalr-and-real-time-web-application-scenarios-webcast-recording-in-turkish-is-available">SignalR and Real-time Web Application Scenarios Webcast Recording (In Turkish) is Available</a></li>
+<li><a href="https://www.tugberkugurlu.com/archive/mapping-asp-net-signalr-connections-to-real-application-users">Mapping ASP.NET SignalR Connections to Real Application Users</a></li>
 <li><a href="https://github.com/bradygaster/SignalR-Samples">Brady Gaster's SignalR Samples</a> </li>
 <li><a href="http://jabbr.net/">JabbR: An IRC application built with SignalR</a> (<a href="https://github.com/davidfowl/JabbR">Source code is also available</a>) </li>
 <li><a href="http://shootr.signalr.net/">ShootR: An awesome game built with SignalR + HTML5 features</a> (<a href="https://github.com/NTaylorMullen/ShootR">Source code is also available</a>) </li>
 <li><a href="https://github.com/SignalR/SignalR/wiki/Performance#maximum-concurrent-requests-per-cpu">IIS Configuration for High Number of Concurrent Requests for SignalR Applications</a></li>
 <li><a href="http://channel9.msdn.com/Events/Build/2013/3-502">Scaling the Real-time Web with ASP.NET SignalR</a></li>
-<li><a href="http://www.tugberkugurlu.com/archive/scaling-out-signalr-with-a-redis-backplane-and-testing-it-with-iis-express">Scaling out SignalR with a Redis Backplane and Testing It with IIS Express</a></li>
+<li><a href="https://www.tugberkugurlu.com/archive/scaling-out-signalr-with-a-redis-backplane-and-testing-it-with-iis-express">Scaling out SignalR with a Redis Backplane and Testing It with IIS Express</a></li>
 <li><a href="https://github.com/SignalR/SignalR/wiki/SignalR-with-Redis-Running-on-a-Windows-Azure-Virtual-Machine">SignalR with Redis Running on a Windows Azure Virtual Machine</a></li>
 <li><a href="http://vimeo.com/68383353">Under the covers with ASP.NET SignalR by David Fowler, Damian Edwards</a></li>
 </ul>
@@ -81,11 +81,11 @@ slugs:
 <li><a href="http://www.amazon.com/gp/product/1430247258/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=1430247258&amp;linkCode=as2&amp;tag=tugsblo0c-20">ASP.NET Web API Book</a> (You can get the alpha version of <a href="http://www.apress.com/9781430247258">Pro ASP.NET Web API book on Apress</a> today) </li>
 <li><a href="http://www.fiddler2.com/fiddler2/">Fiddler</a></li>
 <li><a href="http://www.cloudidentity.com/blog/2013/07/23/securing-a-web-api-with-windows-azure-ad-and-katana/">Securing a Web API with Windows Azure AD and Katana</a></li>
-<li><a href="http://www.tugberkugurlu.com/archive/advanced-asp-net-web-api-webcast-offline-recording-in-turkish-is-available">Advanced ASP.NET Web API Webcast Offline Recording (In Turkish) is Available</a></li>
+<li><a href="https://www.tugberkugurlu.com/archive/advanced-asp-net-web-api-webcast-offline-recording-in-turkish-is-available">Advanced ASP.NET Web API Webcast Offline Recording (In Turkish) is Available</a></li>
 </ul>
 <h3>OWIN and Katana</h3>
 <ul>
-<li><a href="http://www.tugberkugurlu.com/archive/getting-started-with-owin-and-the-katana-stack">Getting Started With OWIN and the Katana Stack</a></li>
+<li><a href="https://www.tugberkugurlu.com/archive/getting-started-with-owin-and-the-katana-stack">Getting Started With OWIN and the Katana Stack</a></li>
 <li><a href="http://vimeo.com/57007898">OWIN - Run your C# for the web anywhere - Louis DeJardin</a></li>
 <li><a href="http://channel9.msdn.com/Shows/Web+Camps+TV/The-Katana-Project-OWIN-for-ASPNET">The Katana Project - OWIN for ASP.NET</a></li>
 <li><a href="http://www.strathweb.com/2013/05/the-future-is-now-owin-and-multi-hosting-asp-net-web-applications/">The future is now &ndash; OWIN and multi-hosting ASP.NET web applications</a></li>

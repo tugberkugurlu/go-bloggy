@@ -105,7 +105,7 @@ slugs:
 </div>
 </div>
 <p>Now, if we send a request to /api/blogposts/tags/asp-net/asp-net-web-api, we would see that our action method parameter is bound.</p>
-<p><a href="http://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/ASP.NET-Web-API-Catch-All-Route-Paramete_FD94/image.png"><img height="154" width="644" src="http://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/ASP.NET-Web-API-Catch-All-Route-Paramete_FD94/image_thumb.png" alt="image" border="0" style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="image" /></a></p>
+<p><a href="https://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/ASP.NET-Web-API-Catch-All-Route-Paramete_FD94/image.png"><img height="154" width="644" src="https://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/ASP.NET-Web-API-Catch-All-Route-Paramete_FD94/image_thumb.png" alt="image" border="0" style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="image" /></a></p>
 <p>So far so good but we might not want to register our HttpParameterBinding rule globally. Instead, we might want to specify it manually when we require it. Well, we can do that as well. We just need to create a ParameterBindingAttribute to get our custom HttpParameterBinding so that it will be used to bind the action method parameter.</p>
 <div class="code-wrapper border-shadow-1">
 <div style="color: black; background-color: white;">
@@ -141,5 +141,5 @@ slugs:
 </div>
 </div>
 <p>When we send a request to /api/blogposts/tags/asp-net/asp-net-web-api, we shouldn&rsquo;t see any difference.</p>
-<p><a href="http://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/ASP.NET-Web-API-Catch-All-Route-Paramete_FD94/image_3.png"><img height="154" width="644" src="http://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/ASP.NET-Web-API-Catch-All-Route-Paramete_FD94/image_thumb_3.png" alt="image" border="0" style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="image" /></a></p>
+<p><a href="https://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/ASP.NET-Web-API-Catch-All-Route-Paramete_FD94/image_3.png"><img height="154" width="644" src="https://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/ASP.NET-Web-API-Catch-All-Route-Paramete_FD94/image_thumb_3.png" alt="image" border="0" style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="image" /></a></p>
 <p>I am still discovering how parameter and model binding works inside the ASP.NET Web API. So, there is a good chance that I did something wrong here :) If you spot it, please let me know :)</p>

@@ -37,9 +37,9 @@ slugs:
 </pre>
 </div>
 </div>
-<p><img src="http://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/azure_certs.PNG" width="852" height="175" alt=".cer and .pfx certificates" /></p>
+<p><img src="https://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/azure_certs.PNG" width="852" height="175" alt=".cer and .pfx certificates" /></p>
 <p>The next step was to deploy this .pfx file to Certificates store of my windows azure hosted service. In order to complate this challange, I went to Windows Azure portal, navigated to my hosted service. Right click on the blue <strong>Certificate </strong>folder (I think it is a folder icon but not sure exactly what it is) and click <strong>Add Certificate</strong>:</p>
-<p><img src="http://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/azure_hosted_service.PNG" width="838" height="209" alt="Azure Hosted Service, Add Certificate" /></p>
+<p><img src="https://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/azure_hosted_service.PNG" width="838" height="209" alt="Azure Hosted Service, Add Certificate" /></p>
 <p>It poped up a dialog box for me to upload that certificate file. I completed the steps and there it was. I had the certificate deployed on my hosted service.</p>
 <p>Finally, I was done setting things up and I can jump right to my application. Wait, I wasn't done yet complately! I had to set things up at the application level so that I could hook it up to that certificate I had just uploded.</p>
 <p>At that stage, first thing I did was to grab the thumbprint of the certificate. I ran the following PowerShell command to grab the thumbprint of the certificate:</p>
@@ -90,11 +90,11 @@ slugs:
 <blockquote>
 <p><em>HTTP Status Code: 400. Error Message: Certificate with thumbprint AAD5DDD0CA9B4D3CFEF1652130142020770B8BDF associated with HTTPS input endpoint HttpsIn does not contain private key</em></p>
 </blockquote>
-<p><img src="http://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/windows_azure_vs_deployment_error.PNG" width="743" height="316" alt="Windows Azure Visual Studio Deployment Error" /></p>
+<p><img src="https://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/windows_azure_vs_deployment_error.PNG" width="743" height="316" alt="Windows Azure Visual Studio Deployment Error" /></p>
 <p>After a couple of searched on the internet, I ended up checking the private key of my certificate and here is the result:</p>
-<p><img src="http://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/ps_cert_hasprivatekey.PNG" width="681" height="398" alt="$cert.HasPrivateKey" /></p>
+<p><img src="https://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/ps_cert_hasprivatekey.PNG" width="681" height="398" alt="$cert.HasPrivateKey" /></p>
 <p>That looked awkward and might be the problem. Then I grabed the certificate from the certificate store and check the private key. That was the evidence that it was the problem:</p>
-<p><img src="http://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/ps_cert_hasprivatekey_2.PNG" width="743" height="314" alt="$cert.HasPrivateKey" /></p>
+<p><img src="https://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/ps_cert_hasprivatekey_2.PNG" width="743" height="314" alt="$cert.HasPrivateKey" /></p>
 <p>At that point, I created the .pfx file from the certificate in my certificate store with following code:</p>
 <div class="code-wrapper border-shadow-1">
 <div style="background-color: white; color: black;">
@@ -106,7 +106,7 @@ slugs:
 </div>
 <p>At last, I deleted the certificate which was under my hosted service and reuploaded the new one I had just created.</p>
 <p>Lastly, I ran the publish process again without changing anything inside my code, configuration or service definition files and I suceedded!</p>
-<p><img src="http://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/windows_azure_vs_deployment.PNG" width="743" height="318" alt="Windows Azure Visual Studio Deployment" /></p>
+<p><img src="https://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/windows_azure_vs_deployment.PNG" width="743" height="318" alt="Windows Azure Visual Studio Deployment" /></p>
 <p>Here is the SSL enabled application running in the cloud:</p>
-<p><img src="http://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/azure_ssl_app.PNG" width="686" height="429" alt="Windows Azure SSL Enable Application" /></p>
+<p><img src="https://www.tugberkugurlu.com/Content/Images/UploadedByAuthors/azure_ssl_app.PNG" width="686" height="429" alt="Windows Azure SSL Enable Application" /></p>
 <p>Please comment if you have the same problem as me so that I won't feel lonely in this small World:)</p>
