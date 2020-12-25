@@ -443,7 +443,7 @@ func rssHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func generatePostURL(post *Post) string {
-	postLink := fmt.Sprintf("http://tugberkugurlu.com/archive/%s", post.Metadata.Slugs[0])
+	postLink := fmt.Sprintf("https://www.tugberkugurlu.com/archive/%s", post.Metadata.Slugs[0])
 	return postLink
 }
 
