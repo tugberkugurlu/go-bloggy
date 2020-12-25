@@ -18,10 +18,10 @@ slugs:
 
 <blockquote>
 <h3>IMPORTANT NOTE:</h3>
-I have a new blog post about Generic Repository implementation for Entity Framework. Please check it out instead of this one: <a href="http://www.tugberkugurlu.com/archive/clean-better-and-sexier-generic-repository-implementation-for-entity-framework">Clean, Better, and Sexier Generic Repository Implementation for Entity Framework </a></blockquote>
+I have a new blog post about Generic Repository implementation for Entity Framework. Please check it out instead of this one: <a href="https://www.tugberkugurlu.com/archive/clean-better-and-sexier-generic-repository-implementation-for-entity-framework">Clean, Better, and Sexier Generic Repository Implementation for Entity Framework </a></blockquote>
 <blockquote>
 <p><strong>NOTE:</strong></p>
-<p>Entity Framework DbContext Generic Repository Implementation Is Now On Nuget and GitHub:&nbsp;<a href="http://www.tugberkugurlu.com/archive/entity-framework-dbcontext-generic-repository-implementation-is-now-on-nuget-and-github" target="_blank">http://www.tugberkugurlu.com/archive/entity-framework-dbcontext-generic-repository-implementation-is-now-on-nuget-and-github</a><strong><br /></strong></p>
+<p>Entity Framework DbContext Generic Repository Implementation Is Now On Nuget and GitHub:&nbsp;<a href="https://www.tugberkugurlu.com/archive/entity-framework-dbcontext-generic-repository-implementation-is-now-on-nuget-and-github" target="_blank">https://www.tugberkugurlu.com/archive/entity-framework-dbcontext-generic-repository-implementation-is-now-on-nuget-and-github</a><strong><br /></strong></p>
 </blockquote>
 <p><strong>DRY</strong>: <a target="_blank" href="http://en.wikipedia.org/wiki/Don't_repeat_yourself" title="http://en.wikipedia.org/wiki/Don't_repeat_yourself">Don&rsquo;t repeat yourself</a> which is a <strong>principle</strong> of software development aimed at reducing repetition of information of all kinds, especially useful in multi-tier architectures. That&rsquo;s what <a target="_blank" href="http://en.wikipedia.org" title="http://en.wikipedia.org">Wikipedia</a> says. In my words, if you are writing the same code twice, follow these steps:</p>
 <ul>
@@ -222,4 +222,4 @@ I have a new blog post about Generic Repository implementation for Entity Framew
 <p>So, how the things work inside our <a target="_blank" href="http://asp.net/mvc" title="http://asp.net/mvc">ASP.NET MVC</a> project? this is another story but no so complicated. I will continue right from here on my next post.</p>
 <p><strong>UPDATE:</strong></p>
 <p>Here is the next post:</p>
-<p><a href="http://www.tugberkugurlu.com/archive/how-to-work-with-generic-repositories-on-asp-net-mvc-and-unit-testing-them-by-mocking" title="http://www.tugberkugurlu.com/archive/how-to-work-with-generic-repositories-on-asp-net-mvc-and-unit-testing-them-by-mocking" target="_blank">How to Work With Generic Repositories on ASP.NET MVC and Unit Testing Them By Mocking</a></p>
+<p><a href="https://www.tugberkugurlu.com/archive/how-to-work-with-generic-repositories-on-asp-net-mvc-and-unit-testing-them-by-mocking" title="https://www.tugberkugurlu.com/archive/how-to-work-with-generic-repositories-on-asp-net-mvc-and-unit-testing-them-by-mocking" target="_blank">How to Work With Generic Repositories on ASP.NET MVC and Unit Testing Them By Mocking</a></p>

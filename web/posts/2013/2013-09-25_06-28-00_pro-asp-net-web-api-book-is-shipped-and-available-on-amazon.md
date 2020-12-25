@@ -21,7 +21,7 @@ slugs:
 <ul>
 <li><a href="http://amzn.to/prowebapi">Pro ASP.NET Web API on Amazon</a> </li>
 <li><a href="http://www.apress.com/9781430247258">Pro ASP.NET Web API on Apress.com</a> </li>
-<li><a href="http://www.tugberkugurlu.com/archive/pro-asp-net-web-api-book-is-available-through-apress-alpha-program">Pro ASP.NET Web API Book is Available Through Apress Alpha Program</a> </li>
-<li><a href="http://www.tugberkugurlu.com/archive/pro-asp-net-web-api-book-is-available-on-amazon-for-pre-order">Pro ASP.NET Web API Book is Available on Amazon for Pre-order</a> </li>
-<li><a href="http://www.tugberkugurlu.com/archive/pro-asp-net-web-api-s-sample-project-pingyourpackage-source-code-is-up-on-github">Pro ASP.NET Web API's Sample Project (PingYourPackage) Source Code is Up on GitHub</a></li>
+<li><a href="https://www.tugberkugurlu.com/archive/pro-asp-net-web-api-book-is-available-through-apress-alpha-program">Pro ASP.NET Web API Book is Available Through Apress Alpha Program</a> </li>
+<li><a href="https://www.tugberkugurlu.com/archive/pro-asp-net-web-api-book-is-available-on-amazon-for-pre-order">Pro ASP.NET Web API Book is Available on Amazon for Pre-order</a> </li>
+<li><a href="https://www.tugberkugurlu.com/archive/pro-asp-net-web-api-s-sample-project-pingyourpackage-source-code-is-up-on-github">Pro ASP.NET Web API's Sample Project (PingYourPackage) Source Code is Up on GitHub</a></li>
 </ul>

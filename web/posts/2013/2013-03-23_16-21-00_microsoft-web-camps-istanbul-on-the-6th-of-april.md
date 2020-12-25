@@ -15,7 +15,7 @@ slugs:
 - microsoft-web-camps-istanbul-on-the-6th-of-april
 ---
 
-<p><a href="http://aka.ms/gotowebcamp"><img height="211" width="644" src="http://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/Web-Camps_118E2/WebCamps-Spring-2013.png" alt="WebCamps-Spring-2013" border="0" style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="WebCamps-Spring-2013" /></a></p>
+<p><a href="http://aka.ms/gotowebcamp"><img height="211" width="644" src="https://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/Web-Camps_118E2/WebCamps-Spring-2013.png" alt="WebCamps-Spring-2013" border="0" style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="WebCamps-Spring-2013" /></a></p>
 <p>This is an awesome news that I am proud of to write about. I think it all started out with <a href="https://twitter.com/tourismgeek/status/294364180318928896">my reply to Brady Gaster on twitter</a>:</p>
 <blockquote class="twitter-tweet">
 <p>@<a href="https://twitter.com/bradygaster">bradygaster</a> I would like to see a blog post from you titled as "Kicking off Web Camps Turkey".</p>
@@ -29,4 +29,4 @@ slugs:
 </ul>
 <p>There are finite number of seats available. So, register ASAP to participate this great event from the following link:</p>
 <p><a href="https://msevents.microsoft.com/CUI/EventDetail.aspx?EventID=1032548038&amp;Culture=TR-TR&amp;community=0" title="https://msevents.microsoft.com/CUI/EventDetail.aspx?EventID=1032548038&amp;Culture=TR-TR&amp;community=0">https://msevents.microsoft.com/CUI/EventDetail.aspx?EventID=1032548038&amp;Culture=TR-TR&amp;community=0</a></p>
-<p>See you at Web Camps <img src="http://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/Web-Camps_118E2/wlEmoticon-smile.png" alt="Smile" style="border-style: none;" class="wlEmoticon wlEmoticon-smile" /></p>
+<p>See you at Web Camps <img src="https://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/Web-Camps_118E2/wlEmoticon-smile.png" alt="Smile" style="border-style: none;" class="wlEmoticon wlEmoticon-smile" /></p>

@@ -16,7 +16,7 @@ slugs:
 - clean-better-and-sexier-generic-repository-implementation-for-entity-framework
 ---
 
-<p>I have written a few blog posts about my experience <a href="http://www.tugberkugurlu.com/archive/generic-repository-pattern-entity-framework-asp-net-mvc-and-unit-testing-triangle">on applying the Generic Repository pattern to Entity Framework</a> and I even made a <a href="http://nuget.org/packages/GenericRepository.EF">NuGet package for my na&iuml;ve implementation</a>. Even if that looked OK at the time for me, I had troubles about my implementation for couple of reasons:</p>
+<p>I have written a few blog posts about my experience <a href="https://www.tugberkugurlu.com/archive/generic-repository-pattern-entity-framework-asp-net-mvc-and-unit-testing-triangle">on applying the Generic Repository pattern to Entity Framework</a> and I even made a <a href="http://nuget.org/packages/GenericRepository.EF">NuGet package for my na&iuml;ve implementation</a>. Even if that looked OK at the time for me, I had troubles about my implementation for couple of reasons:</p>
 <ul>
 <li>The implementations inside the NuGet package didn&rsquo;t allow the developer to share the DbContext instance between repositories (per-request for example). </li>
 <li>When the generic repository methods weren&rsquo;t enough, I was creating new repository interfaces and classes based on the generic ones. This was the biggest failure for me and didn&rsquo;t scale very well as you can imagine. </li>
@@ -94,7 +94,7 @@ slugs:
 </div>
 </div>
 <h3>Out of the Box Pagination Support</h3>
-<p>Best feature with this release is out of the box pagination support with generic repository instances. It doesn&rsquo;t perform the pagination in-memory; it queries the database accordingly and gets only the parts which are needed which is the whole point <img class="wlEmoticon wlEmoticon-smile" style="border-style: none;" alt="Smile" src="http://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/8007d0fd3e72_107A4/wlEmoticon-smile.png" /> Here is an ASP.NET Web API controller which uses the pagination support comes with the EntityRepository:</p>
+<p>Best feature with this release is out of the box pagination support with generic repository instances. It doesn&rsquo;t perform the pagination in-memory; it queries the database accordingly and gets only the parts which are needed which is the whole point <img class="wlEmoticon wlEmoticon-smile" style="border-style: none;" alt="Smile" src="https://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/8007d0fd3e72_107A4/wlEmoticon-smile.png" /> Here is an ASP.NET Web API controller which uses the pagination support comes with the EntityRepository:</p>
 <div class="code-wrapper border-shadow-1">
 <div style="color: black; background-color: white;">
 <pre><span style="color: blue;">public</span> <span style="color: blue;">class</span> CountriesController : ApiController {
@@ -176,7 +176,7 @@ slugs:
 }</pre>
 </div>
 </div>
-<p>Isn&rsquo;t this perfect <img class="wlEmoticon wlEmoticon-smile" style="border-style: none;" alt="Smile" src="http://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/8007d0fd3e72_107A4/wlEmoticon-smile.png" /> There are other pagination method inside the EntityRepository implementation which supports <a href="http://msdn.microsoft.com/en-us/library/gg671236%28v=vs.103%29.aspx">including child or parent entities</a> and sorting. You also have the <a href="https://github.com/tugberkugurlu/GenericRepository/blob/master/src/GenericRepository/QueryableExtensions.cs">ToPaginatedList</a> extension method and you can build your query and call ToPaginatedList on that query to get PaginatedList&lt;TEntity&gt; object back.</p>
+<p>Isn&rsquo;t this perfect <img class="wlEmoticon wlEmoticon-smile" style="border-style: none;" alt="Smile" src="https://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/8007d0fd3e72_107A4/wlEmoticon-smile.png" /> There are other pagination method inside the EntityRepository implementation which supports <a href="http://msdn.microsoft.com/en-us/library/gg671236%28v=vs.103%29.aspx">including child or parent entities</a> and sorting. You also have the <a href="https://github.com/tugberkugurlu/GenericRepository/blob/master/src/GenericRepository/QueryableExtensions.cs">ToPaginatedList</a> extension method and you can build your query and call ToPaginatedList on that query to get PaginatedList&lt;TEntity&gt; object back.</p>
 <h3>Extending the IEntityRepository&lt;TEntity&gt;</h3>
 <p>In my previous blog posts, I kind of sucked at extending the generic repository. So, I wanted to show here the better approach that I have been taking for a while now. This is not a feature of my generic repository, this is the feature of .NET itself: extension methods! If you need extra methods for your specific repository, you can always extend the IEntityRepository&lt;TEntity, TId&gt; which gives you a better way to extend your repositories. Here is an example:</p>
 <div class="code-wrapper border-shadow-1">
@@ -193,4 +193,4 @@ slugs:
 </div>
 <h3>What is Next?</h3>
 <p>My first intention is finish writing all the tests for the whole project, fix bugs and inconsistencies for the v0.3.0 release. After that release, I will work on EF6 version for my generic repository implementation which will have sweet asynchronous support. I also plan to release a generic repository implementation for MongoDB.</p>
-<p>Stay tuned, <a href="http://nuget.org/packages/GenericRepository.EntityFramework">install the package</a>, play with it and <a href="https://github.com/tugberkugurlu/GenericRepository/issues">give feedback</a>&nbsp;<img class="wlEmoticon wlEmoticon-winkingsmile" style="border-style: none;" alt="Winking smile" src="http://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/8007d0fd3e72_107A4/wlEmoticon-winkingsmile.png" /></p>
+<p>Stay tuned, <a href="http://nuget.org/packages/GenericRepository.EntityFramework">install the package</a>, play with it and <a href="https://github.com/tugberkugurlu/GenericRepository/issues">give feedback</a>&nbsp;<img class="wlEmoticon wlEmoticon-winkingsmile" style="border-style: none;" alt="Winking smile" src="https://www.tugberkugurlu.com/Content/images/Uploadedbyauthors/wlw/8007d0fd3e72_107A4/wlEmoticon-winkingsmile.png" /></p>
