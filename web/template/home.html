@@ -10,6 +10,41 @@
 {{define "content"}}
 <div id="home-posts">
     <h2 class="ui header">
+        {{ .Data.TopCarousel.Title }}
+    </h2>
+    <div class="ui divider"></div>
+    <div class="carousel-outer">
+        <div class="carousel">
+            {{ range $post := .Data.TopCarousel.Posts }}
+                <div class="carousel-item">
+                    <div class="ui fluid card">
+                        <div class="image">
+                            <a class="ui violet ribbon label">{{ $post.Highlight }}</a>
+                            <a href="/archive/{{ (index $post.Metadata.Slugs 0) }}">
+                                <img src="{{ (index $post.Images 0) }}">
+                            </a>
+                        </div>
+                        <div class="content">
+                            <a href="/archive/{{ (index $post.Metadata.Slugs 0) }}" class="header">{{ $post.Metadata.Title }}</a>
+                            <div class="meta">
+                                <span>{{ $post.PublishedOnDisplay }}</span>
+                            </div>
+                            <div class="extra">
+                                {{ range $tag := .Tags }}
+                                    <a class="ui image teal mini label" href="/tags/{{ $tag.Key }}">
+                                        {{ $tag.Value.Name }}
+                                        <div class="detail">{{ $tag.Value.Count }}</div>
+                                    </a>
+                                {{ end }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{ end }}
+        </div>
+    </div>
+
+    <h2 class="ui header">
         Recent posts
     </h2>
     <div class="ui divider"></div>

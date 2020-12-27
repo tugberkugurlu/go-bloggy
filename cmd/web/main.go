@@ -4,8 +4,11 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
+	"github.com/tugberkugurlu/go-bloggy/internal/htmltextextractor"
+	"github.com/tugberkugurlu/go-bloggy/internal/readingtime"
 	"html/template"
 	"log"
+	"math"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -46,6 +49,8 @@ func (c Config) FullAssetsUrl() string {
 
 type Post struct {
 	Body               template.HTML
+	Highlight          string
+	ReadingTime        *time.Duration
 	Images             []string
 	PublishedOn        time.Time
 	Tags               []TagCountPair
@@ -196,12 +201,28 @@ func main() {
 					log.Fatal(parseErr)
 				}
 
+				var readingTime *time.Duration
+				if texts, textExtractErr := htmltextextractor.Extract(body); textExtractErr == nil {
+					rt, rtCalcErr := readingtime.Calculate(texts)
+					if rtCalcErr == nil {
+						readingTime = &rt
+					}
+				}
+
 				post := &Post{
 					Body:               template.HTML(string(body)),
 					Images:             images,
+					ReadingTime:        readingTime,
 					Metadata:           postMetadata,
 					PublishedOn:        publishedOn,
 					PublishedOnDisplay: publishedOn.Format("2006-01-02 15:04:05"),
+
+					Highlight:          func() string {
+						if readingTime == nil {
+							return ""
+						}
+						return fmt.Sprintf("%d minutes read", int(readingTime.Minutes()))
+					}(),
 				}
 				posts = append(posts, post)
 				for _, tag := range postMetadata.Tags {
@@ -336,7 +357,13 @@ type LayoutConfig struct {
 	AssetsUrl                 string
 }
 
+type Carousel struct {
+	Title string
+	Posts []*Post
+}
+
 type Home struct {
+	TopCarousel        Carousel
 	Posts              []*Post
 	SpeakingActivities []*SpeakingActivity
 }
@@ -509,6 +536,22 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 		"../../web/template/shared/post-item.html",
 		"../../web/template/shared/speaking-activity-card.html",
 	}, Home{
+		TopCarousel:        Carousel{
+			Title: "Posts on ASP.NET",
+			Posts: func() []*Post {
+				input := postsByTagSlug["asp-net"]
+				iteration := int(math.Min(float64(20), float64(len(input))))
+				result := make([]*Post, 0, iteration)
+				for i := 0; i < iteration; i++ {
+					p := input[i]
+					if len(p.Images) == 0 {
+						continue
+					}
+					result = append(result, p)
+				}
+				return result
+			}(),
+		},
 		Posts:              posts[:3],
 		SpeakingActivities: speakingActivities[:4],
 	})
