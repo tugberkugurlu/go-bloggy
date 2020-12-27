@@ -54,6 +54,10 @@
     </center>
 </div>
 
+{{ if .Data.RelatedPostsCarousel }}
+    {{ template "carousel" .Data.RelatedPostsCarousel }}
+{{ end }}
+
 <div id="post-holder">
     {{ .Data.Post.Body }}
 </div>
