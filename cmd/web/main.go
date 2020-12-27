@@ -539,6 +539,7 @@ func staticPage(page string) func(w http.ResponseWriter, r *http.Request) {
 func homeHandler(w http.ResponseWriter, r *http.Request) {
 	ExecuteTemplate(w, r, layoutConfig, []string{
 		"../../web/template/home.html",
+		"../../web/template/shared/carousel.html",
 		"../../web/template/shared/post-item.html",
 		"../../web/template/shared/speaking-activity-card.html",
 	}, Home{
