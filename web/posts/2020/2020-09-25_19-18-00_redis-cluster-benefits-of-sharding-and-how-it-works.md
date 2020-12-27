@@ -8,6 +8,7 @@ tags:
 - Databases
 - Distributed Systems
 - Sharding
+- Architecture
 slugs:
 - redis-cluster-benefits-of-sharding-and-how-it-works
 ---

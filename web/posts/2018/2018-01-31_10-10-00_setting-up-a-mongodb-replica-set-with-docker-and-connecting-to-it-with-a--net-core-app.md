@@ -8,9 +8,11 @@ abstract: 'Easily setting up realistic non-production (e.g. dev, test, QA, etc.)
   Set by showing you how to set it up with Docker for non-production environments. '
 created_at: 2018-01-31 10:10:00 +0000 UTC
 tags:
-- ASP.NET Core
-- Docker
 - MongoDB
+- Docker
+- Databases
+- Architecture
+- ASP.NET Core
 slugs:
 - setting-up-a-mongodb-replica-set-with-docker-and-connecting-to-it-with-a--net-core-app
 ---

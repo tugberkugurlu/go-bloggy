@@ -13,6 +13,7 @@ tags:
 - Docker
 - HTTP
 - Security
+- Architecture
 slugs:
 - asp-net-core-authentication-in-a-load-balanced-environment-with-haproxy-and-redis
 - asp-net-core-authentication-in-a-load-balancer-environment-with-haproxy-and-redis
