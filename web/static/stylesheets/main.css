@@ -150,6 +150,57 @@ blockquote {
     padding-top:56.25%;
 }
 
+/* carousel: https://stackoverflow.com/questions/21515042/scrolling-a-flexbox-with-overflowing-content */
+
+.carousel-outer {
+    flex: 1;
+    display: flex;
+    overflow: auto;
+    padding: 0.1rem 0.1rem;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.carousel-outer::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel {
+    display: flex;
+    min-height: min-content;
+}
+
+.carousel > div.carousel-item {
+    margin-left: 10px;
+    padding-left: 1rem;
+}
+
+.carousel > div.carousel-item > .card {
+    width: 200px;
+}
+
+.carousel > div.carousel-item > .card > .image {
+    line-height: 0;
+}
+
+.carousel > div.carousel-item > .card > .image img {
+    height: 100px;
+    width: 200px;
+}
+
+.carousel > div.carousel-item > .card > .content .header {
+    font-size: inherit;
+}
+
+.carousel > div.carousel-item > .card > .content .meta {
+    font-size: 0.7rem;
+    margin-top: 0.3rem;
+}
+
+.carousel > div.carousel-item:first-child {
+    margin-left: 0;
+}
+
 @media (min-width: 768px) {
     .d-md-block {
         display: block!important;

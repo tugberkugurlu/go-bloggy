@@ -8,7 +8,9 @@
         <div class="content">
             <a href="/archive/{{ (index .Metadata.Slugs 0) }}" class="header">{{.Metadata.Title}}</a>
             <div class="meta">
-                <span class="cinema">{{ .PublishedOnDisplay }}</span>
+                <span title="{{ .PublishedOnDisplay }}">{{ .PublishedOnDisplayBrief }}</span>
+                <span class="gt">·</span>
+                <span>{{ .ReadingTimeDisplay }}</span>
             </div>
             <div class="description">
                 <p>{{ .Metadata.Abstract }}</p>

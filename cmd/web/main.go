@@ -21,6 +21,8 @@ import (
 	"github.com/pkg/errors"
 	"github.com/russross/blackfriday/v2"
 	"github.com/spf13/viper"
+	"github.com/tugberkugurlu/go-bloggy/internal/htmltextextractor"
+	"github.com/tugberkugurlu/go-bloggy/internal/readingtime"
 	"golang.org/x/net/html"
 	"gopkg.in/yaml.v2"
 )
@@ -45,12 +47,18 @@ func (c Config) FullAssetsUrl() string {
 }
 
 type Post struct {
-	Body               template.HTML
-	Images             []string
-	PublishedOn        time.Time
-	Tags               []TagCountPair
-	Metadata           PostMetadata
-	PublishedOnDisplay string
+	Body      template.HTML
+	Highlight string
+	Images    []string
+	Tags      []TagCountPair
+	Metadata  PostMetadata
+
+	ReadingTimeDisplay string
+	ReadingTime        *time.Duration
+
+	PublishedOn             time.Time
+	PublishedOnDisplay      string
+	PublishedOnDisplayBrief string
 }
 
 type Tag struct {
@@ -94,9 +102,11 @@ var config Config
 var layoutConfig LayoutConfig
 var tagsList TagCountPairList
 var posts []*Post
+var postsByID map[string]*Post
 var postsBySlug map[string]*Post
 var postsByTagSlug map[string][]*Post
 var tagsBySlug map[string]*Tag
+var carousels []Carousel
 
 func main() {
 	var configErr error
@@ -111,6 +121,7 @@ func main() {
 	}
 
 	tagsBySlug = make(map[string]*Tag)
+	postsByID = make(map[string]*Post)
 	postsBySlug = make(map[string]*Post)
 	postsByTagSlug = make(map[string][]*Post)
 	err := filepath.Walk("../../web/posts", func(path string, f os.FileInfo, err error) error {
@@ -196,12 +207,30 @@ func main() {
 					log.Fatal(parseErr)
 				}
 
+				var readingTime *time.Duration
+				if texts, textExtractErr := htmltextextractor.Extract(body); textExtractErr == nil {
+					rt, rtCalcErr := readingtime.Calculate(texts)
+					if rtCalcErr == nil {
+						readingTime = &rt
+					}
+				}
+
+				readingTimeDisplay := func() string {
+					if readingTime == nil {
+						return ""
+					}
+					return fmt.Sprintf("%d minutes read", int(readingTime.Minutes()))
+				}()
 				post := &Post{
-					Body:               template.HTML(string(body)),
-					Images:             images,
-					Metadata:           postMetadata,
-					PublishedOn:        publishedOn,
-					PublishedOnDisplay: publishedOn.Format("2006-01-02 15:04:05"),
+					Body:                    template.HTML(string(body)),
+					Images:                  images,
+					ReadingTime:             readingTime,
+					ReadingTimeDisplay:      readingTimeDisplay,
+					Highlight:               readingTimeDisplay,
+					Metadata:                postMetadata,
+					PublishedOn:             publishedOn,
+					PublishedOnDisplayBrief: publishedOn.Format("2 January 2006"),
+					PublishedOnDisplay:      publishedOn.Format("2006-01-02 15:04:05"),
 				}
 				posts = append(posts, post)
 				for _, tag := range postMetadata.Tags {
@@ -218,6 +247,7 @@ func main() {
 				for _, slug := range post.Metadata.Slugs {
 					postsBySlug[slug] = post
 				}
+				postsByID[postMetadata.ID] = post
 			}(path)
 		}
 		return nil
@@ -246,6 +276,8 @@ func main() {
 		})
 		post.Tags = tags
 	}
+
+	carousels = GetCarousels(postsByID)
 
 	r := mux.NewRouter()
 	r.Host("tugberkugurlu.com").HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -336,7 +368,13 @@ type LayoutConfig struct {
 	AssetsUrl                 string
 }
 
+type Carousel struct {
+	Title string
+	Posts []*Post
+}
+
 type Home struct {
+	TopCarousel        Carousel
 	Posts              []*Post
 	SpeakingActivities []*SpeakingActivity
 }
@@ -506,9 +544,11 @@ func staticPage(page string) func(w http.ResponseWriter, r *http.Request) {
 func homeHandler(w http.ResponseWriter, r *http.Request) {
 	ExecuteTemplate(w, r, layoutConfig, []string{
 		"../../web/template/home.html",
+		"../../web/template/shared/carousel.html",
 		"../../web/template/shared/post-item.html",
 		"../../web/template/shared/speaking-activity-card.html",
 	}, Home{
+		TopCarousel:        carousels[0],
 		Posts:              posts[:3],
 		SpeakingActivities: speakingActivities[:4],
 	})
