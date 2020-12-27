@@ -4,8 +4,6 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
-	"github.com/tugberkugurlu/go-bloggy/internal/htmltextextractor"
-	"github.com/tugberkugurlu/go-bloggy/internal/readingtime"
 	"html/template"
 	"log"
 	"math"
@@ -24,6 +22,8 @@ import (
 	"github.com/pkg/errors"
 	"github.com/russross/blackfriday/v2"
 	"github.com/spf13/viper"
+	"github.com/tugberkugurlu/go-bloggy/internal/htmltextextractor"
+	"github.com/tugberkugurlu/go-bloggy/internal/readingtime"
 	"golang.org/x/net/html"
 	"gopkg.in/yaml.v2"
 )
@@ -48,14 +48,16 @@ func (c Config) FullAssetsUrl() string {
 }
 
 type Post struct {
-	Body               template.HTML
-	Highlight          string
-	ReadingTime        *time.Duration
-	Images             []string
-	PublishedOn        time.Time
-	Tags               []TagCountPair
-	Metadata           PostMetadata
-	PublishedOnDisplay string
+	Body        template.HTML
+	Highlight   string
+	ReadingTime *time.Duration
+	Images      []string
+	Tags        []TagCountPair
+	Metadata    PostMetadata
+
+	PublishedOn             time.Time
+	PublishedOnDisplay      string
+	PublishedOnDisplayBrief string
 }
 
 type Tag struct {
@@ -210,14 +212,15 @@ func main() {
 				}
 
 				post := &Post{
-					Body:               template.HTML(string(body)),
-					Images:             images,
-					ReadingTime:        readingTime,
-					Metadata:           postMetadata,
-					PublishedOn:        publishedOn,
-					PublishedOnDisplay: publishedOn.Format("2006-01-02 15:04:05"),
+					Body:                    template.HTML(string(body)),
+					Images:                  images,
+					ReadingTime:             readingTime,
+					Metadata:                postMetadata,
+					PublishedOn:             publishedOn,
+					PublishedOnDisplayBrief: publishedOn.Format("2 January 2006"),
+					PublishedOnDisplay:      publishedOn.Format("2006-01-02 15:04:05"),
 
-					Highlight:          func() string {
+					Highlight: func() string {
 						if readingTime == nil {
 							return ""
 						}
@@ -536,7 +539,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 		"../../web/template/shared/post-item.html",
 		"../../web/template/shared/speaking-activity-card.html",
 	}, Home{
-		TopCarousel:        Carousel{
+		TopCarousel: Carousel{
 			Title: "Posts on ASP.NET",
 			Posts: func() []*Post {
 				input := postsByTagSlug["asp-net"]

@@ -27,7 +27,7 @@
                         <div class="content">
                             <a href="/archive/{{ (index $post.Metadata.Slugs 0) }}" class="header">{{ $post.Metadata.Title }}</a>
                             <div class="meta">
-                                <span>{{ $post.PublishedOnDisplay }}</span>
+                                <span>{{ $post.PublishedOnDisplayBrief }}</span>
                             </div>
                             <div class="extra">
                                 {{ range $tag := .Tags }}
