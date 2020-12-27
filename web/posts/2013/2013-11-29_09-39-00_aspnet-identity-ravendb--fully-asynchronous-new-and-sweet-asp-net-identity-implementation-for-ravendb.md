@@ -7,7 +7,7 @@ abstract: 'A while back, ASP.NET team has introduced ASP.NET Identity, a members
   AspNet.Identity.RavenDB.'
 created_at: 2013-11-29 09:39:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - ASP.NET MVC
 - ASP.NET Web API

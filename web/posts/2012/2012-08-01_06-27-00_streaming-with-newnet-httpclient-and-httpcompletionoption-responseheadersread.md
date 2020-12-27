@@ -5,7 +5,7 @@ abstract: How to consume a streaming endpoint with new .NET System.Net.Http.Http
   and the role of HttpCompletionOption.ResponseHeadersRead
 created_at: 2012-08-01 06:27:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.NET Web API
 - C#
 slugs:

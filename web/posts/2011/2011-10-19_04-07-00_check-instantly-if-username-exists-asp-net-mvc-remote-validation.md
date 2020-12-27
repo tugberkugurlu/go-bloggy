@@ -6,7 +6,7 @@ abstract: This blog post will walk you through on implementation and usage of AS
   for membership registration.
 created_at: 2011-10-19 04:07:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - ASP.NET MVC
 - C#

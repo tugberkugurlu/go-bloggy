@@ -7,6 +7,7 @@ tags:
 - Kafka
 - Distributed Systems
 - Messaging
+- Architecture
 slugs:
 - kafka-core-concepts-and-producer-semantics
 ---

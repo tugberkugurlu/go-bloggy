@@ -6,7 +6,7 @@ abstract: As of today, I am starting a new blog post series about ASP.NET vNext.
   which is probably going to be an ultimate guide on ASP.NET vNext.
 created_at: 2014-10-03 11:49:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - ASP.NET MVC
 - ASP.NET vNext

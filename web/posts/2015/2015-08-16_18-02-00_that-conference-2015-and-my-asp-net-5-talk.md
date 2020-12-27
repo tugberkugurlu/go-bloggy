@@ -5,7 +5,7 @@ abstract: This week, I had the privilege to attend That Conference as a speaker 
   give a talk on ASP.NET 5. Here is a quick blog post on my conference experience.
 created_at: 2015-08-16 18:02:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.NET 5
 - DLM
 - Geek Talks

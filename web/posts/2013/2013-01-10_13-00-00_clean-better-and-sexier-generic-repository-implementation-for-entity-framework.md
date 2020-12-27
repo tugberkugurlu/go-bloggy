@@ -6,7 +6,7 @@ abstract: With the new release of the GenericRepository.EntityFramework package,
   Enjoy!
 created_at: 2013-01-10 13:00:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.NET MVC
 - ASP.NET Web API
 - DbContext

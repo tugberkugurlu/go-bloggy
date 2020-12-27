@@ -6,7 +6,7 @@ abstract: Downloading large files with HttpClient and you see that it takes lots
   large HTTP responses with HttpClient.
 created_at: 2014-05-11 12:56:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.NET Web API
 - HTTP
 slugs:

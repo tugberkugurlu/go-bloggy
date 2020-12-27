@@ -5,7 +5,7 @@ abstract: Today, I was at Computer Engineering Department of Mugla University an
   I gave two introduction talks on MS Web Platform and ASP.NET MVC 101.
 created_at: 2012-03-23 17:23:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - ASP.NET MVC
 - C#

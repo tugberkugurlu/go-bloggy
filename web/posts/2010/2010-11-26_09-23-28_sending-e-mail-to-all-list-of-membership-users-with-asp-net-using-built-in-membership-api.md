@@ -7,7 +7,7 @@ abstract: Most of the Asp.Net developers are using Membership class of Asp.Net a
   at once...
 created_at: 2010-11-26 09:23:28 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - C#
 - eCommerce

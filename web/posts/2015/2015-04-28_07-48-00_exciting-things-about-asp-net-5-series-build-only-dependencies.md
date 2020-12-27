@@ -6,7 +6,7 @@ abstract: In this very exciting post, I would like to talk about build only depe
   as a dependency.
 created_at: 2015-04-28 07:48:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.NET 5
 slugs:
 - exciting-things-about-asp-net-5-series-build-only-dependencies

@@ -1,5 +1,10 @@
 package main
 
+import (
+	"sort"
+	"strings"
+)
+
 var topPicksCarouselPostIDs = []string{
 	"01ESYWJ3NHDFF5G7H4JKCY3DS0",
 	"01E972TEACJE3TQW6Q59C0X4NJ",
@@ -19,11 +24,46 @@ func GetCarousels(postsByIdMap map[string]*Post) []Carousel {
 	return carousels
 }
 
+func GetRelatedPostsCarousel(post *Post, postsByTagSlugMap map[string][]*Post) *Carousel {
+	maxSize := 20
+	candidatesMap := make(map[string]bool, maxSize)
+	candidates := make([]*Post, 0, maxSize)
+	for _, t := range post.Tags {
+		if len(candidates) == maxSize {
+			break
+		}
+		tagPosts := postsByTagSlugMap[t.Key]
+		for i := 0; i < len(tagPosts); i++ {
+			tagPost := tagPosts[i]
+			if !canBeARelatedPostsCarouselPost(post, tagPost, candidatesMap) {
+				continue
+			}
+			candidates = append(candidates, tagPost)
+			candidatesMap[tagPost.Metadata.ID] = true
+			if len(candidates) == maxSize {
+				break
+			}
+		}
+	}
+	sort.Slice(candidates, func(i, j int) bool {
+		return candidates[i].PublishedOn.Unix() > candidates[j].PublishedOn.Unix()
+	})
+
+	carousel := Carousel{
+		Title: "Related Posts",
+		Posts: candidates,
+	}
+	if !canBeCarousel(carousel) {
+		return nil
+	}
+	return &carousel
+}
+
 func getTopPicksCarousel(postsByIdMap map[string]*Post) Carousel {
 	posts := make([]*Post, 0, len(topPicksCarouselPostIDs))
 	for _, id := range topPicksCarouselPostIDs {
 		post, ok := postsByIdMap[id]
-		if !ok || !canBeCarousel(post) {
+		if !ok || !canBeACarouselPost(post) {
 			continue
 		}
 		posts = append(posts, post)
@@ -34,6 +74,23 @@ func getTopPicksCarousel(postsByIdMap map[string]*Post) Carousel {
 	}
 }
 
-func canBeCarousel(post *Post) bool {
+func canBeARelatedPostsCarouselPost(originalPost *Post, post *Post, currentCandidates map[string]bool) bool {
+	if !canBeACarouselPost(post) {
+		return false
+	}
+	if currentCandidates[post.Metadata.ID] {
+		return false
+	}
+	if strings.EqualFold(post.Metadata.ID, originalPost.Metadata.ID) {
+		return false
+	}
+	return true
+}
+
+func canBeACarouselPost(post *Post) bool {
 	return len(post.Images) > 0
+}
+
+func canBeCarousel(carousel Carousel) bool {
+	return len(carousel.Posts) > 2
 }

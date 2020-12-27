@@ -6,7 +6,7 @@ abstract: SQL Injection and Lethal Injection... They are both dangerous and they
   The answers are in this blog post.
 created_at: 2011-01-29 18:37:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - MS SQL
 - Security

@@ -7,7 +7,7 @@ abstract: After working with RavenDB over the year, I just started looking into 
   second thoughts are :)
 created_at: 2014-04-12 14:22:00 +0000 UTC
 tags:
-- .net
+- .NET
 - JavaScript
 - MongoDB
 slugs:

@@ -271,9 +271,6 @@ func main() {
 			})
 			postsByTagSlug[tagSlug] = append(postsByTagSlug[tagSlug], post)
 		}
-		sort.SliceStable(tags, func(i, j int) bool {
-			return tags[i].Value.Count > tags[j].Value.Count
-		})
 		post.Tags = tags
 	}
 
@@ -401,8 +398,9 @@ func (t TagsPage) Description() string {
 }
 
 type PostPage struct {
-	Post   *Post
-	AdTags string
+	Post                 *Post
+	RelatedPostsCarousel *Carousel
+	AdTags               string
 }
 
 func (p PostPage) Title() string {
@@ -523,9 +521,13 @@ func blogPostPageHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	ExecuteTemplate(w, r, layoutConfig, []string{"../../web/template/post.html"}, PostPage{
-		Post:   post,
-		AdTags: strings.Join(post.Metadata.Tags, ","),
+	ExecuteTemplate(w, r, layoutConfig, []string{
+		"../../web/template/post.html",
+		"../../web/template/shared/carousel.html",
+	}, PostPage{
+		Post:                 post,
+		RelatedPostsCarousel: GetRelatedPostsCarousel(post, postsByTagSlug),
+		AdTags:               strings.Join(post.Metadata.Tags, ","),
 	})
 }
 

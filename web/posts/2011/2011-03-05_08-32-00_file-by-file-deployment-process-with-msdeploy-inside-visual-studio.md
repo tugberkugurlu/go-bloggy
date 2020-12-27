@@ -5,7 +5,7 @@ abstract: Have you ever used 'MSDeploy' inside Visual Studio 2010 and wished a n
   process bar while publishing a web application? There is even a better way!
 created_at: 2011-03-05 08:32:00 +0000 UTC
 tags:
-- .net
+- .NET
 - Deployment
 - Tips
 - Visual Studio

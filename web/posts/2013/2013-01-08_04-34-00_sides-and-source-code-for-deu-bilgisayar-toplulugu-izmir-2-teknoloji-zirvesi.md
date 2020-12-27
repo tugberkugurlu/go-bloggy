@@ -6,7 +6,7 @@ abstract: This weekend, I participated in an event as a speaker in Izmir, DEU Bi
   available.
 created_at: 2013-01-08 04:34:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - ASP.NET MVC
 - ASP.NET Web API

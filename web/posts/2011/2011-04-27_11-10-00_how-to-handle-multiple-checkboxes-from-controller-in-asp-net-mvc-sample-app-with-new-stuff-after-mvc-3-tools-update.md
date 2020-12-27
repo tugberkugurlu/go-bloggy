@@ -7,7 +7,7 @@ abstract: 'In this blog post, we will see how to handle multiple checkboxes insi
   records from database. '
 created_at: 2011-04-27 11:10:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - ASP.NET MVC
 - C#

@@ -6,7 +6,7 @@ abstract: Owin.Dependencies is an IoC container adapter into OWIN pipeline. This
   framework adapter for OWIN dependencies.
 created_at: 2013-09-06 07:33:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.NET Web API
 - Autofac
 - OWIN

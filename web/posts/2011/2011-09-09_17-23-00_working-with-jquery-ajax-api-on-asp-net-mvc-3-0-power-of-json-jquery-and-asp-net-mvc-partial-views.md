@@ -7,7 +7,7 @@ abstract: In this post, we'll see how easy to work with JQuery AJAX API on ASP.N
   client with a toggle button example.
 created_at: 2011-09-09 17:23:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - ASP.NET MVC
 - C#

@@ -7,7 +7,7 @@ abstract: After the release of ASP.Net MVC RC 2, we are now waiting for the RTM 
   acount is the mind-exploding problem...
 created_at: 2010-12-18 12:41:29 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - ASP.NET MVC
 - Deployment

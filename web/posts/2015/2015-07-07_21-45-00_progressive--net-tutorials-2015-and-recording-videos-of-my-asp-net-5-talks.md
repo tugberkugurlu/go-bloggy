@@ -6,7 +6,7 @@ abstract: Last Friday, I was at Progressive .NET Tutorials 2015 in London and I 
   5 talks!
 created_at: 2015-07-07 21:45:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - ASP.NET 5
 - Geek Talks

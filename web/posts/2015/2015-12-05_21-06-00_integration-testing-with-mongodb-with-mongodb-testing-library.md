@@ -6,7 +6,7 @@ abstract: I have put together a library, MongoDB.Testing, which makes it easy to
   Here is how you can start using it.
 created_at: 2015-12-05 21:06:00 +0000 UTC
 tags:
-- .net
+- .NET
 - MongoDB
 slugs:
 - integration-testing-with-mongodb-with-mongodb-testing-library

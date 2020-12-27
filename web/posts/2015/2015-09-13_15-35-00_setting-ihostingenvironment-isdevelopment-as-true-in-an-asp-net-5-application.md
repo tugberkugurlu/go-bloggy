@@ -5,7 +5,7 @@ abstract: Wondering why IHostingEnvironment.IsDevelopment returns false even whe
   you are on you development machine? I did indeed wonder and here is why :)
 created_at: 2015-09-13 15:35:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - ASP.NET 5
 slugs:

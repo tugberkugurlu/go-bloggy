@@ -7,7 +7,7 @@ abstract: Visual Studio CTP 3 has launched a while back and I was expecting to h
   to debug the application and I have a workaround for you :)
 created_at: 2014-10-05 16:17:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - ASP.NET vNext
 - Tips

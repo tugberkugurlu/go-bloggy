@@ -5,7 +5,7 @@ abstract: This blog post will give you an introduction to WCF Web API and show y
   how to get started with WCF Web API along with Dependency Inject support with Ninject.
 created_at: 2011-11-21 08:09:00 +0000 UTC
 tags:
-- .net
+- .NET
 - C#
 - WCF Web API
 slugs:

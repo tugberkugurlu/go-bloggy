@@ -6,7 +6,7 @@ abstract: In this blog post we will see how to consume a web page methods using 
   cool stuff about other things as well :)
 created_at: 2011-05-15 20:58:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - C#
 - JQuery

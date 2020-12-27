@@ -6,7 +6,7 @@ abstract: This awesome blog post will demonstrate how to create a complete, sub-
   product list in a single grid. Get ready for the awesomeness...
 created_at: 2011-04-28 13:13:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - C#
 - MS SQL

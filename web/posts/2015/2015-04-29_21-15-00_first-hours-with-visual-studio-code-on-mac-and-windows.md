@@ -7,7 +7,7 @@ abstract: Today is one of those awesome days if you build stuff on .NET platform
   OS X, Linux and Windows. Let me give you my highlights in this short blog post :)
 created_at: 2015-04-29 21:15:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - ASP.NET 5
 - C#

@@ -6,7 +6,7 @@ abstract: ASP.NET 5 is full of big new features and enhancements but besides the
   is provided out of the box. Let me quickly show you what it is in this post.
 created_at: 2015-10-28 00:44:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - ASP.NET 5
 - Elasticsearch
