@@ -271,9 +271,6 @@ func main() {
 			})
 			postsByTagSlug[tagSlug] = append(postsByTagSlug[tagSlug], post)
 		}
-		sort.SliceStable(tags, func(i, j int) bool {
-			return tags[i].Value.Count > tags[j].Value.Count
-		})
 		post.Tags = tags
 	}
 
