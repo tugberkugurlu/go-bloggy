@@ -24,6 +24,29 @@ func GetCarousels(postsByIdMap map[string]*Post) []Carousel {
 	return carousels
 }
 
+func GetCarouselForTag(tagSlug string, title string, postsByTagSlugMap map[string][]*Post) *Carousel {
+	maxSize := 20
+	tagPosts := postsByTagSlugMap[tagSlug]
+	candidates := make([]*Post, 0, maxSize)
+	for _, post := range tagPosts {
+		if !canBeACarouselPost(post) {
+			continue
+		}
+		candidates = append(candidates, post)
+		if len(candidates) == maxSize {
+			break
+		}
+	}
+	carousel := Carousel{
+		Title: title,
+		Posts: candidates,
+	}
+	if !canBeCarousel(carousel) {
+		return nil
+	}
+	return &carousel
+}
+
 func GetRelatedPostsCarousel(post *Post, postsByTagSlugMap map[string][]*Post) *Carousel {
 	maxSize := 20
 	candidatesMap := make(map[string]bool, maxSize)
@@ -48,7 +71,6 @@ func GetRelatedPostsCarousel(post *Post, postsByTagSlugMap map[string][]*Post) *
 	sort.Slice(candidates, func(i, j int) bool {
 		return candidates[i].PublishedOn.Unix() > candidates[j].PublishedOn.Unix()
 	})
-
 	carousel := Carousel{
 		Title: "Related Posts",
 		Posts: candidates,

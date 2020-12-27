@@ -413,6 +413,7 @@ func (p PostPage) Description() string {
 
 type SpeakingPage struct {
 	SpeakingActivities []*SpeakingActivity
+	GeekTalksCarousel  *Carousel
 }
 
 func (s SpeakingPage) Title() string {
@@ -436,7 +437,9 @@ func speakingPageHandler(w http.ResponseWriter, r *http.Request) {
 	ExecuteTemplate(w, r, layoutConfig, []string{
 		"../../web/template/speaking.html",
 		"../../web/template/shared/speaking-activity-card.html",
+		"../../web/template/shared/carousel.html",
 	}, SpeakingPage{
+		GeekTalksCarousel : GetCarouselForTag("geek-talks", "Posts on Speaking", postsByTagSlug),
 		SpeakingActivities: speakingActivities,
 	})
 }
