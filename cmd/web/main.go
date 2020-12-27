@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"html/template"
 	"log"
-	"math"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -103,9 +102,11 @@ var config Config
 var layoutConfig LayoutConfig
 var tagsList TagCountPairList
 var posts []*Post
+var postsByID map[string]*Post
 var postsBySlug map[string]*Post
 var postsByTagSlug map[string][]*Post
 var tagsBySlug map[string]*Tag
+var carousels []Carousel
 
 func main() {
 	var configErr error
@@ -120,6 +121,7 @@ func main() {
 	}
 
 	tagsBySlug = make(map[string]*Tag)
+	postsByID = make(map[string]*Post)
 	postsBySlug = make(map[string]*Post)
 	postsByTagSlug = make(map[string][]*Post)
 	err := filepath.Walk("../../web/posts", func(path string, f os.FileInfo, err error) error {
@@ -245,6 +247,7 @@ func main() {
 				for _, slug := range post.Metadata.Slugs {
 					postsBySlug[slug] = post
 				}
+				postsByID[postMetadata.ID] = post
 			}(path)
 		}
 		return nil
@@ -273,6 +276,8 @@ func main() {
 		})
 		post.Tags = tags
 	}
+
+	carousels = GetCarousels(postsByID)
 
 	r := mux.NewRouter()
 	r.Host("tugberkugurlu.com").HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -543,22 +548,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 		"../../web/template/shared/post-item.html",
 		"../../web/template/shared/speaking-activity-card.html",
 	}, Home{
-		TopCarousel: Carousel{
-			Title: "Posts on ASP.NET",
-			Posts: func() []*Post {
-				input := postsByTagSlug["asp-net"]
-				iteration := int(math.Min(float64(20), float64(len(input))))
-				result := make([]*Post, 0, iteration)
-				for i := 0; i < iteration; i++ {
-					p := input[i]
-					if len(p.Images) == 0 {
-						continue
-					}
-					result = append(result, p)
-				}
-				return result
-			}(),
-		},
+		TopCarousel:        carousels[0],
 		Posts:              posts[:3],
 		SpeakingActivities: speakingActivities[:4],
 	})
