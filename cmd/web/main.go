@@ -48,12 +48,14 @@ func (c Config) FullAssetsUrl() string {
 }
 
 type Post struct {
-	Body        template.HTML
-	Highlight   string
-	ReadingTime *time.Duration
-	Images      []string
-	Tags        []TagCountPair
-	Metadata    PostMetadata
+	Body      template.HTML
+	Highlight string
+	Images    []string
+	Tags      []TagCountPair
+	Metadata  PostMetadata
+
+	ReadingTimeDisplay string
+	ReadingTime        *time.Duration
 
 	PublishedOn             time.Time
 	PublishedOnDisplay      string
@@ -211,21 +213,22 @@ func main() {
 					}
 				}
 
+				readingTimeDisplay := func() string {
+					if readingTime == nil {
+						return ""
+					}
+					return fmt.Sprintf("%d minutes read", int(readingTime.Minutes()))
+				}()
 				post := &Post{
 					Body:                    template.HTML(string(body)),
 					Images:                  images,
 					ReadingTime:             readingTime,
+					ReadingTimeDisplay:      readingTimeDisplay,
+					Highlight:               readingTimeDisplay,
 					Metadata:                postMetadata,
 					PublishedOn:             publishedOn,
 					PublishedOnDisplayBrief: publishedOn.Format("2 January 2006"),
 					PublishedOnDisplay:      publishedOn.Format("2006-01-02 15:04:05"),
-
-					Highlight: func() string {
-						if readingTime == nil {
-							return ""
-						}
-						return fmt.Sprintf("%d minutes read", int(readingTime.Minutes()))
-					}(),
 				}
 				posts = append(posts, post)
 				for _, tag := range postMetadata.Tags {

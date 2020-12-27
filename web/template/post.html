@@ -22,7 +22,8 @@
                 {{ .Data.Post.Metadata.Abstract }}
             </div>
             <div class="four wide column">
-                @ {{ .Data.Post.PublishedOnDisplay }}
+                <div><span title="{{ .Data.Post.PublishedOnDisplay }}">{{ .Data.Post.PublishedOnDisplayBrief }}</span></div>
+                <div>{{ .Data.Post.ReadingTimeDisplay }}</div>
             </div>
         </div>
         <div class="row">
