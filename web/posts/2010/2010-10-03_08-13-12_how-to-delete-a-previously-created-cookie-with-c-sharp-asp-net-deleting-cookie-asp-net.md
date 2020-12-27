@@ -6,7 +6,7 @@ abstract: You created a cookie on you asp.net forms application now you would li
   to delete it. This quick article show how to do the trick...
 created_at: 2010-10-03 08:13:12 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - C#
 slugs:

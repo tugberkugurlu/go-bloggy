@@ -6,7 +6,7 @@ abstract: Two days ago, I blogged about the availability of the Pro ASP.NET Web 
   on Amazon for pre-order
 created_at: 2012-10-15 12:38:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - ASP.NET Web API
 slugs:

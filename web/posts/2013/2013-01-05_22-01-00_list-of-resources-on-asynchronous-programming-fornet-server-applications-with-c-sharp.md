@@ -6,7 +6,7 @@ abstract: I listed some resources on asynchronous programming for .NET server ap
   with C# which consist of blog posts, presentations and podcasts.
 created_at: 2013-01-05 22:01:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - ASP.NET MVC
 - ASP.NET Web API

@@ -6,7 +6,7 @@ abstract: 'A few days ago, I started a new blog post series about ASP.NET vNext.
   pains away: view components :)'
 created_at: 2014-10-06 11:46:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - ASP.NET MVC
 - ASP.NET vNext

@@ -6,7 +6,7 @@ abstract: One of the common questions about SignalR is how to broadcast a messag
   users is the key component for this.
 created_at: 2013-01-01 15:32:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - SignalR
 slugs:

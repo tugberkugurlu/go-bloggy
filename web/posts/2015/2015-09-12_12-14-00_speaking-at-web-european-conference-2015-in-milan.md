@@ -5,7 +5,7 @@ abstract: Web European Conference 2015 will happen in Milan on the 26th of Septe
   and I will be talking about ASP.NET 5 there!
 created_at: 2015-09-12 12:14:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - ASP.NET 5
 - Geek Talks

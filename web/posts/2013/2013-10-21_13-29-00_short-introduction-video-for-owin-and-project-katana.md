@@ -6,7 +6,7 @@ abstract: I've recorded a short video which covers the brief introduction of OWI
   Katana.
 created_at: 2013-10-21 13:29:00 +0000 UTC
 tags:
-- .net
+- .NET
 - Geek Talks
 - Katana
 - OWIN

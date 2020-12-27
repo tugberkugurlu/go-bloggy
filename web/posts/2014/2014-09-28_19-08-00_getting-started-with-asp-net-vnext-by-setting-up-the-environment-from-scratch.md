@@ -5,7 +5,7 @@ abstract: In this post, I'll walk you through how you can set up your environmen
   from scratch to get going with ASP.NET vNext.
 created_at: 2014-09-28 19:08:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - ASP.NET vNext
 - HTTP

@@ -7,7 +7,7 @@ abstract: dotnet CLI tool can be used for building .NET Core apps and for buildi
   in Linux, specifically its native compilation feature.
 created_at: 2016-01-03 18:20:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - ASP.NET 5
 - Linux

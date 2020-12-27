@@ -5,7 +5,7 @@ abstract: If you enabled tracing on your ASP.NET Web API application, you may se
   a dispose issue for IDependencyScope. Here is why and how you can workaround it.
 created_at: 2013-01-12 16:26:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - ASP.NET Web API
 slugs:

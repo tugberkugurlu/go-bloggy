@@ -5,7 +5,7 @@ abstract: SiganlR - Real-time Web Applications webcast recording (in Turkish) is
   The video is available on NedirTV and Vimeo.
 created_at: 2012-11-14 08:57:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - Geek Talks
 - SignalR

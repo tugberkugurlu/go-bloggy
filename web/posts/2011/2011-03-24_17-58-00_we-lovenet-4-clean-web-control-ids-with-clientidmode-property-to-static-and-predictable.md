@@ -7,7 +7,7 @@ abstract: In this blog post, we will see how ClientIDMode property of Web Contro
   works...
 created_at: 2011-03-24 17:58:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - C#
 - Tips

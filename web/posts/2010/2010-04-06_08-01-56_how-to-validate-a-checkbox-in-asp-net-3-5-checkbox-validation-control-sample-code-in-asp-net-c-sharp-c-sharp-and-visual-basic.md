@@ -6,7 +6,7 @@ abstract: This article will give you an idea to validate a checkbox in ASP.Net 3
   ! It is so easy to implement and so handy to use !
 created_at: 2010-04-06 08:01:56 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - C#
 - Visual Basic

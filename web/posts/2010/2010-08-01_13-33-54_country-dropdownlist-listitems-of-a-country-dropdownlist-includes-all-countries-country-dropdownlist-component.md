@@ -7,7 +7,7 @@ abstract: Country DropDownList for Asp.NET developers ! Save a lot of time by co
   it from scratch :)
 created_at: 2010-08-01 13:33:54 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 slugs:
 - country-dropdownlist-listitems-of-a-country-dropdownlist-includes-all-countries-country-dropdownlist-component

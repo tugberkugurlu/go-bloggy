@@ -7,7 +7,7 @@ abstract: I was at Microsoft's Turkey headquarters giving talks on Microsoft Web
   Web Stack
 created_at: 2013-08-25 15:09:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - ASP.NET MVC
 - ASP.NET Web API

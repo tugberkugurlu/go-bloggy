@@ -6,7 +6,7 @@ abstract: Microsoft implementation of OWIN (Microsoft.Owin or Katana for now) ha
   this component.
 created_at: 2013-09-18 16:14:00 +0000 UTC
 tags:
-- .net
+- .NET
 - Katana
 - OWIN
 slugs:

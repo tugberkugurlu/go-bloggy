@@ -7,7 +7,7 @@ abstract: ANTS Performance Profiler from Redgate supports ASP.NET 5 applications
   how it can help you with a sample.
 created_at: 2015-10-20 19:16:00 +0000 UTC
 tags:
-- .net
+- .NET
 - ASP.Net
 - ASP.NET 5
 - HTTP

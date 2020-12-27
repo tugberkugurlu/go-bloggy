@@ -8,7 +8,7 @@ abstract: .NET Core Runtime RC2 has been released a few days ago along with .NET
   of the changes.
 created_at: 2016-05-22 14:04:00 +0000 UTC
 tags:
-- .net
+- .NET
 - .NET Core
 - ASP.Net
 - ASP.NET Core

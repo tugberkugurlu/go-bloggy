@@ -5,7 +5,7 @@ abstract: Let me show you how to compile a piece of C# code into memory and exec
   it with Roslyn. It is super easy if you believe it or not :)
 created_at: 2015-03-31 20:39:00 +0000 UTC
 tags:
-- .net
+- .NET
 - C#
 - Roslyn
 slugs:
