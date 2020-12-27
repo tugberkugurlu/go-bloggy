@@ -18,6 +18,13 @@
             <div class="ad-inner" data-type="ad" data-publisher="lqm.tugberkugurlu.site" data-zone="ron" data-format="728x90" data-tags="software development, asp.net, aws, azure, sql server, dynamodb, elasticsearch, mongodb, .net"></div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="sixteen wide column">
+            {{ template "carousel" .Data.TopCarousel }}
+        </div>
+    </div>
+
     <div class="row">
         <div class="ui six wide column">
             <div class="ui raised segment">
@@ -34,7 +41,7 @@
                 and scalability of the software systems that I work on, as much as caring about day-to-day effectiveness, 
                 productivity and happiness of the team that I work with. I occasionally 
                 <a href="https://www.tugberkugurlu.com/speaking">speak at international conferences</a>, and write technical posts 
-                on <a href="https://www.tugberkugurlu.com/archive">my blog.
+                on <a href="https://www.tugberkugurlu.com/archive">my blog</a>.
             </p>
             <p>
                 I work at <a href="https://deliveroo.engineering/" target="_blank">Deliveroo</a> in London as a Staff Software Engineer 
@@ -49,6 +56,14 @@
             <p>
                 Finally, I'm a big F1 🏎 fan and love travelling to explore new unknowns 🛫🛬!
             </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="sixteen wide column">
+            {{ if .Data.GeekTalksCarousel }}
+                {{ template "carousel" .Data.GeekTalksCarousel }}
+            {{ end }}
         </div>
     </div>
 </div>
