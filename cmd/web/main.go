@@ -293,7 +293,7 @@ func main() {
 	r.PathPrefix("/content/images/").HandlerFunc(legacyBlogImagesRedirector)
 	r.Handle("/archive/{slug}", gziphandler.GzipHandler(http.HandlerFunc(blogPostPageHandler)))
 	r.Handle("/tags/{tag_slug}", gziphandler.GzipHandler(http.HandlerFunc(tagsPageHandler)))
-	r.Handle("/about", gziphandler.GzipHandler(http.HandlerFunc(staticPage("about"))))
+	r.Methods("GET").Path("/about").Handler(gziphandler.GzipHandler(http.HandlerFunc(aboutPageHandler)))
 	r.Methods("GET").Path("/speaking").Handler(gziphandler.GzipHandler(http.HandlerFunc(speakingPageHandler)))
 	r.Handle("/contact", gziphandler.GzipHandler(http.HandlerFunc(staticPage("contact"))))
 	r.Handle("/archive", gziphandler.GzipHandler(http.HandlerFunc(blogHomeHandler)))
@@ -413,6 +413,12 @@ func (p PostPage) Description() string {
 
 type SpeakingPage struct {
 	SpeakingActivities []*SpeakingActivity
+	GeekTalksCarousel  *Carousel
+}
+
+type AboutPage struct {
+	GeekTalksCarousel *Carousel
+	TopCarousel       Carousel
 }
 
 func (s SpeakingPage) Title() string {
@@ -432,11 +438,23 @@ type Page interface {
 	Description() string
 }
 
+func aboutPageHandler(w http.ResponseWriter, r *http.Request) {
+	ExecuteTemplate(w, r, layoutConfig, []string{
+		"../../web/template/about.html",
+		"../../web/template/shared/carousel.html",
+	}, AboutPage{
+		GeekTalksCarousel: GetCarouselForTag("geek-talks", "Posts on Speaking", postsByTagSlug),
+		TopCarousel:       carousels[0],
+	})
+}
+
 func speakingPageHandler(w http.ResponseWriter, r *http.Request) {
 	ExecuteTemplate(w, r, layoutConfig, []string{
 		"../../web/template/speaking.html",
 		"../../web/template/shared/speaking-activity-card.html",
+		"../../web/template/shared/carousel.html",
 	}, SpeakingPage{
+		GeekTalksCarousel:  GetCarouselForTag("geek-talks", "Posts on Speaking", postsByTagSlug),
 		SpeakingActivities: speakingActivities,
 	})
 }
