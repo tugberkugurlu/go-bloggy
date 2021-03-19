@@ -27,6 +27,11 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
+var preDefinedSlugs = map[string]string{
+	"c#": "c-sharp",
+	"c++": "cpp",
+}
+
 type Config struct {
 	AssetsUrl    string
 	AssetsPrefix string
@@ -234,7 +239,7 @@ func main() {
 				}
 				posts = append(posts, post)
 				for _, tag := range postMetadata.Tags {
-					tagSlug := slug.Make(tag)
+					tagSlug := toSlug(tag)
 					t, ok := tagsBySlug[tagSlug]
 					if !ok {
 						t = &Tag{
@@ -264,7 +269,7 @@ func main() {
 	for _, post := range posts {
 		var tags []TagCountPair
 		for _, tag := range post.Metadata.Tags {
-			tagSlug := slug.Make(tag)
+			tagSlug := toSlug(tag)
 			tags = append(tags, TagCountPair{
 				Key:   tagSlug,
 				Value: tagsBySlug[tagSlug],
@@ -309,6 +314,15 @@ func main() {
 		serverPortStr = "8080"
 	}
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", serverPortStr), CaselessMatcher(r)))
+}
+
+func toSlug(tag string) string {
+	tagToSlugify := tag
+	if v, ok := preDefinedSlugs[strings.ToLower(tag)]; ok {
+		tagToSlugify = v
+	}
+	tagSlug := slug.Make(tagToSlugify)
+	return tagSlug
 }
 
 func parseConfig() (Config, error) {
