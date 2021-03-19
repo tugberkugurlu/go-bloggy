@@ -102,7 +102,7 @@ jobs:
         run: |
           curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
           unzip awscliv2.zip
-          sudo ./aws/install
+          sudo ./aws/install --update
       - run: aws --version
       - name: Enforce New ECS Service Deployment
         run: aws ecs update-service --force-new-deployment --service $AWS_ECS_SERVICE_NAME --cluster $AWS_ECS_CLUSTER_ARN
