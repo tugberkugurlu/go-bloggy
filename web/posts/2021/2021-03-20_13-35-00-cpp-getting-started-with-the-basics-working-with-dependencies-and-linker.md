@@ -151,3 +151,4 @@ These are the resources I benefited from while writing this post. It's only fair
  - [Name lookup](https://en.cppreference.com/w/cpp/language/lookup)
  - [Phases of translation](https://en.cppreference.com/w/cpp/language/translation_phases)
  - [How does the compilation/linking process work?](https://stackoverflow.com/questions/6264249/how-does-the-compilation-linking-process-work)
+ - [Using fully qualified names in C++](https://stackoverflow.com/questions/17281214/using-fully-qualified-names-in-c)
