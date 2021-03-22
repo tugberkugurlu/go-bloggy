@@ -1,7 +1,7 @@
 ---
 id: 01F140FYA2CBEG70R4YX6XXNXG
-title: "C++, Getting Started with The Basics: Hello World and The Build Pipeline"
-abstract: I am learning C++, and what better way to make the learning stronger than blogging about my journey and pinning down my experience. I especially think this will be really beneficial for C++ as the barrier to entry is quite high and there is too much to learn. So, the reason that this post exists is a bit selfish, but I am hoping it will be helpful to some other folks who are going through the same struggles as I am. In this post, I will go over details of the "Hello World" experience for C++, while also going a bit beyond and understanding how the build pipeline works!
+title: "C++, Getting Started with the Basics: Hello World and the Build Pipeline"
+abstract: I am learning C++, and what better way to make the learning stronger than blogging about my journey and pinning down my experience. I especially think this will be really beneficial when it comes to C++, since the barrier to entry is quite high and there is too much to learn. So, the reason that this post exists is a bit selfish, but I am hoping it will be helpful to some other folks who are going through the same struggles as I am. In this post, I will go over details of the "Hello World" experience for C++, while also going a bit beyond and understanding how the build pipeline works!
 created_at: 2021-03-19 01:09:00.0000000 +0000 UTC
 format: md
 tags:
