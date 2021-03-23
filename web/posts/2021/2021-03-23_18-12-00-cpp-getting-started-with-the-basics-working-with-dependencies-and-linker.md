@@ -1,8 +1,8 @@
 ---
-id: 01F1G4K4GR6HSVY3SS47ZDR0KN
+id: 01F1G6HBKF78980AZAGVE52ERJ
 title: "C++, Getting Started with the Basics: Working with Dependencies and Linker"
 abstract: I am learning C++, and what better way to make the learning stick more stronger than blogging about my journey and experience, especially thinking that the barrier to entry is quite high and there is too much to learn. So, the reason that this post exists is a bit selfish, but I am hoping it will be helpful to some other folks who are going through the same struggles as I am. In this post, I will go over details of what it takes to work with dependencies in C++ and how the compilation and linking process works.
-created_at: 2021-03-21 22:01:00.0000000 +0000 UTC
+created_at: 2021-03-23 18:46:00.0000000 +0000 UTC
 format: md
 tags:
 - C++
@@ -14,13 +14,13 @@ slugs:
 
 As I mentioned in [my previous post about C++](https://www.tugberkugurlu.com/archive/cpp-getting-started-with-the-basics-hello-world-and-build-pipeline), I am learning [C++](https://www.tugberkugurlu.com/tags/cpp). It has been a bumpy ride so far, and C++ is certainly not an easy to pick up programming language! So, I thought what better way to make the learning stronger than blogging about my journey and pinning down my experience. You now know that the reason this post exists is a bit selfish, but I am hoping it will be helpful to some other folks who are going through the same while also acknowledging that everyone's mental model is different. So, [YMMV](https://www.urbandictionary.com/define.php?term=ymmv).
 
-In this post, I want to share my experience of incorporating a 3rd party dependency into my own program, and understanding what goes under the hood during the compilation and linking phase of the build process.
+In this post, I want to share my experience of incorporating a 3rd party dependency into my own program, and understanding what goes under the hood during the compilation and linking phase of the build process. For the purposes of this, I will be aiming to incoorporate [`gflags`](https://github.com/gflags/gflags) C++ library into my own program. This library is providing support to be able to define and parse commandline flags.
 
-## Referencing a Dependency in Code
+## Taking a Library Dependency inside Our Own C++ Code
 
-The way you should be specifying a dependency is in your code is through the [`#include` directive](https://docs.microsoft.com/en-us/cpp/preprocessor/hash-include-directive-c-cpp?view=msvc-160) by specifying the header file that you want to take a dependency on. As we probably know by now that the header file doesn't actually contain the implementation, but only declares the contract between the library and the consumer. We will shortly touch on how we will be able to tie the header file with a dependency.
+The way you should be stating a library dependency in your own C++ code is through the [`#include` directive](https://docs.microsoft.com/en-us/cpp/preprocessor/hash-include-directive-c-cpp?view=msvc-160) by specifying the header file that you want to take a dependency on. As we probably know by now that the header file doesn't actually contain the implementation, but only declares the contract between the library and the consumer. We will shortly touch on how we will be able to tie the header file with its implementation.
 
-As we can see inside the [`gflags` documentation](https://gflags.github.io/gflags/), the header file we want to work with is called `gflags/gflags.h`. Now that immediately raised some questions for me, and I am sure it will for you if you happen to be a newbie in C++ World like me. The biggest one of all is where `gflgas/` folder is relative to. That will become more clear when it comes to the building part. So, for now, let's assume it's magic™️.
+As we can see inside the [`gflags` documentation](https://gflags.github.io/gflags/), the header file we want to work with is called `gflags/gflags.h`. That immediately raised some questions for me. I am sure it will for you if you happen to be a newbie in C++ World like me. The biggest one of all is where `gflgas/` folder is relative to. That will become more clear when it comes to the building part. So, for now, let's assume it's magic™️.
 
 As we learned about how to take a dependency on this library within the code, here is how our sample program looks like:
 
@@ -36,11 +36,11 @@ int main(int argc, char *argv[]) {
 }
 ```
 
-Nothing fancy, and you can see the [`gflags` documentation](https://gflags.github.io/gflags/) about the specifics of our usage here. The purpose of this post is not to explain that, and the only reason that we are using `gflags` here to demonstrate how to take a dependency on an external library.
+Nothing fancy, and you can see the [`gflags` documentation](https://gflags.github.io/gflags/) about the specifics of our usage here. The purpose of this post is not to explain that. The only reason that we are using `gflags` here to demonstrate how to take a dependency on an external library, and it is an easy to use one that won't be hard to explain.
 
-However, one thing that's worth noting is the usage of `gflags::` before the `ParseCommandLineFlags` function call. That `gflags` that's being referred here is the namespace, which we are betting that it will be declared within the `gflags.h` header file. `gflags::ParseCommandLineFlags` is the fully-qualified reference to the function we want to invoke. 
+However, one thing that's worth noting is the usage of `gflags::` before the `ParseCommandLineFlags` function call. `gflags` that's being referred here is the namespace, which we are betting that it will be declared within the `gflags.h` header file. `gflags::ParseCommandLineFlags` is the fully-qualified reference to the function we want to invoke. 
 
-Alternatively, we could have imported the entire `gflags` namespace, and be able to call `ParseCommandLineFlags` directly w/o namespace declaration like below, which would mean that you can use anything under that namespace directly:
+Alternatively, we could have imported the entire `gflags` namespace, and be able to call `ParseCommandLineFlags` directly without a namespace declaration like the following, which would mean that you can use anything under that namespace directly:
 
 ```cpp
 #include <iostream>
@@ -78,7 +78,7 @@ Although this still suffers from the same problems I listed above to a certain e
 
 Final thing I want to note within this code is the use of `DEFINE_string`. It's also defined within the same header file. However, that's a [Macro](https://docs.microsoft.com/en-us/cpp/preprocessor/macros-c-cpp?view=msvc-160) and [it doesn't seem to be tied to a namespace](https://github.com/gflags/gflags/blob/827c769e5fc98e0f2a34c47cef953cc6328abced/src/gflags.h.in#L595-L620). I don't have much info about Macros at this stage, but wanted to touch on the rationale of why it's being used in this way.
 
-## Building with a Library Dependency
+## Setting up the Build Pipeline
 
 We have our implementation which should give us a command like program where we can call `hello-world --name Bob` and that would print out `Hello Bob` for us. To be able to demonstrate different build variations, I am going to run the build within a [Docker](https://www.tugberkugurlu.com/tags/docker) container. Configuration for this is going to be very simple. The code we have seen above will be inside the `main.cpp` file. Also to start with, we will also have a `build.sh` file with the following content:
 
@@ -162,19 +162,17 @@ This is an expected error at this stage, because gflags is a 3rd party library, 
 
 ## Back to Basics: Compilation of a C++ Program
 
-Let's pause a bit and learn some fundamentals. I kept mentioning compilation, as it's a black box where you give it some input and get an output, compiled object back. Most of the time, this type of thinking will get us where we want to be. However, my aim here is to understand what's going on under the hood a bit more. When I have done that for C++ build process, I have found out that the build step is broken down into three independent steps:
+Let's pause a bit and learn some fundamentals. I kept mentioning compilation, like it's a black box where you give it some input and get an output, compiled object back. Most of the time, this type of thinking will get us where we want to be. However, my aim here is to understand what's going on under the hood a bit more. When I went a bit deeper to understand the build process for C++, I have found out that the build step is broken down into three independent steps:
 
  - **Preprocessing**: This stage handles the preprocessor directives, like `#include` and `#define`. After the processing of these directives, the preprocessor produces a single output.
  - **Compilation**: The compilation step is performed on each output of the preprocessor, and this is the step where the C++ code is converted into assembly code. This step also involves the assembler to turn the assembly code into machine code, then producing an actual binary file (a.k.a. object file). The bit that's super interesting at this stage is that **these object files can refer to symbols that are not defined**, and this is how the header files are being compiled at this stage without any specific implementation.
- - **Linking**: This is the final step within our build process, and this steps is handled through the linker which produces the final output for our program from the object files the compiler produced. This output can be either a library or an executable. It links all the object files by replacing the references to undefined symbols with the correct addresses, and **if the definitions exist in libraries other than the standard one, the linker needs to be informed about these specificity**, which is relevant to what I am trying to achieve in this post (more on this to come later).
+ - **Linking**: This is the final step within our build process, and this step is handled through the linker which produces the final output for our program from the object files that the compiler produced. This output can be either a library or an executable. It links all the object files by replacing the references to undefined symbols with the correct addresses, and **if the definitions exist in libraries other than the standard one, the linker needs to be informed about these specificity**, which is relevant to what I am trying to achieve in this post (more on this to come later).
 
 You can check out [this incredible Stackoverflow answer](https://stackoverflow.com/a/6264256/463785) on this topic, which explains compilation steps of a C++ program more in-depth, and I copied most of what I mentioned in this section from there.
 
-This 
-
 ## Preprocessing the Headers
 
-Let's install this according to [the installation guidelines of this library](https://github.com/gflags/gflags/blob/827c769e5fc98e0f2a34c47cef953cc6328abced/INSTALL.md#installing-a-binary-distribution-package), and rerun the compilation.
+Let's install `gflags` according to [the installation guidelines of this library](https://github.com/gflags/gflags/blob/827c769e5fc98e0f2a34c47cef953cc6328abced/INSTALL.md#installing-a-binary-distribution-package), and rerun the compilation:
 
 ```patch
 diff --git a/1-dependency/Dockerfile b/1-dependency/Dockerfile
@@ -206,7 +204,7 @@ The command '/bin/sh -c ./build.sh' returned a non-zero code: 1
 
 We are still not quite there yet. However, as a software engineer, you know that this is a great feeling! You made some progress, and the changes that you have just made had some impact to move you forward 🙂
 
-What's happened here is that the compiler was able to find the header file to be able to preprocess the `#include` directives. However, where did it find it? We can try to look for `gflags.h` file inside the container and see where it's located:
+What has happened here is that the compiler was able to find the header file to be able to preprocess the `#include` directives. However, where did it find it? We can try to look for `gflags.h` file inside the container and see where it's located:
 
 ```
 # find / -iname gflags.h
@@ -226,11 +224,11 @@ main.cpp:(.text+0x27): undefined reference to `google::ParseCommandLineFlags(int
 
 > It's worth noting where this `google::` namespace comes from. This library seems to be exposed under two namespaces: `gflags` and `google`. All the documentation is referring to `gflags`. However, it seems like any usage under that namespace eventually seems to be redirected to `google` namespace. It took a while for me to understand why and how, but I documented the investigation in [this Stackoverflow question](https://stackoverflow.com/questions/66739009). I would suggest for you to check that out first before basing any assumptions on the namespace usage.
 
-This is also expected, as haven't told the compiler yet what library dependency we want to link to, a.k.a archive, or static library. For static library files, the filenames always start with `lib`, and end with `.a` (archive, static library) on Unix/Linux (see [this post](https://www.bogotobogo.com/cplusplus/libraries.php) for reference). We can use the `-l` command line option of the `g++` compiler, which would eventually pass this to `ld` to [add the archive file to the list of files to link](https://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_node/ld_3.html). This option may be used any number of times. `ld` will search its path-list for occurrences of `lib{archive}.a` for every `{archive}` specified.
+This error is also expected, as we haven't told the compiler yet what library dependency we want to link to, a.k.a archive, or static library. For static library files, the filenames always start with `lib`, and end with `.a` (archive, static library) on Unix/Linux (see [this post](https://www.bogotobogo.com/cplusplus/libraries.php) for reference). We can use the `-l` command line option of the `g++` compiler, which would eventually pass this to `ld` to [add the archive file to the list of files to link](https://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_node/ld_3.html). This option may be used any number of times. `ld` will search its path-list for occurrences of `lib{archive}.a` for every `{archive}` specified.
 
 With this in mind, we should be able to complete our compilation journey by passing `-lgflags` option to `g++` compiler:
 
-> The error output above might be confusing you since it seems like `/usr/lib/gcc/x86_64-linux-gnu/9/collect2` is invoked directly, not `ld`. Quick search suggests to me that [`collect2`](https://gcc.gnu.org/onlinedocs/gccint/Collect2.html) is eventually calls `ld` but I am not sure at this stage why and how the compiler located `collect2` at the first place, and decided to call it instead of calling `ld` directly. For simplicity, I will ignore `collect2` for the rest of the post, and only mention `ld`.
+> The error output above might be confusing you since it seems like `/usr/lib/gcc/x86_64-linux-gnu/9/collect2` is invoked directly, not `ld`. Quick search suggests to me that [`collect2`](https://gcc.gnu.org/onlinedocs/gccint/Collect2.html) eventually calls `ld` but I am not sure at this stage why and how the compiler located `collect2` at the first place, and decided to call it instead of calling `ld` directly. For simplicity, I will ignore `collect2` for the rest of the post, and only mention `ld`.
 
 ```bash
 #!/bin/bash
@@ -292,14 +290,14 @@ Based on the information we have about the linker and with the `-lgflags` option
 /usr/lib/x86_64-linux-gnu/libgflags.a
 ```
 
-That seems to be existing under `/usr/lib/x86_64-linux-gnu` folder. This is [the folder where architecture specific libraries live](https://unix.stackexchange.com/a/43214) under ubuntu. If we also look at what's being passed to the linker through the `-L` command line option, which adds a path to the list of paths that `ld` will search for archive libraries and `ld` control scripts, we will see that `/usr/lib/x86_64-linux-gnu` is already bing passed.
+That seems to be existing under `/usr/lib/x86_64-linux-gnu` folder. This is [the folder where architecture specific libraries live](https://unix.stackexchange.com/a/43214) under Ubuntu. If we also look at what's being passed to the linker through the `-L` command line option, which adds a path to the list of paths that `ld` will search for archive libraries and `ld` control scripts, we will see that `/usr/lib/x86_64-linux-gnu` is already bing passed.
 
 ![](https://tugberkugurlu-blog.s3.us-east-2.amazonaws.com/post-images/01F1G46H1V0G9KJCGZN2NVDB0W-Screenshot-2021-03-21-at-22.50.58.png)
 
 
 Nice, the C++ build process is now making more sense for me 🙂  
 
-Just to make sure things are working as expect, I will run the container I have just built.
+Just to make sure things are working as expected, I will run the container I have just built.
 
 ```
 ➜ docker run cc8ae20c8aa8                  
