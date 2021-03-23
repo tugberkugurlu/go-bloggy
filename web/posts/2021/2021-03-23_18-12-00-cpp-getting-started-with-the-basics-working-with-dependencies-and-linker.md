@@ -213,7 +213,7 @@ What has happened here is that the compiler was able to find the header file to 
 
 This makes more sense now as `/usr/include` is one of the directories where the compiler is looking for to find the header files.
 
-# Linking
+## Linking
 
 The error we have received this time seems to be coming from [`ld`, the linker](https://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_node/ld_toc.html), and it seems to be indicating that there are undefined references to several objects and functions under `google` namespace.
 
