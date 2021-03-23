@@ -1,5 +1,5 @@
 ---
-id: 01F17XQ4E37MX14WARR80KVGS6
+id: 01F1G4K4GR6HSVY3SS47ZDR0KN
 title: "C++, Getting Started with the Basics: Working with Dependencies and Linker"
 abstract: I am learning C++, and what better way to make the learning stick more stronger than blogging about my journey and experience, especially thinking that the barrier to entry is quite high and there is too much to learn. So, the reason that this post exists is a bit selfish, but I am hoping it will be helpful to some other folks who are going through the same struggles as I am. In this post, I will go over details of what it takes to work with dependencies in C++ and how the compilation and linking process works.
 created_at: 2021-03-21 22:01:00.0000000 +0000 UTC
