@@ -9,8 +9,9 @@ abstract: If you have never been exposed to software system design challenges, y
 created_at: 2019-02-23 14:52:48.6063115 +0000 UTC
 tags:
 - Architecture
-- Polyglot Persistance
 - Software Development
+- Career
+- Interviewing
 slugs:
 - software-architecture-and-system-design---getting-your-grip-and-some-related-resources
 ---
