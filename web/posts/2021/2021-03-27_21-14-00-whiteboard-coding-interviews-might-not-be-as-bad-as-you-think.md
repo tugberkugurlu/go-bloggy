@@ -14,35 +14,88 @@ slugs:
 
 ## TL;DR; Intro
 
-Whiteboard style coding interviews (a.k.a. leetcode style, interviewing through CS trivia questions) has a bad reputation, and within the software industry they are being perceived as "bad interview practice" in general. Despite this perception, many companies (especially the top-tier tech companies, a.k.a. [FAANG](https://medium.com/dev-genius/whats-faang-a9561bb713e2) and the likes) still hire software engineers through this interviewing process. 
+Whiteboard style coding interviews (a.k.a. leetcode style, interviewing through CS trivia questions) has a bad reputation, and within the software industry they are being perceived as "bad interview practice" in general. Despite this perception, many companies (especially the top-tier tech companies, a.k.a. [FAANG](https://medium.com/dev-genius/whats-faang-a9561bb713e2) and the likes) still hire software engineers through this interviewing process.
 
-As someone who has conducted 100+ tech interviews within the last 4 years and also as someone who has failed this type of interviews nearly dozen times in the last 5 years, I would like to express my thoughts on why this perception might not be the most accurate one, why organizations still stick with this type of interviewing style, and also why this type of interviews can and should even be perceived positively by candidates.
+As someone who has conducted 100+ tech interviews within the last 4 years and also as someone who has failed this type of interviews nearly dozen times in the last 6 years, I would like to express my thoughts on why this perception might not be the most accurate one, why organizations still stick with this type of interviewing style despite the negative perception, and also why this type of interviews can and should even be perceived positively by candidates.
 
-In general, I do believe that gaining a different perspective on this type of interviewing processes will be helpful to all of us, mainly to understanding the problem which is aimed to be solved through this type of interview processes. This is not only for us to eventually accept the process as is, and move on with our lives. However, if we understand why the process exist today in the way it's, we will then be able to form a better judgment of the process from the perspective of both sides, and we can then challenge the assumptions, and influence a change if necessary.
+In general, I do believe that gaining a different perspective on this type of interviewing processes will be helpful to all of us, mainly to understand the problem which is aimed to be solved through this type of interview processes. This is not only for us to eventually accept the process as is, and move on with our lives. However, if we understand why the process exist today in the way it's, we will then be able to form a better judgment of the process from the perspective of both sides, and we can then challenge the assumptions, and influence a change if necessary.
 
 > ⚠️ Disclaimer 1: the content of this blog post is based on my personal opinions, and by no means represent the view of my current or former employers. So, just keep that in mind while reading the post.
 
 > ⚠️ Disclaimer 2: I am acknowledging that interviewing is an area where quantifying the success of the certain interviewing processes is really challenging. Also, I am aware that all the information I will unleash here are not backed by any scientific evidence. However, they come from an experience. So, I still see it valuable to share. Nevertheless, take all this info in this post with a grain of salt.
 
-## Types of Software Engineering Roles
+> ⚠️ Disclaimer 3: I am aware that there are organizations in many shapes and sizes. It would be naive to think that there would be one interviewing style that would work for all of them. In this post, I am mainly focusing on organizations which works on tech-centric products, where the tech side of the business is just not there to just implement features, but it's at the center of your organization to drive product decisions and innovations (in these organizations, tech becomes the organization's competitive advantage in the market).
+>
+> In some parts, I might be implicit about this fact. So, keep this in mind. When I am referring to an "organization", you should know what I mean.
 
-I personally believe that figuring out what type of software engineer you will be in your new job is a multifaceted problem, and plays a crucial role on understanding the reasons behind the interview process of an organization. I want to touch on three of these dimensions to narrow down the focus of this post, and my hope is that this will eventually make it more clear what the problem of "whiteboard"-style interviews are trying solve.
+## Hiring Strategies
 
-### Specialist vs. Generalist
-
-First of all, "Software Engineer" is a broad term, and it's common that we sometimes end up specializing within an area, e.g. Backend Engineer, Frontend Engineer, Engineer in Test, QA Engineer, iOS Engineer, Security Engineer, and so on or and so forth. The list can go on, but the truth is that each of these roles requires different skill sets even if all these will require the person to write code and implement software to a certain extent.
-
-On the other hand, some organizations purposely hire "Software Engineers". This can vary from organization to organization what this mean but in general this refers to the generalist software engineer, where they are well-versed on solving problems through software without necessarily constraining themselves within a workflow. In my experience, even these hires end up specializing in one area of software engineering. However, these engineers can still contribute pretty much throughout the whole lifecycle of the software delivery process.
-
-In general, an organization's chosen interview process can be very different when it comes to hiring a specialist vs. generalist, but they can still have some fundamental common characteristics. I will touch on this later in the post.
+I personally believe that defining what type of software engineer you want to hire into the organization is a multifaceted problem, and plays a crucial role on understanding the reasons behind the interview process of an organization. I want to touch on three of these dimensions to narrow down the focus of this post. I am super aware that this is not an exhaustive list. However, based on my experience, they play a significant role shaping up the interview process that software engineers go through. My hope here is that the information in this section will set foundational knowledge of us to understand why certain interview process might be set in the way they are today, which should eventually make it more clear what the problem of "whiteboard"-style interviews are trying solve.
 
 ### Today's Problems vs. Tomorrow's
 
-The other big difference
+The hiring criteria usually differs a lot depending on whether you are hiring Software Engineers to solve today's problems vs. tomorrow's. This one indeed plays the biggest role on what type of interview process and what type of coding assessment Software Engineers may need to go through.
 
-fit into the creative thinking process
+#### Today's Problems
+
+Today's problems for an organization are well-known, and we are already aware of the challenges of those problems even if they may have not been solved yet. If you are hiring engineers on solving today's problems, meaning that you know what technologies, technical challenges, and architectural structure you will be working in the long run based on the today's view, you will have a pretty good idea on what you want from a Software Engineer. 
+
+For instance, if you as the organization are on k8s and you intend to stay on k8s for the rest of your existence as an organization, it's highly logical to assess the candidate's knowledge and experience on k8s as part of your interview process. Another example could be given here for a specific domain. Let's assume that organization's products are centered around the search functionality. So, it could be acceptable to think that organization can aim for hiring Software Engineers who has prior experience on search domain, and the assessment criteria could be centered around search domain during the interview. 
+
+This type of interview processes are relatively easy to compared to the next topic we will discuss, because the organization has high chance to solidify the assessment criteria by living less room for personal judgment. On the other hand, this type of hiring approach comes with a great deal of risk, and the reason is quite simple: tech-centric product design and development is highly volatile. It's not just that the problems we have to deal with keep evolving, but also the technologies we use to solve these problems. These sometimes even change in the direction which haven't imagined before. Therefore, if your assessment criteria during an interview process is centered around a specific area, regardless of this being a specific technology or problem solving technique, you are betting on the successful candidates to adopt to these changes, and be able to solve the problems, or maybe as an organization, you are more naive and thinking that things will stay still for a forseeable future, and you will just be fine.
+
+#### Tomorrow's Problems
+
+What I mean by tomorrow's problems is the notion of uncertainty both from the user, and business challenges perspective as well as the technical challenges. It's critical to being able to deal with this uncertainty potentially within an ambiguous environment (uncertainty often brings out ambiguity regardless of whether organization is well-structured or not by default). Based on my experience, this is much more close to the reality within this tech industry where things are changing fast, and you are required to adopt.
+
+As an organization that wants to hire Software Engineers that will be able cope with the challenges of both today's and tomorrow's problems, **you want to hire engineers that fit into the creative thinking process through their sharp problem solving skills with critical and analytical thinking**. This may sound great, but assessing engineers against these criteria is much, much harder compared to the process to hire engineers for today's problems. There are a few reasons for this, again, based on my own experience:
+
+ - The criteria described above itself doesn't reveal a specific domain or technology for you to be able to pick for the assessment. This eventually guides the organization to boil down the evaluation to performed on the basis of **fundamental knowledge and problem solving skills**.
+ - As there is no specific technology or domain here to assess, individual interviewer judgment can be more significant. This is especially the case when the interview process is set up correctly and effectively, meaning that the decision is not binary i.e. solved the coding problem, pass, or vice-versa.
+ - It's a challenge to make this type of interview process work in scale, both for the organization and the candidates. This is especially the case for big tech companies, which has thousands of engineers working for them. I will touch on this more shortly but this is the biggest source of frustration point for whiteboard-style coding interviews.
+
+#### Mixed Hiring Strategies
+
+There is also a room for a hiring strategy which is mixed with both of the criteria mentioned above. At the end of the day, majority of the work for any tech-centric organization is going to be around problem solving through a creative thinking process. However, there is probably still small amount of (I would like to unscientifically say around ~10-15%) work which needs to be got done in the short-medium term, and requires specific skills or knowledge and experience on a specific technology. When you have this need, it's common to see organizations adopting a different hiring process for that to hire employees for the short term (while also still hiring full time employees to solve tomorrow's problems), i.e. as contractors. This is completely valid, and works well for both sides as long as this is kept in a minimum, and doesn't become your default and only hiring strategy. The reason is that 
+
+ - Organization knows what they want in terms of hiring criteria, which happens to be a specific and easy to assess one.
+ - Expectations are set correctly for both sides, i.e. short-term employees know they are hired to execute on the work based on their existing skills and organization knows that there are folks who are hired purely for execution.
 
 ### Hiring Into a Team vs. Company
+
+### Specialist vs. Generalist
+
+It's common that Software Engineers sometimes end up specializing within an area, e.g. Backend, Frontend, Test, QA, iOS, Security, and so on or and so forth. The list can go on, but the truth is that each of these roles requires different skill sets even if all these will require the person to write code and implement software to a certain extent.
+
+On the other hand, some organizations purposely hire "Software Engineers". This can vary from organization to organization what this mean but in general this refers to the generalist software engineer, where they are well-versed on solving problems through software without necessarily constraining themselves within a workflow. In my experience, even these hires end up specializing in one area of software engineering. However, these engineers can still contribute pretty much throughout the whole lifecycle of the software delivery process.
+
+In general, an organization's chosen interview process can be very different when it comes to hiring a specialist vs. generalist, but they can still have some fundamental common characteristics. I will touch on this later in this post.
+
+## Whiteboard-style Coding Interviews 
+
+What does this have to do with coding interviews, more specifically the whiteboard-style coding interviews? I see and hear a lot speculation about the negative side of whiteboard-style coding interviews. I say speculation here on purpose, not because it's people's intention to speculate, and all of the information out there is completely speculative. I say that because genuinely there are a lot of misconceptions and lack of rationale out there when judging these interviews. As humans we sometimes forget that most things are not black and white, and trade-offs matter, and that's what really is happening here I think. We end up judging these processes from one side: the candidate's.
+
+While acknowledging that every organization's intentions are different with this type of interviews, I personally believe, with the experience I have both as an interviewer and interviewee, I have a pretty solid idea on why these interview are shaped up in the way they are today in general.
+
+### These Interviews are Intentionally Structured
+
+**These type of interviews are assessing the candidate's core problem solving ability through coding while also assessing the candidate's fundamental computer science knowledge around algorithms, data structures, and complexity analysis**. Throughout the interview, interviewers will look for signals to give them a higher confidence on this front, and this is the key to understand! The evaluation here is not binary, and it will likely be linked to how you communicate your ideas as well as how you execute on them, but let's ignore that for now to purely look at why these matter. If we go back to the tomorrow's problems point we touched on above, the reasoning will make much more sense. Even if the organization accepts the fact that tomorrow's problems are unpredictable and full of uncertainty, they need to be able to form some assumptions around some commonalities of these problems. One of those assumptions happen to be that tech-centric problems will eventually require understanding of the core algorithms, data structures as well as being able to solve problems effectively through coding.
+
+ **They also assess the candidate's critical thinking ability within context of a problem that needs to be solved through coding**. This gives a pretty solid idea on what type of thinking you have. This extends from thinking about edge cases to seeing opportunities within your solution to optimize it proactively in terms of various aspects (e.g. modularizing your solution, improving the runtime performance, choosing your test cases, etc.).
+
+ **These coding challenges also set up a pretty good environment to be able to assess your analytical ability, to a certain extent**. Can you reason about your solution within different input sizes, and how your solution scales to? Can you ask the correct analytical questions upfront, and proactively to find the optimum solution? All of this gives pretty accurate signals.
+
+**One of the things that these questions don't asses is your rote knowledge on a particular technology such as a programming language**. Unless you are being hired as a specialist on a specific programming language, you will be given the freedom to choose the language that you are most familiar with, even if that language is not among the languages that the organization is using. This is great, as it gives you the choice the language that you are the most comfortable with. However, this doesn't mean that you don't even need to be fluent in the programming language that you have chosen. It's quite the opposite. As you are given the choice to choose the best language you feel comfortable with, you are expected to be fluent with the basics of the language.
+
+**As a contrary to point above, one other thing that's not being evaluated is your rote knowledge on the syntax of the programming language you have chosen**. As you will likely be performing for these interviews within an unfamiliar environment such as an online code editor that won't have an autocompletion, or any other IDE features that you might be familiar with day to day, it's understandable that you may have some syntax mistakes here and there, and your code that may not actually compile. This is totally OK, and you should not worry about this too much. That's one other reason why you will likely not be given any option to be able to run your code. The core reason for this is the prevent to noise around retrieving the accurate signals that the interviewer is looking for, and get you spend as much time as possible on the code logic, implementation, and testing. There is also a fundamental assumption here: if you are an engineer who is able to perform well within these interviews by solving the given problems effectively, you will almost always be able to find syntax problems and solve them. So, the potential time that you might have spent fixing these issues would have actually lowered your chances because you are not giving any useful signals to the interviewer during that time.
+
+### They are Not Silver Bullet
+
+### They Can be Executed Poorly
+
+### Why 
+
+---
 
 ## Organizations are Trying to Optimize For Something When They Are Hiring
 
@@ -78,4 +131,12 @@ We All Hate Whiteboard Coding Interviews, Let's Admit It!
 
 > OK, this section is purely based on assumptions, and totally speculative. If you are type of person who likes to focus on facts, or at least the opinions formed based on experience, you may wanna skip this. If not, buckle up!
 
+We should be open about the fact that these interviews are assessing part of our knowledge that we are not using too much day to day.
+
 ## Conclusion
+
+## Further Resources
+
+ - [Thread based on Jaana Dogan's recent Tweet on this topic](https://twitter.com/rakyll/status/1372747015260540936), it can be useful if you want to gain further perspective on how different people think about this.
+ - [Hiring Without Whiteboards](https://github.com/poteto/hiring-without-whiteboards), it seems to be curated list for companies (or teams) that don't do "whiteboard" interviews
+ - [Get that job at Google](http://steve-yegge.blogspot.com/2008/03/get-that-job-at-google.html) Steve Yegge's very informative post on hiring at Google. Very old now, but surprising still a lot of relevant bits. It's worth checking out.
