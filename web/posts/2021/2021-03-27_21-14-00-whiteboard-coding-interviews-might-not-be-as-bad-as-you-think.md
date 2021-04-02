@@ -142,9 +142,19 @@ We All Hate Whiteboard Coding Interviews, Let's Admit It!
 
 > OK, this section is purely based on assumptions, and totally speculative. If you are type of person who likes to focus on facts, or at least the opinions formed based on experience, you may wanna skip this. If not, buckle up!
 
-We should be open about the fact that these interviews are assessing part of our knowledge that we are not using too much day to day.
+We should be open about the fact that this style of coding interviews require us to prepare, and that takes significant amount of time commitment from the candidate's point of view. It's a privilege to have that time, but let's assume you have that, it also still takes significant amount of diligence and perseverance to be able to perform strongly in these interviews. The outcome is also not left to luck. It's common that the candidate goes through 4-6 coding challenges throughout the hiring process, and one less than strong performance could be enough for them to get rejected.
+
+I personally believe that the preparation characteristics of these interviews on its own puts off great deal of candidates. These candidates could actually perform well on the job if they were to get it, but they never try because they don't have the enough enthusiasm and perseverance to go through this process. I also speculatively believe that this is a good thing for the organization, especially the ones which can already attack significant amount of candidates, because through this mechanism, they are implicitly evaluating the candidate's enthusiasm for the role, and general attitude on perseverance.
+
+I don't know whether this is the correct assumption or not, but wanted to put it out there here. Considering that software engineering hiring game favouring false-negative over false-positive (for the right reasons), this assumption might not be too far off.
 
 ## Conclusion
+
+TL;DR; is that **whiteboard-style coding interviews exist for certain specific reasons, mainly to be able to assess the candidate's core knowledge around algorithms and data structures, and how well they will likely fit into the creative thinking process through their sharp problem solving skills with critical and analytical thinking.** I believe this is largely a good thing when these interviews are setup and executed effectively by the organizations and interviewers. They often give a strong indication on what type of organization you are going to be jumping into, which usually tends to be the one who sees software engineers not just execution machines, but also as part of their product development and innovation process, and values their abilities much, much more strongly.
+
+They surely have some downsides, biggest one of which is that these interviews require significant upfront preparation, and not everyone has the privilege to commit a significant amount of time for this. The process itself also favours false-negative over false-positive, which is a very good think for the organization and their teams, but can be super demoralizing for the candidates.
+
+They are not perfect for the problem that they are trying to solve, for sure. However, I am yet to see an alternative solution to this problem that works as effectively and efficiently as this one (yes, take-home assessments are not an alternative!). 
 
 ## Further Resources
 
