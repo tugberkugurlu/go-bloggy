@@ -36,7 +36,7 @@ The hiring criteria usually differs a lot depending on whether you are hiring So
 
 #### Today's Problems
 
-Today's problems for an organization are well-known, and we are already aware of the challenges of those problems even if they may have not been solved yet. If you are hiring engineers on solving today's problems, meaning that you know what technologies, technical challenges, and architectural structure you will be working in the long run based on the today's view, you will have a pretty good idea on what you want from a Software Engineer. 
+Today's problems for an organization are well-known, and we are already aware of the challenges of those problems even if they may have not been solved yet. If you are hiring engineers on solving today's problems, meaning that you know what technologies, technical challenges, and architectural structure you will be working in the long run based on the today's view, you will have a pretty good idea on what you want from a Software Engineer.
 
 For instance, if you as the organization are on k8s and you intend to stay on k8s for the rest of your existence as an organization, it's highly logical to assess the candidate's knowledge and experience on k8s as part of your interview process. Another example could be given here for a specific domain. Let's assume that organization's products are centered around a search functionality. So, it could be acceptable to think that organization can aim for hiring Software Engineers who have prior experience on search domain, and the assessment criteria could be centered around search domain during the interview. 
 
@@ -54,12 +54,13 @@ As an organization that wants to hire Software Engineers that will be able cope 
 
 #### Mixed Hiring Strategies
 
-There is also a room for a hiring strategy which is mixed with both of the criteria mentioned above. At the end of the day, majority of the work for any tech-centric organization is going to be around problem solving through a creative thinking process. However, there is probably still small amount of (I would like to unscientifically say around ~10-15%) work which needs to be got done in the short-medium term, and requires specific skills or knowledge and experience on a specific technology. When you have this need, it's common to see organizations adopting a different hiring process for that to hire employees for the short term (while also still hiring full time employees to solve tomorrow's problems), i.e. as contractors. This is completely valid, and works well for both sides as long as this is kept in a minimum, and doesn't become your default and only hiring strategy. The reason is that 
+There is also a room for a hiring strategy which is mixed with both of the criteria mentioned above. At the end of the day, majority of the work for any tech-centric organization is going to be around problem solving through a creative thinking process. However, there is probably still small amount of (I would like to unscientifically say around ~10-15%) work which needs to be got done in the short-medium term, and requires specific skills or knowledge and experience on a specific technology. When you have this need, it's common to see organizations adopting a different hiring process for that to hire employees for the short term (while also still hiring full time employees to solve tomorrow's problems), i.e. as contractors. This is completely valid, and works well for both sides as long as this is kept in a minimum, and doesn't become your default and only hiring strategy. The reason is that:
 
- - Organization knows what they want in terms of hiring criteria, which happens to be a specific and easy to assess one.
+ - The organization knows what they want in terms of hiring criteria, which happens to be a specific and easy to assess one.
  - Expectations are set correctly for both sides, i.e. short-term employees know they are hired to execute on the work based on their existing skills and organization knows that there are folks who are hired purely for execution.
 
 ### Hiring Into a Team vs. Company
+
 
 ### Specialist vs. Generalist
 
@@ -69,11 +70,23 @@ On the other hand, some organizations purposely hire "Software Engineers". This 
 
 In general, an organization's chosen interview process can be very different when it comes to hiring a specialist vs. generalist, but they can still have some fundamental common characteristics. I will touch on this later in this post.
 
-## Whiteboard-style Coding Interviews 
+## Hiring Strategy Relationship with Whiteboard-style Coding Interviews
 
-What does this have to do with coding interviews, more specifically the whiteboard-style coding interviews? I see and hear a lot speculation about the negative side of whiteboard-style coding interviews. I say speculation here on purpose, not because it's people's intention to speculate, and all of the information out there is completely speculative. I say that because genuinely there are a lot of misconceptions and lack of rationale out there when judging these interviews. As humans we sometimes forget that most things are not black and white, and trade-offs matter, and that's what really is happening here I think. We end up judging these processes from one side: the candidate's.
+What does this information have to do with coding interviews, more specifically the whiteboard-style coding interviews? Having an understanding on what type of hiring strategies are out there, and which one is being used by the organization I am interviewing with helps me gain a wider perspective about their interview process, and makes me emphasize with the strategy. If I am convinced that hiring strategy and interview process aligns, this motivates me more. I am hoping this will at least be similar for you.
 
-While acknowledging that every organization's intentions are different with this type of interviews, I personally believe, with the experience I have both as an interviewer and interviewee, I have a pretty solid idea on why these interview are shaped up in the way they are today in general.
+So, for the rest of the post, I will be making the assumption that the organization's hiring strategy has the following criteria:
+
+ - Hiring engineers to solve tomorrow's Problems, not just today's problems.
+ - Hiring engineers into the organization, not particularly into a team. Even if the intention is to land them into a specific team, you are making the assumption that they can move within the organization.
+ - Hiring generalist engineers, not specialist.
+
+I made these choices here not because the alternatives are somehow bad. The main reason is that these are the criteria that the many organizations generally choose as part of their software engineer hiring strategy, and these contribute heavily to why whiteboard-style coding interviews become the core part of the assessment throughout the interviews.
+
+## Whiteboard-style Coding Interviews
+
+There seems to be notable amount of speculation about the negative side of whiteboard-style coding interviews. I say speculation here on purpose, not because it's people's intention to speculate, and all of the information out there is completely speculative. I say that because genuinely there are a lot of misconceptions and lack of rationale out there when judging these interviews. As humans we sometimes forget that most things are not black and white, and trade-offs matter, and that's what really is happening here I think. We end up judging these processes from one side: the candidate's.
+
+While acknowledging that every organization's intentions are different with this type of interviews, I personally believe, with the experience I have both as an interviewer and interviewee, I have a pretty solid idea on why these interviews are shaped up in the way they are today in general. Most important, it's actually largely positive for the candidates that these interviews are set up the way they are today.
 
 ### These Interviews are Intentionally Structured
 
