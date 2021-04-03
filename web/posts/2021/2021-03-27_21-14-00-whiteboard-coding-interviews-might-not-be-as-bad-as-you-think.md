@@ -114,24 +114,34 @@ If we relate the structure of the coding interviews with the hiring strategy I m
 
 ### Whiteboard-style Coding Interviews are not Perfect
 
+Whiteboard-style coding interviews are no silver bullet. The hiring is a complicated problem to solve in general, and this becomes much more harder when it comes to hiring talented people to fit into an environment where creative thinking, and core problem solving skills matters the most, if not as much as the core technical skills. It would have been very naive to think that one solution works perfectly to solve this complicated, multifaceted problem. It's again worth emphasizing that the case that every organization is different. However, we should have a shared understanding by know what type of organization I am referring to.
+
+As nearly everything else in this precious World, this type of interviews comes with their own trade-offs, and it's worth acknowledging them so that we can do as much as possible to mitigate them. The following list of negatives about these interviews are based on my own experience, and YMMV is what I have been seeing 
+
  - require significant amount of preparation from the candidate's point.
  - the structure can be copied without actually forming an hiring strategy first
- - occasionally executed poorly, and lead to either false-negatives or false-positives.
- - favouring New Grads, not the Seniors
+ - occasionally executed poorly, and they lead to either false-negatives or false-positives.
 
-> 💡 **A word on false-negatives**: The topic of false-negatives is outside the purpose of this post, but comes up a lot when coding interview topic is brought up. false-negative outcomes from interviews are the ones which reject a candidate who would have actually performed well on the job even if the candidate's performance was less than strong during the interview itself. These are super common in software engineering interviews, and more common especially in coding interviews. The downside of this for the organizations is that they might be missing out on incredible talent. However, when you think deeply about this, false-negatives are actually much more favorable compared to false-positives for the organization's, their employees' success and happiness in the long run. 
+> 💡 **A word on false-negatives**: The topic of false-negatives is outside the purpose of this post, but comes up a lot when coding interview topic is brought up. False-negative interview outcomes are the ones which concludes the candidate's rejection where the same candidate would have actually performed well on the job (speculatively) even if the candidate's performance was less than strong during the interview itself. These are super common in software engineering interviews, and more common especially in coding interviews. These outcomes might potentially cause an organization to miss out on incredible talent. However, when you think deeply about this, **false-negatives are actually much more favorable compared to false-positives for the organization's, their employees' success and happiness in the long run**.
 >
-> The reason is simple: it will lead to a potential decline of the talent within the organization, and this can grow exponentially. Once this starts happening, the talent you retained in your organization might also start being unhappy about this because talent employees want to work with talent colleagues, and this will eventually lead to attrition and high turnover rate.
+> The reason is simple: false-positives will lead to a potential decline of the talent within the organization, and this can grow exponentially. Once this starts happening, the talent you retained in your organization might also start being unhappy about this because [talented employees tend to want to work with talented colleagues](https://youtu.be/rQKis2Cfpeo?t=44), and this will eventually lead to attrition of the talent and high turnover rate.
 > 
-> Let's assume that within the last month you had 200 borderline outcomes, and you let half of them slip while taking the risk on these employees, as you didn't want to miss out on a potentially great talent. Let's again assume half of these hires turn out to be false-positives, and they start interviewing candidates within 6 months or so. They will likely end up hiring engineers under the bar, and good portion of those engineers will likely also turn out to be false-positives. Those hires will also end up interviewing engineers within the next 6 months or so, and this cycle will keep continuing, and it won't be much longer to see the impact of this exponential cycle.
+> Let's assume that within the last month you had a hundred borderline outcomes through your interview process, and you let half of them slip while taking the risk on these employees, as you didn't want to miss out on a potentially great talent. Let's again assume half of these hires turn out to be false-positives, and they start interviewing candidates within 6 months or so. They will likely end up hiring engineers under the bar, and good portion of those engineers will likely also turn out to be false-positives. Those hires will also end up interviewing engineers within the next 6 months or so, and this cycle will keep continuing, and it won't be much longer to see the impact of this exponential cycle.
 >
 > You should also remember that once you hire the wrong person into your organization, letting go of that person is super painful and a long process, unless you are adopting [a structure similar to what Netflix operates under](https://www.slideshare.net/reed2001/culture-1798664/23-Unlike_many_companieswe_practiceadequate_performance) (which I personally respect and related to).
 
+- favouring New Grads, not the Seniors
+
 ## Common Misconceptions
 
- - you are being asked about questions which doesn't reflect the day to day experience of the engineers working in the organization.
- - interviewing environment doesn't reflect the reality, e.g. you are left with a whiteboard or code editor which doesn't have autocompletion and even a compiler.
- - people with interviewing anxiety is being passed on wrongly. Who doesn't have interviewing anxiety? Interviews are stressful as hell, but being able to control the stress and anxiety is also part of our lives. Also, I have to put this here: [if actors with millions of dollars net worth are willing to take auditions](https://youtu.be/oMkmjg-qZRk?t=2199), I am sure we, as software engineers, should be able to justify to ourselves that it might actually be reasonable to take the job interviews 🙂 
+Based on the common rationale and understanding we have laid down, I believe it's now fair to be able to judge some of the common misconception about whiteboard-style coding interviews. Here are some of them that I am aware of which are worth specificity highlighting, this is not meant to be an exhaustive list:
+
+- You are being asked about questions which doesn't reflect the day to day experience of the engineers working in the organization, and there needs to be a system that should close gap between the interview and the actual job that is being interviewed for.
+  - If you are hiring software engineers only for today's problems, by all means, you should absolutely do this. If, however, you want to hire software engineers to solve not just today's problems, but also the tomorrow's ones, this advice introduces a lot of risks for the business.
+- Interviewing environment doesn't reflect the reality, e.g. you are left with a whiteboard or code editor which doesn't have autocompletion and even a compiler.
+  - This ties back to assessment criteria and the signals which the interviewer is trying to retrieve from the candidate throughout the interview. Being able to get the syntax of the programming language, and how to use the compiler is not one of those criteria. The potential time that you might have spent fixing the potential issues related to these areas would have actually lowered your chances because you are not giving any useful signals to the interviewer during that time. So, it is actually in your favour that you are forced to use a rudimentary coding environment for the test.
+- The candidates with interviewing anxiety is being passed on wrongly.
+  - Who doesn't have interviewing anxiety? Interviews are stressful as hell, but being able to control the stress and anxiety is also part of our lives. I also have to put this here: [if actors with millions of dollars net worth are willing to take auditions](https://youtu.be/oMkmjg-qZRk?t=2199), I am sure we, as software engineers, should be able to justify to ourselves that it might actually be reasonable to take the job interviews 🙂 
 
 ### Untold Truth?
 
@@ -156,3 +166,5 @@ They are not perfect for the problem that they are trying to solve, for sure. Ho
  - [Thread based on Jaana Dogan's recent Tweet on this topic](https://twitter.com/rakyll/status/1372747015260540936), it can be useful if you want to gain further perspective on how different people think about this.
  - [Hiring Without Whiteboards](https://github.com/poteto/hiring-without-whiteboards), it seems to be curated list for companies (or teams) that don't do "whiteboard" interviews
  - [Get that job at Google](http://steve-yegge.blogspot.com/2008/03/get-that-job-at-google.html) Steve Yegge's very informative post on hiring at Google. Very old now, but surprising still a lot of relevant bits. It's worth checking out.
+ - [Coding Interviews are NOT Broken](https://www.youtube.com/watch?v=9TTN-vtWIKw)
+ - [Moishe Lettvin - What I Learned Doing 250 Interviews at Google](https://www.youtube.com/watch?v=r8RxkpUvxK0)
