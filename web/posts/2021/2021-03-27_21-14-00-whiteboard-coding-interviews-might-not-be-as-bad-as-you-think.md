@@ -76,7 +76,7 @@ What does this information have to do with coding interviews, more specifically 
 
 So, for the rest of the post, I will be making the assumption that the organization's hiring strategy has the following criteria:
 
- - Hiring engineers to solve tomorrow's Problems, not just today's problems.
+ - Hiring engineers to solve tomorrow's problems, not just today's problems.
  - Hiring engineers into the organization, not particularly into a team. Even if the intention is to land them into a specific team, you are making the assumption that they can move within the organization.
  - Hiring generalist engineers, not specialist.
 
@@ -92,51 +92,44 @@ While acknowledging that every organization's intentions are different with this
 
 **These type of interviews are assessing the candidate's core problem solving ability through coding while also assessing the candidate's fundamental computer science knowledge around algorithms, data structures, and complexity analysis**. Throughout the interview, interviewers will look for signals to give them a higher confidence on this front, and this is the key to understand! The evaluation here is not binary, and it will likely be linked to how you communicate your ideas as well as how you execute on them, but let's ignore that for now to purely look at why these matter. If we go back to the tomorrow's problems point we touched on above, the reasoning will make much more sense. Even if the organization accepts the fact that tomorrow's problems are unpredictable and full of uncertainty, they need to be able to form some assumptions around some commonalities of these problems. One of those assumptions happen to be that tech-centric problems will eventually require understanding of the core algorithms, data structures as well as being able to solve problems effectively through coding.
 
- **They also assess the candidate's critical thinking ability within context of a problem that needs to be solved through coding**. This gives a pretty solid idea on what type of thinking you have. This extends from thinking about edge cases to seeing opportunities within your solution to optimize it proactively in terms of various aspects (e.g. modularizing your solution, improving the runtime performance, choosing your test cases, etc.).
+**They also assess the candidate's critical thinking ability within context of a problem that needs to be solved through coding**. This gives a pretty solid idea on what type of thinking you have. This extends from thinking about edge cases to seeing opportunities within your solution to optimize it proactively in terms of various aspects (e.g. modularizing your solution, improving the runtime performance, choosing your test cases, etc.).
 
- **These coding challenges also set up a pretty good environment to be able to assess your analytical ability, to a certain extent**. Can you reason about your solution within different input sizes, and how your solution scales to? Can you ask the correct analytical questions upfront, and proactively to find the optimum solution? All of this gives pretty accurate signals.
+**These coding challenges also set up a pretty good environment to be able to assess your analytical ability, to a certain extent**. Can you reason about your solution within different input sizes, and how your solution scales to? Can you ask the correct analytical questions upfront, and proactively to find the optimum solution? All of this gives pretty accurate signals.
 
 **One of the things that these questions don't asses is your rote knowledge on a particular technology such as a programming language**. Unless you are being hired as a specialist on a specific programming language, you will be given the freedom to choose the language that you are most familiar with, even if that language is not among the languages that the organization is using. This is great, as it gives you the choice the language that you are the most comfortable with. However, this doesn't mean that you don't even need to be fluent in the programming language that you have chosen. It's quite the opposite. As you are given the choice to choose the best language you feel comfortable with, you are expected to be fluent with the basics of the language.
 
 **As a contrary to point above, one other thing that's not being evaluated is your rote knowledge on the syntax of the programming language you have chosen**. As you will likely be performing for these interviews within an unfamiliar environment such as an online code editor that won't have an autocompletion, or any other IDE features that you might be familiar with day to day, it's understandable that you may have some syntax mistakes here and there, and your code that may not actually compile. This is totally OK, and you should not worry about this too much. That's one other reason why you will likely not be given any option to be able to run your code. The core reason for this is the prevent to noise around retrieving the accurate signals that the interviewer is looking for, and get you spend as much time as possible on the code logic, implementation, and testing. There is also a fundamental assumption here: if you are an engineer who is able to perform well within these interviews by solving the given problems effectively, you will almost always be able to find syntax problems and solve them. So, the potential time that you might have spent fixing these issues would have actually lowered your chances because you are not giving any useful signals to the interviewer during that time.
 
-### They are Not Silver Bullet
+## Hiring Strategy and Coding Interview Structure
 
-### They Can be Executed Poorly
+If we relate the structure of the coding interviews with the hiring strategy I mentioned in the previous section, we can see how things start to make more sense:
 
-### Why 
+ **The organization, which we are basing our assumptions on in this post, wants to hire  generalist software engineers into the organization (not into a specific team) to solve tomorrow's problems, not just today's problems**. So, the assessment is not restricted according to the work the organization is taking on today (unless we are hiring for the short term or for a specialist role). The software engineering candidates are evaluated according to their core problem solving and computer science knowledge, based on several different coding challenges. This is only one part of the entire interview process. However, this on its own gives pretty accurate signals for the minimum bar around he candidate's:
 
----
+  - skills to use a programming language to solve a particular problem through coding, while being able to form an algorithm
+  - ability to be able to critically think about the problem, while being able to ask the right questions to widen their understanding on the problem, proactively finding out the edge cases, and potential optimizations 
+  - analytical reasoning for a given problem, according to requirements which may or may not be ambiguous to start with.
 
-## Organizations are Trying to Optimize For Something When They Are Hiring
+### Whiteboard-coding Interview are not Perfect
 
-## Target Software Engineering Role of This Post
+ - require significant amount of preparation from the candidate's point.
+ - the structure can be copied without actually forming an hiring strategy first
+ - occasionally executed poorly, and lead to either false-negatives or false-positives.
+ - favouring New Grads, not the Seniors
+
+> 💡 **A word on false-negatives**: The topic of false-negatives is outside the purpose of this post, but comes up a lot when coding interview topic is brought up. false-negative outcomes from interviews are the ones which reject a candidate who would have actually performed well on the job even if the candidate's performance was less than strong during the interview itself. These are super common in software engineering interviews, and more common especially in coding interviews. The downside of this for the organizations is that they might be missing out on incredible talent. However, when you think deeply about this, false-negatives are actually much more favorable compared to false-positives for the organization's, their employees' success and happiness in the long run. 
+>
+> The reason is simple: it will lead to a potential decline of the talent within the organization, and this can grow exponentially. Once this starts happening, the talent you retained in your organization might also start being unhappy about this because talent employees want to work with talent colleagues, and this will eventually lead to attrition and high turnover rate.
+> 
+> Let's assume that within the last month you had 200 borderline outcomes, and you let half of them slip while taking the risk on these employees, as you didn't want to miss out on a potentially great talent. Let's again assume half of these hires turn out to be false-positives, and they start interviewing candidates within 6 months or so. They will likely end up hiring engineers under the bar, and good portion of those engineers will likely also turn out to be false-positives. Those hires will also end up interviewing engineers within the next 6 months or so, and this cycle will keep continuing, and it won't be much longer to see the impact of this exponential cycle.
+>
+> You should also remember that once you hire the wrong person into your organization, letting go of that person is super painful and a long process, unless you are adopting [a structure similar to what Netflix operates under](https://www.slideshare.net/reed2001/culture-1798664/23-Unlike_many_companieswe_practiceadequate_performance) (which I personally respect and related to).
 
 ## Common Misconceptions
 
-### Organizations that Screw up
-
-In relation to common misconceptions, there are organizations who doesn't have ther
-
-## The Good
-
-### Being the Engineer That Solves Tomorrow's Problems
-
-### Focusing on the Correct Aspects of the Assessment
-
-### Fairness and Relevance
-
-### Scalability
-
-## The Bad
-
-We All Hate Whiteboard Coding Interviews, Let's Admit It!
-
-### Preparation Required
-
-### Favouring New Grads, not the Senior
-
-## The Ugly
+ - you are being asked about questions which doesn't reflect the day to day experience of the engineers working in the organization.
+ - interviewing environment doesn't reflect the reality, e.g. you are left with a whiteboard or code editor which doesn't have autocompletion and even a compiler.
+ - people with interviewing anxiety is being passed on wrongly. Who doesn't have interviewing anxiety? Interviews are stressful as hell, but being able to control the stress and anxiety is also part of our lives. Also, I have to put this here: [if actors with millions of dollars net worth are willing to take auditions](https://youtu.be/oMkmjg-qZRk?t=2199), I am sure we, as software engineers, should be able to justify to ourselves that it might actually be reasonable to take the job interviews 🙂
 
 ### Untold Truth?
 
@@ -161,3 +154,44 @@ They are not perfect for the problem that they are trying to solve, for sure. Ho
  - [Thread based on Jaana Dogan's recent Tweet on this topic](https://twitter.com/rakyll/status/1372747015260540936), it can be useful if you want to gain further perspective on how different people think about this.
  - [Hiring Without Whiteboards](https://github.com/poteto/hiring-without-whiteboards), it seems to be curated list for companies (or teams) that don't do "whiteboard" interviews
  - [Get that job at Google](http://steve-yegge.blogspot.com/2008/03/get-that-job-at-google.html) Steve Yegge's very informative post on hiring at Google. Very old now, but surprising still a lot of relevant bits. It's worth checking out.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+### They Can be Executed Poorly
+
+### Why 
+
+---
+
+## Organizations are Trying to Optimize For Something When They Are Hiring
+
+## Target Software Engineering Role of This Post
+
+## Common Misconceptions
+
+ - you are being asked about questions which doesn't reflect the day to day experience of the engineers working in the organization.
+ - interviewing environment doesn't reflect the reality, e.g. you are left with a whiteboard or code editor which doesn't have autocompletion and even a compiler.
+
+### Organizations that Screw up
+
+In relation to common misconceptions, there are organizations who doesn't have ther
+
+## The Good
+
+### Being the Engineer That Solves Tomorrow's Problems
+
+### Focusing on the Correct Aspects of the Assessment
+
+### Fairness and Relevance
+
+### Scalability
+
+## The Bad
+
+We All Hate Whiteboard Coding Interviews, Let's Admit It!
+
+### Preparation Required
+
+### Favouring New Grads, not the Senior
+
+## The Ugly
