@@ -12,7 +12,9 @@ slugs:
 - whiteboard-coding-interviews-might-not-be-as-bad-as-you-think
 ---
 
-Whiteboard style coding interviews (a.k.a. leetcode style, interviewing through CS trivia questions) has a bad reputation, and within the software industry they are being perceived as "bad interview practice" in general (e.g. "[Why whiteboard interviews are BROKEN](https://www.youtube.com/watch?v=CkmiRCjnl-k)", "[Coding Interviews are Broken](https://www.youtube.com/watch?v=bx3--22D4E4)", and there are many others like these). Despite this perception, many companies (especially the top-tier tech companies, a.k.a. [FAANG](https://medium.com/dev-genius/whats-faang-a9561bb713e2) and the likes) still hire software engineers through this interviewing process.
+Whiteboard-style coding interviews has a bad reputation, and within the software industry they are being perceived as "bad interview practice" in general (e.g. "[Why whiteboard interviews are BROKEN](https://www.youtube.com/watch?v=CkmiRCjnl-k)", "[Coding Interviews are Broken](https://www.youtube.com/watch?v=bx3--22D4E4)", and there are many others like these). Despite this perception, many companies (especially the top-tier tech companies, a.k.a. [FAANG](https://medium.com/dev-genius/whats-faang-a9561bb713e2) and the likes) still hire software engineers through this interviewing process.
+
+> What I mean by "whiteboard-style coding interviews" is an assessment through algorithms and data structure based coding challenges which performed within a coding environment that doesn't reflect the day-to-day experience of an engineer, e.g. whiteboard, rudimentary online coding editor, etc. This is also known as "leetcode-style", interviewing through CS trivia questions, etc. So, a physical whiteboard doesn't necessarily need to be present, but it's a name that's often associated with this type of interviews.
 
 As someone who has conducted 100+ tech interviews within the last 4 years and also as someone who has failed this type of interviews nearly dozen times in the last 6 years, I would like to express my thoughts on why this perception might not be the most accurate one, why organizations still stick with this type of interviewing style despite the negative perception, and also why this type of interviews can and should even be perceived positively by candidates.
 
@@ -110,7 +112,7 @@ If we relate the structure of the coding interviews with the hiring strategy I m
   - ability to be able to critically think about the problem, while being able to ask the right questions to widen their understanding on the problem, proactively finding out the edge cases, and potential optimizations 
   - analytical reasoning for a given problem, according to requirements which may or may not be ambiguous to start with.
 
-### Whiteboard-coding Interview are not Perfect
+### Whiteboard-style Coding Interviews are not Perfect
 
  - require significant amount of preparation from the candidate's point.
  - the structure can be copied without actually forming an hiring strategy first
@@ -129,7 +131,7 @@ If we relate the structure of the coding interviews with the hiring strategy I m
 
  - you are being asked about questions which doesn't reflect the day to day experience of the engineers working in the organization.
  - interviewing environment doesn't reflect the reality, e.g. you are left with a whiteboard or code editor which doesn't have autocompletion and even a compiler.
- - people with interviewing anxiety is being passed on wrongly. Who doesn't have interviewing anxiety? Interviews are stressful as hell, but being able to control the stress and anxiety is also part of our lives. Also, I have to put this here: [if actors with millions of dollars net worth are willing to take auditions](https://youtu.be/oMkmjg-qZRk?t=2199), I am sure we, as software engineers, should be able to justify to ourselves that it might actually be reasonable to take the job interviews 🙂
+ - people with interviewing anxiety is being passed on wrongly. Who doesn't have interviewing anxiety? Interviews are stressful as hell, but being able to control the stress and anxiety is also part of our lives. Also, I have to put this here: [if actors with millions of dollars net worth are willing to take auditions](https://youtu.be/oMkmjg-qZRk?t=2199), I am sure we, as software engineers, should be able to justify to ourselves that it might actually be reasonable to take the job interviews 🙂 
 
 ### Untold Truth?
 
