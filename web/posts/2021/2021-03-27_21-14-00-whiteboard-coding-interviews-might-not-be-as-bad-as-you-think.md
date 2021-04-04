@@ -1,8 +1,8 @@
 ---
-id: 01F1TRNZ1G43V5YPYSHVYQ1WER
-title: "Whiteboard Style Coding Interviews Could Be Less Bad Than You Think"
-abstract: Whiteboard-style coding interviews has a bad reputation, and within the software industry they are being perceived as "bad interview practice" in general. Despite this perception, many companies still hire software engineers through this interviewing process. Do they really that bad? Why do they exist in the way they are today?
-created_at: 2021-03-27 21:14:00.0000000 +0000 UTC
+id: 01F2FETSWB6N0FM16BD92EZBQW
+title: Whiteboard-style Coding Interviews Might Not Be as Bad as You Think
+abstract: Whiteboard-style coding interviews has a bad reputation, and within the software industry they are being perceived as "bad interview practice" in general. Despite this perception, many companies still hire software engineers through this interviewing process. Are they really that bad? Why do they exist in the way they are today? I cannot promise to give you all the answers, but will at least give you my personal view on this based on my own experience both as an interviewer and interviewee.
+created_at: 2021-04-03 22:07:00.0000000 +0000 UTC
 format: md
 tags:
 - Software Engineer
