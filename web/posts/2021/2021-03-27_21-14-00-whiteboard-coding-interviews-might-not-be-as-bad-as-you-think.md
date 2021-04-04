@@ -67,10 +67,13 @@ There is also a room for a hiring strategy which is mixed with both of the crite
 
 ### Hiring Into a Team vs. Company
 
+Depending on where you want to land a prospective employee after the successful outcome from the interview process, your hiring strategy can also differ, and can even be multiplied. If you are an organization where your teams have longevity, and works on specific domains, it's valid to hire into a specific team. This gives autonomy to each team to be creative about their own hiring strategy while also allowing the team to be much more specific about the assessment criteria, which will potentially lead to multiple hiring strategies to exist within an organization for the same role. 
+
+The other option is to hire software engineers into the organization based on a generic criteria, and defer the team selection to a later point. This often works better based on my experience, as it makes it much easier for engineers to move between teams within an organization which further helps for an organization to retain the talent under circumstances where the employee wants to change their team one reason or another.
 
 ### Specialist vs. Generalist
 
-It's common that Software Engineers sometimes end up specializing within an area, e.g. Backend, Frontend, Test, QA, iOS, Security, and so on or and so forth. The list can go on, but the truth is that each of these roles requires different skill sets even if all these will require the person to write code and implement software to a certain extent.
+It's common that software engineers sometimes end up specializing within an area, e.g. Backend, Frontend, Test, QA, iOS, Security, and so on or and so forth. The list can go on, but the truth is that each of these roles requires different skill sets even if all these will require the person to write code and implement software to a certain extent.
 
 On the other hand, some organizations purposely hire "Software Engineers". This can vary from organization to organization what this mean but in general this refers to the generalist software engineer, where they are well-versed on solving problems through software without necessarily constraining themselves within a workflow. In my experience, even these hires end up specializing in one area of software engineering. However, these engineers can still contribute pretty much throughout the whole lifecycle of the software delivery process.
 
