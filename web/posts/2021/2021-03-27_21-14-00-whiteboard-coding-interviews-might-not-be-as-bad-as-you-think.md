@@ -1,15 +1,17 @@
 ---
 id: 01F1TRNZ1G43V5YPYSHVYQ1WER
-title: "Whiteboard Coding Interviews Might not Be as Bad as You Think"
-abstract: 
+title: "Whiteboard Style Coding Interviews Could Be Less Bad Than You Think"
+abstract: Whiteboard-style coding interviews has a bad reputation, and within the software industry they are being perceived as "bad interview practice" in general. Despite this perception, many companies still hire software engineers through this interviewing process. Do they really that bad? Why do they exist in the way they are today?
 created_at: 2021-03-27 21:14:00.0000000 +0000 UTC
 format: md
 tags:
 - Software Engineer
 - Interviewing
 - Career
+- Algorithms
+- Data Structures
 slugs:
-- whiteboard-coding-interviews-might-not-be-as-bad-as-you-think
+- whiteboard-style-coding-interviews-might-not-be-as-bad-as-you-think
 ---
 
 ![](https://tugberkugurlu-blog.s3.us-east-2.amazonaws.com/post-images/01F2D2V8WP27YAPWZ9NR8XCVEZ-thisisengineering-raeng-GzDrm7SYQ0g-unsplash-8.jpg)
@@ -26,7 +28,11 @@ I am a person who believes that there is no cookie-cutter approach to the proble
 
 > ⚠️ Disclaimer 1: the content of this blog post is based on my personal opinions, and by no means represent the view of my current or former employers. So, just keep that in mind while reading the post, and be nice 🙂
 
+<div></div>
+
 > ⚠️ Disclaimer 2: I am acknowledging that interviewing is an area where quantifying the success of the certain interviewing processes is really challenging. Also, I am aware that all the information I will unleash here are not backed by any scientific evidence. However, they come from an experience. So, I still see it valuable to share. Nevertheless, take all this info in this post with a grain of salt.
+
+<div></div>
 
 > ⚠️ Disclaimer 3: I am aware that there are organizations in many shapes and sizes. It would be naive to think that there would be one interviewing style that would work for all of them. In this post, I am mainly focusing on organizations which work on [tech-centric products](https://svpg.com/customer-inspired-technology-enabled/), where the tech side of the business is not there to just implement features and fix bugs, but instead it's at the center of your organization to drive product decisions and innovations (in these organizations, tech becomes the organization's competitive advantage in the market).
 >
@@ -119,7 +125,7 @@ If we relate the structure of the coding interviews with the hiring strategy I m
   - ability to be able to critically think about the problem, while being able to ask the right questions to widen their understanding on the problem, proactively finding out the edge cases, and potential optimizations 
   - analytical reasoning for a given problem, according to requirements which may or may not be ambiguous to start with.
 
-### Whiteboard-style Coding Interviews are not Perfect
+## Whiteboard-style Coding Interviews are not Perfect
 
 Whiteboard-style coding interviews are no silver bullet. The hiring is a complicated problem to solve in general, and this becomes much more harder when it comes to hiring talented people to fit into an environment where creative thinking, and core problem solving skills matters the most, if not as much as the core technical skills. It would have been very naive to think that one solution works perfectly to solve this complicated, multifaceted problem. It's again worth emphasizing that the case that every organization is different. However, we should have a shared understanding by know what type of organization I am referring to.
 
@@ -143,6 +149,16 @@ As nearly everything else in this precious World, this type of interviews comes 
 
 - **These interviews not at all in favour of software engineers who don't have a formal computer science education**. This is largely correct, but also largely depends on what type of learning you have accumulated. If we were to speak commonly though, it's going to be very rough until these candidate can feel comfortable around this type of coding challenges, yet alone feeling confident to perform well on the interviews. I am one of these folks without a formal CS education background. I still remember the time where I bombed a coding interview long time ago when the interviewer asked me to implement a stack data structure without using any collection types. I didn't really know how to, and wasn't also able to reason about the problem. However, I took this as a challenge, and over the years, I have accumulated tons of knowledge around algorithms, data structures, and complexity analysis thanks to this interview style. More importantly, this knowledge proved to be immensely useful many times while I was designing, implementing and reviewing systems, and code changes. Long story short, this is not really a negative. It's either an excuse or opportunity for you to learn and grow yourself. In the era where the entire lectures of formal CS courses are published online (e.g. see [Introduction to Algorithms](https://www.youtube.com/playlist?list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb) and [Advanced Data Structures](https://www.youtube.com/playlist?list=PLUl4u3cNGP61hsJNdULdudlRL493b-XZf) from [MIT OpenCourseWare](https://www.youtube.com/user/MIT)), this knowledge is much more easily acquirable than you might think.
 
+## Untold Truth?
+
+> OK, this section is purely based on assumptions, and totally speculative. If you are type of person who likes to focus on facts, or at least the opinions formed based on experience, you may wanna skip this. If not, buckle up!
+
+We should be open about the fact that this style of coding interviews require us to prepare, and that takes significant amount of time commitment from the candidate's point of view. It's a privilege to have that time, but let's assume you have that, it also still takes significant amount of diligence and perseverance to be able to perform strongly in these interviews. The outcome is also not left to luck. It's common that the candidate goes through 4-6 coding challenges throughout the hiring process, and one less than strong performance could be enough for them to get rejected.
+
+I personally believe that the preparation characteristics of these interviews on its own puts off great deal of candidates. These candidates could actually perform well on the job if they were to get it, but they never try because they don't have the enough enthusiasm and perseverance to go through this process. I also speculatively believe that this is a good thing for the organization, especially the ones which can already attack significant amount of candidates, because through this mechanism, they are implicitly evaluating the candidate's enthusiasm for the role, and general attitude on perseverance.
+
+I don't know whether this is the correct assumption or not, but wanted to put it out there here. Considering that software engineering hiring game favouring false-negative over false-positive (for the right reasons), this assumption might not be too far off.
+
 ## Common Misconceptions
 
 Based on the common rationale and understanding we have laid down, I believe it's now fair to be able to judge some of the common misconception about whiteboard-style coding interviews. Here are some of them that I am aware of which are worth specificity highlighting, this is not meant to be an exhaustive list:
@@ -153,16 +169,6 @@ Based on the common rationale and understanding we have laid down, I believe it'
   - This ties back to assessment criteria and the signals which the interviewer is trying to retrieve from the candidate throughout the interview. Being able to get the syntax of the programming language, and how to use the compiler is not one of those criteria. The potential time that you might have spent fixing the potential issues related to these areas would have actually lowered your chances because you are not giving any useful signals to the interviewer during that time. So, it is actually in your favour that you are forced to use a rudimentary coding environment for the test.
 - The candidates with interviewing anxiety is being passed on wrongly.
   - Who doesn't have interviewing anxiety? Interviews are stressful as hell, but being able to control the stress and anxiety is also part of our lives. I also have to put this here: [if actors with millions of dollars net worth are willing to take auditions](https://youtu.be/oMkmjg-qZRk?t=2199), I am sure we, as software engineers, should be able to justify to ourselves that it might actually be reasonable to take the job interviews 🙂 
-
-### Untold Truth?
-
-> OK, this section is purely based on assumptions, and totally speculative. If you are type of person who likes to focus on facts, or at least the opinions formed based on experience, you may wanna skip this. If not, buckle up!
-
-We should be open about the fact that this style of coding interviews require us to prepare, and that takes significant amount of time commitment from the candidate's point of view. It's a privilege to have that time, but let's assume you have that, it also still takes significant amount of diligence and perseverance to be able to perform strongly in these interviews. The outcome is also not left to luck. It's common that the candidate goes through 4-6 coding challenges throughout the hiring process, and one less than strong performance could be enough for them to get rejected.
-
-I personally believe that the preparation characteristics of these interviews on its own puts off great deal of candidates. These candidates could actually perform well on the job if they were to get it, but they never try because they don't have the enough enthusiasm and perseverance to go through this process. I also speculatively believe that this is a good thing for the organization, especially the ones which can already attack significant amount of candidates, because through this mechanism, they are implicitly evaluating the candidate's enthusiasm for the role, and general attitude on perseverance.
-
-I don't know whether this is the correct assumption or not, but wanted to put it out there here. Considering that software engineering hiring game favouring false-negative over false-positive (for the right reasons), this assumption might not be too far off.
 
 ## Conclusion
 
