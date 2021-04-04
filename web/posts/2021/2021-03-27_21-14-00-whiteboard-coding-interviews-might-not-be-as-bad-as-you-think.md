@@ -12,6 +12,10 @@ slugs:
 - whiteboard-coding-interviews-might-not-be-as-bad-as-you-think
 ---
 
+![](https://tugberkugurlu-blog.s3.us-east-2.amazonaws.com/post-images/01F2D2V8WP27YAPWZ9NR8XCVEZ-thisisengineering-raeng-GzDrm7SYQ0g-unsplash-8.jpg)
+
+*Photo by <a href="https://unsplash.com/@thisisengineering?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ThisisEngineering RAEng</a> on <a href="https://unsplash.com/s/photos/whiteboard-coding?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>*
+
 Whiteboard-style coding interviews has a bad reputation, and within the software industry they are being perceived as "bad interview practice" in general (e.g. "[Why whiteboard interviews are BROKEN](https://www.youtube.com/watch?v=CkmiRCjnl-k)", "[Coding Interviews are Broken](https://www.youtube.com/watch?v=bx3--22D4E4)", and there are many others like these). Despite this perception, many companies (especially the top-tier tech companies, a.k.a. [FAANG](https://medium.com/dev-genius/whats-faang-a9561bb713e2) and the likes) still hire software engineers through this interviewing process.
 
 > What I mean by "whiteboard-style coding interviews" is an assessment through algorithms and data structure based coding challenges which performed within a coding environment that doesn't reflect the day-to-day experience of an engineer, e.g. whiteboard, rudimentary online coding editor, etc. This is also known as "leetcode-style", interviewing through CS trivia questions, etc. So, a physical whiteboard doesn't necessarily need to be present, but it's a name that's often associated with this type of interviews.
@@ -116,11 +120,13 @@ If we relate the structure of the coding interviews with the hiring strategy I m
 
 Whiteboard-style coding interviews are no silver bullet. The hiring is a complicated problem to solve in general, and this becomes much more harder when it comes to hiring talented people to fit into an environment where creative thinking, and core problem solving skills matters the most, if not as much as the core technical skills. It would have been very naive to think that one solution works perfectly to solve this complicated, multifaceted problem. It's again worth emphasizing that the case that every organization is different. However, we should have a shared understanding by know what type of organization I am referring to.
 
-As nearly everything else in this precious World, this type of interviews comes with their own trade-offs, and it's worth acknowledging them so that we can do as much as possible to mitigate them. The following list of negatives about these interviews are based on my own experience, and YMMV is what I have been seeing 
+As nearly everything else in this precious World, this type of interviews comes with their own trade-offs, and it's worth acknowledging them so that we can do as much as possible to mitigate them. The following list of negatives about these interviews are based on my own experience, and not meant to be a definitive and exhaustive list.
 
- - require significant amount of preparation from the candidate's point.
- - the structure can be copied without actually forming an hiring strategy first
- - occasionally executed poorly, and they lead to either false-negatives or false-positives.
+ - **They require significant amount of preparation for candidates**. This is a legitimate one, and I would like to believe that it's one of the biggest negatives that's felt commonly among all the candidates, including myself. As it's likely that you are not working directly with the all data structures day to day, and spending all your time around algorithmic problems, you need to at least refresh your memory around these concepts, while also making sure that you can give the accurate signals to the interviewers within 45-60 minutes. So, you gotta have the knowledge and skills, and prove that you have it fast.
+
+ - **The structure can be copied by some organizations without actually forming an hiring strategy first**. One of the worst negatives about these interviews. As these are adopted by top tech companies, they must be working effectively and efficient, correct? Great, let's adopt the same process, and call it a day. Well, not so much. I hope that we now have a shared understanding by now that hiring strategy plays a huge role why these interviews exist. So, without understanding why these interviews exist in the way they are, it's going to be a miserable experience for your organization and the candidates if you end up copying the process. Don't do that, understand your organization's unique problems first, at least then see if this type of coding interviews are a good for for your organization.
+
+ - **They are occasionally executed poorly, and they lead to either false-negatives or false-positives**. Sometimes the execution doesn't meet with the intentions or the expectations, and this type of interviews are performed poorly. This could be a one-off occupance due to the interviewer's own performance, or it might be a systematic issue, and it could actually be related to the point above. For instance, the candidate might be rejected because they didn't get the syntax of the programming language correctly. It could also be that the candidate has performed really well on a coding interview because they already knew the questions, and executed flawlessly on paper without actually giving much high quality accurate signals around the problem solving ability. Highly calibrated interviewers has the ability to retrieve the correct signals under these circumstances to understand when this is happening, and can often mitigate the situation really well. However, when less-calibrated interviewers may sometimes overlook this, and potentially lead to a false-positive outcome.
 
 > 💡 **A word on false-negatives**: The topic of false-negatives is outside the purpose of this post, but comes up a lot when coding interview topic is brought up. False-negative interview outcomes are the ones which concludes the candidate's rejection where the same candidate would have actually performed well on the job (speculatively) even if the candidate's performance was less than strong during the interview itself. These are super common in software engineering interviews, and more common especially in coding interviews. These outcomes might potentially cause an organization to miss out on incredible talent. However, when you think deeply about this, **false-negatives are actually much more favorable compared to false-positives for the organization's, their employees' success and happiness in the long run**.
 >
@@ -130,7 +136,7 @@ As nearly everything else in this precious World, this type of interviews comes 
 >
 > You should also remember that once you hire the wrong person into your organization, letting go of that person is super painful and a long process, unless you are adopting [a structure similar to what Netflix operates under](https://www.slideshare.net/reed2001/culture-1798664/23-Unlike_many_companieswe_practiceadequate_performance) (which I personally respect and related to).
 
-- favouring New Grads, not the Seniors
+- **These interviews favour new graduate software engineers more than the seniors**. This one is probably the most controversial one.
 
 ## Common Misconceptions
 
