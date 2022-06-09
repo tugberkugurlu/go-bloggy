@@ -28,7 +28,7 @@ import (
 )
 
 var preDefinedSlugs = map[string]string{
-	"c#": "c-sharp",
+	"c#":  "c-sharp",
 	"c++": "cpp",
 }
 
