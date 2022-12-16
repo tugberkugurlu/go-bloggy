@@ -22,6 +22,32 @@ type SpeakingActivityExtra struct {
 
 var speakingActivities = []*SpeakingActivity{
 	{
+		Title:           "Redis Cluster for Write Intensive Workloads",
+		Activity:        "NDC London (Remote)",
+		ImageURL:        "https://tugberkugurlu-blog.s3.us-east-2.amazonaws.com/post-images/01GMDDXSXASKRZJ9Q3ZMVPX9CV-ndc-london-redis-2021-talk-screenshot.png",
+		City:            "London",
+		Country:         "England",
+		DisplayDate:     "25-27 Jan 2021",
+		EmbededHTMLData: template.HTML(`<script async class="speakerdeck-embed" data-id="c47db6bf21e8417caa22189570215bb5" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>`),
+		Extras: []SpeakingActivityExtra{
+			{
+				Name:           "Slides",
+				Link:           "https://speakerdeck.com/tourismgeek/redis-cluster-for-write-intensive-workloads",
+				IconCSSClasses: "area chart",
+			},
+			{
+				Name:           "Conference Profile",
+				Link:           "https://ndc-london.com/agenda/redis-cluster-for-write-intensive-workloads-0xcp/0e9ytrmxsf1",
+				IconCSSClasses: "external link",
+			},
+			{
+				Name:           "Chosen Tweet",
+				Link:           "https://twitter.com/tourismgeek/status/1355095638929788929",
+				IconCSSClasses: "twitter",
+			},
+		},
+	},
+	{
 		Title:       "Essentials for Building and Leading Highly Effective Development Teams",
 		Activity:    "DevConf",
 		ImageURL:    "https://tugberkugurlu.blob.core.windows.net/speaking/2018-09-devconf-krakow/30236914487_dba11cff33_o.jpg",
