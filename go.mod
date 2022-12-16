@@ -4,6 +4,7 @@ go 1.14
 
 require (
 	github.com/NYTimes/gziphandler v1.1.1
+	github.com/aws/aws-lambda-go v1.32.0 // indirect
 	github.com/denisenkom/go-mssqldb v0.0.0-20200428022330-06a60b6afbbc
 	github.com/gorilla/feeds v1.1.1
 	github.com/gorilla/mux v1.7.4
