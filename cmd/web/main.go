@@ -300,7 +300,7 @@ func main() {
 	r.Handle("/tags/{tag_slug}", gziphandler.GzipHandler(http.HandlerFunc(tagsPageHandler)))
 	r.Methods("GET").Path("/about").Handler(gziphandler.GzipHandler(http.HandlerFunc(aboutPageHandler)))
 	r.Methods("GET").Path("/speaking").Handler(gziphandler.GzipHandler(http.HandlerFunc(speakingPageHandler)))
-	r.Handle("/contact", gziphandler.GzipHandler(http.HandlerFunc(staticPage("contact"))))
+	r.Handle("/contact", gziphandler.GzipHandler(http.HandlerFunc(http.HandlerFunc(contactPageHandler))))
 	r.Handle("/archive", gziphandler.GzipHandler(http.HandlerFunc(blogHomeHandler)))
 	r.HandleFunc("/feeds/rss", rssHandler)
 	r.Handle("/", gziphandler.GzipHandler(http.HandlerFunc(homeHandler)))
@@ -435,6 +435,10 @@ type AboutPage struct {
 	TopCarousel       Carousel
 }
 
+type ContactPage struct {
+	ArchitectureCarousel *Carousel
+}
+
 func (s SpeakingPage) Title() string {
 	return "Tugberk Ugurlu Public Speaking Engagements"
 }
@@ -459,6 +463,15 @@ func aboutPageHandler(w http.ResponseWriter, r *http.Request) {
 	}, AboutPage{
 		GeekTalksCarousel: GetCarouselForTag("geek-talks", "Posts on Speaking", postsByTagSlug),
 		TopCarousel:       carousels[0],
+	})
+}
+
+func contactPageHandler(w http.ResponseWriter, r *http.Request) {
+	ExecuteTemplate(w, r, layoutConfig, []string{
+		"../../web/template/contact.html",
+		"../../web/template/shared/carousel.html",
+	}, ContactPage{
+		ArchitectureCarousel: GetCarouselForTag("architecture", "Top Picks for Architecture", postsByTagSlug),
 	})
 }
 
