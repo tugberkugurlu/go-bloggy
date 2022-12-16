@@ -43,8 +43,10 @@ blockquote {
     border-left: 5px solid #e6e6e6;
 }
 
-.ui.menu {
-    border-radius: 0;
+#main-header {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 10px;
 }
 
 #section-tags {
@@ -227,4 +229,8 @@ blockquote {
     #sidebar {
         margin-bottom: 75px!important;
     }
+}
+
+.post-item-image {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

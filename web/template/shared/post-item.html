@@ -2,7 +2,7 @@
     <div class="item">
         {{ $length := len .Images }} {{ if ne $length 0 }}
             <div class="image">
-                <img src="{{ (index .Images 0) }}">
+                <img class="post-item-image" src="{{ (index .Images 0) }}">
             </div>
         {{ end }}
         <div class="content">
