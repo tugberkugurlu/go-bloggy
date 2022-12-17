@@ -48,6 +48,32 @@ var speakingActivities = []*SpeakingActivity{
 		},
 	},
 	{
+		Title:           "Designing Towards Event Sourcing",
+		Activity:        "µCon London",
+		ImageURL:        "https://tugberkugurlu-blog.s3.us-east-2.amazonaws.com/post-images/01GMFYNJ7X3A1A1682EV620DKX-muCon-london-2019-screenshot.png",
+		City:            "London",
+		Country:         "England",
+		DisplayDate:     "29-31 May 2019",
+		EmbededHTMLData: template.HTML(`<script async class="speakerdeck-embed" data-id="dc49606a9bc342d9af55acc1dd39275f" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>`),
+		Extras: []SpeakingActivityExtra{
+			{
+				Name:           "Slides",
+				Link:           "https://speakerdeck.com/tourismgeek/designing-towards-event-sourcing",
+				IconCSSClasses: "area chart",
+			},
+			{
+				Name:           "Conference Profile",
+				Link:           "https://skillsmatter.com/skillscasts/13542-designing-towards-event-sourcing",
+				IconCSSClasses: "external link",
+			},
+			{
+				Name:           "Chosen Tweet",
+				Link:           "https://twitter.com/tourismgeek/status/1134544999717187584",
+				IconCSSClasses: "twitter",
+			},
+		},
+	},
+	{
 		Title:       "Essentials for Building and Leading Highly Effective Development Teams",
 		Activity:    "DevConf",
 		ImageURL:    "https://tugberkugurlu.blob.core.windows.net/speaking/2018-09-devconf-krakow/30236914487_dba11cff33_o.jpg",
