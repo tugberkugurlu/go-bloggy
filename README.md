@@ -2,7 +2,7 @@
 
 ![Go](https://github.com/tugberkugurlu/go-bloggy/workflows/Go/badge.svg?branch=master)
 
-Markdown-driven version of [tugberkugurlu/tugberk-web](https://github.com/tugberkugurlu/tugberk-web), implemented in Go. 
+Markdown-driven version of [tugberkugurlu/tugberk-web](https://github.com/tugberkugurlu/tugberk-web), implemented in [Go](https://go.dev/). 
 
 ## Facts
 
