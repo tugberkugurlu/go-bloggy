@@ -18,10 +18,32 @@ jobs:
       pull-requests: write
 
     steps:
-    - uses: actions/stale@v5
+    - uses: actions/stale@v8
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        stale-issue-message: 'Stale issue'
-        stale-pr-message: 'Stale pull request'
-        stale-issue-label: 'no-issue-activity'
-        stale-pr-label: 'no-pr-activity'
+        close-issue-message: >
+          This issue has been automatically closed due to lack of activity. In an
+          effort to reduce noise, please do not comment any further. Note that the
+          core maintainers may elect to reopen this issue at a later date if deemed
+          necessary.
+        close-pr-message: >
+          This PR has been automatically closed due to lack of activity.
+        days-before-stale: 1
+        days-before-close: 2
+        exempt-issue-labels: 'status: accepted,status: blocked,status: needs milestone'
+        operations-per-run: 100
+        remove-stale-when-updated: false
+        stale-issue-label: 'pending closure'
+        stale-issue-message: >
+          This issue has been automatically marked as stale because it has not had
+          recent activity. It will be closed if no further activity occurs. NetBox
+          is governed by a small group of core maintainers which means not all opened
+          issues may receive direct feedback. **Do not** attempt to circumvent this
+          process by "bumping" the issue; doing so will result in its immediate closure
+          and you may be barred from participating in any future discussions. Please see
+          our [contributing guide](https://github.com/netbox-community/netbox/blob/develop/CONTRIBUTING.md).
+        stale-pr-label: 'pending closure'
+        stale-pr-message: >
+          This PR has been automatically marked as stale because it has not had
+          recent activity. It will be closed automatically if no further action is
+          taken.
