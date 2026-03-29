@@ -3,20 +3,79 @@ name: Go
 on:
   pull_request:
     branches: [ master ]
+  push:
+    branches: [ master ]
 
 jobs:
-  build:
-    name: Build
+  build-and-test:
+    name: Build and Test
     runs-on: ubuntu-latest
     steps:
-    - name: Set up Go 1.15.6
-      uses: actions/setup-go@v2
+    - name: Set up Go
+      uses: actions/setup-go@v4
       with:
-        go-version: '1.15.6'
-      id: go
-    - name: Check out code into the Go module directory
-      uses: actions/checkout@v2
+        go-version: '1.21'
+
+    - name: Check out code
+      uses: actions/checkout@v4
+
     - name: Build
       run: go build -v ./...
+
     - name: Test
       run: go test -v ./...
+
+  static-site-generation:
+    name: Static Site Generation
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    steps:
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.21'
+
+    - name: Check out code
+      uses: actions/checkout@v4
+
+    - name: Build staticgen
+      run: go build -v ./cmd/staticgen
+
+    - name: Generate static site
+      working-directory: cmd/staticgen
+      run: go run . -output-dir ../../dist
+
+    - name: Validate output structure
+      run: |
+        set -e
+        echo "Checking required output files..."
+        test -f dist/index.html            || (echo "MISSING: dist/index.html" && exit 1)
+        test -f dist/archive/index.html    || (echo "MISSING: dist/archive/index.html" && exit 1)
+        test -f dist/about/index.html      || (echo "MISSING: dist/about/index.html" && exit 1)
+        test -f dist/speaking/index.html   || (echo "MISSING: dist/speaking/index.html" && exit 1)
+        test -f dist/contact/index.html    || (echo "MISSING: dist/contact/index.html" && exit 1)
+        test -f dist/feeds/rss             || (echo "MISSING: dist/feeds/rss" && exit 1)
+        test -f dist/_redirects.json       || (echo "MISSING: dist/_redirects.json" && exit 1)
+        test -f dist/robots.txt            || (echo "MISSING: dist/robots.txt" && exit 1)
+        test -f dist/favicon.ico           || (echo "MISSING: dist/favicon.ico" && exit 1)
+        echo "Checking post pages (sample)..."
+        POST_COUNT=$(find dist/archive -name "index.html" | grep -v "^dist/archive/index.html" | wc -l)
+        echo "  Generated $POST_COUNT post pages"
+        test "$POST_COUNT" -gt 200 || (echo "Expected >200 post pages, got $POST_COUNT" && exit 1)
+        echo "Checking tag pages..."
+        TAG_COUNT=$(find dist/tags -name "index.html" | wc -l)
+        echo "  Generated $TAG_COUNT tag pages"
+        test "$TAG_COUNT" -gt 10 || (echo "Expected >10 tag pages, got $TAG_COUNT" && exit 1)
+        echo "Checking RSS feed is non-empty XML..."
+        head -1 dist/feeds/rss | grep -q "<?xml" || (echo "RSS feed does not start with XML declaration" && exit 1)
+        echo "Checking _redirects.json is valid JSON..."
+        python3 -c "import json,sys; json.load(open('dist/_redirects.json'))" || (echo "_redirects.json is invalid JSON" && exit 1)
+        echo "All validation checks passed."
+
+    - name: Upload generated site
+      uses: actions/upload-artifact@v4
+      if: github.ref == 'refs/heads/master'
+      with:
+        name: static-site
+        path: dist/
+        retention-days: 7
