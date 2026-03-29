@@ -240,6 +240,17 @@ No deployment step is defined in the workflow (deployment is manual or via Docke
 
 ---
 
+## Git Commit Convention
+
+All commits must be co-authored by both Claude and Tugberk Ugurlu. Always include these trailers in every commit message:
+
+```
+Co-authored-by: Tugberk Ugurlu <tugberk@outlook.com>
+Co-authored-by: Claude <claude@anthropic.com>
+```
+
+---
+
 ## Conventions
 
 - **Go version:** 1.14+ (Docker image uses 1.15.6; use latest stable for development).
