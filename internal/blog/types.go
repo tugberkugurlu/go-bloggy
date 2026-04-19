@@ -78,7 +78,13 @@ type TagCountPair struct {
 type TagCountPairList []TagCountPair
 
 func (p TagCountPairList) Len() int           { return len(p) }
-func (p TagCountPairList) Less(i, j int) bool { return p[i].Value.Count < p[j].Value.Count }
+func (p TagCountPairList) Less(i, j int) bool {
+	if p[i].Value.Count != p[j].Value.Count {
+		return p[i].Value.Count < p[j].Value.Count
+	}
+	// Tiebreaker: alphabetical by slug key for deterministic ordering
+	return p[i].Key < p[j].Key
+}
 func (p TagCountPairList) Swap(i, j int)      { p[i], p[j] = p[j], p[i] }
 
 // Carousel holds a titled collection of posts for carousel display.
