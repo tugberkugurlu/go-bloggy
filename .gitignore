@@ -18,3 +18,4 @@
 .DS_Store
 cmd/web/web
 ci/
+.superpowers/
