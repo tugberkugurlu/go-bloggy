@@ -353,9 +353,6 @@ func (g *generator) generateRSS() error {
 }
 
 func (g *generator) generate404() error {
-	// The 404 page uses the layout template with a simple error message.
-	// We create a minimal "not found" content template inline is not practical,
-	// so we render it directly by writing the file.
 	absFilePath := filepath.Join(g.outputDir, "404.html")
 
 	f, err := os.Create(absFilePath)
@@ -364,12 +361,10 @@ func (g *generator) generate404() error {
 	}
 	defer f.Close()
 
-	// Use the home template structure but render a 404 page.
-	// We need a template that defines "twitter_card" and "content" blocks.
-	// Since there is no dedicated 404 template, we create the HTML directly
-	// using RenderPage with a custom template.
-	err = g.renderNotFoundPage(f)
-	if err != nil {
+	// There is no dedicated 404 template in the blog, so we create a
+	// temporary template that defines the required "twitter_card" and
+	// "content" blocks, then render it through the standard layout.
+	if err := g.renderNotFoundPage(f); err != nil {
 		return fmt.Errorf("rendering 404 page: %w", err)
 	}
 
@@ -471,9 +466,3 @@ func copyFile(src, dst string) error {
 	return err
 }
 
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}

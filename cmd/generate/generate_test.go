@@ -5,6 +5,7 @@ import (
 	"encoding/xml"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 )
 
@@ -230,16 +231,16 @@ func TestRSSIsValidXML(t *testing.T) {
 
 	// Verify it contains expected RSS elements
 	rssContent := string(data)
-	if !contains(rssContent, "<rss") {
+	if !strings.Contains(rssContent, "<rss") {
 		t.Error("RSS missing <rss> element")
 	}
-	if !contains(rssContent, "<channel>") {
+	if !strings.Contains(rssContent, "<channel>") {
 		t.Error("RSS missing <channel> element")
 	}
-	if !contains(rssContent, "<item>") {
+	if !strings.Contains(rssContent, "<item>") {
 		t.Error("RSS missing <item> elements")
 	}
-	if !contains(rssContent, "Tugberk Ugurlu") {
+	if !strings.Contains(rssContent, "Tugberk Ugurlu") {
 		t.Error("RSS missing author name")
 	}
 }
@@ -292,10 +293,10 @@ func Test404PageGenerated(t *testing.T) {
 	}
 
 	content := string(data)
-	if !contains(content, "Page Not Found") {
+	if !strings.Contains(content, "Page Not Found") {
 		t.Error("404.html missing 'Page Not Found' text")
 	}
-	if !contains(content, "<html") {
+	if !strings.Contains(content, "<html") {
 		t.Error("404.html missing HTML structure")
 	}
 }
@@ -332,15 +333,3 @@ func TestGeneratedHTMLNotEmpty(t *testing.T) {
 	}
 }
 
-func contains(s, substr string) bool {
-	return len(s) >= len(substr) && searchString(s, substr)
-}
-
-func searchString(s, substr string) bool {
-	for i := 0; i <= len(s)-len(substr); i++ {
-		if s[i:i+len(substr)] == substr {
-			return true
-		}
-	}
-	return false
-}
