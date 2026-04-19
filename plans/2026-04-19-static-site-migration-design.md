@@ -535,16 +535,7 @@ Sources: [S3 Pricing](https://aws.amazon.com/s3/pricing/), [Route 53 Pricing](ht
 
 **Estimated annual savings: ~$800/year.**
 
-### 10.5 Cost Protection Measures
-
-To ensure costs stay at $0 and protect against malicious traffic:
-
-1. **Use CloudFront flat-rate Free plan** — no overages by design; throttling instead of billing under excess load
-2. **Configure CloudFront cache policy to ignore query strings, cookies, and headers** — prevents cache-busting attacks that would generate excess S3 origin fetches
-3. **Enable S3 Block Public Access** on the static site bucket — only CloudFront (via OAC) can access S3, preventing direct S3 request charges
-4. **Set up AWS Budget alarm at $5/month** — early warning if any unexpected charges appear
-5. **Add a rate-based WAF rule** — limit requests per source IP (included in free plan WAF)
-6. **Enable CloudFront standard logging** — visibility into traffic patterns for anomaly detection
+Cost protection measures (WAF rules, cache policy, budget alarms, S3 lockdown) are infrastructure concerns — see tugberkugurlu/tugberk-infrastructure#2 for the full plan.
 
 ---
 
@@ -554,7 +545,7 @@ The current `go.mod` specifies `go 1.14` and the Dockerfile uses Go 1.15.6. As p
 
 ---
 
-## 11. Out of Scope
+## 12. Out of Scope
 
 - Changing blog content markdown files
 - Migrating images from Azure Blob Storage or the existing S3 bucket
@@ -564,7 +555,7 @@ The current `go.mod` specifies `go 1.14` and the Dockerfile uses Go 1.15.6. As p
 
 ---
 
-## 12. Risks and Mitigations
+## 13. Risks and Mitigations
 
 | Risk | Mitigation |
 |---|---|
@@ -573,7 +564,5 @@ The current `go.mod` specifies `go 1.14` and the Dockerfile uses Go 1.15.6. As p
 | RSS feed missing Content-Type | Explicit `--content-type` in S3 upload command; E2E test validates |
 | CloudFront Function too large (redirects map) | 20 redirects is tiny; CF Functions support 10KB code |
 | `cmd/web` refactoring breaks existing behavior | Unit tests added before refactoring; comparison test validates after |
-| AWS CLI not configured locally | Phase 4 begins with AWS CLI setup for personal account |
-| Bill shock from DDoS/bot traffic | CloudFront flat-rate Free plan: no overages, throttling only; WAF blocks don't count against allowance |
-| S3 direct access bypass | OAC + S3 Block Public Access; bucket only accessible via CloudFront |
-| Cache-busting attacks | CloudFront cache policy ignores query strings, cookies, headers |
+
+Infrastructure risks (bill shock, S3 access bypass, cache-busting) are covered in tugberkugurlu/tugberk-infrastructure#2.
