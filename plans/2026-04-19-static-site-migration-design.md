@@ -419,12 +419,17 @@ Build the side-by-side comparison test and E2E link integrity test. Add both to 
 Prerequisite: configure AWS CLI locally for the personal AWS account.
 
 Terraform changes:
-- New S3 bucket for static site hosting (e.g., `tugberkugurlu-com-static`)
+- Subscribe to CloudFront flat-rate Free plan ($0/month, includes WAF + DNS)
+- New S3 bucket for static site hosting (e.g., `tugberkugurlu-com-static`) with Block Public Access enabled
 - CloudFront distribution with OAC pointing to the new bucket
+- CloudFront cache policy: ignore query strings, cookies, headers (prevents cache-busting)
 - CloudFront Function for redirects (naked domain, legacy images, non-canonical slugs, case folding)
-- Reuse existing ACM wildcard certificate
+- Reuse existing ACM certificate (covers both `tugberkugurlu.com` and `*.tugberkugurlu.com`)
+- WAF rate-based rule: limit per source IP (included in free plan)
 - IAM role for GitHub Actions OIDC deploy (scoped to S3 + CloudFront)
 - Route53: point `tugberkugurlu.com` and `www.tugberkugurlu.com` to CloudFront
+- AWS Budget alarm at $5/month threshold with email notification
+- Enable CloudFront standard logging
 
 Do NOT touch the existing `tugberkugurlu-blog` S3 bucket (holds post images).
 
@@ -459,7 +464,89 @@ After the static site is confirmed working publicly:
 
 ---
 
-## 10. Go Version
+## 10. Cost Analysis
+
+### 10.1 Traffic Assumptions
+
+- **3,000 unique page views/day** (~90,000/month)
+- Each page view loads: 1 HTML page + ~5 assets (CSS, JS, fonts, images) = ~6 requests
+- Total requests: **~540,000/month**
+- Per-visit data transfer (with CloudFront GZIP compression):
+  - HTML: ~15 KB
+  - semantic.min.css: ~100 KB (gzipped from ~700 KB)
+  - semantic.min.js: ~80 KB (gzipped from ~340 KB)
+  - Theme assets (fonts/icons): ~200 KB
+  - Site images: ~100 KB
+  - **Total per visit: ~500 KB**
+- Monthly data transfer: 3,000/day × 500 KB × 30 = **~45 GB/month**
+
+### 10.2 Recommended: CloudFront Flat-Rate Free Plan ($0/month)
+
+AWS launched flat-rate pricing plans for CloudFront in November 2025. The **Free tier** at $0/month includes:
+
+| Included | Allowance | Our Usage | Headroom |
+|---|---|---|---|
+| HTTPS Requests | 1,000,000/month | ~540,000/month | 46% spare |
+| Data Transfer | 100 GB/month | ~45 GB/month | 55% spare |
+| S3 Storage | 5 GB | ~8 MB | Massive spare |
+| CloudFront Functions | Included | ~540K invocations | Included |
+| AWS WAF (basic) | Included | — | DDoS/bot protection |
+| Route 53 DNS | Included | 1 hosted zone | Saves $0.50/month |
+| ACM Certificate | Free | Wildcard cert | Already exists |
+
+**Key feature: no overage charges.** If traffic exceeds the allowance (viral post, bot traffic), CloudFront throttles performance instead of billing extra. Blocked WAF/DDoS traffic does not count against the allowance.
+
+Up to 3 Free-tier plans per AWS account.
+
+Sources: [CloudFront Pricing](https://aws.amazon.com/cloudfront/pricing/), [Flat-Rate Plans Announcement](https://aws.amazon.com/blogs/networking-and-content-delivery/introducing-flat-rate-pricing-plans-with-no-overages/)
+
+### 10.3 Alternative: Pay-As-You-Go Pricing (for comparison)
+
+| Component | Calculation | Monthly Cost |
+|---|---|---|
+| CloudFront data transfer (US) | 45 GB × $0.085/GB | $3.83 |
+| CloudFront HTTPS requests | 540K × ($0.01/10K) | $0.054 |
+| CloudFront Functions | 540K invocations (free tier: 2M) | $0.00 |
+| S3 Standard storage | 8 MB × $0.023/GB | ~$0.00 |
+| S3 GET requests (origin fetches) | ~5K/month × ($0.0004/1K) | ~$0.00 |
+| Route 53 hosted zone | 1 zone | $0.50 |
+| ACM certificate | Public cert | $0.00 |
+| CloudFront invalidations | ~30/month (free tier: 1000) | $0.00 |
+| **Total** | | **~$4.38/month** |
+
+Note: CloudFront always-free tier (1 TB transfer, 10M requests/month) would make this effectively **$0.50/month** (just Route 53). However, the flat-rate Free plan is strictly better because it includes Route 53, WAF, and has no-overage protection.
+
+Sources: [S3 Pricing](https://aws.amazon.com/s3/pricing/), [Route 53 Pricing](https://aws.amazon.com/route53/pricing/)
+
+### 10.4 Cost Comparison: Before vs After
+
+| Component | Current (ECS) | After (S3+CF Free Plan) |
+|---|---|---|
+| Compute | ECS Fargate 2×(256 CPU/512MB): ~$18/month | $0 |
+| Load Balancer | ALB: ~$16/month + LCU charges | $0 (CloudFront) |
+| NAT Gateway | 1 gateway: ~$32/month + data | $0 |
+| VPC | $0 (but enables above costs) | $0 (no VPC) |
+| Data Transfer | ALB/NAT egress | $0 (included in plan) |
+| DNS | Route 53: $0.50/month | $0 (included in plan) |
+| SSL | ACM: $0 | $0 |
+| **Total** | **~$67/month** | **$0/month** |
+
+**Estimated annual savings: ~$800/year.**
+
+### 10.5 Cost Protection Measures
+
+To ensure costs stay at $0 and protect against malicious traffic:
+
+1. **Use CloudFront flat-rate Free plan** — no overages by design; throttling instead of billing under excess load
+2. **Configure CloudFront cache policy to ignore query strings, cookies, and headers** — prevents cache-busting attacks that would generate excess S3 origin fetches
+3. **Enable S3 Block Public Access** on the static site bucket — only CloudFront (via OAC) can access S3, preventing direct S3 request charges
+4. **Set up AWS Budget alarm at $5/month** — early warning if any unexpected charges appear
+5. **Add a rate-based WAF rule** — limit requests per source IP (included in free plan WAF)
+6. **Enable CloudFront standard logging** — visibility into traffic patterns for anomaly detection
+
+---
+
+## 11. Go Version
 
 The current `go.mod` specifies `go 1.14` and the Dockerfile uses Go 1.15.6. As part of Phase 1 (Foundation), upgrade to a current stable Go version (1.22+) in `go.mod` and CI workflows. This is needed for modern test tooling and language features used in the new code.
 
@@ -485,3 +572,6 @@ The current `go.mod` specifies `go 1.14` and the Dockerfile uses Go 1.15.6. As p
 | CloudFront Function too large (redirects map) | 20 redirects is tiny; CF Functions support 10KB code |
 | `cmd/web` refactoring breaks existing behavior | Unit tests added before refactoring; comparison test validates after |
 | AWS CLI not configured locally | Phase 4 begins with AWS CLI setup for personal account |
+| Bill shock from DDoS/bot traffic | CloudFront flat-rate Free plan: no overages, throttling only; WAF blocks don't count against allowance |
+| S3 direct access bypass | OAC + S3 Block Public Access; bucket only accessible via CloudFront |
+| Cache-busting attacks | CloudFront cache policy ignores query strings, cookies, headers |
