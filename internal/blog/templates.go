@@ -21,7 +21,10 @@ func TemplateFuncMap() template.FuncMap {
 func RenderPage(w io.Writer, layoutConfig LayoutConfig, templatePaths []string, layoutPath string, section string, tagsList TagCountPairList, data interface{}) error {
 	t := template.New("")
 	t = t.Funcs(TemplateFuncMap())
-	t, err := t.ParseFiles(append(templatePaths, layoutPath)...)
+	allPaths := make([]string, len(templatePaths)+1)
+	copy(allPaths, templatePaths)
+	allPaths[len(templatePaths)] = layoutPath
+	t, err := t.ParseFiles(allPaths...)
 	if err != nil {
 		return fmt.Errorf("parsing templates: %w", err)
 	}
@@ -62,7 +65,11 @@ func RenderPage(w io.Writer, layoutConfig LayoutConfig, templatePaths []string, 
 
 // SectionFromPath extracts the top-level section from a URL path.
 // For example, "/archive/my-post" returns "archive", "/" returns "".
+// The path must start with "/" (as r.URL.Path always does).
 func SectionFromPath(urlPath string) string {
+	if urlPath == "" || urlPath == "/" {
+		return ""
+	}
 	section := urlPath[1:]
 	index := strings.Index(section, "/")
 	if index != -1 {

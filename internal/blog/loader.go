@@ -21,7 +21,10 @@ import (
 // LoadSiteConfig holds the paths needed to load a site.
 type LoadSiteConfig struct {
 	PostsDir   string
-	ConfigPath string // directory containing config.yaml (or empty to use defaults)
+	// ConfigPath is the directory containing config.yaml. If empty, Viper
+	// searches ../../ci/ and ../../ relative to the working directory (legacy
+	// behavior from when cmd/web ran from cmd/web/).
+	ConfigPath string
 }
 
 // LoadSite walks the posts directory, parses all markdown files, builds
@@ -143,6 +146,10 @@ func parsePostFile(markdownFilePath string) (*Post, error) {
 			metadata = append(metadata, scanner.Bytes()...)
 			metadata = append(metadata, []byte("\n")...)
 		}
+	}
+
+	if err := scanner.Err(); err != nil {
+		return nil, fmt.Errorf("reading %s: %w", markdownFilePath, err)
 	}
 
 	var postMetadata PostMetadata
