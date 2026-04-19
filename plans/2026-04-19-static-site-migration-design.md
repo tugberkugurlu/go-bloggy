@@ -489,7 +489,7 @@ AWS launched flat-rate pricing plans for CloudFront in November 2025. The **Free
 | HTTPS Requests | 1,000,000/month | ~540,000/month | 46% spare |
 | Data Transfer | 100 GB/month | ~45 GB/month | 55% spare |
 | S3 Storage | 5 GB | ~8 MB | Massive spare |
-| CloudFront Functions | Included | ~540K invocations | Included |
+| CloudFront Functions | Included in plan | ~540K invocations/month | No separate billing |
 | AWS WAF (basic) | Included | — | DDoS/bot protection |
 | Route 53 DNS | Included | 1 hosted zone | Saves $0.50/month |
 | ACM Certificate | Free | Wildcard cert | Already exists |
@@ -497,6 +497,8 @@ AWS launched flat-rate pricing plans for CloudFront in November 2025. The **Free
 **Key feature: no overage charges.** If traffic exceeds the allowance (viral post, bot traffic), CloudFront throttles performance instead of billing extra. Blocked WAF/DDoS traffic does not count against the allowance.
 
 Up to 3 Free-tier plans per AWS account.
+
+**Note:** Subscribing to the flat-rate Free plan is a **manual console step** — Terraform does not yet support it ([hashicorp/terraform-provider-aws#45450](https://github.com/hashicorp/terraform-provider-aws/issues/45450)). Done once after creating the CloudFront distribution. See tugberkugurlu/tugberk-infrastructure#2 for the full infrastructure plan including all manual steps.
 
 Sources: [CloudFront Pricing](https://aws.amazon.com/cloudfront/pricing/), [Flat-Rate Plans Announcement](https://aws.amazon.com/blogs/networking-and-content-delivery/introducing-flat-rate-pricing-plans-with-no-overages/)
 
