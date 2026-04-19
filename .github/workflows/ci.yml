@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  build-and-test:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go 1.22
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Build
+        run: go build -v ./...
+
+      - name: Unit tests
+        run: go test -v ./cmd/... ./internal/...
+
+      - name: Generate static site
+        run: |
+          go run ./cmd/generate \
+            -posts ./web/posts \
+            -templates ./web/template \
+            -static ./web/static \
+            -static-root ./web/static-root \
+            -config . \
+            -output ./output
+
+      - name: Verify generator output
+        run: |
+          test -f ./output/index.html
+          test -f ./output/archive/index.html
+          test -f ./output/about/index.html
+          test -f ./output/speaking/index.html
+          test -f ./output/contact/index.html
+          test -f ./output/feeds/rss
+          test -f ./output/404.html
+          test -f ./output/_manifest.json
+          test -f ./output/robots.txt
+          echo "All expected output files present"
+
+      - name: Side-by-side comparison test
+        run: go test -v -timeout 120s ./test/comparison/
+
+      - name: E2E link integrity test
+        run: go test -v -timeout 120s ./test/e2e/

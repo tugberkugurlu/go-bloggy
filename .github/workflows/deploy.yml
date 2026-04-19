@@ -2,113 +2,93 @@ name: Deploy
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
+
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
-  build:
-    name: Build
+  build-test-deploy:
+    name: Build, Test & Deploy
     runs-on: ubuntu-latest
     steps:
-    - name: Set up Go 1.15.6
-      uses: actions/setup-go@v2
-      with:
-        go-version: '1.15.6'
-      id: go
-    - name: Check out code into the Go module directory
-      uses: actions/checkout@v2
-    - name: Build
-      run: go build -v ./...
-    - name: Test
-      run: go test -v ./...
-  
-  assets:
-    needs: build
-    name: Upload Assets
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install AWS CLI
-        run: |
-          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-          unzip awscliv2.zip
-          sudo ./aws/install --update
-      - run: aws --version
-      - name: Set up Go 1.15.6
-        uses: actions/setup-go@v2
+      - name: Set up Go 1.22
+        uses: actions/setup-go@v5
         with:
-          go-version: '1.15.6'
-      - name: Install ulid Commandline Tool
-        run: go get -v github.com/oklog/ulid/v2/cmd/ulid
-      - name: Upload
-        run: |
-          sudo sh -c 'curl -s "http://svn.apache.org/viewvc/httpd/httpd/trunk/docs/conf/mime.types?view=co" > /etc/mime.types'
-          export S3_PREFIX="assets/$(ulid)"
-          aws s3 sync ./web/static/ s3://$ASSETS_S3_BUCKET_NAME/$S3_PREFIX --cache-control 'max-age=31536000' --acl public-read
-          mkdir ci
-          echo "assets_url: \"https://$ASSETS_S3_BUCKET_DOMAIN_NAME\"" >> ./ci/config.yaml
-          echo "assets_prefix: \"$S3_PREFIX\"" >> ./ci/config.yaml
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.ASSETS_AWS_REGION }}
-          ASSETS_S3_BUCKET_NAME: ${{ secrets.ASSETS_S3_BUCKET_NAME }}
-          ASSETS_S3_BUCKET_DOMAIN_NAME: ${{ secrets.ASSETS_S3_BUCKET_DOMAIN_NAME }}
-      - name: Upload CI config.yml for Assets
-        uses: actions/upload-artifact@v2
-        with:
-          name: ci-config
-          path: ./ci/config.yaml
+          go-version: "1.22"
 
-  docker:
-    needs: assets
-    name: Build and Push Docker Image
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Docker meta
-        id: docker_meta
-        uses: crazy-max/ghaction-docker-meta@v1
-        with:
-          images: tugberk/tugberk-go-bloggy # list of Docker images to use as base name for tags
-          tag-sha: true # add git short SHA as Docker tag
-      - name: Download ci-config Artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: ci-config
-          path: ./ci/
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build and Push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: ./docker-web.dockerfile
-          tags: ${{ steps.docker_meta.outputs.tags }}
-          labels: ${{ steps.docker_meta.outputs.labels }}
-          push: true
+      - name: Check out code
+        uses: actions/checkout@v4
 
-  ecs-deploy:
-    needs: docker
-    name: ECS Deploy
-    runs-on: ubuntu-latest
-    steps:
-      - name: Install AWS CLI
+      - name: Build
+        run: go build -v ./...
+
+      - name: Unit tests
+        run: go test -v ./cmd/... ./internal/...
+
+      - name: Generate static site
         run: |
-          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-          unzip awscliv2.zip
-          sudo ./aws/install --update
-      - run: aws --version
-      - name: Enforce New ECS Service Deployment
-        run: aws ecs update-service --force-new-deployment --service $AWS_ECS_SERVICE_NAME --cluster $AWS_ECS_CLUSTER_ARN
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.ASSETS_AWS_REGION }}
-          AWS_ECS_CLUSTER_ARN: ${{ secrets.AWS_ECS_CLUSTER_ARN }}
-          AWS_ECS_SERVICE_NAME: ${{ secrets.AWS_ECS_SERVICE_NAME }}
+          go run ./cmd/generate \
+            -posts ./web/posts \
+            -templates ./web/template \
+            -static ./web/static \
+            -static-root ./web/static-root \
+            -config . \
+            -output ./output
+
+      - name: Verify generator output
+        run: |
+          test -f ./output/index.html
+          test -f ./output/archive/index.html
+          test -f ./output/about/index.html
+          test -f ./output/speaking/index.html
+          test -f ./output/contact/index.html
+          test -f ./output/feeds/rss
+          test -f ./output/404.html
+          test -f ./output/_manifest.json
+          test -f ./output/robots.txt
+          echo "All expected output files present"
+
+      - name: Side-by-side comparison test
+        run: go test -v -timeout 120s ./test/comparison/
+
+      - name: E2E link integrity test
+        run: go test -v -timeout 120s ./test/e2e/
+
+      # --- Deploy steps ---
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: us-east-1
+
+      - name: Upload HTML pages to S3
+        run: |
+          aws s3 sync output/ s3://${{ secrets.S3_BUCKET_NAME }}/ --delete \
+            --exclude "*" --include "*.html" --exclude "_manifest.json" \
+            --content-type "text/html; charset=utf-8" \
+            --cache-control "public, max-age=300"
+
+      - name: Upload RSS feed to S3
+        run: |
+          aws s3 cp output/feeds/rss s3://${{ secrets.S3_BUCKET_NAME }}/feeds/rss \
+            --content-type "application/rss+xml; charset=utf-8" \
+            --cache-control "public, max-age=900"
+
+      - name: Upload static assets to S3
+        run: |
+          aws s3 sync output/assets/ s3://${{ secrets.S3_BUCKET_NAME }}/assets/ --delete \
+            --cache-control "public, max-age=31536000, immutable"
+
+      - name: Upload root files to S3
+        run: |
+          aws s3 sync output/ s3://${{ secrets.S3_BUCKET_NAME }}/ \
+            --exclude "*" --include "robots.txt" --include "favicon.ico"
+
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*"
