@@ -1,26 +1,9 @@
-package main
+package blog
 
 import "html/template"
 
-type SpeakingActivity struct {
-	Title       string
-	Activity    string
-	ImageURL    string
-	City        string
-	Country     string
-	DisplayDate string
-	Extras      []SpeakingActivityExtra
-
-	EmbededHTMLData template.HTML
-}
-
-type SpeakingActivityExtra struct {
-	Name           string
-	Link           string
-	IconCSSClasses string
-}
-
-var speakingActivities = []*SpeakingActivity{
+// SpeakingActivities contains the hardcoded list of public speaking engagements.
+var SpeakingActivities = []*SpeakingActivity{
 	{
 		Title:           "Redis Cluster for Write Intensive Workloads",
 		Activity:        "NDC London (Remote)",
@@ -49,7 +32,7 @@ var speakingActivities = []*SpeakingActivity{
 	},
 	{
 		Title:           "Designing Towards Event Sourcing",
-		Activity:        "µCon London",
+		Activity:        "\u00b5Con London",
 		ImageURL:        "https://tugberkugurlu-blog.s3.us-east-2.amazonaws.com/post-images/01GMFYNJ7X3A1A1682EV620DKX-muCon-london-2019-screenshot.png",
 		City:            "London",
 		Country:         "England",
@@ -77,7 +60,7 @@ var speakingActivities = []*SpeakingActivity{
 		Title:       "Essentials for Building and Leading Highly Effective Development Teams",
 		Activity:    "DevConf",
 		ImageURL:    "https://tugberkugurlu.blob.core.windows.net/speaking/2018-09-devconf-krakow/30236914487_dba11cff33_o.jpg",
-		City:        "Kraków",
+		City:        "Krak\u00f3w",
 		Country:     "Poland",
 		DisplayDate: "27-28 Sep 2018",
 		EmbededHTMLData: template.HTML(`<div class="embed-responsive embed-responsive-16by9">
@@ -101,7 +84,6 @@ var speakingActivities = []*SpeakingActivity{
 			},
 		},
 	},
-
 	{
 		Title:       "Let the Uncertainty be Your Friend: Finding Your Path in a Wiggly Road",
 		Activity:    "NewCrafts",
@@ -130,7 +112,6 @@ var speakingActivities = []*SpeakingActivity{
 			},
 		},
 	},
-
 	{
 		Title:           "Levelling up to Become a Technical Lead",
 		Activity:        "DDD Scotland",
@@ -152,7 +133,6 @@ var speakingActivities = []*SpeakingActivity{
 			},
 		},
 	},
-
 	{
 		Title:       "Getting Into the Zero Downtime Deployment World",
 		Activity:    "NDC Oslo",
@@ -191,7 +171,6 @@ var speakingActivities = []*SpeakingActivity{
 			},
 		},
 	},
-
 	{
 		Title:       "Latest SQL Compare features and support for SQL Server 2017",
 		Activity:    "SQL in the City Streamed",
@@ -215,7 +194,6 @@ var speakingActivities = []*SpeakingActivity{
 			},
 		},
 	},
-
 	{
 		Title:       "Docker Changes the Way You Develop and Release Your Scalable Solutions",
 		Activity:    "I T.A.K.E Unconference",
@@ -244,12 +222,11 @@ var speakingActivities = []*SpeakingActivity{
 			},
 		},
 	},
-
 	{
 		Title:       "Getting Into the Zero Downtime Deployment World",
 		Activity:    "Dev Day",
 		ImageURL:    "https://tugberkugurlu.blob.core.windows.net/speaking/2016-09-dev-day-krakow/7E202F4A-548B-44C5-B3C7-A2F2BAFA09F3.png",
-		City:        "Kraków",
+		City:        "Krak\u00f3w",
 		Country:     "Poland",
 		DisplayDate: "14-16 Sep 2016",
 		EmbededHTMLData: template.HTML(`<div class="embed-responsive embed-responsive-16by9">
@@ -268,7 +245,6 @@ var speakingActivities = []*SpeakingActivity{
 			},
 		},
 	},
-
 	{
 		Title:           "Architecting Polyglot-Persistent Solutions",
 		Activity:        "DevConf",
@@ -305,7 +281,6 @@ var speakingActivities = []*SpeakingActivity{
 			},
 		},
 	},
-
 	{
 		Title:       "Profiling .NET server applications",
 		Activity:    "Umbraco UK Festival",
@@ -329,7 +304,6 @@ var speakingActivities = []*SpeakingActivity{
 			},
 		},
 	},
-
 	{
 		Title:       "ASP.NET 5: How to Get Your Cheese Back",
 		Activity:    "Progressive .NET Tutorials",

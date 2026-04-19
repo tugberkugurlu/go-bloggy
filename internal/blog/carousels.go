@@ -1,10 +1,11 @@
-package main
+package blog
 
 import (
 	"sort"
 	"strings"
 )
 
+// topPicksCarouselPostIDs lists the post IDs for the "Top Picks" carousel.
 var topPicksCarouselPostIDs = []string{
 	"01ESYWJ3NHDFF5G7H4JKCY3DS0",
 	"01E972TEACJE3TQW6Q59C0X4NJ",
@@ -18,18 +19,21 @@ var topPicksCarouselPostIDs = []string{
 	"370ecc73-3661-4462-91ac-179b9f8a3c51",
 }
 
-func GetCarousels(postsByIdMap map[string]*Post) []Carousel {
+// GetCarousels builds the site-wide carousels (currently just Top Picks).
+func GetCarousels(postsByIDMap map[string]*Post) []Carousel {
 	var carousels []Carousel
-	carousels = append(carousels, getTopPicksCarousel(postsByIdMap))
+	carousels = append(carousels, getTopPicksCarousel(postsByIDMap))
 	return carousels
 }
 
+// GetCarouselForTag builds a carousel from posts tagged with the given slug.
+// Returns nil if fewer than 3 image-bearing posts are found.
 func GetCarouselForTag(tagSlug string, title string, postsByTagSlugMap map[string][]*Post) *Carousel {
 	maxSize := 20
 	tagPosts := postsByTagSlugMap[tagSlug]
 	candidates := make([]*Post, 0, maxSize)
 	for _, post := range tagPosts {
-		if !canBeACarouselPost(post) {
+		if !CanBeACarouselPost(post) {
 			continue
 		}
 		candidates = append(candidates, post)
@@ -41,12 +45,14 @@ func GetCarouselForTag(tagSlug string, title string, postsByTagSlugMap map[strin
 		Title: title,
 		Posts: candidates,
 	}
-	if !canBeCarousel(carousel) {
+	if !CanBeCarousel(carousel) {
 		return nil
 	}
 	return &carousel
 }
 
+// GetRelatedPostsCarousel builds a carousel of related posts for a given post,
+// based on shared tags. Returns nil if fewer than 3 candidates are found.
 func GetRelatedPostsCarousel(post *Post, postsByTagSlugMap map[string][]*Post) *Carousel {
 	maxSize := 20
 	candidatesMap := make(map[string]bool, maxSize)
@@ -75,17 +81,17 @@ func GetRelatedPostsCarousel(post *Post, postsByTagSlugMap map[string][]*Post) *
 		Title: "Related Posts",
 		Posts: candidates,
 	}
-	if !canBeCarousel(carousel) {
+	if !CanBeCarousel(carousel) {
 		return nil
 	}
 	return &carousel
 }
 
-func getTopPicksCarousel(postsByIdMap map[string]*Post) Carousel {
+func getTopPicksCarousel(postsByIDMap map[string]*Post) Carousel {
 	posts := make([]*Post, 0, len(topPicksCarouselPostIDs))
 	for _, id := range topPicksCarouselPostIDs {
-		post, ok := postsByIdMap[id]
-		if !ok || !canBeACarouselPost(post) {
+		post, ok := postsByIDMap[id]
+		if !ok || !CanBeACarouselPost(post) {
 			continue
 		}
 		posts = append(posts, post)
@@ -97,7 +103,7 @@ func getTopPicksCarousel(postsByIdMap map[string]*Post) Carousel {
 }
 
 func canBeARelatedPostsCarouselPost(originalPost *Post, post *Post, currentCandidates map[string]bool) bool {
-	if !canBeACarouselPost(post) {
+	if !CanBeACarouselPost(post) {
 		return false
 	}
 	if currentCandidates[post.Metadata.ID] {
@@ -109,10 +115,12 @@ func canBeARelatedPostsCarouselPost(originalPost *Post, post *Post, currentCandi
 	return true
 }
 
-func canBeACarouselPost(post *Post) bool {
+// CanBeACarouselPost returns true if a post has at least one image.
+func CanBeACarouselPost(post *Post) bool {
 	return len(post.Images) > 0
 }
 
-func canBeCarousel(carousel Carousel) bool {
+// CanBeCarousel returns true if a carousel has at least 3 posts.
+func CanBeCarousel(carousel Carousel) bool {
 	return len(carousel.Posts) > 2
 }
