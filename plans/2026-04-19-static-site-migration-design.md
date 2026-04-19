@@ -137,6 +137,7 @@ output/
     semantic-ui-css-2.4.1/                # Copied from web/static/
     stylesheets/
     images/
+  404.html                                # Custom error page
   robots.txt                              # Copied from web/static-root/
   favicon.ico
   _manifest.json                          # Build artifact (not uploaded to S3)
@@ -151,7 +152,9 @@ The `feeds/rss` file has no extension and requires explicit `Content-Type: appli
 **New S3 bucket** (e.g., `tugberkugurlu-com-static`) for the static site. The existing `tugberkugurlu-blog` bucket (post images) is preserved unchanged.
 
 - **CloudFront distribution** with OAC (Origin Access Control) pointing to the new S3 bucket
-- **ACM certificate** — reuse existing wildcard cert for `*.tugberkugurlu.com`
+- **ACM certificate** — reuse existing cert which covers both `tugberkugurlu.com` (primary) and `*.tugberkugurlu.com` (SAN). Both names are required because CloudFront terminates TLS before the CloudFront Function can redirect naked → www.
+- **CloudFront settings** — Viewer Protocol Policy: redirect-to-https (replaces ALB HTTP→HTTPS redirect). Compress objects automatically: enabled (replaces the Go server's GZIP middleware).
+- **Custom error response** — configure CloudFront to return a custom `404.html` page for 403/404 errors from S3, instead of the default S3 XML error.
 - **Route53** — point `tugberkugurlu.com` (A alias) and `www.tugberkugurlu.com` (A alias) to CloudFront
 
 ### 4.4 CloudFront Function (viewer-request)
@@ -164,11 +167,16 @@ function handler(event) {
   var uri = request.uri.toLowerCase();  // Case-insensitive matching
   var host = request.headers.host.value;
 
-  // Naked domain → www redirect
+  // Naked domain → www redirect (preserving query string)
   if (host === 'tugberkugurlu.com') {
+    var qs = Object.keys(request.querystring).length > 0
+      ? '?' + Object.keys(request.querystring).map(function(k) {
+          return k + '=' + request.querystring[k].value;
+        }).join('&')
+      : '';
     return {
       statusCode: 301,
-      headers: { location: { value: 'https://www.tugberkugurlu.com' + uri } }
+      headers: { location: { value: 'https://www.tugberkugurlu.com' + uri + qs } }
     };
   }
 
@@ -242,7 +250,7 @@ The monolithic `cmd/web/main.go` is split into a shared `internal/blog/` package
 | New File | Contents |
 |---|---|
 | `internal/blog/types.go` | `Post`, `PostMetadata`, `Tag`, `TagCountPair`, `Carousel`, `SpeakingActivity`, `Config`, `Site`, page view models (`Home`, `Blog`, `TagsPage`, `PostPage`, `SpeakingPage`, `AboutPage`, `ContactPage`) |
-| `internal/blog/loader.go` | `LoadSite(postsDir string) (*Site, error)` — walks markdown files, parses YAML + markdown, extracts images, calculates reading time, builds all indexes (postsByID, postsBySlug, postsByTagSlug, tagsBySlug, tagsList), builds carousels. Returns a `Site` struct. |
+| `internal/blog/loader.go` | `LoadSite(cfg LoadSiteConfig) (*Site, error)` — accepts paths (postsDir, configPath) and options, walks markdown files, parses YAML + markdown, extracts images, calculates reading time, builds all indexes, builds carousels. Returns a `Site` struct. Config parsing (Viper) moves here. |
 | `internal/blog/slugs.go` | `ToSlug(tag string) string` with predefined overrides (`c# → c-sharp`, `c++ → cpp`) |
 | `internal/blog/carousels.go` | `GetCarousels()`, `GetCarouselForTag()`, `GetRelatedPostsCarousel()`, top picks post IDs |
 | `internal/blog/speaking.go` | `SpeakingActivity` struct + `SpeakingActivities` data |
@@ -328,8 +336,8 @@ The go-bloggy repo is public. Credentials are handled via OIDC federation — no
 ### 7.3 S3 Upload
 
 ```bash
-# HTML pages (exclude manifest)
-aws s3 sync output/ s3://BUCKET/ \
+# HTML pages (exclude manifest, delete orphans)
+aws s3 sync output/ s3://BUCKET/ --delete \
   --exclude "*" --include "*.html" --exclude "_manifest.json" \
   --content-type "text/html; charset=utf-8" \
   --cache-control "public, max-age=300"
@@ -339,8 +347,8 @@ aws s3 cp output/feeds/rss s3://BUCKET/feeds/rss \
   --content-type "application/rss+xml; charset=utf-8" \
   --cache-control "public, max-age=900"
 
-# Static assets (long cache)
-aws s3 sync output/assets/ s3://BUCKET/assets/ \
+# Static assets (long cache, delete orphans)
+aws s3 sync output/assets/ s3://BUCKET/assets/ --delete \
   --cache-control "public, max-age=31536000, immutable"
 
 # Root files
