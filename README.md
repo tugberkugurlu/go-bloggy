@@ -1,54 +1,129 @@
 # go-bloggy
 
-![Go](https://github.com/tugberkugurlu/go-bloggy/workflows/Go/badge.svg?branch=master)
+![CI](https://github.com/tugberkugurlu/go-bloggy/actions/workflows/ci.yml/badge.svg?branch=master)
 
-Markdown-driven version of [tugberkugurlu/tugberk-web](https://github.com/tugberkugurlu/tugberk-web), implemented in [Go](https://go.dev/). 
+Static site generator and blog for [tugberkugurlu.com](https://www.tugberkugurlu.com), implemented in [Go](https://go.dev/). Markdown files on disk are compiled into a complete static site that is deployed to AWS S3 + CloudFront.
 
-## Facts
+This is a port of [tugberkugurlu/tugberk-web](https://github.com/tugberkugurlu/tugberk-web).
 
- - This codebase structure is influenced by [golang-standards/project-layout](https://github.com/golang-standards/project-layout), 
- even if it doesn't adhere to it completely.
+## Quick start
 
-## Build Docker Image
+```bash
+# Build everything
+go build -v ./...
+
+# Run all tests (unit + integration)
+go test -v ./...
+
+# Generate the static site into ./output
+go run ./cmd/generate \
+  -posts ./web/posts \
+  -templates ./web/template \
+  -static ./web/static \
+  -static-root ./web/static-root \
+  -config . \
+  -output ./output
+```
+
+The generated site is written to the `output/` directory with an `_manifest.json` listing every page, redirect, and URL pattern.
+
+## Running the dev server
+
+The legacy `cmd/web` server can still be used for local development. It loads posts into memory at startup and serves them on the fly:
+
+```bash
+cd cmd/web
+go run .
+# Visit http://localhost:8080
+```
+
+Override the port with `SERVER_PORT`:
+
+```bash
+SERVER_PORT=3000 go run .
+```
+
+## Docker (local dev)
+
+A `docker-compose.dev.yml` is provided for container-based local development. It mounts the content directories as read-only volumes so content changes take effect on restart without rebuilding the image:
+
+```bash
+docker compose -f docker-compose.dev.yml up --build
+# Visit http://localhost:9847
+```
+
+To build and run the production image directly:
+
+```bash
+docker build -t go-bloggy -f docker-web.dockerfile .
+docker run -it --rm -p 9000:8080 go-bloggy
+```
+
+## Running tests
+
+```bash
+# Unit tests only
+go test -v ./cmd/... ./internal/...
+
+# All tests including comparison and E2E link integrity
+go test -v ./...
+```
+
+## Project structure
 
 ```
-docker build -t my-golang-app -f docker-web.dockerfile .
-docker run -it --rm -p 9000:8080 --name my-running-app my-golang-app
-curl http://localhost:9000
+cmd/
+  generate/          Static site generator (primary build tool)
+  web/               Legacy HTTP server for local development
+  migrate/           One-off SQL Server to markdown migration tool
+  sherlock/          AWS Lambda stub (not in active use)
+internal/
+  blog/              Core blog logic: post loading, templates, carousels, types
+  htmltextextractor/ Extracts plain text from HTML (for reading-time calc)
+  readingtime/       Computes reading time (wordCount / 200 minutes)
+web/
+  posts/             Blog posts as markdown files, grouped by year
+  template/          Go html/template files (layout, pages, partials)
+  static/            CSS, JS, images (Semantic UI, custom styles)
+  static-root/       Root-level static files (robots.txt, favicon.ico)
+test/
+  comparison/        Side-by-side comparison tests (server vs generator)
+  e2e/               E2E link integrity tests
+config.yaml          Runtime configuration (assets_url, assets_prefix)
+plans/               Design specs and migration plans
+docs/                Operational documentation
 ```
 
-You can connect to the running container like below to inspect, where `web` is the name of the container:
+## CI/CD pipeline
 
-```
-docker exec -it web bash
-```
+Two GitHub Actions workflows drive the build and deployment:
 
-## Thanks
+- **CI** (`.github/workflows/ci.yml`) -- runs on pull requests to `master`:
+  1. Build all Go packages
+  2. Run unit tests
+  3. Generate the static site and verify expected output files
+  4. Run side-by-side comparison and E2E link integrity tests
 
-Huge thanks to below open source projects which helped me get this site up and running more quickly 🙇🏼‍♂️
+- **Deploy** (`.github/workflows/deploy.yml`) -- runs on push to `master`:
+  1. Same build, test, and generate steps as CI
+  2. Authenticate to AWS via OIDC (GitHub Actions role)
+  3. Sync HTML pages, RSS feed, static assets, and root files to S3 with appropriate cache headers
+  4. Invalidate the CloudFront distribution cache
 
- - [Semantic-Org/Semantic-UI](https://github.com/Semantic-Org/Semantic-UI): Semantic is a UI framework designed for 
- theming.
- - [gorilla/mux](https://github.com/gorilla/mux): Package gorilla/mux implements a request router and dispatcher for 
- matching incoming requests to their respective handler.
- - [denisenkom/go-mssqldb](github.com/denisenkom/go-mssqldb): A pure Go MSSQL driver for Go's database/sql package. I 
- used this to migrate the data from my old blog which used SQL Server for data storage.
- - [go-yaml/yaml](https://github.com/go-yaml/yaml): YAML support for the Go language. I used this to parse the YAML front 
- matter block inside the markdown file of each post.
- - [github.com/gosimple/slug](https://github.com/gosimple/slug): URL-friendly slugify with multiple languages support. I 
- used this to generate tag URLs.
- - [gorilla/feeds](https://github.com/gorilla/feeds): feeds is a web feed generator library for generating RSS, Atom and 
- JSON feeds from Go applications. I used this to generate my RSS feed.
+The infrastructure (S3 bucket, CloudFront distribution, IAM roles, DNS) is managed in [tugberkugurlu/tugberk-infrastructure](https://github.com/tugberkugurlu/tugberk-infrastructure).
 
-Also, big thanks to people who contributed to below content which helped me implement this using Go, and Semantic UI:
+## Design spec
 
- - [Serving Static Sites with Go](https://www.alexedwards.net/blog/serving-static-sites-with-go)
- - [Docker for Go Development with Hot Reload](https://levelup.gitconnected.com/docker-for-go-development-a27141f36ba9)
- - [Using Nested Templates in Go for Efficient Web Development](https://levelup.gitconnected.com/using-go-templates-for-effective-web-development-f7df10b0e4a0)
- - [Golang parse HTML, extract all content with <body> </body> tags](https://stackoverflow.com/questions/30109061/golang-parse-html-extract-all-content-with-body-body-tags)
- - [How to compare the length of a list in html/template in golang?](https://stackoverflow.com/questions/35967109/how-to-compare-the-length-of-a-list-in-html-template-in-golang)
- - [How to use base template file for golang html/template?](https://stackoverflow.com/questions/36617949/how-to-use-base-template-file-for-golang-html-template)
- - [How to implement case insensitive URL matching using gorilla mux](https://stackoverflow.com/questions/53593618/how-to-implement-case-insensitive-url-matching-using-gorilla-mux)
- - [gorilla/mux#Static Files](https://github.com/gorilla/mux/tree/75dcda0896e109a2a22c9315bca3bb21b87b2ba5#static-files)
- - [Golang Templates Cheatsheet](https://curtisvermeeren.github.io/2017/09/14/Golang-Templates-Cheatsheet)
- - [Go: Is there a modulus I can use inside a template](https://stackoverflow.com/a/36369436/463785)
+See [plans/2026-04-19-static-site-migration-design.md](plans/2026-04-19-static-site-migration-design.md) for the original design specification for the static site migration.
+
+## Acknowledgements
+
+Huge thanks to these open source projects:
+
+- [Semantic-Org/Semantic-UI](https://github.com/Semantic-Org/Semantic-UI) -- UI framework
+- [gorilla/mux](https://github.com/gorilla/mux) -- HTTP router
+- [gorilla/feeds](https://github.com/gorilla/feeds) -- RSS feed generation
+- [russross/blackfriday](https://github.com/russross/blackfriday) -- Markdown to HTML
+- [spf13/viper](https://github.com/spf13/viper) -- Configuration loading
+- [gosimple/slug](https://github.com/gosimple/slug) -- URL slug generation
+- [go-yaml/yaml](https://github.com/go-yaml/yaml) -- YAML front-matter parsing
