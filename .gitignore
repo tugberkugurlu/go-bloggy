@@ -18,4 +18,5 @@
 .DS_Store
 cmd/web/web
 ci/
+output/
 .superpowers/
